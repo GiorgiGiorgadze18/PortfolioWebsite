@@ -140,6 +140,15 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
   line-height: 1.05;
 }
 
+/* About layout: two-column on desktop, stacked on mobile */
+.about-layout {
+  margin-top: 36px;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 40px;
+  align-items: start;
+}
+
 /* Cyan accent on any heading */
 .title-accent {
   color: var(--clr-cyan);
@@ -1215,6 +1224,17 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
   transform: scale(1);
 }
 
+/* Ensure about page certificate previews are visually consistent
+   on desktop as well (matches Certificate 1 height). */
+.about-certs .card-image {
+  max-height: 360px;
+}
+.about-certs .card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    10. PROJECTS PAGE — Header + Filters
@@ -1476,12 +1496,42 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
     justify-content: center;
   }
 
-  /* Single column cards */
+  /* Single column cards for general grids */
   .projects-preview-grid,
   .projects-grid,
   .disciplines__grid {
     grid-template-columns: 1fr;
   }
+
+  /* About page: stack text first, then scrollable certificate cards */
+  .about-layout { display: block; }
+  .about-certs { margin-top: 20px; }
+  .about-certs .projects-grid {
+    display: flex;
+    gap: 18px;
+    overflow-x: auto;
+    padding-bottom: 12px;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+  }
+  .about-certs .project-card {
+    min-width: 280px;
+    flex: 0 0 85%;
+    scroll-snap-align: start;
+  }
+  /* Make certificate previews consistent height and remove extra gap
+     between the text container and the image for certs 2 & 3. */
+  .about-certs .card-info { height: 220px; padding-bottom: 12px; }
+  .about-certs .card-image { max-height: 320px; }
+  .about-certs .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  /* In case a specific certificate image is taller/smaller, enforce
+     a consistent visual across the three cards. */
+  .about-certs .project-card .card-info__bg { background-size: cover; }
 
   /* Timeline */
   .timeline-entry__header {
