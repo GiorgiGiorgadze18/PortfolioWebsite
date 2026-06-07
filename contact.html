@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact Giorgi Giorgadze — UI/UX and Graphic Designer based in Tbilisi, Georgia.">
+  <meta name="author" content="Giorgi Giorgadze">
+  <title>Contact — Giorgi Giorgadze</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/contact.css">
+</head>
+<body>
+  <header class="navbar" id="navbar">
+    <nav class="navbar__inner container">
+      <a href="index.html" class="navbar__brand" aria-label="Home">
+        <img src="assets/icon-code.svg" alt="" class="brand-icon" aria-hidden="true">
+        <span class="brand-name">GG<span class="brand-dot">.</span></span>
+      </a>
+      <ul class="navbar__links" role="list">
+        <li><a href="index.html" class="nav-link">HOME</a></li>
+        <li><a href="projects.html" class="nav-link">PROJECTS</a></li>
+        <li><a href="contact.html" class="nav-link is-active">CONTACT</a></li>
+        <li><a href="about.html" class="nav-link">ABOUT</a></li>
+      </ul>
+      <a href="contact.html" class="btn btn--outline navbar__cta">CONNECT</a>
+      <button class="navbar__hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <ul class="mobile-menu__links" role="list">
+      <li><a href="index.html" class="nav-link">HOME</a></li>
+      <li><a href="projects.html" class="nav-link">PROJECTS</a></li>
+      <li><a href="contact.html" class="nav-link is-active">CONTACT</a></li>
+      <li><a href="about.html" class="nav-link">ABOUT</a></li>
+      <li><a href="contact.html" class="nav-link">CONNECT</a></li>
+    </ul>
+  </div>
+
+  <main>
+    <section class="projects-page-hero" aria-label="Contact">
+      <div class="parallax-bg" id="parallax-bg" aria-hidden="true"></div>
+      <div class="container">
+        <p class="section-label projects-page-hero__label" data-animate>GET IN TOUCH</p>
+        <h1 class="section-title" data-animate data-delay="1">
+          <span class="title-accent">Contact</span>
+        </h1>
+        <p class="hero__bio" data-animate data-delay="2" style="margin-top:20px; max-width:560px;">
+          Reach out for design collaborations, freelance projects, or any creative inquiry.
+          I’m available to discuss UI/UX, branding, and visual storytelling work.
+        </p>
+      </div>
+    </section>
+
+    <section class="contact-panel" aria-label="Secure message form">
+      <div class="container">
+        <div class="contact-panel__grid">
+          <article class="contact-card contact-card--info" data-animate data-delay="1">
+            <p class="contact-card__heading">Contact Information</p>
+            <div class="contact-card__list">
+              <a class="contact-card__item" href="mailto:giorgi.giorgadzee.16@gmail.com">
+                <img class="contact-card__item-icon" src="assets/vector-mail.svg" alt="Mail icon">
+                <span>giorgi.giorgadzee.16@gmail.com</span>
+              </a>
+              <a class="contact-card__item" href="assets/CV - Giorgi Giorgadze (UI UX Designer).pdf" target="_blank" rel="noopener noreferrer">
+                <img class="contact-card__item-icon" src="assets/vector-document.svg" alt="Document icon">
+                <span>CV - Giorgi Giorgadze</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="contact-card contact-card--status" data-animate data-delay="1.2">
+            <div class="contact-card__heading-row">
+              <p class="contact-card__heading">Current Status</p>
+            </div>
+            <div class="status-pill">
+              <span class="status-dot" aria-hidden="true"></span>
+              <span>Available for Projects</span>
+            </div>
+            <div class="contact-card__divider"></div>
+            <p class="contact-card__heading">Coordinates</p>
+            <ul class="contact-card__list contact-card__list--small">
+              <li><a class="contact-card__link-text" href="https://www.linkedin.com/in/giorgigiorgadzee16" target="_blank" rel="noopener noreferrer">LinkedIn Network</a></li>
+              <li>Something</li>
+              <li><a class="contact-card__link-text" href="https://www.behance.net/giorgigiorgadze19" target="_blank" rel="noopener noreferrer">Behance Portfolio</a></li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="contact-panel__card" data-animate data-delay="1.4">
+          <div class="contact-panel__head">
+            <img src="assets/vector-mail.svg" alt="Mail icon" class="contact-panel__icon">
+            <div>
+              <p class="contact-panel__tag">SECURE TRANSMISSION.EXE</p>
+              <h2 class="contact-panel__title">Send your message securely</h2>
+            </div>
+          </div>
+
+          <form class="contact-form" action="https://formspree.io/f/xjgdyjka" method="POST">
+            <div class="contact-form__grid">
+              <label class="contact-form__field">
+                <span>Initiator Name</span>
+                <input type="text" name="name" placeholder="Enter designation..." required>
+              </label>
+              <label class="contact-form__field">
+                <span>Return Address</span>
+                <input type="email" name="email" placeholder="email@server.com" required>
+              </label>
+            </div>
+
+            <label class="contact-form__field contact-form__field--full">
+              <span>Payload / Message</span>
+              <textarea name="message" rows="7" placeholder="Formulate transmission data..." required></textarea>
+            </label>
+
+            <input type="hidden" name="_subject" value="New message from portfolio contact form">
+            <button type="submit" class="btn btn--primary contact-form__submit">
+              TRANSMIT&nbsp;▸
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="navbar__brand">
+          <span class="brand-name">GG<span class="brand-dot">.</span></span>
+        </a>
+        <p>Graphics &amp; UI/UX Designer — Tbilisi, Georgia</p>
+      </div>
+      <nav class="footer__nav" aria-label="Footer navigation">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+        <a href="about.html">About</a>
+      </nav>
+      <div class="footer__contact">
+        <a href="mailto:giorgi.giorgadzee.16@gmail.com">giorgi.giorgadzee.16@gmail.com</a>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <p>&copy; 2026 Giorgi Giorgadze. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

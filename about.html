@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="About Giorgi Giorgadze — UI/UX and Graphic Designer based in Tbilisi, Georgia.">
+  <meta name="author" content="Giorgi Giorgadze">
+  <title>About — Giorgi Giorgadze</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/about.css">
+</head>
+<body>
+  <header class="navbar" id="navbar">
+    <nav class="navbar__inner container">
+      <a href="index.html" class="navbar__brand" aria-label="Home">
+        <img src="assets/icon-code.svg" alt="" class="brand-icon" aria-hidden="true">
+        <span class="brand-name">GG<span class="brand-dot">.</span></span>
+      </a>
+      <ul class="navbar__links" role="list">
+        <li><a href="index.html" class="nav-link">HOME</a></li>
+        <li><a href="projects.html" class="nav-link">PROJECTS</a></li>
+        <li><a href="contact.html" class="nav-link">CONTACT</a></li>
+        <li><a href="about.html" class="nav-link is-active">ABOUT</a></li>
+      </ul>
+      <a href="contact.html" class="btn btn--outline navbar__cta">CONNECT</a>
+      <button class="navbar__hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <ul class="mobile-menu__links" role="list">
+      <li><a href="index.html" class="nav-link">HOME</a></li>
+      <li><a href="projects.html" class="nav-link">PROJECTS</a></li>
+      <li><a href="contact.html" class="nav-link">CONTACT</a></li>
+      <li><a href="about.html" class="nav-link is-active">ABOUT</a></li>
+      <li><a href="contact.html" class="nav-link">CONNECT</a></li>
+    </ul>
+  </div>
+
+  <main>
+    <section class="projects-page-hero" aria-label="About">
+      <div class="parallax-bg" id="parallax-bg" aria-hidden="true"></div>
+      <div class="container">
+        <p class="section-label projects-page-hero__label" data-animate>WHO AM I</p>
+        <h1 class="section-title" data-animate data-delay="1">
+          <span class="title-accent">I am a designer <span style="color:var(--clr-cyan)">constantly<br>evolving</span>.</span>
+        </h1>
+        <div class="about-layout" style="margin-top:36px; display:grid; grid-template-columns: 1fr 420px; gap:40px; align-items:start;">
+          <div class="about-content">
+            <p class="hero__bio" data-animate data-delay="2" style="max-width:640px;">
+              My journey in design began with a simple curiosity about how things work and look. Over the time, this curiosity has transformed into a relentless pursuit of crafting digital experiences that are not only functional but emotionally resonant. I believe that good design is invisible, guiding the user seamlessly towards their goal while quietly delighting them along the way.
+            </p>
+
+            <p class="hero__bio" data-animate data-delay="3" style="max-width:640px; margin-top:20px;">
+              I've spent the last few years engaging in the tech industry, witnessing firsthand the rapid evolution of interface patterns and user expectations. My approach is deeply analytical, yet inherently creative. I thrive at the intersection of logical system architecture and expressive visual storytelling.
+            </p>
+
+            <p class="hero__bio" data-animate data-delay="4" style="max-width:640px; margin-top:20px;">
+              Currently, I'm focused on creating high-fidelity, futuristic interfaces that push the boundaries of what's possible on the web. I am fascinated by the potential of immersive technologies and generative design to redefine how we interact with information. Let's build the future together.
+            </p>
+          </div>
+
+          <aside class="about-certs">
+            <div class="projects-grid" role="list">
+              <!-- CERT 1 -->
+              <article class="project-card" data-category="certificate" data-animate data-delay="1" role="listitem">
+                <div class="card-info">
+                  <div class="card-info__bg" style="background-image:url('assets/Certificate-1-jfif')" aria-hidden="true"></div>
+                  <div class="card-info__overlay" aria-hidden="true"></div>
+                  <div class="card-info__content">
+                    <div class="card-meta">
+                      <span class="card-category">Graphics Design</span>
+                      <span class="card-date">2025</span>
+                    </div>
+                    <h2 class="card-title">Foster Academy</h2>
+                    <div class="card-actions">
+                      <a href="assets/Certificate-1.jfif" class="card-btn card-btn--primary">
+                        <img src="assets/icon-eye.svg" alt="" aria-hidden="true">View
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-image">
+                  <img src="assets/Certificate-1.jfif" alt="Foster Academy — preview">
+                </div>
+              </article>
+
+              <!-- CERT 2 -->
+              <article class="project-card" data-category="certificate" data-animate data-delay="1.2" role="listitem">
+                <div class="card-info">
+                  <div class="card-info__bg" style="background-image:url('assets/Certificate-2.pdf')" aria-hidden="true"></div>
+                  <div class="card-info__overlay" aria-hidden="true"></div>
+                  <div class="card-info__content">
+                    <div class="card-meta">
+                      <span class="card-category">Graphics & UI/UX Design</span>
+                      <span class="card-date">2025</span>
+                    </div>
+                    <h2 class="card-title">Skillwill Swiss Academy</h2>
+                    <div class="card-actions">
+                      <a href="assets/Certificate-2.pdf" class="card-btn card-btn--primary">
+                        <img src="assets/icon-eye.svg" alt="" aria-hidden="true">View
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-image">
+                  <img src="assets/Certificate-2.png" alt="Skillwill Academy — preview">
+                </div>
+              </article>
+
+              <!-- CERT 3 -->
+              <article class="project-card" data-category="certificate" data-animate data-delay="1.4" role="listitem">
+                <div class="card-info">
+                  <div class="card-info__bg" style="background-image:url('assets/Certificate-3.pdf')" aria-hidden="true"></div>
+                  <div class="card-info__overlay" aria-hidden="true"></div>
+                  <div class="card-info__content">
+                    <div class="card-meta">
+                      <span class="card-category">IT Certificate</span>
+                      <span class="card-date">2026</span>
+                    </div>
+                    <h2 class="card-title">DataArt: AI Software Development & Data Consulting Partner</h2>
+                    <div class="card-actions">
+                      <a href="assets/Certificate-3.pdf" class="card-btn card-btn--primary">
+                        <img src="assets/icon-eye.svg" alt="" aria-hidden="true">View
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-image">
+                  <img src="assets/Certificate-3.png" alt="Certificate Three — preview">
+                </div>
+              </article>
+
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="navbar__brand">
+          <span class="brand-name">GG<span class="brand-dot">.</span></span>
+        </a>
+        <p>Graphics &amp; UI/UX Designer — Tbilisi, Georgia</p>
+      </div>
+      <nav class="footer__nav" aria-label="Footer navigation">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+        <a href="about.html">About</a>
+      </nav>
+      <div class="footer__contact">
+        <a href="mailto:giorgi.giorgadzee.16@gmail.com">giorgi.giorgadzee.16@gmail.com</a>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <p>&copy; 2026 Giorgi Giorgadze. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

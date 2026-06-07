@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Giorgi Giorgadze — Graphics & UI/UX Designer based in Tbilisi, Georgia. Crafting digital experiences with visual precision.">
+  <meta name="author" content="Giorgi Giorgadze">
+  <title>Giorgi Giorgadze — Designer</title>
+
+  <!-- Google Fonts: Inter + Space Grotesk (per spec) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════════════════════════════════ -->
+  <header class="navbar" id="navbar">
+    <nav class="navbar__inner container">
+      <a href="index.html" class="navbar__brand" aria-label="Giorgi Giorgadze Home">
+        <img src="assets/icon-code.svg" alt="" class="brand-icon" aria-hidden="true">
+        <span class="brand-name">GG<span class="brand-dot">.</span></span>
+      </a>
+      <ul class="navbar__links" role="list">
+        <li><a href="index.html"    class="nav-link is-active">HOME</a></li>
+        <li><a href="projects.html" class="nav-link">PROJECTS</a></li>
+        <li><a href="contact.html"  class="nav-link">CONTACT</a></li>
+        <li><a href="about.html"    class="nav-link">ABOUT</a></li>
+      </ul>
+      <a href="contact.html" class="btn btn--outline navbar__cta">CONNECT</a>
+      <button class="navbar__hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Mobile menu overlay -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <ul class="mobile-menu__links" role="list">
+      <li><a href="index.html"    class="nav-link is-active">HOME</a></li>
+      <li><a href="projects.html" class="nav-link">PROJECTS</a></li>
+      <li><a href="contact.html"  class="nav-link">CONTACT</a></li>
+      <li><a href="about.html"    class="nav-link">ABOUT</a></li>
+      <li><a href="contact.html"  class="nav-link">CONNECT</a></li>
+    </ul>
+  </div>
+
+  <main>
+
+    <!-- ═══════════════════════════════════════════════════════════
+         HERO SECTION
+         parallax-bg moves at 40% scroll speed via JS.
+         Swap in a real bg image by editing .parallax-bg in style.css
+    ═══════════════════════════════════════════════════════════ -->
+    <section class="hero" id="hero" aria-label="Introduction">
+      <div class="parallax-bg" id="parallax-bg" aria-hidden="true"></div>
+      <div class="hero__grid-overlay" aria-hidden="true"></div>
+
+      <div class="container hero__container">
+
+        <!-- Profile Photo -->
+        <div class="hero__photo-wrap" data-animate>
+          <div class="hero__photo-glow" aria-hidden="true"></div>
+          <img src="assets/profile.png"
+               alt="Giorgi Giorgadze, Graphics and UI/UX Designer"
+               class="hero__photo">
+          <div class="availability-badge">
+            <span class="availability-dot" aria-hidden="true"></span>
+            Available for work
+          </div>
+        </div>
+
+        <!-- Hero Text -->
+        <div class="hero__content">
+          <p class="hero__eyebrow" data-animate data-delay="1">
+            <img src="assets/icon-code.svg" alt="" class="eyebrow-icon" aria-hidden="true">
+            Based in Tbilisi, Georgia
+          </p>
+
+          <!-- Inter ExtraBold 800 @ 48px per spec -->
+          <h1 class="hero__title" data-animate data-delay="2">
+            Graphics &amp; <br>
+            <span class="title-accent">UI/UX Designer</span>
+          </h1>
+
+          <!-- Inter Regular 400 @ 20px per spec -->
+          <p class="hero__bio" data-animate data-delay="3">
+            Designing immersive digital experiences where aesthetics, usability, and interaction work as one seamless system.
+          </p>
+
+          <div class="hero__actions" data-animate data-delay="4">
+            <a href="assets/CV - Giorgi Giorgadze (UI UX Designer).pdf" class="btn btn--primary" download="Giorgi_Giorgadze_CV.pdf">
+              <img src="assets/icon-download.svg" alt="" aria-hidden="true">
+              Download CV
+            </a>
+            <a href="projects.html" class="btn btn--ghost">
+              View Work
+              <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="M3 8H13M9 4L13 8L9 12" stroke="currentColor" stroke-width="1.6"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+
+          <div class="hero__socials" data-animate data-delay="5">
+            <a href="https://www.linkedin.com/in/giorgigiorgadzee16"
+               class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                <rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/>
+              </svg>
+            </a>
+            <a href="mailto:giorgi.giorgadzee.16@gmail.com" class="social-link" aria-label="Email">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2">
+                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                <path d="M2 7l10 7 10-7"/>
+              </svg>
+            </a>
+            <a href="https://www.behance.net/giorgigiorgadze19"
+               class="social-link" target="_blank" rel="noopener" aria-label="Behance">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8.227 13.316H5V11h3.227c.706 0 1.177.47 1.177 1.158 0 .688-.47 1.158-1.177 1.158zM5 8.684h2.993c.627 0 1.044.392 1.044.993 0 .601-.417.993-1.044.993H5V8.684zm7.12 5.552c.134.535.535.87 1.07.87.404 0 .736-.134.938-.402h2.077c-.47 1.14-1.608 1.876-3.015 1.876-2.009 0-3.215-1.274-3.215-3.15 0-1.876 1.272-3.15 3.149-3.15 1.943 0 3.015 1.274 3.015 3.15 0 .268-.033.535-.067.803h-4.087c.069.402.27.871.135 1.003zm2.948-1.608c-.067-.535-.47-.87-1.005-.87-.535 0-.938.335-.938.87h1.943zM14.398 7h3.35v.87h-3.35V7zM10.6 10.16c0 1.608-1.205 2.514-2.945 2.514H3V7h4.52c1.607 0 2.677.737 2.677 2.211 0 .67-.268 1.273-.804 1.608.67.268 1.207.804 1.207 1.341z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="scroll-indicator" aria-hidden="true">
+        <div class="scroll-indicator__line"></div>
+        <span>SCROLL</span>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════
+         CORE DISCIPLINES
+    ═══════════════════════════════════════════════════════════ -->
+    <section class="disciplines" id="disciplines" aria-labelledby="disc-title">
+      <div class="container">
+
+        <div class="section-header" data-animate>
+          <p class="section-label">WHAT I DO</p>
+          <!-- Inter ExtraBold 800 @ 48px per spec -->
+          <h2 class="section-title" id="disc-title">CORE DISCIPLINES</h2>
+        </div>
+
+        <div class="disciplines__section" data-animate data-delay="1">
+          <p class="section-label">UI/UX DESIGN</p>
+          <h3 class="disciplines__subheading">User-centered product design</h3>
+          <div class="disciplines__grid">
+
+            <article class="discipline-card" data-animate data-delay="1">
+              <div class="discipline-card__header">
+                <div class="discipline-card__icon" aria-hidden="true">
+                  <img src="assets/vector-user (2).svg" alt="">
+                </div>
+                <h3 class="discipline-card__title">UX<br>RESEARCH</h3>
+              </div>
+              <ul class="discipline-card__list">
+                <li>User flows &amp; journey maps</li>
+                <li>User personas &amp; behavior</li>
+                <li>Audience analysis</li>
+                <li>Problem framing</li>
+                <li>Experience strategy</li>
+                <li>Validation insights</li>
+              </ul>
+              <div class="discipline-card__tools">
+                <span class="tool-tag">FigmaJam</span>
+              </div>
+            </article>
+
+            <article class="discipline-card" data-animate data-delay="2">
+              <div class="discipline-card__header">
+                <div class="discipline-card__icon" aria-hidden="true">
+                  <img src="assets/vector-diamond.svg" alt="">
+                </div>
+                <h3 class="discipline-card__title">WIREFRAMING<br>&amp; PROTOTYPING</h3>
+              </div>
+              <ul class="discipline-card__list">
+                <li>Low-fidelity layouts</li>
+                <li>Information architecture</li>
+                <li>Navigation structuring</li>
+                <li>Sitemaps &amp; flows</li>
+                <li>Interactive prototypes</li>
+                <li>Usability validation</li>
+              </ul>
+              <div class="discipline-card__tools">
+                <span class="tool-tag">Figma</span>
+                <span class="tool-tag">Adobe XD</span>
+                <span class="tool-tag">Sketch</span>
+              </div>
+            </article>
+
+            <article class="discipline-card" data-animate data-delay="3">
+              <div class="discipline-card__header">
+                <div class="discipline-card__icon" aria-hidden="true">
+                  <img src="assets/icon-view.svg" alt="">
+                </div>
+                <h3 class="discipline-card__title">INTERFACE<br>DESIGN</h3>
+              </div>
+              <ul class="discipline-card__list">
+                <li>Responsive UI systems</li>
+                <li>Component architecture</li>
+                <li>Design and layout strategy</li>
+                <li>Contrast &amp; color discipline</li>
+                <li>Visual interaction design</li>
+                <li>Accessible presentation</li>
+              </ul>
+              <div class="discipline-card__tools">
+                <span class="tool-tag">Figma</span>
+                <span class="tool-tag">Adobe XD</span>
+              </div>
+            </article>
+
+            <article class="discipline-card discipline-card--wide" data-animate data-delay="4">
+              <div class="discipline-card__header">
+                <div class="discipline-card__icon" aria-hidden="true">
+                  <img src="assets/vector-view.svg" alt="">
+                </div>
+                <h3 class="discipline-card__title">HIGH-FIDELITY<br>EXECUTION</h3>
+              </div>
+              <div class="discipline-card__desc">
+                <p>Translating wireframes into polished, interactive interfaces. Leveraging
+glassmorphism, precise typography, and spatial dynamics to create immersive digital
+experiences. Full app testing, working prototypes, clickable flows, UX Testing, Prioritized Usability Optimization, User-Centered Design.</p>
+              </div>
+              <div class="discipline-card__tools">
+                <span class="tool-tag">Figma</span>
+                <span class="tool-tag">Prototyping</span>
+                <span class="tool-tag">Testing</span>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <div class="disciplines__section" data-animate data-delay="1">
+          <p class="section-label">GRAPHICS DESIGN</p>
+          <h3 class="disciplines__subheading">Visual systems for brand and digital media</h3>
+          <div class="disciplines__grid">
+
+            <article class="discipline-card" data-animate data-delay="1">
+              <div class="discipline-card__header">
+                <div class="discipline-card__icon" aria-hidden="true">
+                  <img src="assets/vector-3d (2).svg" alt="">
+                </div>
+                <h3 class="discipline-card__title">BRANDING<br>SYSTEMS</h3>
+              </div>
+              <ul class="discipline-card__list">
+                <li>Logo design</li>
+                <li>Brand identity</li>
+                <li>Visual direction</li>
+                <li>Brand colors &amp; typography</li>
+                <li>Guidelines &amp; consistency</li>
+                <li>Identity refresh</li>
+              </ul>
+              <div class="discipline-card__tools">
+                <span class="tool-tag">Illustrator</span>
+                <span class="tool-tag">Photoshop</span>
+                <span class="tool-tag">Figma</span>
+              </div>
+            </article>
+
+            <article class="discipline-card" data-animate data-delay="2">
+              <div class="discipline-card__header">
+                <div class="discipline-card__icon" aria-hidden="true">
+                  <img src="assets/vector-typo (2).svg" alt="">
+                </div>
+                <h3 class="discipline-card__title">TYPOGRAPHY<br>DESIGN</h3>
+              </div>
+              <ul class="discipline-card__list">
+                <li>Typeface pairing</li>
+                <li>Hierarchy &amp; editorial</li>
+                <li>Kerning &amp; spacing</li>
+                <li>Readability optimization</li>
+                <li>Typographic rhythm</li>
+                <li>Brand voice styling</li>
+              </ul>
+              <div class="discipline-card__tools">
+                <span class="tool-tag">Illustrator</span>
+                <span class="tool-tag">InDesign</span>
+                <span class="tool-tag">Photoshop</span>
+              </div>
+            </article>
+
+            <article class="discipline-card" data-animate data-delay="3">
+              <div class="discipline-card__header">
+                <div class="discipline-card__icon" aria-hidden="true">
+                  <img src="assets/vector-layers (2).svg" alt="">
+                </div>
+                <h3 class="discipline-card__title">COMPOSITIONS<br>&amp; LAYOUT</h3>
+              </div>
+              <ul class="discipline-card__list">
+                <li>Grid systems</li>
+                <li>Spacing strategy</li>
+                <li>Balance &amp; alignment</li>
+                <li>Layout structuring</li>
+                <li>Visual weight distribution</li>
+                <li>Modular composition</li>
+              </ul>
+              <div class="discipline-card__tools">
+                <span class="tool-tag">Figma</span>
+                <span class="tool-tag">InDesign</span>
+                <span class="tool-tag">Photoshop</span>
+
+              </div>
+            </article>
+
+            <article class="discipline-card" data-animate data-delay="4">
+              <div class="discipline-card__header">
+                <div class="discipline-card__icon" aria-hidden="true">
+                  <img src="assets/icon-eye.svg" alt="">
+                </div>
+                <h3 class="discipline-card__title">VISUAL<br>DESIGN</h3>
+              </div>
+              <ul class="discipline-card__list">
+                <li>Color theory</li>
+                <li>Contrast control</li>
+                <li>Visual storytelling</li>
+                <li>Depth &amp; lighting</li>
+                <li>Aesthetic direction</li>
+                <li>Mood creation</li>
+              </ul>
+              <div class="discipline-card__tools">
+                <span class="tool-tag">Photoshop</span>
+                <span class="tool-tag">Figma</span>
+                <span class="tool-tag">Lightroom</span>
+              </div>
+            </article>
+
+            <article class="discipline-card" data-animate data-delay="5">
+              <div class="discipline-card__header">
+                <div class="discipline-card__icon" aria-hidden="true">
+                  <img src="assets/vector-pen (2).svg" alt="">
+                </div>
+                <h3 class="discipline-card__title">DIGITAL<br>GRAPHICS</h3>
+              </div>
+              <ul class="discipline-card__list">
+                <li>Photo manipulation</li>
+                <li>Mockup design</li>
+                <li>Retouching &amp; texturing</li>
+                <li>Cinematic enhancement</li>
+                <li>Brand visuals</li>
+                <li>Digital asset polish</li>
+              </ul>
+              <div class="discipline-card__tools">
+                <span class="tool-tag">Photoshop</span>
+                <span class="tool-tag">Illustrator</span>
+                <span class="tool-tag">Canva</span>
+              </div>
+            </article>
+
+            <article class="discipline-card" data-animate data-delay="6">
+              <div class="discipline-card__header">
+                <div class="discipline-card__icon" aria-hidden="true">
+                  <img src="assets/vector-megaphone (2).svg" alt="">
+                </div>
+                <h3 class="discipline-card__title">MARKETING<br>DESIGN</h3>
+              </div>
+              <ul class="discipline-card__list">
+                <li>Social media assets</li>
+                <li>Poster and campaign design</li>
+                <li>Advertising visuals</li>
+                <li>Promotional graphics</li>
+                <li>Digital ads</li>
+                <li>Brand activation visuals</li>
+              </ul>
+              <div class="discipline-card__tools">
+                <span class="tool-tag">Illustrator</span>
+                <span class="tool-tag">Photoshop</span>
+                <span class="tool-tag">Canva</span>
+                <span class="tool-tag">Figma</span>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════
+         PROFESSIONAL EXPERIENCE TIMELINE
+    ═══════════════════════════════════════════════════════════ -->
+    <section class="experience" id="experience" aria-labelledby="exp-title">
+      <div class="container">
+
+        <div class="section-header" data-animate>
+          <p class="section-label">WORK HISTORY</p>
+          <!-- Inter ExtraBold 800 @ 48px per spec -->
+          <h2 class="section-title" id="exp-title">PROFESSIONAL EXPERIENCE</h2>
+        </div>
+
+        <div class="timeline" role="list">
+
+          <!-- Entry 1 -->
+          <div class="timeline-entry" data-animate data-delay="1" role="listitem">
+            <div class="timeline-entry__dot" aria-hidden="true"></div>
+            <div class="timeline-entry__content">
+              <div class="timeline-entry__header">
+                <!-- Space Grotesk Bold 700 @ 24px per spec -->
+                <h3 class="timeline-entry__role">Information Technology Support</h3>
+                <!-- Inter Light 300 @ 15px per spec -->
+                <span class="timeline-entry__date">2023 – Present</span>
+              </div>
+              <p class="timeline-entry__company">EVEX Clinics</p>
+              <!-- Inter Regular 400 @ 20px (lighter here for hierarchy) -->
+              <p class="timeline-entry__desc">
+                An experienced IT Support Specialist with practical expertise in diagnosing and managing software,
+                 hardware and network- related issues. Experienced IT Helpdesk, IT Support Specialist and Senior IT Specialsit.
+                  Working now as Senior IT Specialist.
+              </p>
+              <div class="timeline-entry__tags">
+                <span>IT Support</span><span>Helpdesk</span>
+                <span>Network Administration</span><span>Technical Troubleshooting</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Entry 2 -->
+          <div class="timeline-entry" data-animate data-delay="2" role="listitem">
+            <div class="timeline-entry__dot" aria-hidden="true"></div>
+            <div class="timeline-entry__content">
+              <div class="timeline-entry__header">
+                <h3 class="timeline-entry__role">UI/UX Designer</h3>
+                <span class="timeline-entry__date">2025 – Present</span>
+              </div>
+              <p class="timeline-entry__company">Freelancer / Self-Employed</p>
+              <p class="timeline-entry__desc">
+               UI/UX Designer with strong expertise in User-Centered Design, Interface Systems, Wireframing and Prototyping. Experienced in creating Modern, Functional and visually consistent digital interfaces for web and mobile platforms.
+              </p>
+              <div class="timeline-entry__tags">
+                <span>Figma</span><span>Sketch</span>
+                <span>Adobe XD</span><span>Prototyping</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Entry 3 -->
+          <div class="timeline-entry" data-animate data-delay="3" role="listitem">
+            <div class="timeline-entry__dot" aria-hidden="true"></div>
+            <div class="timeline-entry__content">
+              <div class="timeline-entry__header">
+                <h3 class="timeline-entry__role">Graphics Designer</h3>
+                <span class="timeline-entry__date">2025 – Present</span>
+              </div>
+              <p class="timeline-entry__company">Freelancer / Self-Employed</p>
+              <p class="timeline-entry__desc">
+                Creative and detail-oriented Graphic Designer with strong expertise in Brand Identity Design, Packaging Design, Marketing Visual Communication, Logo Design, Illustration Design, Photo Retouching and etc.
+              </p>
+              <div class="timeline-entry__tags">
+                <span>Adobe Illustrator</span><span>Adobe Photoshop</span><span>Brand Identity</span><span>Packaging</span><span>Logo Design</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════════════════════════════════
+         FEATURED PROJECTS PREVIEW
+    ═══════════════════════════════════════════════════════════ -->
+    <section class="featured-preview" id="featured" aria-labelledby="feat-title">
+      <div class="container">
+
+        <div class="featured-preview__header">
+          <div data-animate>
+            <p class="section-label">SELECTED WORK</p>
+            <!-- Inter ExtraBold 800 @ 48px per spec -->
+            <h2 class="section-title" id="feat-title">Best Projects</h2>
+          </div>
+          <a href="projects.html" class="btn btn--ghost" data-animate data-delay="1">
+            See All
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M3 8H13M9 4L13 8L9 12" stroke="currentColor" stroke-width="1.6"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <div class="projects-preview-grid">
+
+          <!-- Tsero App -->
+          <article class="project-card" data-animate data-delay="1">
+            <div class="card-info">
+              <!-- Image clipped to 220px (same as text container height) -->
+              <div class="card-info__bg"
+                   style="background-image:url('assets/project-tsero.jpg')"
+                   aria-hidden="true"></div>
+              <div class="card-info__overlay" aria-hidden="true"></div>
+              <div class="card-info__content">
+                <div class="card-meta">
+                  <!-- Space Grotesk Medium 500 per spec -->
+                  <span class="card-category">Mobile App · UI/UX</span>
+                  <!-- Inter Light 300 @ 15px per spec -->
+                  <span class="card-date">2026</span>
+                </div>
+                <!-- Space Grotesk Bold 700 @ 24px per spec -->
+                <h3 class="card-title">Tsero App</h3>
+                <div class="card-actions">
+                  <a href="projects.html" class="card-btn card-btn--primary">
+                    <img src="assets/icon-eye.png" alt="" aria-hidden="true">View
+                  </a>
+                  <a href="projects.html" class="card-btn">Details</a>
+                </div>
+              </div>
+            </div>
+            <!-- Full image drops down on hover -->
+            <div class="card-image">
+              <img src="assets/project-tsero.jpg"
+                   alt="Tsero Food Delivery App — Mobile UI/UX concept">
+            </div>
+          </article>
+
+          <!-- Tom Ford -->
+          <article class="project-card" data-animate data-delay="2">
+            <div class="card-info">
+              <div class="card-info__bg"
+                   style="background-image:url('assets/project-tomford.png')"
+                   aria-hidden="true"></div>
+              <div class="card-info__overlay" aria-hidden="true"></div>
+              <div class="card-info__content">
+                <div class="card-meta">
+                  <span class="card-category">Product Visual · Graphics</span>
+                  <span class="card-date">2025</span>
+                </div>
+                <h3 class="card-title">Tom Ford<br>Tobacco Vanille</h3>
+                <div class="card-actions">
+                  <a href="projects.html" class="card-btn card-btn--primary">
+                    <img src="assets/icon-eye.png" alt="" aria-hidden="true">View
+                  </a>
+                  <a href="projects.html" class="card-btn">Details</a>
+                </div>
+              </div>
+            </div>
+            <div class="card-image">
+              <img src="assets/project-tomford.png"
+                   alt="Tom Ford Tobacco Vanille — Product visual">
+            </div>
+          </article>
+
+          <!-- JBL -->
+          <article class="project-card" data-animate data-delay="3">
+            <div class="card-info">
+              <div class="card-info__bg"
+                   style="background-image:url('assets/project-jbl.png')"
+                   aria-hidden="true"></div>
+              <div class="card-info__overlay" aria-hidden="true"></div>
+              <div class="card-info__content">
+                <div class="card-meta">
+                  <span class="card-category">Advertising · Graphics</span>
+                  <span class="card-date">2025</span>
+                </div>
+                <h3 class="card-title">JBL Premium Audio</h3>
+                <div class="card-actions">
+                  <a href="projects.html" class="card-btn card-btn--primary">
+                    <img src="assets/icon-eye.png" alt="" aria-hidden="true">View
+                  </a>
+                  <a href="projects.html" class="card-btn">Details</a>
+                </div>
+              </div>
+            </div>
+            <div class="card-image">
+              <img src="assets/project-jbl.png"
+                   alt="JBL Premium Audio — Advertising campaign visual">
+            </div>
+          </article>
+
+          <!-- Earth Hour -->
+          <article class="project-card" data-animate data-delay="4">
+            <div class="card-info">
+              <div class="card-info__bg"
+                   style="background-image:url('assets/project-earthhour.png')"
+                   aria-hidden="true"></div>
+              <div class="card-info__overlay" aria-hidden="true"></div>
+              <div class="card-info__content">
+                <div class="card-meta">
+                  <span class="card-category">Poster Design · Graphics</span>
+                  <span class="card-date">2025</span>
+                </div>
+                <h3 class="card-title">Earth Hour<br>Poster</h3>
+                <div class="card-actions">
+                  <a href="projects.html" class="card-btn card-btn--primary">
+                    <img src="assets/icon-eye.png" alt="" aria-hidden="true">View
+                  </a>
+                  <a href="projects.html" class="card-btn">Details</a>
+                </div>
+              </div>
+            </div>
+            <div class="card-image">
+              <img src="assets/project-earthhour.png"
+                   alt="Earth Hour Campaign Poster">
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="navbar__brand">
+          <span class="brand-name">GG<span class="brand-dot">.</span></span>
+        </a>
+        <p>Graphics &amp; UI/UX Designer — Tbilisi, Georgia</p>
+      </div>
+      <nav class="footer__nav" aria-label="Footer navigation">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+        <a href="about.html">About</a>
+      </nav>
+      <div class="footer__contact">
+        <a href="mailto:giorgi.giorgadzee.16@gmail.com">giorgi.giorgadzee.16@gmail.com</a>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <p>&copy; 2026 Giorgi Giorgadze. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

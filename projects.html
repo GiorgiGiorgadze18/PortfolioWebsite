@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Projects by Giorgi Giorgadze — UI/UX and Graphic Design work.">
+  <meta name="author" content="Giorgi Giorgadze">
+  <title>Projects — Giorgi Giorgadze</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/projects.css">
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════ NAVIGATION -->
+  <header class="navbar" id="navbar">
+    <nav class="navbar__inner container">
+      <a href="index.html" class="navbar__brand" aria-label="Home">
+        <img src="assets/icon-code.svg" alt="" class="brand-icon" aria-hidden="true">
+        <span class="brand-name">GG<span class="brand-dot">.</span></span>
+      </a>
+      <ul class="navbar__links" role="list">
+        <li><a href="index.html"    class="nav-link">HOME</a></li>
+        <li><a href="projects.html" class="nav-link is-active">PROJECTS</a></li>
+        <li><a href="contact.html"  class="nav-link">CONTACT</a></li>
+        <li><a href="about.html"    class="nav-link">ABOUT</a></li>
+      </ul>
+      <a href="contact.html" class="btn btn--outline navbar__cta">CONNECT</a>
+      <button class="navbar__hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <ul class="mobile-menu__links" role="list">
+      <li><a href="index.html"    class="nav-link">HOME</a></li>
+      <li><a href="projects.html" class="nav-link is-active">PROJECTS</a></li>
+      <li><a href="contact.html"  class="nav-link">CONTACT</a></li>
+      <li><a href="about.html"    class="nav-link">ABOUT</a></li>
+      <li><a href="contact.html"  class="nav-link">CONNECT</a></li>
+    </ul>
+  </div>
+
+  <main>
+
+    <!-- ═══════════════════════════════════════════ PAGE HEADER
+         Projects page uses --clr-pink (#D0BCFF) as accent per spec.
+         Background: rgba(12, 19, 36, 0.4) per spec on cards.        -->
+    <section class="projects-page-hero" aria-label="Projects header">
+      <div class="parallax-bg" id="parallax-bg" aria-hidden="true"></div>
+      <div class="container">
+        <p class="section-label projects-page-hero__label" data-animate>MY WORK</p>
+        <!-- Inter ExtraBold 800 @ 48px per spec -->
+        <h1 class="section-title" data-animate data-delay="1">
+          Best <span class="title-accent">Projects</span>
+        </h1>
+        <!-- Inter Regular 400 @ 20px per spec -->
+        <p class="hero__bio" data-animate data-delay="2"
+           style="margin-top:20px; max-width:560px;">
+         A curated selection of graphical experiments and clear identity of earned skills from my stock. Each specimen demonstrates rigorous adherence to systematic
+design principles.
+        </p>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════ FILTER + GRID -->
+    <section class="projects-list" aria-label="Projects grid">
+      <div class="container">
+
+        <!-- Category filter tabs -->
+        <div class="projects-filter" role="group" aria-label="Filter by category" data-animate>
+          <button class="filter-btn is-active" data-filter="all">All</button>
+        </div>
+
+        <!-- ──────────────────────────────────────────────────────
+             PROJECT CARDS
+             Each card:
+               .card-info     — text container (220px, fixed)
+               .card-info__bg — image MASKED to those dimensions
+               .card-image    — image REVEALS (drops down) on hover
+             Cards use background-fill rgba(12,19,36,0.4) per spec.
+        ────────────────────────────────────────────────────────── -->
+        <div class="projects-grid" role="list">
+
+          <!-- CARD 1 – Tsero App (UI/UX) -->
+          <article class="project-card" data-category="ui-ux"
+                   data-animate data-delay="1" role="listitem">
+            <div class="card-info">
+              <div class="card-info__bg"
+                   style="background-image:url('assets/project-tsero.jpg')"
+                   aria-hidden="true"></div>
+              <div class="card-info__overlay" aria-hidden="true"></div>
+              <div class="card-info__content">
+                <div class="card-meta">
+                  <!-- Space Grotesk Medium 500 per spec -->
+                  <span class="card-category">Mobile App · UI/UX</span>
+                  <!-- Inter Light 300 @ 15px per spec -->
+                  <span class="card-date">2026</span>
+                </div>
+                <!-- Space Grotesk Bold 700 @ 24px per spec -->
+                <h2 class="card-title">Tsero App</h2>
+                <div class="card-actions">
+                  <a href="assets/project-tsero.jpg" class="card-btn card-btn--primary">
+                    <img src="assets/icon-eye.svg" alt="" aria-hidden="true">View
+                  </a>
+                  <button class="card-btn card-btn-details" data-project="tsero">Details</button>
+                </div>
+              </div>
+            </div>
+            <!-- Full image drops down from card-info height on hover -->
+            <div class="card-image">
+              <img src="assets/project-tsero.jpg"
+                   alt="Tsero Food Delivery App — Mobile UI/UX concept by Giorgi Giorgadze">
+            </div>
+          </article>
+
+          <!-- CARD 2 – Tom Ford (Product Visual) -->
+          <article class="project-card" data-category="product"
+                   data-animate data-delay="2" role="listitem">
+            <div class="card-info">
+              <div class="card-info__bg"
+                   style="background-image:url('assets/project-tomford.png')"
+                   aria-hidden="true"></div>
+              <div class="card-info__overlay" aria-hidden="true"></div>
+              <div class="card-info__content">
+                <div class="card-meta">
+                  <span class="card-category">Product Visual · Graphics</span>
+                  <span class="card-date">2025</span>
+                </div>
+                <h2 class="card-title">Tom Ford<br>Tobacco Vanille</h2>
+                <div class="card-actions">
+                  <a href="assets/project-tomford.png" class="card-btn card-btn--primary">
+                    <img src="assets/icon-eye.svg" alt="" aria-hidden="true">View
+                  </a>
+                  <a href="#" class="card-btn">Details</a>
+                </div>
+              </div>
+            </div>
+            <div class="card-image">
+              <img src="assets/project-tomford.png"
+                   alt="Tom Ford Tobacco Vanille — Luxury product visual by Giorgi Giorgadze">
+            </div>
+          </article>
+
+          <!-- CARD 3 – JBL (Graphics) -->
+          <article class="project-card" data-category="graphics"
+                   data-animate data-delay="3" role="listitem">
+            <div class="card-info">
+              <div class="card-info__bg"
+                   style="background-image:url('assets/project-jbl.png')"
+                   aria-hidden="true"></div>
+              <div class="card-info__overlay" aria-hidden="true"></div>
+              <div class="card-info__content">
+                <div class="card-meta">
+                  <span class="card-category">Advertising · Graphics</span>
+                  <span class="card-date">2025</span>
+                </div>
+                <h2 class="card-title">JBL Premium<br>Audio Campaign</h2>
+                <div class="card-actions">
+                  <a href="assets/project-jbl.png" class="card-btn card-btn--primary">
+                    <img src="assets/icon-eye.svg" alt="" aria-hidden="true">View
+                  </a>
+                  <a href="#" class="card-btn">Details</a>
+                </div>
+              </div>
+            </div>
+            <div class="card-image">
+              <img src="assets/project-jbl.png"
+                   alt="JBL Premium Audio Campaign — Advertising visual by Giorgi Giorgadze">
+            </div>
+          </article>
+
+          <!-- CARD 4 – Earth Hour (Graphics) -->
+          <article class="project-card" data-category="graphics"
+                   data-animate data-delay="4" role="listitem">
+            <div class="card-info">
+              <div class="card-info__bg"
+                   style="background-image:url('assets/project-earthhour.png')"
+                   aria-hidden="true"></div>
+              <div class="card-info__overlay" aria-hidden="true"></div>
+              <div class="card-info__content">
+                <div class="card-meta">
+                  <span class="card-category">Poster Design · Graphics</span>
+                  <span class="card-date">2025</span>
+                </div>
+                <h2 class="card-title">Earth Hour<br>Campaign Poster</h2>
+                <div class="card-actions">
+                  <a href="assets/project-earthhour.png" class="card-btn card-btn--primary">
+                    <img src="assets/icon-eye.svg" alt="" aria-hidden="true">View
+                  </a>
+                  <a href="#" class="card-btn">Details</a>
+                </div>
+              </div>
+            </div>
+            <div class="card-image">
+              <img src="assets/project-earthhour.png"
+                   alt="Earth Hour Campaign Poster — Designed by Giorgi Giorgadze">
+            </div>
+          </article>
+
+        </div>
+        <!-- /projects-grid -->
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════════════════════════════════ FOOTER -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="navbar__brand">
+          <span class="brand-name">GG<span class="brand-dot">.</span></span>
+        </a>
+        <p>Graphics &amp; UI/UX Designer — Tbilisi, Georgia</p>
+      </div>
+      <nav class="footer__nav" aria-label="Footer navigation">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+        <a href="about.html">About</a>
+      </nav>
+      <div class="footer__contact">
+        <a href="mailto:giorgi.giorgadzee.16@gmail.com">giorgi.giorgadzee.16@gmail.com</a>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <p>&copy; 2026 Giorgi Giorgadze. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
