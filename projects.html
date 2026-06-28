@@ -134,7 +134,7 @@ design principles.
                   <a href="assets/project-tomford.png" class="card-btn card-btn--primary">
                     <img src="assets/icon-eye.svg" alt="" aria-hidden="true">View
                   </a>
-                  <a href="#" class="card-btn">Details</a>
+                  <button type="button" class="card-btn card-btn-details" data-project="tomford">Details</button>
                 </div>
               </div>
             </div>
@@ -162,7 +162,7 @@ design principles.
                   <a href="assets/project-jbl.png" class="card-btn card-btn--primary">
                     <img src="assets/icon-eye.svg" alt="" aria-hidden="true">View
                   </a>
-                  <a href="#" class="card-btn">Details</a>
+                  <button type="button" class="card-btn card-btn-details" data-project="jbl">Details</button>
                 </div>
               </div>
             </div>
@@ -190,7 +190,7 @@ design principles.
                   <a href="assets/project-earthhour.png" class="card-btn card-btn--primary">
                     <img src="assets/icon-eye.svg" alt="" aria-hidden="true">View
                   </a>
-                  <a href="#" class="card-btn">Details</a>
+                  <button type="button" class="card-btn card-btn-details" data-project="earthhour">Details</button>
                 </div>
               </div>
             </div>
@@ -232,6 +232,19 @@ design principles.
     </div>
   </footer>
 
+  <div id="projectOverlay" class="project-overlay" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="project-overlay__panel" role="document">
+      <button type="button" class="project-overlay__close" aria-label="Close project details">×</button>
+      <div class="project-overlay__header">
+        <p class="section-label">Project details</p>
+        <h2 class="project-overlay__title">Project title</h2>
+        <p class="project-overlay__role">Project category and year</p>
+      </div>
+      <div class="project-overlay__body">
+        <p class="project-overlay__description">Details will be added here soon.</p>
+      </div>
+    </div>
+  </div>
   <script src="js/main.js"></script>
 </body>
 </html>
