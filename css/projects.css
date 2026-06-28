@@ -1215,10 +1215,93 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
   transform: scale(1);
 }
 
+.project-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10020;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+  background: rgba(0, 0, 0, 0.9);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--t-base), visibility var(--t-base);
+}
+
+.project-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.project-overlay__panel {
+  width: min(760px, 100%);
+  background: var(--clr-bg-card);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--radius);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.52), var(--glow-xs);
+  padding: 34px;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-overlay__close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--clr-white);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 50%;
+  font-size: 22px;
+  cursor: pointer;
+  transition: all var(--t-base);
+}
+
+.project-overlay__close:hover {
+  background: rgba(255, 255, 255, 0.14);
+  transform: translateY(-1px);
+}
+
+.project-overlay__header {
+  max-width: 100%;
+}
+
+.project-overlay__title {
+  font-family: var(--ff-heading);
+  font-size: clamp(32px, 3vw, 42px);
+  line-height: 1.05;
+  margin: 12px 0 10px;
+  color: var(--clr-white);
+}
+
+.project-overlay__role {
+  font-family: var(--ff-heading);
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--clr-cyan);
+  margin-bottom: 24px;
+}
+
+.project-overlay__body {
+  color: var(--clr-white);
+  font-family: var(--ff-heading);
+  font-size: 17px;
+  line-height: 1.9;
+}
+
+.project-overlay__body p {
+  margin: 0;
+}
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    10. PROJECTS PAGE — Header + Filters
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 
 .projects-page-hero {
   position: relative;
