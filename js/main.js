@@ -52,7 +52,11 @@ function closeMenu() {
 window.addEventListener('scroll', onScroll, { passive: true });
 hamburger?.addEventListener('click', toggleMenu);
 mobileMenu?.addEventListener('click', (e) => { if (e.target === mobileMenu) closeMenu(); });
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeMenu();
+  }
+});
 $$('.nav-link', mobileMenu ?? document).forEach(l => l.addEventListener('click', closeMenu));
 
 
@@ -249,3 +253,87 @@ $$('a[href^="#"]').forEach((link) => {
     window.scrollTo({ top, behavior: 'smooth' });
   });
 });
+
+/* ── About page: make first certificate View open in new tab and scroll it into view */
+(function setupFirstCertificateScroll() {
+  const firstCard = document.querySelector('.about-certs .project-card');
+  if (!firstCard) return;
+  const viewLink = firstCard.querySelector('.card-btn--primary');
+  if (!viewLink) return;
+  // Ensure opens in new tab so the page remains and we can scroll back to the card
+  viewLink.setAttribute('target', '_blank');
+  viewLink.setAttribute('rel', 'noopener noreferrer');
+  viewLink.addEventListener('click', (e) => {
+    // After opening the asset in a new tab, smoothly bring the card into view
+    setTimeout(() => {
+      firstCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 120);
+  });
+})();
+
+/* ── Projects page: details overlay for each project */
+(function setupProjectDetailsOverlay() {
+  const overlay = $('#projectOverlay');
+  if (!overlay) return;
+
+  const titleEl = $('.project-overlay__title', overlay);
+  const roleEl = $('.project-overlay__role', overlay);
+  const descriptionEl = $('.project-overlay__description', overlay);
+  const closeButton = $('.project-overlay__close', overlay);
+
+  const projectData = {
+    tsero: {
+      title: 'Tsero App',
+      role: 'Mobile App · UI/UX',
+      description: 'The name “Tsero” comes from the Georgian word (stork), symbolizing delivery, movement and speed.\n\nMy goal with this project was to create a modern, clean and user-centered experience with simple navigation, smooth flows and a minimal visual style.\n\nThe app includes:\n• Food browsing & ordering\n• Live delivery tracking\n• Checkout & payment flow\n• User profile / settings system\n• Full UI/UX design & prototyping\n\nEverything in this project was created entirely by me: branding, logo design, color system, UI, UX, concept and full prototyping.\n\nAt the moment, this is a personal concept / portfolio project, though I’m planning to improve and redesign some sections in the future.',
+    },
+    tomford: {
+      title: 'Tom Ford Tobacco Vanille',
+      role: 'Product Visual · Graphics',
+      description: 'This composition explores warm tobacco and vanilla tones, using light, texture, and smoke effects to create a rich, atmospheric mood centered on the fragrance. Careful attention was given to color harmony and visual depth to achieve a cohesive aesthetic. Every element of this artwork was created entirely by me in Photoshop.',
+    },
+    jbl: {
+      title: 'JBL Premium Audio Campaign',
+      role: 'Advertising · Graphics',
+      description: 'This composition presents a clean, modern audio aesthetic through cool blue tones, soft cloud textures, and glass layering that create depth around the headphones. Typography, lighting, and reflections were carefully balanced to convey a premium, polished feel. Every element of this artwork was created entirely by me in Photoshop.',
+    },
+    earthhour: {
+      title: 'Earth Hour Campaign Poster',
+      role: 'Poster Design · Graphics',
+      description: 'A vector-based campaign poster designed entirely in Adobe Illustrator. This project showcases my technical precision with vector pathing, custom shape building, and typography manipulation. The artwork features a clean, scalable design suitable for both print and digital media.',
+    },
+  };
+
+  function closeProjectOverlay() {
+    overlay.classList.remove('is-open');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  function openProjectOverlay(key) {
+    const project = projectData[key] || {
+      title: 'Project details',
+      role: '',
+      description: 'Details for this project are coming soon.',
+    };
+
+    titleEl.textContent = project.title;
+    roleEl.textContent = project.role;
+    descriptionEl.textContent = project.description;
+    overlay.classList.add('is-open');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  closeButton?.addEventListener('click', closeProjectOverlay);
+  overlay.addEventListener('click', (event) => {
+    if (event.target === overlay) closeProjectOverlay();
+  });
+
+  $$('button.card-btn-details', document).forEach((button) => {
+    button.addEventListener('click', () => {
+      const projectKey = button.getAttribute('data-project');
+      openProjectOverlay(projectKey);
+    });
+  });
+})();
