@@ -1,0 +1,18 @@
+{
+  "repository": "GiorgiGiorgadze18/MeeTab1.1",
+  "branch": "release/meetab-integrated-preview-20261010",
+  "commit": "a42c37d0c54c434e7867f1f9ce3b7c65de7610b8",
+  "scope": "website and same-commit presentation dependencies; portfolio-only demo adapter; upstream unmodified",
+  "viewport": [
+    1280,
+    800
+  ],
+  "portfolioVersion": "0.14",
+  "headerFix": "Integration-only canvas text measurement; no upstream MeeTab changes",
+  "tryNowExperience": [
+    "camera approach and device alignment",
+    "one-shot light relay",
+    "persistent demo workspace",
+    "state-preserving exit"
+  ]
+}
