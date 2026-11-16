@@ -1,0 +1,265 @@
+{
+  "created_date": "2026-11-16",
+  "repository": "https://github.com/GiorgiGiorgadze18/PortfolioWebsite",
+  "source_commit": "9f9d437bc049b2277bc7ad697c7a69c37833f4b8",
+  "live_url": "https://giorgigiorgadze18.github.io/PortfolioWebsite/",
+  "pages": {
+    "branch": "main",
+    "path": "/",
+    "build_type": "legacy"
+  },
+  "tracked_files": 39,
+  "all_live_files_match_source": true,
+  "archives": {
+    "portfolio-before-showroom-2026-11-16.zip": {
+      "bytes": 12285545,
+      "sha256": "f84c8c6ac1ee333fd62f0b2af8aa3b31dd79999ab88242d131627794ea2e2459"
+    },
+    "portfolio-before-showroom-2026-11-16.bundle": {
+      "bytes": 12260182,
+      "sha256": "cae3d8d5a4164955ffcec892dfe19841052bc3dbbabde54e0e1a727efa8321cf"
+    }
+  },
+  "live_files": [
+    {
+      "path": "about.html",
+      "bytes": 8997,
+      "sha256": "875561a084734c8fcb5fd919d1642bb028396079ee651b28910aabe5afdea368",
+      "matches_git": true
+    },
+    {
+      "path": "assets/CV - Giorgi Giorgadze (UI UX Designer).pdf",
+      "bytes": 2094129,
+      "sha256": "6cf2efbff832c34189e196eb5cbb2f5c375b9783eed2dbee84e522ea53f03490",
+      "matches_git": true
+    },
+    {
+      "path": "assets/Certificate-1.jfif",
+      "bytes": 88909,
+      "sha256": "953c66b787d68e36cf476823462d0c75e11d38b3f696b7c97e98d919254cb83d",
+      "matches_git": true
+    },
+    {
+      "path": "assets/Certificate-2.pdf",
+      "bytes": 3200860,
+      "sha256": "542b252173746600b557e77c2082cfdbed06cab3d1b9941abb77f6b1a6237dcd",
+      "matches_git": true
+    },
+    {
+      "path": "assets/Certificate-2.png",
+      "bytes": 96571,
+      "sha256": "a34de74dcd7c772edba93115e2b8ffd082bb0035dcef06c2892f7b65893a05b3",
+      "matches_git": true
+    },
+    {
+      "path": "assets/Certificate-3.pdf",
+      "bytes": 97688,
+      "sha256": "dd1c736cafe0cde793466836bd4a954520c761a4890de685bf3b4a7261b9bdad",
+      "matches_git": true
+    },
+    {
+      "path": "assets/Certificate-3.png",
+      "bytes": 169279,
+      "sha256": "35b08a817ddee730ac312c507e3d003c164322630bba0439b867faa8997cff43",
+      "matches_git": true
+    },
+    {
+      "path": "assets/Giorgi Giorgadze - CV (Designer).pdf",
+      "bytes": 1158269,
+      "sha256": "ca77a8709dea51aa09f5617daaa35c145e1cf06065e296808852be2d9a856a76",
+      "matches_git": true
+    },
+    {
+      "path": "assets/Vector.svg",
+      "bytes": 227,
+      "sha256": "66caa8d2040298e1eb13a2550618c800604f57c5e0169b65afc0dd48e89f698d",
+      "matches_git": true
+    },
+    {
+      "path": "assets/icon-code.svg",
+      "bytes": 242,
+      "sha256": "e925130ff9e2aac2e1f632e56bdd4fcf741eddf8d5d958ebe242a3f2cd61f54b",
+      "matches_git": true
+    },
+    {
+      "path": "assets/icon-download.svg",
+      "bytes": 356,
+      "sha256": "6dbdf3af04defae4bcc4ea88ebd0e71fa103fee38224cefd26fd8a396c4db1ee",
+      "matches_git": true
+    },
+    {
+      "path": "assets/icon-eye.svg",
+      "bytes": 1319,
+      "sha256": "4814593fe9cf089c07d79c257c5ecb922e297586209dc73b84ff1cc80df6ce64",
+      "matches_git": true
+    },
+    {
+      "path": "assets/icon-view.svg",
+      "bytes": 1319,
+      "sha256": "4814593fe9cf089c07d79c257c5ecb922e297586209dc73b84ff1cc80df6ce64",
+      "matches_git": true
+    },
+    {
+      "path": "assets/profile-photo 1.png",
+      "bytes": 248978,
+      "sha256": "befb3ddac3558ecb66c23e63bb07f45032d40cb3be36e5f4e98ae365bfe80781",
+      "matches_git": true
+    },
+    {
+      "path": "assets/profile.png",
+      "bytes": 28442,
+      "sha256": "acd1a47ea7970d4693cb04a39f534d1f1091190d4b184dead79daf1465f8f135",
+      "matches_git": true
+    },
+    {
+      "path": "assets/project-earthhour.png",
+      "bytes": 294084,
+      "sha256": "8a0ccf80fb26dabb55293dec39ff3cd83d38d0097b9e8a178393bc1eaa6cbf66",
+      "matches_git": true
+    },
+    {
+      "path": "assets/project-jbl.png",
+      "bytes": 3158993,
+      "sha256": "cfeb691e958a7b5facad135d48bb8ed9ed1a39d83e3aedc5c434d922bd3d5ddd",
+      "matches_git": true
+    },
+    {
+      "path": "assets/project-tomford.png",
+      "bytes": 1269691,
+      "sha256": "dfae5c879088e3ad86f51413a456aec2e226d60ca6af43c4d150a43ede5640ce",
+      "matches_git": true
+    },
+    {
+      "path": "assets/project-tsero.jpg",
+      "bytes": 1152151,
+      "sha256": "65800b19f27375e12347b3e3bd01d783228710736cf0b0763e42a8776f87f884",
+      "matches_git": true
+    },
+    {
+      "path": "assets/vector-3d (2).svg",
+      "bytes": 546,
+      "sha256": "302496e7793b0afeda8bc7d3c34df518b1a339f6798ee4313c248139ff0b6e10",
+      "matches_git": true
+    },
+    {
+      "path": "assets/vector-3d.svg",
+      "bytes": 866,
+      "sha256": "6cf6964a674c702e057f375023de9a13814102b042c00fea5cea5b683d730f8f",
+      "matches_git": true
+    },
+    {
+      "path": "assets/vector-diamond.svg",
+      "bytes": 1149,
+      "sha256": "3b238b07656f185e841db67a433d86d60f991a7165f28ebcf75814c63dd10181",
+      "matches_git": true
+    },
+    {
+      "path": "assets/vector-document.svg",
+      "bytes": 851,
+      "sha256": "36d3375336d4b773b3b262b01f6663167002bc783a9cc9cde8629d01a04d6c35",
+      "matches_git": true
+    },
+    {
+      "path": "assets/vector-layers (2).svg",
+      "bytes": 3737,
+      "sha256": "a33c0e2b2010e31cf169ea1bb142e721526dd6655182845ab9ce35e3e3cb70bf",
+      "matches_git": true
+    },
+    {
+      "path": "assets/vector-mail.svg",
+      "bytes": 1042,
+      "sha256": "bff8fdd3013531d53725f1b7c93beddbeaec0176d13837476b58820817695814",
+      "matches_git": true
+    },
+    {
+      "path": "assets/vector-megaphone (2).svg",
+      "bytes": 1542,
+      "sha256": "6abe5d1c3fdadb2aff082d4b6f476f9d34f27d15adcfd441083588fa59a6ef49",
+      "matches_git": true
+    },
+    {
+      "path": "assets/vector-pen (2).svg",
+      "bytes": 1053,
+      "sha256": "1e411bfe9e27cb3f64e8cadefba510e8e844ad0c26a84959f76706ae49bf686e",
+      "matches_git": true
+    },
+    {
+      "path": "assets/vector-typo (2).svg",
+      "bytes": 2029,
+      "sha256": "77ebc457c346146563edb8a73fa8c5b1da550a6d2363970784d35ae41c2c511b",
+      "matches_git": true
+    },
+    {
+      "path": "assets/vector-user (2).svg",
+      "bytes": 626,
+      "sha256": "b713d158eb1bd8e676a7d031290c034df19d2d5659f70e3b91c64319f7c86e93",
+      "matches_git": true
+    },
+    {
+      "path": "assets/vector-view.svg",
+      "bytes": 866,
+      "sha256": "6cf6964a674c702e057f375023de9a13814102b042c00fea5cea5b683d730f8f",
+      "matches_git": true
+    },
+    {
+      "path": "contact.html",
+      "bytes": 7373,
+      "sha256": "e961aa542322b6b45dfac9dcb6d839427523c61e194c76f997c3e05cc2977951",
+      "matches_git": true
+    },
+    {
+      "path": "css/about.css",
+      "bytes": 41410,
+      "sha256": "17ce407848dfa4299e64d0ff990ed4ad657bc64d6af360a676fe46085f263444",
+      "matches_git": true
+    },
+    {
+      "path": "css/contact.css",
+      "bytes": 45419,
+      "sha256": "576c871369e4b4901bb6fdcbb1fa7c15dd91d038a52b55f4e31903615ede5931",
+      "matches_git": true
+    },
+    {
+      "path": "css/index.css",
+      "bytes": 39939,
+      "sha256": "800634cc43d5669b48f34f52f595e534f46cf5c5ceb807f6b313062479157c32",
+      "matches_git": true
+    },
+    {
+      "path": "css/projects.css",
+      "bytes": 41593,
+      "sha256": "a920bb5f2fade77c34eef687fbabe6105e811d8f4ca9bf6d828c14aee0c5bdc1",
+      "matches_git": true
+    },
+    {
+      "path": "css/style.css",
+      "bytes": 40191,
+      "sha256": "1214c6d6f15dde199a8fd264489123bbd5f1e1f6b3c45ec204e40e9f9df2b369",
+      "matches_git": true
+    },
+    {
+      "path": "index.html",
+      "bytes": 30800,
+      "sha256": "92b169a6a3705008d7152a1549be0dba465be232f9c6566066034341da6856fe",
+      "matches_git": true
+    },
+    {
+      "path": "js/main.js",
+      "bytes": 15216,
+      "sha256": "f286188455d458b330283c9b58e9c17a0f18f7826c7782d22684a239d202b35c",
+      "matches_git": true
+    },
+    {
+      "path": "projects.html",
+      "bytes": 12260,
+      "sha256": "77ef6329ca7da1f7d4037fa3ea04968b8c604ccc6588271ad5c04f30596b8557",
+      "matches_git": true
+    }
+  ],
+  "limitations": [
+    "External Google Fonts and the external Formspree backend are referenced, not owned or backed up.",
+    "The uploaded v0.14 archive could not be downloaded because the attachment tool has a read-only filesystem."
+  ],
+  "github_backup_ref": "backup/pre-showroom-2026-11-16",
+  "github_write_access": "Restored on 2026-11-16; connected GitHub tool successfully created the backup branch."
+}
