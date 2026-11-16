@@ -1,6 +1,6 @@
 """Integration regression: python3 tests/showroom-browser.py [base URL]."""
 from pathlib import Path
-import argparse, json, re
+import argparse, json, re, urllib.request
 from playwright.sync_api import sync_playwright, expect
 parser=argparse.ArgumentParser();parser.add_argument('base_url',nargs='?',default='http://127.0.0.1:8014/PortfolioWebsite/');parser.add_argument('--smoke',action='store_true');args=parser.parse_args()
 BASE=args.base_url.rstrip('/')+'/';SMOKE=args.smoke
@@ -80,7 +80,8 @@ with sync_playwright() as p:
   page.wait_for_timeout(900)
   # Same-site links retain the GitHub Pages repository prefix.
   for href in ['index.html','about.html','contact.html']:
-   assert page.request.get(BASE+href).status==200
+   # urllib honors the managed environment proxy, including hosts without direct IPv6 egress.
+   with urllib.request.urlopen(BASE+href,timeout=30) as response: assert response.status==200
   assert page.locator('.navbar__links a').nth(0).get_attribute('href')=='index.html'
   assert not errors,errors
   assert not failed,failed

@@ -1,0 +1,50 @@
+{
+  "base_url": "https://giorgigiorgadze18.github.io/PortfolioWebsite/",
+  "browser": "Chromium with software WebGL",
+  "physical_device_testing": false,
+  "scenarios": [
+    {
+      "width": 1440,
+      "status": "PASS",
+      "checks": [
+        "3D and artwork load",
+        "five projects and category filters",
+        "JBL retained",
+        "MeeTab booking",
+        "same iframe and state after exit/reentry",
+        "repeated toggles",
+        "reduced motion",
+        "gallery cleanup",
+        "navigation prefix",
+        "no JS errors, failed responses or external requests"
+      ]
+    },
+    {
+      "width": 390,
+      "status": "PASS",
+      "checks": [
+        "lightweight fallback",
+        "no 3D engine or demo download",
+        "all five project dialogs",
+        "touch navigation",
+        "no horizontal overflow or JS errors"
+      ]
+    },
+    {
+      "mode": "no-webgl",
+      "status": "PASS",
+      "checks": [
+        "visible fallback",
+        "working project details"
+      ]
+    },
+    {
+      "mode": "no-javascript",
+      "status": "PASS",
+      "checks": [
+        "artwork links available",
+        "loading overlay removed"
+      ]
+    }
+  ]
+}

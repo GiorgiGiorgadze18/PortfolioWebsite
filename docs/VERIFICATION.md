@@ -18,3 +18,11 @@ The 38 original tracked files outside `projects.html` were compared byte-for-byt
 [Desktop gallery](../tests/artifacts/gallery-1440.png) · [Desktop demo](../tests/artifacts/demo-1440.png) · [Tablet demo](../tests/artifacts/demo-820.png) · [Mobile collection](../tests/artifacts/mobile-390.png)
 
 This is browser emulation using software WebGL, not physical-device or hardware performance certification. A shorter production check is available with `--smoke`; see [SHOWROOM.md](SHOWROOM.md).
+
+## Production verification
+
+The public site passed all four smoke scenarios after the control fix: desktop pointer/keyboard preview toggles and preserved MeeTab state, mobile project dialogs/navigation, unavailable WebGL, and disabled JavaScript. The 22 showroom source files matched their tested SHA-256 checksums on the deployed site, and the ordinary public JavaScript URL also served the final fix.
+
+Browser-verified runtime commit: `92f0c54160c4b0fc627373baee02f9c708c73d02`. Subsequent evidence/test-client updates retain exactly the same runtime checksums. Navigation response checks use the managed environment's HTTP proxy through urllib, avoiding direct IPv6 egress requirements.
+
+[Public-site browser results](../tests/artifacts/production-results.json) · [Deployment and checksum report](../tests/artifacts/production-deployment.json)
