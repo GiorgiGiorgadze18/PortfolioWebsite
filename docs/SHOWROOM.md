@@ -27,7 +27,7 @@ The 5 MB embedded app is moved into a separate sandboxed iframe document, keepin
 
 The iframe retains `sandbox="allow-scripts"`, no same-origin capability, a restrictive CSP, local sample data, and disabled account/backend operations. The parent accepts preview messages only from that iframe. Projects uses local artwork and fonts; no CDN fallback is needed. The iframe is a portfolio demonstration, not the production booking service.
 
-Selecting a collection card scrolls the 3D exhibit into view. Wheel zoom is limited to the showroom surface, leaving the inspector and the rest of the page scrollable. Closing the inspector restores keyboard focus to a project control. Reduced motion retains the supplied behavior. If WebGL is unavailable, project details still work; with scripting disabled, original artwork links remain visible.
+The Try now / Exit preview control stays anchored while the camera animates, so repeated pointer activation remains reliable; iframe interaction updates immediately with the control state. Selecting a collection card scrolls the 3D exhibit into view. Wheel zoom is limited to the showroom surface, leaving the inspector and the rest of the page scrollable. Closing the inspector restores keyboard focus to a project control. Reduced motion retains the supplied behavior. If WebGL is unavailable, project details still work; with scripting disabled, original artwork links remain visible.
 
 ## Run locally
 
@@ -42,7 +42,9 @@ Open http://localhost:8000/projects.html. Use HTTP rather than opening module fi
 ```sh
 node --check showroom/showroom.js
 python3 tests/showroom-browser.py http://localhost:8000/
-# After deployment: shorter desktop/mobile production check
+# After merging: wait for Pages and verify the deployed source (requires gh)
+python3 tests/check-deployment.py MERGE_COMMIT_SHA
+# Then run the shorter desktop/mobile production check
 python3 tests/showroom-browser.py https://giorgigiorgadze18.github.io/PortfolioWebsite/ --smoke
 ```
 
