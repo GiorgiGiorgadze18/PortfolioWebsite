@@ -1,0 +1,8 @@
+{
+  "version": "0.14",
+  "uploaded_archive_commit": "ad239da8b9c2121cc9ef216646e46030684ec323",
+  "archive_sha256": "46dd92f189b9fffaae719c4528c970ef47dc1c7766d02e691f2b4cf9a627accd",
+  "original_site_commit": "9f9d437bc049b2277bc7ad697c7a69c37833f4b8",
+  "embedded_demo_sha256": "749fe707a9e098399453b3f588206be77e3e4c6efdedd5edf78f62343440c751",
+  "embedded_demo_matches_archive": true
+}

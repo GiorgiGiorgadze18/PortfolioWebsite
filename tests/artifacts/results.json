@@ -1,0 +1,90 @@
+{
+  "base_url": "http://127.0.0.1:8014/PortfolioWebsite/",
+  "browser": "Chromium with software WebGL",
+  "physical_device_testing": false,
+  "scenarios": [
+    {
+      "width": 1440,
+      "status": "PASS",
+      "checks": [
+        "3D and artwork load",
+        "five projects and category filters",
+        "all four device inspectors",
+        "JBL retained",
+        "MeeTab booking",
+        "same iframe and state after exit/reentry",
+        "repeated toggles",
+        "reduced motion",
+        "gallery cleanup",
+        "navigation prefix",
+        "no JS errors, failed responses or external requests"
+      ]
+    },
+    {
+      "width": 820,
+      "status": "PASS",
+      "checks": [
+        "3D and artwork load",
+        "five projects and category filters",
+        "all four device inspectors",
+        "JBL retained",
+        "MeeTab booking",
+        "same iframe and state after exit/reentry",
+        "repeated toggles",
+        "reduced motion",
+        "gallery cleanup",
+        "navigation prefix",
+        "no JS errors, failed responses or external requests"
+      ]
+    },
+    {
+      "width": 360,
+      "status": "PASS",
+      "checks": [
+        "lightweight fallback",
+        "no 3D engine or demo download",
+        "all five project dialogs",
+        "touch navigation",
+        "no horizontal overflow or JS errors"
+      ]
+    },
+    {
+      "width": 390,
+      "status": "PASS",
+      "checks": [
+        "lightweight fallback",
+        "no 3D engine or demo download",
+        "all five project dialogs",
+        "touch navigation",
+        "no horizontal overflow or JS errors"
+      ]
+    },
+    {
+      "width": 600,
+      "status": "PASS",
+      "checks": [
+        "lightweight fallback",
+        "no 3D engine or demo download",
+        "all five project dialogs",
+        "touch navigation",
+        "no horizontal overflow or JS errors"
+      ]
+    },
+    {
+      "mode": "no-webgl",
+      "status": "PASS",
+      "checks": [
+        "visible fallback",
+        "working project details"
+      ]
+    },
+    {
+      "mode": "no-javascript",
+      "status": "PASS",
+      "checks": [
+        "artwork links available",
+        "loading overlay removed"
+      ]
+    }
+  ]
+}
