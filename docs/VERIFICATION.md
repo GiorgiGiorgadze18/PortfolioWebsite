@@ -9,6 +9,8 @@ The local integration was served under `/PortfolioWebsite/` to match GitHub Page
 
 The initial regression found that opening a project from the collection could leave its inspector offscreen. The integration now scrolls the showroom into view; the regression checks the close control is in the viewport.
 
+A production check also exposed a continuously moving Try now control after exiting the camera animation. The control now stays anchored in the showroom, interaction state updates synchronously, and the regression uses normal hit-tested pointer activation plus explicit pointer and keyboard state assertions.
+
 The 38 original tracked files outside `projects.html` were compared byte-for-byte with original commit `9f9d437`; all are unchanged. The source ZIP matches upload commit `ad239da`. The externalized MeeTab document matches the original embedded v0.14 document exactly.
 
 [Machine-readable results](../tests/artifacts/results.json) · [Deployed-source checksums](../tests/artifacts/source-sha256.json)

@@ -509,6 +509,8 @@ function syncDemoWorkspace(){
  frame.classList.toggle('is-demo',previewActive);
  const workspace=$('.demo-workspace');workspace.inert=!previewActive;
  $('#try-preview').setAttribute('aria-pressed',String(previewActive));
+ const interactive=previewActive&&state==='focus'&&selected?.id==='jbl';
+ $('#screen-portal').inert=!interactive;$('#screen-portal').style.pointerEvents=interactive?'auto':'none';
  $('.interaction-hint').innerHTML=previewActive?'<span class="hint-dot"></span> INTERACTIVE MODE · MEETAB':'<span class="hint-dot"></span> SELECT A DEVICE TO EXPLORE';
  $('#demo-announcement').textContent=previewActive?'Demo active. MeeTab is ready to use.':'Preview ended. Your progress is saved.';
  if(!previewActive&&workspace.contains(document.activeElement))$('#try-preview').focus({preventScroll:true});
@@ -553,8 +555,10 @@ function positionScreenPortal(){
  const background=state!=='gallery'&&selected?.id!=='jbl';portal.style.filter=background?'blur(5px) brightness(.42) saturate(.72)':'none';
  portal.style.zIndex=state!=='gallery'&&selected?.id==='jbl'?'9':'3';
  const button=$('#try-preview');button.hidden=!inFocus;
- if(inFocus&&previewActive){const x=(points[2][0]+points[3][0])/2,y=Math.max(points[2][1],points[3][1])+48;$('#demo-signal path').setAttribute('d',`M${x},${y} L${(points[2][0]+points[3][0])/2},${(points[2][1]+points[3][1])/2} L${points[2]} L${points[1]} L${points[0]} L${points[3]} Z`);}
- if(inFocus){button.style.left=clamp((points[2][0]+points[3][0])/2,90,vw-inspector.offsetWidth-90)+'px';button.style.top=clamp(Math.max(points[2][1],points[3][1])+48,82,vh-55)+'px';}
+ // Keep the control still while the camera and tablet interpolate.
+ const controlX=clamp((vw-inspector.offsetWidth)/2,90,vw-inspector.offsetWidth-90),controlY=Math.max(82,vh-110);
+ if(inFocus&&previewActive){const x=controlX,y=controlY;$('#demo-signal path').setAttribute('d',`M${x},${y} L${(points[2][0]+points[3][0])/2},${(points[2][1]+points[3][1])/2} L${points[2]} L${points[1]} L${points[0]} L${points[3]} Z`);}
+ if(inFocus){button.style.left=controlX+'px';button.style.top=controlY+'px';}
 }
 
 function clientPointer(event){const r=renderer.domElement.getBoundingClientRect();pointer.x=((event.clientX-r.left)/r.width)*2-1;pointer.y=-((event.clientY-r.top)/r.height)*2+1;lastPointer.x=pointer.x;lastPointer.y=pointer.y;}
