@@ -8,10 +8,10 @@
   <meta name="theme-color" content="#060A14">
   <title>Projects — Giorgi Giorgadze | Interactive Showroom</title>
   <link rel="stylesheet" href="./showroom/assets/fonts.css">
-  <link rel="stylesheet" href="./showroom/showroom.css">
+  <link rel="stylesheet" href="./showroom/showroom.css?v=mobile-1">
 
 
-<noscript><style>.stage-enter{display:none}.stage-fallback[hidden]{display:flex}</style></noscript>
+<noscript><style>.stage-enter{display:none}.museum-frame .stage-fallback[hidden]{display:flex!important}</style></noscript>
 </head>
 <body>
   <a class="skip-link" href="#collection">Skip 3D showroom and explore projects</a>
@@ -46,7 +46,7 @@
           <div class="scanlines" aria-hidden="true"></div>
           <div class="device-labels" id="device-labels" aria-label="Choose a project"></div>
           <div class="stage-enter" id="stage-enter" aria-hidden="true"><div class="loader-ring"></div><span>PREPARING EXHIBITION</span></div>
-          <div class="stage-fallback" id="stage-fallback" hidden><span class="fallback-glyph">◈</span><p>Explore the collection below</p><small>Browse project details in the collection below. Larger screens also offer an interactive 3D showroom.</small><a href="#collection">VIEW ALL PROJECTS ↓</a></div>
+          <div class="stage-fallback" id="stage-fallback" hidden><span class="fallback-glyph">◈</span><p>Explore the collection below</p><small>Your browser could not start the 3D view. You can still open every project in the collection below.</small><a href="#collection">VIEW ALL PROJECTS ↓</a></div>
           <div class="stage-left-caption" aria-hidden="true"><span>01 / 04</span><span id="stage-caption">CURATED EXPERIENCES</span></div>
           <div class="stage-right-caption" aria-hidden="true">THOUGHTFULLY CRAFTED · 2025—2026</div>
           <div class="stage-actions"><span class="interaction-hint"><span class="hint-dot"></span> SELECT A DEVICE TO EXPLORE</span><button id="try-preview" class="text-control" type="button" hidden>Try now ↗</button><button id="reset-view" class="text-control" type="button" aria-label="Return to showroom" hidden>↩ &nbsp; BACK TO GALLERY</button></div>
@@ -82,6 +82,6 @@
   </div>
 
 
-<script type="module" src="./showroom/showroom.js"></script>
+<script type="module" src="./showroom/showroom.js?v=mobile-1"></script>
 </body>
 </html>
