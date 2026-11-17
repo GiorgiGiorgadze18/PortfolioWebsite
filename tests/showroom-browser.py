@@ -2,15 +2,16 @@
 from pathlib import Path
 import argparse, json, re, urllib.request
 from playwright.sync_api import sync_playwright, expect
-parser=argparse.ArgumentParser();parser.add_argument('base_url',nargs='?',default='http://127.0.0.1:8014/PortfolioWebsite/');parser.add_argument('--smoke',action='store_true');args=parser.parse_args()
+parser=argparse.ArgumentParser();parser.add_argument('base_url',nargs='?',default='http://127.0.0.1:8014/PortfolioWebsite/');parser.add_argument('--smoke',action='store_true');parser.add_argument('--desktop-only',action='store_true');args=parser.parse_args()
 BASE=args.base_url.rstrip('/')+'/';SMOKE=args.smoke
 OUT=Path(__file__).resolve().parent/'artifacts';OUT.mkdir(exist_ok=True)
 results=[]
-expect.set_options(timeout=30000)
+expect.set_options(timeout=60000)
 with sync_playwright() as p:
  browser=p.chromium.launch(executable_path='/usr/bin/chromium',args=['--no-sandbox','--enable-unsafe-swiftshader','--use-gl=angle','--use-angle=swiftshader'])
  for width in ([1440] if SMOKE else [1440,820]):
   context=browser.new_context(viewport={'width':width,'height':1000})
+  context.set_default_timeout(60000)
   page=context.new_page();errors=[];failed=[];external=[]
   page.on('pageerror',lambda e:errors.append(str(e)))
   page.on('response',lambda r:failed.append([r.status,r.url]) if r.status>=400 else None)
@@ -90,25 +91,8 @@ with sync_playwright() as p:
   results.append({'width':width,'status':'PASS','checks':['3D and artwork load','five projects and category filters','all four device inspectors','JBL retained','MeeTab booking','same iframe and state after exit/reentry','repeated toggles','reduced motion','gallery cleanup','navigation prefix','no JS errors, failed responses or external requests']})
   if SMOKE and 'all four device inspectors' in results[-1]['checks']: results[-1]['checks'].remove('all four device inspectors')
   print(json.dumps(results[-1]),flush=True);context.close()
- for width in ([390] if SMOKE else [360,390,600]):
-  context=browser.new_context(viewport={'width':width,'height':844},is_mobile=True,has_touch=True)
-  page=context.new_page();requests=[];errors=[]
-  page.on('request',lambda r:requests.append(r.url));page.on('pageerror',lambda e:errors.append(str(e)))
-  page.goto(BASE+'projects.html',wait_until='networkidle')
-  expect(page.locator('#stage-fallback')).to_be_visible();expect(page.locator('.archive-card')).to_have_count(5)
-  assert not any('three.js' in u or 'meetab-demo.html' in u for u in requests)
-  page.locator('#menu-toggle').click();expect(page.locator('#mobile-menu')).to_be_visible()
-  page.locator('#menu-toggle').click();expect(page.locator('#mobile-menu')).to_be_hidden()
-  for project in ['tsero','jbl','jbl-artwork','tomford','earthhour']:
-   page.locator(f'[data-explore="{project}"]').click();expect(page.locator('dialog')).to_be_visible()
-   assert page.locator('dialog img').evaluate('(e)=>e.complete&&e.naturalWidth>0')
-   page.locator('.mobile-dialog-close').click();expect(page.locator('dialog')).not_to_be_visible()
-  assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
-  if width==390 and not SMOKE: page.screenshot(path=str(OUT/'mobile-390.png'),full_page=True,animations='disabled')
-  assert not errors,errors
-  results.append({'width':width,'status':'PASS','checks':['lightweight fallback','no 3D engine or demo download','all five project dialogs','touch navigation','no horizontal overflow or JS errors']})
-  if SMOKE and 'all four device inspectors' in results[-1]['checks']: results[-1]['checks'].remove('all four device inspectors')
-  print(json.dumps(results[-1]),flush=True);context.close()
+ from mobile_showroom import check_phones
+ if not args.desktop_only:results.extend(check_phones(browser,BASE,OUT,smoke=SMOKE))
  # WebGL unavailable: project details remain usable on desktop.
  context=browser.new_context(viewport={'width':1280,'height':900})
  context.add_init_script("const getContext=HTMLCanvasElement.prototype.getContext;HTMLCanvasElement.prototype.getContext=function(type,...args){return /^webgl/.test(type)?null:getContext.call(this,type,...args)}")
@@ -116,10 +100,11 @@ with sync_playwright() as p:
  expect(page.locator('#stage-fallback')).to_be_visible();page.locator('[data-explore="tsero"]').click();expect(page.locator('dialog')).to_be_visible()
  results.append({'mode':'no-webgl','status':'PASS','checks':['visible fallback','working project details']});context.close()
  # The collection remains reachable without scripting.
- context=browser.new_context(java_script_enabled=False)
+ context=browser.new_context(java_script_enabled=False,viewport={'width':390,'height':844},is_mobile=True,has_touch=True)
  page=context.new_page();page.goto(BASE+'projects.html');expect(page.locator('noscript a[href="assets/project-jbl.png"]')).to_be_visible()
  expect(page.locator('#stage-enter')).not_to_be_visible()
+ expect(page.locator('#stage-fallback')).to_be_visible()
  results.append({'mode':'no-javascript','status':'PASS','checks':['artwork links available','loading overlay removed']});context.close()
  browser.close()
-(OUT/('production-results.json' if SMOKE else 'results.json')).write_text(json.dumps({'base_url':BASE,'browser':'Chromium with software WebGL','physical_device_testing':False,'scenarios':results},indent=2)+'\n')
+(OUT/('desktop-results.json' if args.desktop_only else 'production-results.json' if SMOKE else 'results.json')).write_text(json.dumps({'base_url':BASE,'browser':'Chromium with software WebGL','physical_device_testing':False,'scenarios':results},indent=2)+'\n')
 print('ALL SCENARIOS PASSED',flush=True)

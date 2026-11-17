@@ -1,0 +1,62 @@
+{
+  "engine": "chromium",
+  "base_url": "http://127.0.0.1:8014/PortfolioWebsite/",
+  "physical_device_testing": false,
+  "scenarios": [
+    {
+      "engine": "chromium",
+      "width": 360,
+      "status": "PASS",
+      "checks": [
+        "real WebGL showroom instead of width fallback",
+        "44px touch targets",
+        "bottom project inspector",
+        "touch activation and booking navigation",
+        "JBL artwork and mobile menu",
+        "no JS errors, failed requests or horizontal overflow"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "width": 390,
+      "status": "PASS",
+      "checks": [
+        "real WebGL showroom instead of width fallback",
+        "44px touch targets",
+        "bottom project inspector",
+        "touch activation and booking navigation",
+        "JBL artwork and mobile menu",
+        "no JS errors, failed requests or horizontal overflow",
+        "portrait/landscape resizing",
+        "same MeeTab iframe/state after exit and reentry",
+        "two-finger scene zoom"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "width": 412,
+      "status": "PASS",
+      "checks": [
+        "real WebGL showroom instead of width fallback",
+        "44px touch targets",
+        "bottom project inspector",
+        "touch activation and booking navigation",
+        "JBL artwork and mobile menu",
+        "no JS errors, failed requests or horizontal overflow"
+      ]
+    },
+    {
+      "engine": "chromium",
+      "width": 600,
+      "status": "PASS",
+      "checks": [
+        "real WebGL showroom instead of width fallback",
+        "44px touch targets",
+        "bottom project inspector",
+        "touch activation and booking navigation",
+        "JBL artwork and mobile menu",
+        "no JS errors, failed requests or horizontal overflow"
+      ]
+    }
+  ]
+}

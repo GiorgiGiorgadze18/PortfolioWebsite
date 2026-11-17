@@ -1,28 +1,38 @@
-# Verification — 2026-11-16
+# Phone 3D verification — 2026-11-17
 
-The local integration was served under `/PortfolioWebsite/` to match GitHub Pages URL resolution. All seven browser scenarios passed in Chromium:
+The original v0.14 integration deliberately stopped 3D initialization at 600 px, hid the phone inspector, and forced the collection fallback to display. The phone regression now requires a real WebGL canvas, a hidden fallback, touch project selection, and interactive MeeTab navigation.
 
-- 1440×1000 and 820×1000: WebGL artwork, four device inspectors, five collection cards and filters, original JBL artwork, MeeTab booking navigation, iframe identity/state across exit and reentry, repeated toggles, reduced motion, cleanup, and navigation. No JavaScript errors, failed responses, or external resource requests.
-- Touch/mobile emulation at 360, 390, and 600 px: all five project dialogs, mobile navigation, no horizontal overflow, and no download of the 3D engine or embedded demo.
-- Desktop without WebGL: fallback and project details remained available.
-- JavaScript disabled: original artwork links remained available and the loading overlay was removed.
+## Phone results
 
-The initial regression found that opening a project from the collection could leave its inspector offscreen. The integration now scrolls the showroom into view; the regression checks the close control is in the viewport.
+Chromium and WebKit passed at 360, 390, 412, and 600 px. The checks cover:
 
-A production check also exposed a continuously moving Try now control after exiting the camera animation. The control now stays anchored in the showroom, interaction state updates synchronously, and the regression uses normal hit-tested pointer activation plus explicit pointer and keyboard state assertions.
+- Real 3D startup and four touch controls, each at least 44 px high.
+- A bottom project inspector that fits the viewport width and the showroom frame.
+- MeeTab loading on selection, readiness before interaction, and a native touch on its booking navigation.
+- Retained app/iframe state after preview exit and reentry at 390 px.
+- Portrait/landscape resizing at 390 px in both engines, and two-finger scene zoom in Chromium.
+- Original JBL artwork access, mobile navigation, no horizontal overflow, no JavaScript errors or failed resource requests.
 
-The 38 original tracked files outside `projects.html` were compared byte-for-byte with original commit `9f9d437`; all are unchanged. The source ZIP matches upload commit `ad239da`. The externalized MeeTab document matches the original embedded v0.14 document exactly.
+Chromium's child-frame locator coordinates omit the parent scale in some transformed-frame cases. The test sends native touch input at the app button's actual rendered position, calculated from the observed frame and element rectangles. It does not invoke the app's click handler programmatically.
 
-[Machine-readable results](../tests/artifacts/results.json) · [Deployed-source checksums](../tests/artifacts/source-sha256.json)
+[Chromium results](../tests/artifacts/mobile-chromium-local.json) · [WebKit results](../tests/artifacts/mobile-webkit-local.json)
 
-[Desktop gallery](../tests/artifacts/gallery-1440.png) · [Desktop demo](../tests/artifacts/demo-1440.png) · [Tablet demo](../tests/artifacts/demo-820.png) · [Mobile collection](../tests/artifacts/mobile-390.png)
+[Chrome phone gallery](../tests/artifacts/phone-chromium-gallery.png) · [Chrome phone demo](../tests/artifacts/phone-chromium-demo.png) · [WebKit phone gallery](../tests/artifacts/phone-webkit-gallery.png) · [WebKit phone demo](../tests/artifacts/phone-webkit-demo.png)
 
-This is browser emulation using software WebGL, not physical-device or hardware performance certification. A shorter production check is available with `--smoke`; see [SHOWROOM.md](SHOWROOM.md).
+A phone with JavaScript disabled still displays the collection fallback and original artwork links. Viewport width does not trigger the fallback when graphics are available.
 
-## Production verification
+These runs use touch/viewport emulation and software graphics in Chromium and WebKit. They are not physical iPhone/Android tests or measured hardware performance results.
 
-The public site passed all four smoke scenarios after the control fix: desktop pointer/keyboard preview toggles and preserved MeeTab state, mobile project dialogs/navigation, unavailable WebGL, and disabled JavaScript. The 22 showroom source files matched their tested SHA-256 checksums on the deployed site, and the ordinary public JavaScript URL also served the final fix.
+## Desktop and fallback regression
 
-Browser-verified runtime commit: `92f0c54160c4b0fc627373baee02f9c708c73d02`. Subsequent evidence/test-client updates retain exactly the same runtime checksums. Navigation response checks use the managed environment's HTTP proxy through urllib, avoiding direct IPv6 egress requirements.
+The desktop 1440 px smoke check passed 3D startup, filters, preview exit/reentry, retained app state, keyboard toggles, reduced motion, gallery cleanup, navigation and resource checks. The same run also passed unavailable-WebGL project details and the JavaScript-disabled phone fallback.
 
-[Public-site browser results](../tests/artifacts/production-results.json) · [Deployment and checksum report](../tests/artifacts/production-deployment.json)
+[Desktop/fallback results](../tests/artifacts/desktop-results.json)
+
+## Source and backup
+
+The supplied ZIP remains unchanged, and the exact embedded MeeTab document is retained. Phone behavior is implemented in the portfolio wrapper. The pre-fix published version is preserved on `backup/pre-mobile-showroom-2026-11-17`; the original full old-site backup remains on `backup/archive-pre-showroom-2026-11-16`.
+
+The November 16 baseline used a collection-only phone fallback. Its reports and phone screenshot are retained under [dated history](../tests/artifacts/history/2026-11-16/).
+
+[Source checksums](../tests/artifacts/source-sha256.json) · [Run, deploy and restore instructions](SHOWROOM.md)

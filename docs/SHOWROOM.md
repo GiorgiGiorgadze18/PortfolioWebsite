@@ -23,11 +23,11 @@ Navigation uses relative `index.html`, `projects.html`, `about.html`, and `conta
 
 The four-device exhibition retains the supplied camera transitions, lighting, project inspectors, drag rotation, scene zoom, and state-preserving MeeTab preview. The original JBL campaign remains available as a fifth collection card; MeeTab is grouped under UI/UX. Original project artwork is served from the existing repository assets.
 
-The 5 MB embedded app is moved into a separate sandboxed iframe document, keeping the initial Projects HTML about 9 KB. Three.js is loaded only after checking viewport and WebGL support. At widths of 600 px or less, the supplied lightweight collection is used without downloading the 3D engine or MeeTab demo. The iframe remains the same instance across preview exit/reentry. State is retained during the current page visit, not promised across page reloads.
+The 5 MB embedded app is moved into a separate sandboxed iframe document, keeping the initial Projects HTML about 9 KB. Three.js is loaded only after checking viewport and WebGL support. Phones now start the same real 3D showroom when WebGL is available. At widths of 600 px or less, the camera fits the full exhibit, four project controls form a touch target grid, and project details use a bottom inspector. The app is loaded only after selecting MeeTab. A fallback collection is reserved for unavailable graphics or context loss; viewport width never disables 3D. The iframe remains the same instance across preview exit/reentry. State is retained during the current page visit, not promised across page reloads.
 
 The iframe retains `sandbox="allow-scripts"`, no same-origin capability, a restrictive CSP, local sample data, and disabled account/backend operations. The parent accepts preview messages only from that iframe. Projects uses local artwork and fonts; no CDN fallback is needed. The iframe is a portfolio demonstration, not the production booking service.
 
-The Try now / Exit preview control stays anchored while the camera animates, so repeated pointer activation remains reliable; iframe interaction updates immediately with the control state. Selecting a collection card scrolls the 3D exhibit into view. Wheel zoom is limited to the showroom surface, leaving the inspector and the rest of the page scrollable. Closing the inspector restores keyboard focus to a project control. Reduced motion retains the supplied behavior. If WebGL is unavailable, project details still work; with scripting disabled, original artwork links remain visible.
+The Try now / Exit preview control stays anchored while the camera animates, so repeated pointer activation remains reliable; iframe interaction updates immediately with the control state. Selecting a collection card scrolls the 3D exhibit into view. On phones, dragging rotates the selected device and two-finger gestures zoom the scene; a gallery swipe scrolls the page instead of accidentally opening an exhibit. During phone app interaction, the app screen uses an affine transform to avoid perspective iframe touch hit-testing differences. The Try now button waits for the embedded app to announce readiness before enabling interaction. Wheel zoom is limited to the showroom surface, leaving the inspector and the rest of the page scrollable. Closing the inspector restores keyboard focus to a project control. Reduced motion retains the supplied behavior. If WebGL is unavailable, project details still work; with scripting disabled, original artwork links remain visible.
 
 ## Run locally
 
@@ -48,9 +48,13 @@ python3 tests/check-deployment.py MERGE_COMMIT_SHA
 python3 tests/showroom-browser.py https://giorgigiorgadze18.github.io/PortfolioWebsite/ --smoke
 ```
 
-Browser checks require Python Playwright and `/usr/bin/chromium`. The script accepts a base URL, including a repository path prefix. It exercises desktop and tablet WebGL, project inspectors, filters, the retained JBL artwork, MeeTab booking navigation and iframe state, repeated preview toggles, reduced motion, gallery cleanup, mobile navigation and project dialogs, WebGL failure, and disabled JavaScript. It records fresh results and screenshots in `tests/artifacts/`.
+Browser checks require Python Playwright and `/usr/bin/chromium`. The script accepts a base URL, including a repository path prefix. It exercises desktop and tablet WebGL, project inspectors, filters, the retained JBL artwork, MeeTab booking navigation and iframe state, repeated preview toggles, reduced motion, gallery cleanup, mobile 3D, touch booking, bottom inspectors, pinch zoom, orientation changes, WebGL failure, and disabled JavaScript. It records fresh results and screenshots in `tests/artifacts/`.
 
-The local preview used `/PortfolioWebsite/` to match production URL resolution. Screenshots are visual evidence; software WebGL and emulated touch do not establish performance on physical devices.
+The local preview used `/PortfolioWebsite/` to match production URL resolution. Phone checks are also available with `python3 tests/mobile_showroom.py --engine chromium` and `python3 tests/mobile_showroom.py --engine webkit` (requires Playwright WebKit and its system libraries; an optional `SHOWROOM_WEBKIT_EXECUTABLE` selects a custom test launcher). `--smoke` checks the representative 390 px phone; the full phone check covers 360, 390, 412, and 600 px.
+
+Phone rendering uses capped 1.25× canvas resolution, 512 px artwork textures, standard materials, no real-time shadows or exhibit spotlights, and a 30 fps limit. Idle rendering pauses when the showroom is offscreen or the document is hidden. These are rendering limits, not a measured physical-device performance guarantee.
+
+Screenshots are visual evidence; software WebGL and emulated touch do not establish performance on physical devices.
 
 ## Backup and restore
 

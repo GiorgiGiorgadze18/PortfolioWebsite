@@ -1,0 +1,39 @@
+{
+  "base_url": "http://127.0.0.1:8014/PortfolioWebsite/",
+  "browser": "Chromium with software WebGL",
+  "physical_device_testing": false,
+  "scenarios": [
+    {
+      "width": 1440,
+      "status": "PASS",
+      "checks": [
+        "3D and artwork load",
+        "five projects and category filters",
+        "JBL retained",
+        "MeeTab booking",
+        "same iframe and state after exit/reentry",
+        "repeated toggles",
+        "reduced motion",
+        "gallery cleanup",
+        "navigation prefix",
+        "no JS errors, failed responses or external requests"
+      ]
+    },
+    {
+      "mode": "no-webgl",
+      "status": "PASS",
+      "checks": [
+        "visible fallback",
+        "working project details"
+      ]
+    },
+    {
+      "mode": "no-javascript",
+      "status": "PASS",
+      "checks": [
+        "artwork links available",
+        "loading overlay removed"
+      ]
+    }
+  ]
+}

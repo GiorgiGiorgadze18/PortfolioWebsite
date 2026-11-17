@@ -1,0 +1,64 @@
+{
+  "engine": "webkit",
+  "base_url": "http://127.0.0.1:8014/PortfolioWebsite/",
+  "physical_device_testing": false,
+  "scenarios": [
+    {
+      "engine": "webkit",
+      "width": 360,
+      "status": "PASS",
+      "checks": [
+        "real WebGL showroom instead of width fallback",
+        "44px touch targets",
+        "bottom project inspector",
+        "touch activation and booking navigation",
+        "same MeeTab iframe/state after exit and reentry",
+        "JBL artwork and mobile menu",
+        "no JS errors, failed requests or horizontal overflow"
+      ]
+    },
+    {
+      "engine": "webkit",
+      "width": 390,
+      "status": "PASS",
+      "checks": [
+        "real WebGL showroom instead of width fallback",
+        "44px touch targets",
+        "bottom project inspector",
+        "touch activation and booking navigation",
+        "same MeeTab iframe/state after exit and reentry",
+        "JBL artwork and mobile menu",
+        "no JS errors, failed requests or horizontal overflow",
+        "portrait/landscape resizing"
+      ]
+    },
+    {
+      "engine": "webkit",
+      "width": 412,
+      "status": "PASS",
+      "checks": [
+        "real WebGL showroom instead of width fallback",
+        "44px touch targets",
+        "bottom project inspector",
+        "touch activation and booking navigation",
+        "same MeeTab iframe/state after exit and reentry",
+        "JBL artwork and mobile menu",
+        "no JS errors, failed requests or horizontal overflow"
+      ]
+    },
+    {
+      "engine": "webkit",
+      "width": 600,
+      "status": "PASS",
+      "checks": [
+        "real WebGL showroom instead of width fallback",
+        "44px touch targets",
+        "bottom project inspector",
+        "touch activation and booking navigation",
+        "same MeeTab iframe/state after exit and reentry",
+        "JBL artwork and mobile menu",
+        "no JS errors, failed requests or horizontal overflow"
+      ]
+    }
+  ]
+}
