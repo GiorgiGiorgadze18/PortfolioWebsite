@@ -1,0 +1,22 @@
+{
+  "engine": "webkit",
+  "base_url": "https://giorgigiorgadze18.github.io/PortfolioWebsite/",
+  "physical_device_testing": false,
+  "scenarios": [
+    {
+      "engine": "webkit",
+      "width": 390,
+      "status": "PASS",
+      "checks": [
+        "real WebGL showroom instead of width fallback",
+        "44px touch targets",
+        "bottom project inspector",
+        "touch activation and booking navigation",
+        "JBL artwork and mobile menu",
+        "no JS errors, failed requests or horizontal overflow",
+        "portrait/landscape resizing",
+        "same MeeTab iframe/state after exit and reentry"
+      ]
+    }
+  ]
+}

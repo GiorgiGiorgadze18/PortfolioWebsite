@@ -36,3 +36,9 @@ The supplied ZIP remains unchanged, and the exact embedded MeeTab document is re
 The November 16 baseline used a collection-only phone fallback. Its reports and phone screenshot are retained under [dated history](../tests/artifacts/history/2026-11-16/).
 
 [Source checksums](../tests/artifacts/source-sha256.json) · [Run, deploy and restore instructions](SHOWROOM.md)
+
+## Public-site verification
+
+The published runtime at `454911623ee7ccf35643cd8518524eac786dd831` passed the 390 px phone smoke check in both Chromium and WebKit: actual 3D, touch booking navigation, exit/reentry state, portrait/landscape resizing, mobile navigation and clean JavaScript/network checks. Chromium also passed native two-finger zoom. All 22 deployed showroom source files matched the tested SHA-256 manifest. Later evidence-only commits retain the same runtime checksums.
+
+[Public Chrome phone results](../tests/artifacts/mobile-chromium-production.json) · [Public WebKit phone results](../tests/artifacts/mobile-webkit-production.json) · [Deployment report](../tests/artifacts/production-deployment.json)
