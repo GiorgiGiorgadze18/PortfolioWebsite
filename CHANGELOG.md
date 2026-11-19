@@ -2,6 +2,8 @@
 
 ## 0.14.3 — 2026-11-19
 
+[PR #5](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/5)
+
 The phone demo no longer floats over a moving tablet. Try now on touch devices opens a full-screen responsive MeeTab demo with a clear return control; desktop keeps the in-tablet demo.
 
 - Normalize screen geometry UVs and preserve image-overlay aspect ratios to stop gallery covers stretching/clamping. Use a sharper MeeTab cover on phone selection and show live iframes only in demo mode.
