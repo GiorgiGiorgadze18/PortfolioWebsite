@@ -1,0 +1,25 @@
+{
+  "base_url": "http://127.0.0.1:8014/PortfolioWebsite/",
+  "physical_device_testing": false,
+  "scenarios": [
+    {
+      "engine": "chromium",
+      "width": 1280,
+      "deviceScaleFactor": 1,
+      "status": "PASS",
+      "unchangedResizeEvents": 10,
+      "unchangedResizeBufferWrites": 0,
+      "settledPhoneTransformWrites": null,
+      "realResizeBufferWrites": null,
+      "checks": [
+        "neon shares the actual screen transform",
+        "alignment after zoom/drag/orientation changes",
+        "no redundant buffer clears",
+        "ready app and booking survive viewport notifications",
+        "same iframe and state across preview toggles",
+        "reduced motion and gallery cleanup",
+        "no JS errors or failed requests"
+      ]
+    }
+  ]
+}

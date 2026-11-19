@@ -98,10 +98,10 @@
 .is-demo #try-preview{background:#0b202b;color:#a4efff;border-color:#72dfff88;box-shadow:0 0 0 4px #52d4ff0d,0 8px 28px #0007}
 .is-demo #screen-portal{box-shadow:0 0 0 2px #80e8ff80,0 0 32px #4bd7ff30}
 .is-demo .stage-actions .interaction-hint{color:#83dfff}
-#demo-signal{position:absolute;inset:0;width:100%;height:100%;z-index:11;pointer-events:none;overflow:visible;opacity:0}
-#demo-signal path{fill:none;stroke:#adf3ff;stroke-width:2;stroke-linecap:round;filter:drop-shadow(0 0 5px #60dfff);stroke-dasharray:.14 1;stroke-dashoffset:1}
+#demo-signal{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;overflow:hidden;opacity:0}
+#demo-signal rect{fill:none;stroke:#adf3ff;stroke-width:6;stroke-linecap:round;filter:drop-shadow(0 0 5px #60dfff);stroke-dasharray:.14 1;stroke-dashoffset:1}
 .is-demo #demo-signal{opacity:1}
-.is-demo #demo-signal path{animation:demoSignal .8s cubic-bezier(.2,.65,.2,1) both}
+.is-demo #demo-signal rect{animation:demoSignal .8s cubic-bezier(.2,.65,.2,1) both}
 @keyframes demoSignal{0%{stroke-dashoffset:.15;opacity:0}12%{opacity:1}85%{opacity:1}100%{stroke-dashoffset:-1;opacity:0}}
 .demo-announcement{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
 @media(prefers-reduced-motion:reduce){#showroom-canvas,.demo-workspace,.project-inspector .inspector-body,.project-inspector .inspector-buttons,.inspector-year,#try-preview{transition:opacity .12s}#demo-signal{display:none!important}}

@@ -12,5 +12,12 @@
     "demo_loading": "on-demand, ready handshake before interaction",
     "touch_screen": "affine app plane during phone interaction",
     "backup_ref": "backup/pre-mobile-showroom-2026-11-17"
+  },
+  "patch": "0.14.2",
+  "overlay_update": {
+    "date": "2026-11-19",
+    "neon": "screen-local SVG sharing the app transform",
+    "resize": "coalesced, unchanged drawing buffers preserved",
+    "phone_projection": "one affine transform write per changed geometry"
   }
 }

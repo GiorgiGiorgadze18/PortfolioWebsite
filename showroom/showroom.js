@@ -64,7 +64,7 @@ reduceMotionMedia.addEventListener('change',()=>{
  if(movingTween)tickTween(movingTween.start+movingTween.duration);
 });
 const compactView=()=>matchMedia('(max-width:600px)').matches;
-let focusScale=1,stageVisible=true,lastRendered=0;
+let focusScale=1,stageVisible=true,lastRendered=0,resizePending=false;
 const GALLERY_PIXEL_RATIO=innerWidth<900?1.0:1.18;
 const FOCUS_PIXEL_RATIO=innerWidth<900?1.15:1.58;
 
@@ -487,7 +487,26 @@ function positionArtworkOverlays(){
 }
 function projectScreenProjection(d){const pos=d.screen.getWorldPosition(new THREE.Vector3());return pos.project(camera)}
 function renderLabels(now){for(const p of PROJECTS){const d=displayItems.get(p.id),v=d.group.localToWorld(new THREE.Vector3(0,-1.55,0));v.project(camera);const b=labelsEl.querySelector(`[data-id="${p.id}"]`);const x=(v.x*.5+.5)*frame.clientWidth,y=(-v.y*.5+.5)*frame.clientHeight;b.style.left=`${x}px`;b.style.top=`${Math.min(frame.clientHeight-100,Math.max(105,y))}px`;b.style.opacity=String(Math.min(1,(now-initialTime-550)/450));}}
-function resizeScene(){if(!renderer)return;const w=sceneHost.clientWidth,h=sceneHost.clientHeight;if(!w||!h)return;camera.aspect=w/h;camera.fov=innerWidth<900?49:42;startLook.z=compactView()?Math.max(10.45,5/(Math.tan(camera.fov*Math.PI/360)*camera.aspect)+.7):10.45;camera.updateProjectionMatrix();if(state==='gallery')camera.position.z=startLook.z;renderer.setSize(w,h,false);renderer.setPixelRatio(Math.min(devicePixelRatio,compactView()?1.25:GALLERY_PIXEL_RATIO));if(focusRenderer){focusRenderer.setSize(w,h,false);focusRenderer.setPixelRatio(Math.min(devicePixelRatio,compactView()?1.25:FOCUS_PIXEL_RATIO));}renderer.shadowMap.enabled=!compactView();focusRenderer.shadowMap.enabled=!compactView()&&innerWidth>760;if(state==='focus'&&selected){const layout=focusLayout(selected);displayItems.get(selected.id).group.position.copy(layout.position);focusScale=layout.scale;}}
+function fitRenderer(renderer,w,h,ratio){
+ const size=renderer.getSize(new THREE.Vector2());let changed=false;
+ if(renderer.getPixelRatio()!==ratio){renderer.setPixelRatio(ratio);changed=true;}
+ if(size.x!==w||size.y!==h){renderer.setSize(w,h,false);changed=true;}
+ return changed;
+}
+function queueSceneResize(){resizePending=true;}
+function resizeScene(){
+ if(!renderer)return;
+ const w=sceneHost.clientWidth,h=sceneHost.clientHeight;if(!w||!h)return;
+ camera.aspect=w/h;camera.fov=innerWidth<900?49:42;
+ startLook.z=compactView()?Math.max(10.45,5/(Math.tan(camera.fov*Math.PI/360)*camera.aspect)+.7):10.45;
+ camera.updateProjectionMatrix();if(state==='gallery')camera.position.z=startLook.z;
+ const galleryChanged=fitRenderer(renderer,w,h,Math.min(devicePixelRatio,compactView()?1.25:GALLERY_PIXEL_RATIO));
+ const focusChanged=focusRenderer&&fitRenderer(focusRenderer,w,h,Math.min(devicePixelRatio,compactView()?1.25:FOCUS_PIXEL_RATIO));
+ renderer.shadowMap.enabled=!compactView();if(focusRenderer)focusRenderer.shadowMap.enabled=!compactView()&&innerWidth>760;
+ if(state==='focus'&&selected){const layout=focusLayout(selected);displayItems.get(selected.id).group.position.copy(layout.position);focusScale=layout.scale;}
+ // A real buffer resize is drawn in this same frame, even on the phone's 30fps path.
+ if(galleryChanged||focusChanged)lastRendered=-Infinity;
+}
 function focusLayout(p){
  const position=new THREE.Vector3(...p.camera.focusPosition);
  let scale=p.camera.scale;
@@ -526,7 +545,14 @@ function ensureMeeTabPortal(){
  const portal=$('#screen-portal');
  if(persistentMeeTabFrame)return persistentMeeTabFrame;
  const iframe=document.createElement('iframe');iframe.title='MeeTab interactive preview';iframe.width='1280';iframe.height='800';iframe.setAttribute('sandbox','allow-scripts');iframe.referrerPolicy='no-referrer';
- persistentMeeTabFrame=iframe;portal.replaceChildren(iframe);iframe.src=new URL("./meetab-demo.html",import.meta.url).href;portal.hidden=false;
+ persistentMeeTabFrame=iframe;
+ const signal=$('#demo-signal');
+ if(signal){
+  signal.setAttribute('viewBox','0 0 1280 800');signal.setAttribute('preserveAspectRatio','none');
+  if(!signal.querySelector('rect')){const outline=document.createElementNS('http://www.w3.org/2000/svg','rect');for(const [key,value] of Object.entries({fill:'none',x:8,y:8,width:1264,height:784,rx:48,pathLength:1,'vector-effect':'non-scaling-stroke'}))outline.setAttribute(key,String(value));signal.replaceChildren(outline);}
+ }
+ portal.replaceChildren(iframe);if(signal)portal.append(signal);
+ iframe.src=new URL("./meetab-demo.html",import.meta.url).href;portal.hidden=false;
  return iframe;
 }
 function sendPreviewMode(){if(!meeTabReady)return;persistentMeeTabFrame?.contentWindow?.postMessage({showroom:true,kind:'interactive',enabled:previewActive&&state==='focus'&&selected?.id==='jbl'},'*');}
@@ -569,13 +595,18 @@ window.addEventListener('message',event=>{
   focusTiltTarget.x=clamp(focusTiltTarget.x+clamp(msg.dy,-100,100)*.0029,-.19,.19);
  }
 });
+const screenStyleCache=new WeakMap();
+function setScreenStyle(element,key,value){
+ let values=screenStyleCache.get(element);if(!values){values=Object.create(null);screenStyleCache.set(element,values);}
+ if(values[key]===value)return;values[key]=value;element.style[key]=value;
+}
 function positionScreenPortal(){
  const portal=$('#screen-portal'),d=displayItems.get('jbl');if(!d)return;
  const w=d.screenDimensions.w/2,h=d.screenDimensions.h/2,width=1280,height=800,vw=frame.clientWidth,vh=frame.clientHeight;
  const points=[[-w,h],[w,h],[w,-h],[-w,-h]].map(([x,y])=>{const v=d.screen.localToWorld(new THREE.Vector3(x,y,0)).project(camera);return[(v.x*.5+.5)*vw,(-v.y*.5+.5)*vh];});
  const co=solveHomography([[[0,0],points[0]],[[width,0],points[1]],[[width,height],points[2]],[[0,height],points[3]]]);if(!co)return;
- const[a,b,c,d1,e,f,g,h1]=co;portal.style.width=width+'px';portal.style.height=height+'px';portal.style.transform=`matrix3d(${a},${d1},0,${g},${b},${e},0,${h1},0,0,1,0,${c},${f},0,1)`;
- const r=screenRadius(w*2,h*2,d.project);portal.style.borderRadius=`${r/(w*2)*100}% / ${r/(h*2)*100}%`;
+ const[a,b,c,d1,e,f,g,h1]=co;let transform=`matrix3d(${a},${d1},0,${g},${b},${e},0,${h1},0,0,1,0,${c},${f},0,1)`;
+ const r=screenRadius(w*2,h*2,d.project);setScreenStyle(portal,'borderRadius',`${r/(w*2)*100}% / ${r/(h*2)*100}%`);
  const inFocus=state==='focus'&&selected?.id==='jbl';
  if(compactView()&&inFocus&&previewActive){
   // An affine screen avoids perspective iframe hit-testing differences on touch browsers.
@@ -583,17 +614,17 @@ function positionScreenPortal(){
   const unitPerPixel=2*Math.tan(camera.fov*Math.PI/360)*depth/vh;
   const scale=Math.min(vw-44,d.screenDimensions.w*focusScale*1.09/unitPerPixel)/width;
   const x=(vw-width*scale)/2,centerY=vh/2+(24+available/2-vh/2)*1.055,y=centerY-height*scale/2;
-  portal.style.transform=`translate(${x}px,${y}px) scale(${scale})`;
+  transform=`translate(${x}px,${y}px) scale(${scale})`;
  }
 
- portal.style.pointerEvents=inFocus&&previewActive?'auto':'none';
- portal.inert=!(inFocus&&previewActive);
- const background=state!=='gallery'&&selected?.id!=='jbl';portal.style.filter=background?'blur(5px) brightness(.42) saturate(.72)':'none';
- portal.style.zIndex=state!=='gallery'&&selected?.id==='jbl'?'9':'3';
+ setScreenStyle(portal,'width',width+'px');setScreenStyle(portal,'height',height+'px');setScreenStyle(portal,'transform',transform);
+ setScreenStyle(portal,'pointerEvents',inFocus&&previewActive?'auto':'none');
+ const inert=!(inFocus&&previewActive);if(portal.inert!==inert)portal.inert=inert;
+ const background=state!=='gallery'&&selected?.id!=='jbl';setScreenStyle(portal,'filter',background?'blur(5px) brightness(.42) saturate(.72)':'none');
+ setScreenStyle(portal,'zIndex',state!=='gallery'&&selected?.id==='jbl'?'9':'3');
  const button=$('#try-preview');button.hidden=!inFocus;
  // Keep the control still while the camera and tablet interpolate.
  const controlX=compactView()?vw*.75:clamp((vw-inspector.offsetWidth)/2,90,vw-inspector.offsetWidth-90),controlY=compactView()?vh-inspector.offsetHeight-56:Math.max(82,vh-110);
- if(inFocus&&previewActive){const x=controlX,y=controlY;$('#demo-signal path').setAttribute('d',`M${x},${y} L${(points[2][0]+points[3][0])/2},${(points[2][1]+points[3][1])/2} L${points[2]} L${points[1]} L${points[0]} L${points[3]} Z`);}
  if(inFocus){button.style.left=controlX+'px';button.style.top=controlY+'px';}
 }
 
@@ -654,6 +685,7 @@ function setupInteraction(){
 function render(time){
  if(!sceneReady)return;
  requestAnimationFrame(render);
+ if(resizePending){resizePending=false;resizeScene();}
  if(document.hidden||(!stageVisible&&!movingTween)){lastFrame=time;return;}
  if(compactView()&&time-lastRendered<1000/30)return;lastRendered=time;
  const delta=Math.min(.055,(time-lastFrame)/1000||.016),speed=Math.min(1,delta*(motionReduced()?30:7.5));
@@ -748,7 +780,6 @@ function render(time){
    d.group.quaternion.copy(selectedBaseQuaternion).slerp(new THREE.Quaternion(),demoBlend*.92).multiply(qy).multiply(qx);
    d.group.scale.setScalar(focusScale*(1+.035*demoBlend));
   }
-  positionScreenPortal();
  }
 // Project against the current frame, before either renderer updates world matrices.
  environmentZoom=motionReduced()?environmentZoomTarget:THREE.MathUtils.lerp(environmentZoom,environmentZoomTarget,1-Math.exp(-delta*9));
@@ -775,7 +806,7 @@ function installKeys(){document.addEventListener('keydown',e=>{if(e.key==='Escap
 function showFallback(detail){stageLoading.classList.add('is-done');fallbackEl.hidden=false;labelsEl.hidden=true;if(detail)console.warn('[showroom] fallback:',detail);sceneReady=false;}
 async function initialize(){try{const c=document.createElement('canvas');if(!(c.getContext('webgl2')||c.getContext('webgl'))){showFallback('WebGL not available');return}
  // No framework migration: dynamically load Three.js only on devices capable of the 3D showroom.
- await new Promise((resolve,reject)=>{const script=document.createElement('script');script.src=new URL('./vendor/three.js',import.meta.url).href;script.onload=resolve;script.onerror=()=>reject(new Error('Local Three.js engine did not load'));document.head.append(script)});THREE=window.SHOWROOM_THREE;if(!THREE)throw new Error('Local Three.js engine did not load');makeScene();frame.appendChild($('#try-preview'));if(!compactView())ensureMeeTabPortal();setupInteraction();stageLoading.classList.add('is-done');window.addEventListener('resize',resizeScene,{passive:true});const ro=new ResizeObserver(resizeScene);ro.observe(frame);const visibility=new IntersectionObserver(entries=>{stageVisible=entries[entries.length-1].isIntersecting},{rootMargin:'150px'});visibility.observe(frame);
+ await new Promise((resolve,reject)=>{const script=document.createElement('script');script.src=new URL('./vendor/three.js',import.meta.url).href;script.onload=resolve;script.onerror=()=>reject(new Error('Local Three.js engine did not load'));document.head.append(script)});THREE=window.SHOWROOM_THREE;if(!THREE)throw new Error('Local Three.js engine did not load');makeScene();frame.appendChild($('#try-preview'));if(!compactView())ensureMeeTabPortal();setupInteraction();stageLoading.classList.add('is-done');window.addEventListener('resize',queueSceneResize,{passive:true});const ro=new ResizeObserver(queueSceneResize);ro.observe(frame);const visibility=new IntersectionObserver(entries=>{stageVisible=entries[entries.length-1].isIntersecting},{rootMargin:'150px'});visibility.observe(frame);
  }catch(error){console.error('[showroom] 3D initialization failed',error);showFallback(error.message)}}
 setMenu();buildArchive();installKeys();initialize();
 

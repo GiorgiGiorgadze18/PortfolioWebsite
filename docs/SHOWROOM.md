@@ -77,3 +77,13 @@ git push origin main
 ## Publish
 
 GitHub Pages already deploys `main` from the repository root using its legacy build. Commit and push the exact tested source to the working branch, then integrate that commit into `main` and push. No hosting migration or new domain is needed. Verify the Pages build, fetch production assets, and rerun browser checks against the production URL. Do not force-push or change the backup refs.
+
+## v0.14.2 — screen overlay and resize stability
+
+The neon trace is an SVG inside the persistent screen portal, using the same 1280×800 local viewport as the app. It inherits the portal transform; no frame-wide connector path is rebuilt from camera/CTA positions. The one-shot trace still respects reduced motion and does not intercept pointer input.
+
+Resize notifications are coalesced into the render loop. Drawing buffers change only when CSS size or pixel ratio changes, and a real resize is drawn immediately in that frame. A stable phone viewport therefore does not repeatedly clear its canvases. The portal receives only its final projection after camera/world matrices are updated; cached style requests avoid redundant compositor changes, including CSSOM-normalized transform values.
+
+Run `python3 tests/overlay_stability.py --phone-only`, `python3 tests/overlay_stability.py --desktop-only`, or `python3 tests/overlay_stability.py --engine webkit --phone-only`. Each accepts an optional base URL for public-site verification. Reports include actual buffer-property writes for ten unchanged resize events and screen/outline alignment after interaction. They are browser regression measurements, not physical-phone frame-rate benchmarks.
+
+[Patch notes](../CHANGELOG.md) must be updated for every significant change; the repository workflow is recorded in `AGENTS.md`.
