@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.14.3 — 2026-11-19
+
+[PR #5](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/5)
+
+The phone demo no longer floats over a moving tablet. Try now on touch devices opens a full-screen responsive MeeTab demo with a clear return control; desktop keeps the in-tablet demo.
+
+- Normalize screen geometry UVs and preserve image-overlay aspect ratios to stop gallery covers stretching/clamping. Use a sharper MeeTab cover on phone selection and show live iframes only in demo mode.
+- Replace the clipped inner-screen neon with a body-sized outline outside the tablet bezel, following rotation and zoom. Keep a visible static halo, with a looping highlight during desktop Try now; reduced motion keeps the static halo.
+- Reflow the existing app's home/calendar/booking screens for phone width, with scroll, readable form fields and 44px core controls. Native touch input no longer rotates the hidden 3D scene.
+- Preserve the same iframe/form state across return/reentry and pause 3D draw calls during the full-screen demo.
+- Add [mobile UX research](docs/MOBILE_UX_RESEARCH.md), correct provenance for the modified portfolio demo, and preserve the previous release at `backup/pre-mobile-demo-redesign-2026-11-19`.
+- Replace the previous screen-local alignment check with outer-body checks and native touch booking completion. The earlier coordinate-mapped tap test did not detect the detached mobile layer and is superseded.
+
+Validation: Chromium and WebKit phone integration passed at DPR 2, exercising 360×800, 430×932, 844×390 and 390×844; native touch booking, retained iframe/form state, paused 3D draws and 0 redundant buffer writes passed. The final confirmation-panel adjustment passed isolated native touch tests in both engines, including fully visible acknowledgement controls. Chromium desktop at 1280 px passed outer-body alignment after drag/zoom, reduced motion, booking navigation and all four inspectors. WebGL-unavailable and JavaScript-disabled fallbacks passed. [Verification reports](docs/VERIFICATION.md). These are emulated/software-rendered checks; physical iPhone/Android validation remains outstanding.
+
 ## 0.14.2 — 2026-11-19
 
 ### Fixed

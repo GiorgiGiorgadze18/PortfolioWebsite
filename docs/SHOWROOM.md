@@ -9,7 +9,7 @@ The supplied v0.14 showroom is integrated directly into `projects.html`. The rep
 - `portfolio-3d-showroom-test-v14.zip`: the exact user-uploaded source archive, retained unchanged from upload commit `ad239da`.
 - `projects.html`: Projects markup, same-site navigation, showroom, collection, and fallback artwork links.
 - `showroom/showroom.js` and `showroom/showroom.css`: editable code extracted from the supplied index.
-- `showroom/meetab-demo.html`: the exact embedded `MEETAB_DEMO` document extracted from the supplied index, including its preview bridge. It differs from the archive's separate demo HTML, so the embedded document is deliberately preserved.
+- `showroom/meetab-demo.html`: derived from the embedded `MEETAB_DEMO` document in the supplied index, with a portfolio touch bridge and responsive home/calendar/booking adapter added in v0.14.3. The unchanged original remains in the uploaded ZIP. It differs from the ZIP's separate demo HTML.
 - `showroom/vendor/three.js` and its license: the supplied local 3D engine.
 - `showroom/assets/`: local font files, font CSS, and font licenses.
 - `assets/meetab-preview.jpg`: the original embedded MeeTab cover decoded without recompression.
@@ -27,7 +27,7 @@ The 5 MB embedded app is moved into a separate sandboxed iframe document, keepin
 
 The iframe retains `sandbox="allow-scripts"`, no same-origin capability, a restrictive CSP, local sample data, and disabled account/backend operations. The parent accepts preview messages only from that iframe. Projects uses local artwork and fonts; no CDN fallback is needed. The iframe is a portfolio demonstration, not the production booking service.
 
-The Try now / Exit preview control stays anchored while the camera animates, so repeated pointer activation remains reliable; iframe interaction updates immediately with the control state. Selecting a collection card scrolls the 3D exhibit into view. On phones, dragging rotates the selected device and two-finger gestures zoom the scene; a gallery swipe scrolls the page instead of accidentally opening an exhibit. During phone app interaction, the app screen uses an affine transform to avoid perspective iframe touch hit-testing differences. The Try now button waits for the embedded app to announce readiness before enabling interaction. Wheel zoom is limited to the showroom surface, leaving the inspector and the rest of the page scrollable. Closing the inspector restores keyboard focus to a project control. Reduced motion retains the supplied behavior. If WebGL is unavailable, project details still work; with scripting disabled, original artwork links remain visible.
+The Try now / Exit preview control stays anchored while the camera animates, so repeated pointer activation remains reliable; iframe interaction updates immediately with the control state. Selecting a collection card scrolls the 3D exhibit into view. On phones, dragging rotates the selected device and two-finger gestures zoom the scene; a gallery swipe scrolls the page instead of accidentally opening an exhibit. Try now on touch devices explicitly opens a full-screen responsive demo; the same dialog returns to its in-tablet presentation on exit. There is no floating affine app plane. The Try now button waits for the embedded app to announce readiness before enabling interaction. Wheel zoom is limited to the showroom surface, leaving the inspector and the rest of the page scrollable. Closing the inspector restores keyboard focus to a project control. Reduced motion retains the supplied behavior. If WebGL is unavailable, project details still work; with scripting disabled, original artwork links remain visible.
 
 ## Run locally
 
@@ -78,12 +78,16 @@ git push origin main
 
 GitHub Pages already deploys `main` from the repository root using its legacy build. Commit and push the exact tested source to the working branch, then integrate that commit into `main` and push. No hosting migration or new domain is needed. Verify the Pages build, fetch production assets, and rerun browser checks against the production URL. Do not force-push or change the backup refs.
 
-## v0.14.2 — screen overlay and resize stability
+## v0.14.3 — outer body outline and usable phone demo
 
-The neon trace is an SVG inside the persistent screen portal, using the same 1280×800 local viewport as the app. It inherits the portal transform; no frame-wide connector path is rebuilt from camera/CTA positions. The one-shot trace still respects reduced motion and does not intercept pointer input.
+The neon is a separate body-sized projected SVG outside the clipped app portal. It follows the tablet group with a small physical gap outside its outer bezel. A static halo stays visible on selection; Try now adds a looping highlight. Reduced motion retains only the static halo.
 
-Resize notifications are coalesced into the render loop. Drawing buffers change only when CSS size or pixel ratio changes, and a real resize is drawn immediately in that frame. A stable phone viewport therefore does not repeatedly clear its canvases. The portal receives only its final projection after camera/world matrices are updated; cached style requests avoid redundant compositor changes, including CSSOM-normalized transform values.
+Phone and coarse-pointer Try now opens a native-size dialog with a responsive adapter for the existing home/calendar/booking pages. The iframe stays in the same DOM position inside a dialog for its entire lifetime. Desktop uses a nonmodal display-contents dialog; touch use promotes that same dialog to the top layer. No reparenting or reload occurs. Native page scrolling and app controls replace the old drag-to-rotate bridge during touch demo use. The covered 3D scene stops drawing until the dialog closes. Static gallery covers use normalized 0–1 UVs; live iframes only appear during actual demo use. MeeTab's phone texture uses 1024 px so selecting it does not magnify a low-resolution preview.
 
-Run `python3 tests/overlay_stability.py --phone-only`, `python3 tests/overlay_stability.py --desktop-only`, or `python3 tests/overlay_stability.py --engine webkit --phone-only`. Each accepts an optional base URL for public-site verification. Reports include actual buffer-property writes for ten unchanged resize events and screen/outline alignment after interaction. They are browser regression measurements, not physical-phone frame-rate benchmarks.
+Resize notifications are coalesced into the render loop. Drawing buffers change only when CSS size or pixel ratio changes, and a real resize is drawn immediately in that frame. A stable phone viewport therefore does not repeatedly clear its canvases. Desktop screen and body-outline projections run after camera/world matrix updates.
+
+Run `python3 tests/tablet_mobile.py --phone-only`, `python3 tests/tablet_mobile.py --desktop-only`, or `python3 tests/tablet_mobile.py --engine webkit --phone-only`. Each accepts an optional base URL for production verification. The old `mobile_showroom.py` and `overlay_stability.py` entry points delegate to this regression. It checks all four outer corners, rotation/zoom, native touch form use and local booking confirmation, retained state, responsive widths/orientation, draw-call pause and unchanged buffer writes. Historical v0.14.2 reports tested the wrong screen-local outline and are retained as history, not evidence that the original reported visual bugs were solved.
+
+[Mobile UX research and design rationale](MOBILE_UX_RESEARCH.md) records the primary sources and the distinction between a portfolio adapter and a production mobile app.
 
 [Patch notes](../CHANGELOG.md) must be updated for every significant change; the repository workflow is recorded in `AGENTS.md`.

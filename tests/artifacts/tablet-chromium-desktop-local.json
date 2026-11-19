@@ -1,0 +1,63 @@
+{
+  "base_url": "http://127.0.0.1:8014/PortfolioWebsite/",
+  "physical_device_testing": false,
+  "scenarios": [
+    {
+      "engine": "chromium",
+      "profile": "desktop 1280",
+      "status": "PASS",
+      "outline": {
+        "outsidePortal": true,
+        "visible": true,
+        "outer": [
+          [
+            174.178,
+            195.06
+          ],
+          [
+            641.4718352513628,
+            187.0071673733091
+          ],
+          [
+            646.1510002546073,
+            502.1626508338912
+          ],
+          [
+            183.47630330637034,
+            507.20222991354865
+          ]
+        ],
+        "inner": [
+          [
+            200.352,
+            221.007
+          ],
+          [
+            617.8274059252565,
+            214.04701316723683
+          ],
+          [
+            621.9053714578299,
+            476.01359265244736
+          ],
+          [
+            207.87338357794525,
+            480.7209440698136
+          ]
+        ],
+        "centerDistance": 0.6761551815640825,
+        "fill": "none",
+        "stroke": "rgb(133, 234, 255)"
+      },
+      "checks": [
+        "outer body halo and running light visible",
+        "projection follows rotation and zoom",
+        "app remains inside tablet on desktop",
+        "booking navigation",
+        "zero redundant buffer resizes",
+        "reduced motion retains static halo",
+        "clean gallery return"
+      ]
+    }
+  ]
+}

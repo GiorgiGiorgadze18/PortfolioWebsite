@@ -3,11 +3,11 @@
 <script>// Portfolio-only bridge; no account or backend access.
 (()=>{
  const post=(kind,data={})=>parent.postMessage({showroom:true,kind,...data},'*');
- const wheel=e=>{e.preventDefault();e.stopImmediatePropagation();post('wheel',{delta:e.deltaY,mode:e.deltaMode});};
+ const wheel=e=>{if(mobile&&enabled)return;e.preventDefault();e.stopImmediatePropagation();post('wheel',{delta:e.deltaY,mode:e.deltaMode});};
  window.addEventListener('wheel',wheel,{capture:true,passive:false});
- let enabled=false,down=null,drag=false,suppressClick=false;
- addEventListener('message',e=>{if(e.source===parent&&e.data?.showroom===true&&e.data.kind==='interactive'){enabled=!!e.data.enabled;document.body.style.cursor=enabled?'':'grab';}});
- window.addEventListener('pointerdown',e=>{down={x:e.clientX,y:e.clientY,px:e.clientX,py:e.clientY,id:e.pointerId};drag=false;suppressClick=false;if(!enabled){e.preventDefault();e.stopImmediatePropagation();}},{capture:true});
+ let enabled=false,mobile=false,down=null,drag=false,suppressClick=false;
+ addEventListener('message',e=>{if(e.source===parent&&e.data?.showroom===true&&e.data.kind==='interactive'){enabled=!!e.data.enabled;mobile=!!e.data.mobile;down=null;drag=false;suppressClick=false;document.documentElement.classList.toggle('phone-demo',mobile);document.body.style.cursor=enabled?'':'grab';dispatchEvent(new Event('resize'));}});
+ window.addEventListener('pointerdown',e=>{if(mobile&&enabled)return;down={x:e.clientX,y:e.clientY,px:e.clientX,py:e.clientY,id:e.pointerId};drag=false;suppressClick=false;if(!enabled){e.preventDefault();e.stopImmediatePropagation();}},{capture:true});
  window.addEventListener('pointermove',e=>{
   if(!down)return;
   if(Math.hypot(e.clientX-down.x,e.clientY-down.y)>7)drag=true;
@@ -15,13 +15,13 @@
   suppressClick=true;e.preventDefault();e.stopImmediatePropagation();
   post('drag',{dx:e.clientX-down.px,dy:e.clientY-down.py});down.px=e.clientX;down.py=e.clientY;
  },{capture:true});
- const up=e=>{if(down&&(drag||!enabled)){suppressClick=true;e.preventDefault();e.stopImmediatePropagation();}down=null;drag=false;};
+ const up=e=>{if(mobile&&enabled)return;if(down&&(drag||!enabled)){suppressClick=true;e.preventDefault();e.stopImmediatePropagation();}down=null;drag=false;};
  window.addEventListener('pointerup',up,{capture:true});window.addEventListener('pointercancel',()=>{down=null;drag=false;},{capture:true});
  window.addEventListener('click',e=>{if(!enabled||suppressClick){e.preventDefault();e.stopImmediatePropagation();suppressClick=false;}},{capture:true});
  addEventListener('load',()=>{post('ready');document.fonts.ready.then(()=>post('fonts-ready'));});
 })();
 </script><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>MeeTab</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzI2IiBoZWlnaHQ9IjMyNiIgdmlld0JveD0iMCAwIDMyNiAzMjYiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMjYiIGhlaWdodD0iMzI2IiByeD0iNTUiIGZpbGw9IiMxQzIyMjMiLz4KPGNpcmNsZSBjeD0iOTguMjk1MSIgY3k9Ijk2LjUiIHI9IjMwLjUiIGZpbGw9IiNGQ0ZERkMiLz4KPGNpcmNsZSBjeD0iMjMxLjc5NSIgY3k9Ijk2LjUiIHI9IjMwLjUiIGZpbGw9IiNDNTU4NEQiLz4KPHBhdGggZD0iTTk3LjU4NDQgMTQxLjkxNUMxMTYuNTA3IDE0Mi4wMTYgMTMzLjU4MiAxNDkuODM4IDE0NS44NDMgMTYyLjM3OEwxOTguNzk1IDIxNS43ODlMMTYzLjMxMSAyNTEuNUwxMTAuNTQ3IDE5OC43NEMxMDkuOTQgMTk4LjEyMiAxMDkuMzA4IDE5Ny41MzggMTA4LjY1NyAxOTYuOTg4TDEwNC41MDcgMTkyLjc1N0MxMDEuODgxIDE5MC4wNzggOTguNjI3NyAxODcuODMzIDk0Ljg3NjUgMTg3LjgxMkM4Ny4wOTQ2IDE4Ny43NzEgODAuMzUxNSAxOTIuMzI3IDc3LjE3NjkgMTk4Ljk1NUM3Ni43OTExIDE5OS41ODQgNzYuNDMxOSAyMDAuMjUgNzYuMTA1NiAyMDAuOTU1QzcyLjMxNCAyMDkuMTUyIDcwLjE3NDcgMjE4LjI4NyA3MC4xMjMxIDIyNy45MjVDNzAuMTE0NCAyMjkuNTU1IDcwLjEwNTIgMjMxLjI2OSA3MC4wOTcxIDIzMi43NjlMMjkuMDk3NyAyMzIuNTQ5TDI5LjIyMSAyMDkuNTVDMjkuNDIyMiAxNzEuOTk1IDYwLjAyOTYgMTQxLjcxNCA5Ny41ODQ0IDE0MS45MTVaIiBmaWxsPSIjQzU1ODREIi8+CjxnIGNsaXAtcGF0aD0idXJsKCNjbGlwMF8yXzIpIj4KPHBhdGggZD0iTTk3LjU4NDQgMTQxLjkxNUMxMTYuNTA3IDE0Mi4wMTYgMTMzLjU4MiAxNDkuODM4IDE0NS44NDMgMTYyLjM3OEwxOTguNzk1IDIxNS43ODlMMTYzLjMxMSAyNTEuNUwxMTAuNTQ3IDE5OC43NEMxMDkuOTQgMTk4LjEyMiAxMDkuMzA4IDE5Ny41MzggMTA4LjY1NyAxOTYuOTg4TDEwNC41MDcgMTkyLjc1N0MxMDEuODgxIDE5MC4wNzggOTguNjI3NyAxODcuODMzIDk0Ljg3NjUgMTg3LjgxMkM4Ny4wOTQ2IDE4Ny43NzEgODAuMzUxNSAxOTIuMzI3IDc3LjE3NjkgMTk4Ljk1NUM3Ni43OTExIDE5OS41ODQgNzYuNDMxOSAyMDAuMjUgNzYuMTA1NiAyMDAuOTU1QzcyLjMxNCAyMDkuMTUyIDcwLjE3NDcgMjE4LjI4NyA3MC4xMjMxIDIyNy45MjVDNzAuMTE0NCAyMjkuNTU1IDcwLjEwNTIgMjMxLjI2OSA3MC4wOTcxIDIzMi43NjlMMjkuMDk3NyAyMzIuNTQ5TDI5LjIyMSAyMDkuNTVDMjkuNDIyMiAxNzEuOTk1IDYwLjAyOTYgMTQxLjcxNCA5Ny41ODQ0IDE0MS45MTVaIiBmaWxsPSIjRkNGREZDIi8+CjwvZz4KPHBhdGggZD0iTTIyOS4yODIgMTQyQzI2Ni44MzggMTQyIDI5Ny4yODIgMTcyLjQ0NSAyOTcuMjgyIDIxMFYyMzIuNUgyNTYuMjgyQzI1Ni4yOTUgMjMxIDI1Ni4yODIgMjI5Ljc4NiAyNTYuMjgyIDIyOC4xNTZDMjU2LjI4MiAyMTguNTE4IDI1NC4xOTIgMjA5LjM3MiAyNTAuNDQ1IDIwMS4xNTRDMjUwLjEyMiAyMDAuNDQ3IDI0OS43NjYgMTk5Ljc3OSAyNDkuMzg0IDE5OS4xNDhDMjQ2LjI0NSAxOTIuNTAzIDIzOS41MjYgMTg3LjkxMSAyMzEuNzQ0IDE4Ny45MTFDMjI3Ljk5MyAxODcuOTExIDIyNC43MjggMTkwLjEzOSAyMjIuMDg3IDE5Mi44MDRMMjE3LjkxNSAxOTcuMDEzQzIxNy4yNjEgMTk3LjU2IDIxNi42MjYgMTk4LjE0IDIxNi4wMTYgMTk4Ljc1NUwyMDYuNzc5IDIwOC4wNzRMMTcwLjkxMiAxNzIuMjA3TDE4MS40OTYgMTYxLjYyM0MxOTMuNzc4IDE0OS40OTEgMjEwLjY1NSAxNDIgMjI5LjI4MiAxNDJaIiBmaWxsPSIjRkNGREZDIi8+CjxkZWZzPgo8Y2xpcFBhdGggaWQ9ImNsaXAwXzJfMiI+CjxwYXRoIGQ9Ik0yOSAxNDJDNTkuMzc1NyAxNDIgODQgMTY2LjYyNCA4NCAxOTdWMjA2LjYzM0M4NCAyMzEuNjg4IDYzLjY4ODQgMjUyIDM4LjYzMjggMjUySDI5VjE0MloiIGZpbGw9IndoaXRlIi8+CjwvY2xpcFBhdGg+CjwvZGVmcz4KPC9zdmc+Cg==">
 <style>#adminOverlay[hidden],#adminOverlay [hidden]{display:none!important}
@@ -453,6 +453,64 @@ body.night #calendarNotice{background:#242733;color:#E8E8EE}
 .event-message{min-height:40px;font-size:14px;line-height:20px;color:#fff;overflow-wrap:anywhere}
 .event-message:not(:empty){padding:8px 10px;border:1px solid #ffffff80;border-radius:9px;background:var(--accent-shade,rgba(110,60,55,.5))}
 .event-delete-title{font-size:17px;line-height:26px;overflow-wrap:anywhere}
+</style><style id="portfolio-phone-adapter">
+/* Portfolio phone adapter: same app state/handlers, readable unscaled core screens. */
+.phone-demo #stage,.phone-demo #frame{position:absolute;inset:0;width:100%!important;height:100%!important;transform:none!important}
+.phone-demo #stage{--tw:0px}
+.phone-demo #side,.phone-demo #qr,.phone-demo #profileBtn{display:none!important}
+.phone-demo .blob{animation:none;opacity:.35}
+.phone-demo #shared{position:absolute;left:20px;right:20px;top:16px;height:64px;display:flex;align-items:center;gap:16px;z-index:2;background:#fbfbfb}
+.phone-demo #shared #brandLockup{position:relative!important;left:0!important;top:0!important;transform:none!important;width:64px!important;height:50px!important;flex:none}
+.phone-demo #sLogo{width:64px!important;height:50px!important}
+.phone-demo #sDiv{display:none}
+.phone-demo #sTitle{position:relative!important;left:0!important;top:0!important;transform:none!important;font-size:18px!important;line-height:1.4!important;height:auto!important;white-space:normal!important}
+.phone-demo .page{top:100px;bottom:86px;overflow:auto;overscroll-behavior:contain;padding:16px 20px 28px}
+.phone-demo #p-home.on{display:flex;flex-direction:column;gap:16px}
+.phone-demo #p-home>.a{position:relative!important;inset:auto!important;transform:none!important;width:auto!important;max-width:100%;height:auto!important;font-size:18px!important;overflow-wrap:anywhere}
+.phone-demo #p-home #hRow{display:flex!important;flex-wrap:wrap;gap:12px;align-items:center;margin-top:10px}
+.phone-demo #hRow>*{position:relative!important;inset:auto!important;transform:none!important}
+.phone-demo #hStat{font-size:26px!important}
+.phone-demo #hTitle{font-size:26px!important}
+.phone-demo #hBadge{font-size:13px!important}
+.phone-demo #p-home .rule{margin:4px 0}
+.phone-demo #p-home #hKind{font-size:13px!important}
+.phone-demo #nav,.phone-demo #nav.ctr{position:absolute;left:12px;right:12px;top:auto;bottom:12px;transform:none!important;width:auto;height:60px;display:grid;grid-template-columns:1fr 1fr 1.6fr;gap:0;padding:0 6px;z-index:10;background:#f8f5f0}
+.phone-demo #nav button{width:100%!important;height:58px;min-width:44px;margin:0!important;font-size:14px;gap:6px}
+.phone-demo #nav #ind{display:none}
+.phone-demo #p-cal #grid{position:relative;inset:auto;width:100%;height:auto;overflow:visible;grid-template-columns:1fr;grid-auto-rows:156px;gap:16px;padding:0}
+.phone-demo #p-book.on{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px 6px;align-content:start}
+.phone-demo #p-book>*{position:relative!important;inset:auto!important;transform:none!important;width:auto!important;max-width:100%!important;height:auto;grid-column:1/-1;font-size:16px!important;transition:none!important;white-space:normal}
+.phone-demo #p-book .lab{font-size:13px!important;margin-top:6px;line-height:1.5}
+.phone-demo #p-book .inp{min-height:46px;padding:10px 12px;user-select:text}
+.phone-demo #p-book #bookAuthor{background:#e9e9e9}
+.phone-demo #p-book .seg{flex-wrap:wrap}
+.phone-demo #p-book .seg button{min-height:44px;flex:1;min-width:90px;width:auto;padding:8px;font-size:15px}
+.phone-demo #p-book #bDate,.phone-demo #p-book #bClock,.phone-demo #p-book>.rule{display:none!important}
+.phone-demo [data-mobile-label=title]{grid-row:1}.phone-demo #fTitle{grid-row:2}
+.phone-demo [data-mobile-label=status]{grid-row:3}.phone-demo #fStatus{grid-row:4}
+.phone-demo [data-mobile-label=author]{grid-row:5}.phone-demo #bookAuthor{grid-row:6}
+.phone-demo [data-mobile-label=guests]{grid-row:7}
+.phone-demo #p-book #gMinus{grid-row:8;grid-column:1/3;min-height:44px}
+.phone-demo #p-book #gNum{grid-row:8;grid-column:3/5;align-self:center;text-align:center}
+.phone-demo #p-book #gPlus{grid-row:8;grid-column:5/7;min-height:44px}
+.phone-demo [data-mobile-label=duration]{grid-row:9}.phone-demo #fDur{grid-row:10}
+.phone-demo [data-mobile-label=time]{grid-row:11}
+.phone-demo #p-book #tFrom{grid-row:12;grid-column:1/3}
+.phone-demo #p-book #tFrom+div{grid-row:12;grid-column:3/4;font-size:12px!important;align-self:center}
+.phone-demo #p-book #tTo{grid-row:12;grid-column:4/6}
+.phone-demo #p-book #tTo+div{grid-row:12;grid-column:6/7;font-size:12px!important;align-self:center}
+.phone-demo #p-book #warn{grid-row:13;font-size:13px!important;line-height:1.5}
+.phone-demo #p-book #slotLab{grid-row:14}.phone-demo #p-book #fSlots{grid-row:15;flex-wrap:nowrap;touch-action:pan-x;min-height:48px}
+.phone-demo #p-book #bCancel{grid-row:16;grid-column:1/4;min-height:44px}
+.phone-demo #p-book #bOk{grid-row:16;grid-column:4/7;min-height:44px}
+.phone-demo #p-book .cta img{width:100%;height:auto;max-width:180px}
+.phone-demo #ov{position:fixed;overflow:auto;padding:16px}
+.phone-demo #md{height:auto!important;width:100%!important;max-height:calc(100dvh - 32px);overflow:auto}
+.phone-demo #md .mtxt{height:auto!important;position:relative;inset:auto;padding:24px 18px;min-height:100px}
+.phone-demo #md .mbtns{position:relative;inset:auto!important;gap:12px;padding:0 16px 20px}
+.phone-demo #md .mb{min-height:44px;width:auto;flex:1}
+.phone-demo #toast{max-width:calc(100% - 32px);white-space:normal}
+@media(prefers-reduced-motion:reduce){.blob{animation:none!important}*,*:before,*:after{transition:none!important}}
 </style></head><body>
 <div id="stage">
 <div id="bg"><i class="blob" style="left:-420px;top:500px;width:840px;height:600px;--c:#FFC6DA;--d:38s;--x:300px;--y:-260px;--s:1.15;animation-delay:0s"></i><i class="blob" style="left:-380px;top:216px;width:760px;height:720px;--c:#FFE6D2;--d:44s;--x:380px;--y:-120px;--s:1.1;animation-delay:-12s"></i><i class="blob" style="left:-16px;top:520px;width:800px;height:560px;--c:#DCD0F7;--d:40s;--x:-200px;--y:-240px;--s:1.2;animation-delay:-20s"></i><i class="blob" style="left:286px;top:500px;width:760px;height:600px;--c:#B9D8E6;--d:46s;--x:260px;--y:-300px;--s:1.1;animation-delay:-8s"></i><i class="blob" style="left:516px;top:116px;width:760px;height:760px;--c:#CFD8FF;--d:52s;--x:-420px;--y:200px;--s:1.1;animation-delay:-30s"></i><i class="blob" style="left:664px;top:540px;width:720px;height:520px;--c:#F6ADA3;--d:36s;--x:-300px;--y:-240px;--s:1.2;animation-delay:-5s"></i><i id="dim"></i></div>
@@ -485,28 +543,28 @@ body.night #calendarNotice{background:#242733;color:#E8E8EE}
     <div class="a" id="bDate" style="right:156px;top:40px;font-size:16px;text-align:right"></div>
   <div class="a" id="bClock" style="right:156px;top:62px;font-size:36px;text-align:right;font-weight:400"></div>
 
-  <div class="a lab mid" style="top:144px">შეხვედრის დასახელება:</div>
-  <input class="a inp mid" id="fTitle" style="top:144px" placeholder="შეხვედრის დასახელება" maxlength="80">
-  <div class="a lab mid" style="top:205px">სტატუსი:</div>
+  <div data-mobile-label="title" class="a lab mid" style="top:144px">შეხვედრის დასახელება:</div>
+  <input class="a inp mid" aria-label="შეხვედრის დასახელება" id="fTitle" style="top:144px" placeholder="შეხვედრის დასახელება" maxlength="80">
+  <div data-mobile-label="status" class="a lab mid" style="top:205px">სტატუსი:</div>
   <div class="a seg mid" id="fStatus" style="left:415px;top:205px"><button class="on" data-v="normal">ნორმალური</button><button data-v="urgent">ურგენტული</button></div>
-  <div class="a lab mid" style="top:266px">ავტორი:</div>
+  <div data-mobile-label="author" class="a lab mid" style="top:266px">ავტორი:</div>
   <div class="a inp dis mid" id="bookAuthor" style="top:266px">ოთახი</div>
-  <div class="a lab mid" style="top:327px">სტუმრები:</div>
+  <div data-mobile-label="guests" class="a lab mid" style="top:327px">სტუმრები:</div>
   <button class="a rb mid" id="gMinus" style="left:405px;top:327px"><img alt=""></button>
   <div class="a big mid" id="gNum" style="left:460px;top:327px;width:50px;text-align:center">1</div>
   <button class="a rb mid" id="gPlus" style="left:517px;top:327px"><img alt=""></button>
 
   <div class="a rule" style="left:86px;top:410px;width:1038px"></div>
 
-  <div class="a lab mid" style="left:98px;top:487px">ხანგრძლივობა:</div>
+  <div data-mobile-label="duration" class="a lab mid" style="left:98px;top:487px">ხანგრძლივობა:</div>
   <div class="a seg mid" id="fDur" style="left:415px;top:487px"><button class="on" data-v="15">15 წუთი</button><button data-v="30">30 წუთი</button><button id="fitRemaining" data-v="remaining" hidden></button></div>
-  <div class="a lab mid" style="left:98px;top:549px">დაწყება/დასრულების დრო:</div>
+  <div data-mobile-label="time" class="a lab mid" style="left:98px;top:549px">დაწყება/დასრულების დრო:</div>
   <div class="a big mid" id="tFrom" style="left:476px;top:549px"></div>
   <div class="a" style="left:576px;top:552px;font-size:15px">-დან</div>
   <div class="a big mid" id="tTo" style="left:676px;top:549px"></div>
   <div class="a" style="left:775px;top:552px;font-size:15px">-მდე</div>
   <div class="a" id="warn"></div>
-  <div class="a lab mid" id="slotLab" style="left:98px;top:640px;display:none">თავისუფალი დრო:</div>
+  <div data-mobile-label="slots" class="a lab mid" id="slotLab" style="left:98px;top:640px;display:none">თავისუფალი დრო:</div>
   <div class="a seg mid" id="fSlots" style="left:415px;top:640px;display:none"></div>
 
   <button class="a cta" id="bCancel" aria-label="გაუქმება"><img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjQxIiB2aWV3Qm94PSIwIDAgMTgwIDQxIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB4PSIwLjUiIHk9IjAuNSIgd2lkdGg9IjE3OSIgaGVpZ2h0PSI0MCIgcng9IjQuNSIgZmlsbD0id2hpdGUiLz4KPHJlY3QgeD0iMC41IiB5PSIwLjUiIHdpZHRoPSIxNzkiIGhlaWdodD0iNDAiIHJ4PSI0LjUiIHN0cm9rZT0iI0U4MzA0OCIvPgo8cGF0aCBkPSJNNDguNDA0OSAzMC4zNkM0NS41NDQ5IDMwLjM2IDQzLjM2NDkgMjguNDYgNDMuMzY0OSAyNS45MkM0My4zNjQ5IDIzLjM0IDQ1LjQ4NDkgMjEuNTIgNDguMTg0OSAyMC41Nkw0OS4wMDQ5IDIwLjI0QzUwLjA0NDkgMTkuODIgNTAuNjQ0OSAxOS4yMiA1MC42NDQ5IDE4LjRDNTAuNjQ0OSAxNy41IDQ5Ljk0NDkgMTYuNjQgNDguNDQ0OSAxNi42NEM0Ny4yNjQ5IDE2LjY0IDQ2LjM2NDkgMTcuMiA0Ni4wMjQ5IDE4LjE0QzQ1Ljg2NDkgMTguNTYgNDUuNjQ0OSAxOC44IDQ1LjIwNDkgMTguOEM0NC43MjQ5IDE4LjggNDQuNDQ0OSAxOC40NCA0NC40NDQ5IDE4LjAyQzQ0LjQ0NDkgMTcuOTIgNDQuNDY0OSAxNy44IDQ0LjUwNDkgMTcuN0M0NS4wNDQ5IDE2LjE0IDQ2LjY4NDkgMTUuMyA0OC40MjQ5IDE1LjNDNTAuNTg0OSAxNS4zIDUyLjIwNDkgMTYuNTYgNTIuMjA0OSAxOC4zMkM1Mi4yMDQ5IDE5LjMyIDUxLjcwNDkgMjAuMjQgNTAuNTI0OSAyMC44Nkw1MC4wNjQ5IDIxLjFDNTIuMTQ0OSAyMi4xNiA1My40MjQ5IDIzLjc0IDUzLjQyNDkgMjUuODZDNTMuNDI0OSAyOC41IDUxLjIyNDkgMzAuMzYgNDguNDA0OSAzMC4zNlpNNDQuOTQ0OSAyNS44NkM0NC45NDQ5IDI3LjYgNDYuMzY0OSAyOC45OCA0OC4zODQ5IDI4Ljk4QzUwLjQwNDkgMjguOTggNTEuODQ0OSAyNy42MiA1MS44NDQ5IDI1Ljg0QzUxLjg0NDkgMjQuMTggNTAuNTg0OSAyMi43NCA0OC41NDQ5IDIxLjgyQzQ2LjUwNDkgMjIuNiA0NC45NDQ5IDI0LjAyIDQ0Ljk0NDkgMjUuODZaTTU5LjI2NTIgMjUuMkM1Ni40MDUyIDI1LjIgNTQuNTY1MiAyMy40NCA1NC41NjUyIDIxLjEyQzU0LjU2NTIgMjAuOSA1NC41ODUyIDIwLjUyIDU0LjY0NTIgMjAuMjRDNTQuNzA1MiAxOS45MiA1NS4wMjUyIDE5LjY2IDU1LjM4NTIgMTkuNjZDNTUuODY1MiAxOS42NiA1Ni4xNjUyIDIwLjA4IDU2LjE2NTIgMjAuNEM1Ni4xNjUyIDIwLjYgNTYuMTI1MiAyMC44IDU2LjEyNTIgMjEuMDRDNTYuMTI1MiAyMi43IDU3LjI4NTIgMjMuODYgNTkuMjg1MiAyMy44NkM2MS4wNjUyIDIzLjg2IDYyLjQ0NTIgMjIuODQgNjIuNDQ1MiAyMS4wOEM2Mi40NDUyIDE4LjQ0IDU5LjUwNTIgMTguNDIgNTguNzQ1MiAxNi40NkM1OC43MDUyIDE2LjM2IDU4LjY0NTIgMTYuMTggNTguNjQ1MiAxNS45OEM1OC42NDUyIDE1LjU4IDU4Ljk4NTIgMTUuMyA1OS40MDUyIDE1LjNDNTkuODY1MiAxNS4zIDYwLjA4NTIgMTUuNjIgNjAuMjA1MiAxNi4wNEM2MC41ODUyIDE3LjQ0IDYzLjk0NTIgMTcuNTQgNjMuOTQ1MiAyMS4wOEM2My45NDUyIDIzLjcyIDYxLjc4NTIgMjUuMiA1OS4yNjUyIDI1LjJaTTcwLjQzMjEgMzAuMzZDNjcuNjcyMSAzMC4zNiA2NS41MzIxIDI4LjY2IDY1LjUzMjEgMjUuODJDNjUuNTMyMSAyNS40IDY1LjU5MjEgMjQuOSA2NS42NzIxIDI0LjQ4QzY1Ljc1MjEgMjQuMSA2Ni4wMzIxIDIzLjgyIDY2LjQ1MjEgMjMuODJDNjYuODUyMSAyMy44MiA2Ny4xOTIxIDI0LjE2IDY3LjE5MjEgMjQuNTZDNjcuMTkyMSAyNC44MiA2Ny4wOTIxIDI1LjEgNjcuMDkyMSAyNS43QzY3LjA5MjEgMjcuNzQgNjguNDUyMSAyOC45OCA3MC40MzIxIDI4Ljk4QzcyLjM5MjEgMjguOTggNzMuODEyMSAyNy42NCA3My44MTIxIDI1LjM0VjE4LjlDNzMuODEyMSAxNy40NiA3Mi44NTIxIDE2LjY4IDcxLjc1MjEgMTYuNjhDNzAuNTkyMSAxNi42OCA2OS43NzIxIDE3LjUyIDY5Ljc3MjEgMTguOVYyMC42MkM2OS43NzIxIDIxLjA2IDY5LjQzMjEgMjEuNCA2OC45OTIxIDIxLjRDNjguNTUyMSAyMS40IDY4LjIxMjEgMjEuMDYgNjguMjEyMSAyMC42MlYxOUM2OC4yMTIxIDE3LjYgNjcuNTUyMSAxNi44NiA2Ni4zNzIxIDE2Ljg2SDY1LjcxMjFDNjUuMzEyMSAxNi44NiA2NC45OTIxIDE2LjU0IDY0Ljk5MjEgMTYuMTRDNjQuOTkyMSAxNS43NCA2NS4zMTIxIDE1LjQ0IDY1LjcxMjEgMTUuNDRINjYuMzkyMUM2Ny42NzIxIDE1LjQ0IDY4LjYzMjEgMTUuODggNjkuMDUyMSAxNy4yMkM2OS41NTIxIDE1Ljg4IDcwLjc1MjEgMTUuMyA3Mi4wMTIxIDE1LjNDNzMuNjUyMSAxNS4zIDc1LjMxMjEgMTYuNDIgNzUuMzEyMSAxOC43OFYyNS4zQzc1LjMxMjEgMjguNDYgNzMuMjEyMSAzMC4zNiA3MC40MzIxIDMwLjM2Wk03OC43OTU0IDIwLjlDNzguMzM1NCAyMC45IDc4LjA1NTQgMjAuNjIgNzcuOTc1NCAyMC4yQzc3LjkzNTQgMTkuOTQgNzcuOTM1NCAxOS43MiA3Ny45MzU0IDE5LjQ2Qzc3LjkzNTQgMTcuMSA3OS41OTU0IDE1LjMgODIuMTE1NCAxNS4zQzgzLjcxNTQgMTUuMyA4NC45MzU0IDE2LjA0IDg1Ljc5NTQgMTcuNDRWMTEuNTJDODUuNzk1NCAxMS4wOCA4Ni4xMTU0IDEwLjc0IDg2LjU1NTQgMTAuNzRDODYuOTk1NCAxMC43NCA4Ny4zMTU0IDExLjA4IDg3LjMxNTQgMTEuNTJWMjUuM0M4Ny4zMTU0IDI4LjQ2IDg1LjIzNTQgMzAuMzYgODIuMzc1NCAzMC4zNkM3OS42NzU0IDMwLjM2IDc3LjUzNTQgMjguNjYgNzcuNTM1NCAyNS44MkM3Ny41MzU0IDI1LjM2IDc3LjU5NTQgMjQuODYgNzcuNjk1NCAyNC40Qzc3Ljc3NTQgMjQuMDQgNzguMDk1NCAyMy44MiA3OC40NTU0IDIzLjgyQzc4LjgzNTQgMjMuODIgNzkuMjM1NCAyNC4xNiA3OS4xNTU0IDI0LjdDNzkuMTE1NCAyNC45NCA3OS4wOTU0IDI1LjM2IDc5LjA5NTQgMjUuNjJDNzkuMDk1NCAyNy43NCA4MC40NTU0IDI4Ljk4IDgyLjM5NTQgMjguOThDODQuNDE1NCAyOC45OCA4NS44MTU0IDI3LjY0IDg1LjgxNTQgMjUuMzRWMjAuMjRDODUuNDM1NCAxOC4yIDg0LjIzNTQgMTYuNjggODIuMjU1NCAxNi42OEM4MC41MzU0IDE2LjY4IDc5LjQ5NTQgMTcuOCA3OS40OTU0IDE5LjYyQzc5LjQ5NTQgMTkuOCA3OS41MzU0IDIwIDc5LjUzNTQgMjAuMTJDNzkuNTU1NCAyMC41MiA3OS4xNzU0IDIwLjkgNzguNzk1NCAyMC45Wk05NC42ODU3IDI1LjJDOTIuMTA1NyAyNS4yIDg5Ljg2NTcgMjMuNTIgODkuODY1NyAyMC4zMkM4OS44NjU3IDE3LjM2IDkxLjkyNTcgMTUuNSA5NC41MDU3IDE1LjVDOTYuMTI1NyAxNS41IDk3LjI4NTcgMTYuMTQgOTguMTA1NyAxNy40OFYxNC45MkM5OC4xMDU3IDEyLjk4IDk2LjY2NTcgMTIuMDIgOTQuOTI1NyAxMi4wMkM5My41MjU3IDEyLjAyIDkyLjI4NTcgMTIuNzQgOTEuODg1NyAxMy45OEM5MS43ODU3IDE0LjMgOTEuNDg1NyAxNC41NiA5MS4xMjU3IDE0LjU2QzkwLjU2NTcgMTQuNTYgOTAuMzY1NyAxNC4xNiA5MC4zNjU3IDEzLjc4QzkwLjM2NTcgMTMuNyA5MC4zODU3IDEzLjYgOTAuNDA1NyAxMy41MkM5MC45MDU3IDExLjkyIDkyLjg0NTcgMTAuNzQgOTQuOTI1NyAxMC43NEM5Ny40MjU3IDEwLjc0IDk5LjYwNTcgMTIuMTYgOTkuNjA1NyAxNVYxOS41Qzk5LjYwNTcgMjMuMzggOTcuMjA1NyAyNS4yIDk0LjY4NTcgMjUuMlpNOTEuNDQ1NyAyMC40MkM5MS40NDU3IDIyLjc2IDkyLjkwNTcgMjMuODIgOTQuNzI1NyAyMy44MkM5Ni42ODU3IDIzLjgyIDk4LjAyNTcgMjIuMiA5OC4xMDU3IDIwLjEyQzk3LjcwNTcgMTguMTQgOTYuNTA1NyAxNi44NiA5NC41ODU3IDE2Ljg2QzkyLjc4NTcgMTYuODYgOTEuNDQ1NyAxOC4xNCA5MS40NDU3IDIwLjQyWk0xMDYuNTc4IDMwLjM2QzEwMy44NzggMzAuMzYgMTAxLjczOCAyOC42NiAxMDEuNzM4IDI1LjgyQzEwMS43MzggMjUuMzYgMTAxLjc5OCAyNC44NiAxMDEuODk4IDI0LjQyQzEwMS45NzggMjQuMSAxMDIuMjc4IDIzLjg0IDEwMi42MzggMjMuODRDMTAzLjA1OCAyMy44NCAxMDMuNDM4IDI0LjIgMTAzLjM1OCAyNC43QzEwMy4zMTggMjQuOTYgMTAzLjI5OCAyNS4zOCAxMDMuMjk4IDI1LjZDMTAzLjI5OCAyNy43NCAxMDQuNjU4IDI4Ljk4IDEwNi41OTggMjguOThDMTA4LjYxOCAyOC45OCAxMTAuMDE4IDI3LjY0IDExMC4wMTggMjUuMzRWMTkuODJDMTEwLjAxOCAxNy45MiAxMDguNjc4IDE2LjY4IDEwNi43OTggMTYuNjhDMTA1LjA1OCAxNi42OCAxMDMuNjk4IDE3LjcyIDEwMy42OTggMTkuNjRWMjAuMTRDMTAzLjY5OCAyMC42NCAxMDMuMzU4IDIwLjkyIDEwMi45NTggMjAuOTJDMTAyLjU1OCAyMC45MiAxMDIuMjU4IDIwLjY2IDEwMi4xOTggMjAuMjZDMTAyLjE1OCAyMC4wMiAxMDIuMTM4IDE5LjcgMTAyLjEzOCAxOS40NEMxMDIuMTM4IDE3LjE2IDEwMy45NzggMTUuMyAxMDYuODM4IDE1LjNDMTA5LjM5OCAxNS4zIDExMS41MTggMTYuODYgMTExLjUxOCAxOS44MlYyNS4zQzExMS41MTggMjguNDYgMTA5LjQzOCAzMC4zNiAxMDYuNTc4IDMwLjM2Wk0xMTMuODg4IDIwLjdDMTEzLjg4OCAxOC4xIDExNS43ODggMTYuNDYgMTE4LjQwOCAxNS41MlYxNC40QzExOC40MDggMTIuODYgMTE2LjU4OCAxMy4zNCAxMTYuMTg4IDExLjQyQzExNi4wODggMTAuOTggMTE2LjQ0OCAxMC41NCAxMTYuODg4IDEwLjU0QzExNy4zMjggMTAuNTQgMTE3LjU0OCAxMC44NCAxMTcuNjY4IDExLjE0QzExOC4xMjggMTIuMzIgMTE5LjkwOCAxMi4xNCAxMTkuOTA4IDE0LjE4VjE1LjYyQzEyMi4yNjggMTYuNiAxMjMuOTQ4IDE4LjMgMTIzLjk0OCAyMC43QzEyMy45NDggMjMuMzYgMTIxLjc2OCAyNS4yIDExOC45MDggMjUuMkMxMTYuMDQ4IDI1LjIgMTEzLjg4OCAyMy4zIDExMy44ODggMjAuN1pNMTE1LjQ2OCAyMC43NkMxMTUuNDY4IDIyLjQ0IDExNi45MjggMjMuODIgMTE4Ljg4OCAyMy44MkMxMjAuOTA4IDIzLjgyIDEyMi4zNjggMjIuNDYgMTIyLjM2OCAyMC43NEMxMjIuMzY4IDE4Ljg2IDEyMS4xNDggMTcuNyAxMTkuMDQ4IDE2LjY4QzExNi44ODggMTcuNjIgMTE1LjQ2OCAxOC43NiAxMTUuNDY4IDIwLjc2Wk0xMzAuMzIgMjUuMkMxMjcuNDYgMjUuMiAxMjUuNjIgMjMuNDQgMTI1LjYyIDIxLjEyQzEyNS42MiAyMC45IDEyNS42NCAyMC41MiAxMjUuNyAyMC4yNEMxMjUuNzYgMTkuOTIgMTI2LjA4IDE5LjY2IDEyNi40NCAxOS42NkMxMjYuOTIgMTkuNjYgMTI3LjIyIDIwLjA4IDEyNy4yMiAyMC40QzEyNy4yMiAyMC42IDEyNy4xOCAyMC44IDEyNy4xOCAyMS4wNEMxMjcuMTggMjIuNyAxMjguMzQgMjMuODYgMTMwLjM0IDIzLjg2QzEzMi4xMiAyMy44NiAxMzMuNSAyMi44NCAxMzMuNSAyMS4wOEMxMzMuNSAxOC40NCAxMzAuNTYgMTguNDIgMTI5LjggMTYuNDZDMTI5Ljc2IDE2LjM2IDEyOS43IDE2LjE4IDEyOS43IDE1Ljk4QzEyOS43IDE1LjU4IDEzMC4wNCAxNS4zIDEzMC40NiAxNS4zQzEzMC45MiAxNS4zIDEzMS4xNCAxNS42MiAxMzEuMjYgMTYuMDRDMTMxLjY0IDE3LjQ0IDEzNSAxNy41NCAxMzUgMjEuMDhDMTM1IDIzLjcyIDEzMi44NCAyNS4yIDEzMC4zMiAyNS4yWiIgZmlsbD0iI0U4MzA0OCIvPgo8L3N2Zz4K" width="180" height="41" alt=""></button>
@@ -527,8 +585,8 @@ body.night #calendarNotice{background:#242733;color:#E8E8EE}
 </div>
 <!-- ============ ნავიგაცია ============ -->
 <nav class="a" id="nav">
-  <button data-go="home" class="on" style="width:72px"><svg width="29" height="30" viewBox="0 0 30 30"><path d="M15 3.5 27 12.5V24a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V12.5z"/></svg></button>
-  <button data-go="cal" style="width:72px"><svg width="24" height="26" viewBox="0 0 26 26"><path d="M7 1h2.5v3H7zM16.500 1H19v3h-2.500z"/><rect x="2" y="3.500" width="22" height="21" rx="3"/></svg></button>
+  <button aria-label="მთავარი" data-go="home" class="on" style="width:72px"><svg width="29" height="30" viewBox="0 0 30 30"><path d="M15 3.5 27 12.5V24a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V12.5z"/></svg></button>
+  <button aria-label="კალენდარი" data-go="cal" style="width:72px"><svg width="24" height="26" viewBox="0 0 26 26"><path d="M7 1h2.5v3H7zM16.500 1H19v3h-2.500z"/><rect x="2" y="3.500" width="22" height="21" rx="3"/></svg></button>
   <button data-go="book" style="width:170px;margin-left:7px">დარეზერვება <svg width="22" height="26" viewBox="0 0 22 26" style="fill:var(--ink)"><path d="M3 2.500 20 13 3 23.500z" stroke="var(--ink)" stroke-width="2.500" stroke-linejoin="round"/></svg></button>
   <i id="ind"></i>
 </nav>
@@ -1509,6 +1567,7 @@ $('#bGear').onclick = $('#bSet').onclick = openSettings;
 /* ===== მასშტაბირება + გაშვება ===== */
 const stage = $('#stage');
 function fit() {
+  if(document.documentElement.classList.contains('phone-demo')){stage.style.width='100%';stage.style.height='100%';stage.style.transform='none';return;}
   const s = Math.min(innerWidth / 1280, innerHeight / 800), W = innerWidth / s;
   stage.style.width = W + 'px'; stage.style.height = innerHeight / s + 'px'; stage.style.transform = `scale(${s})`;
   stage.classList.toggle('narrow', W < 1670);   // ვიწრო ეკრანზე QR მარჯვენა პანელთან, ხაზის ქვემოთ დგება
@@ -1570,5 +1629,5 @@ addEventListener('load', () => moveInd(true)); addEventListener('resize', () => 
 if (document.fonts) document.fonts.ready.then(() => moveInd(true));
 setTimeout(() => moveInd(true), 400);
 </script>
-<style>#profileBtn{pointer-events:none;opacity:.45}#authOverlay{display:none!important}.portfolio-demo-note{position:fixed;bottom:3px;left:8px;font:10px sans-serif;color:#303030;background:#ffffffe6;padding:3px 6px;z-index:999}</style><div class="portfolio-demo-note">Interactive portfolio demo · Sample data</div></body></html>
+<style>#profileBtn{pointer-events:none;opacity:.45}#authOverlay{display:none!important}.phone-demo .portfolio-demo-note{display:none}.portfolio-demo-note{position:fixed;bottom:3px;left:8px;font:10px sans-serif;color:#303030;background:#ffffffe6;padding:3px 6px;z-index:999}</style><div class="portfolio-demo-note">Interactive portfolio demo · Sample data</div></body></html>
 

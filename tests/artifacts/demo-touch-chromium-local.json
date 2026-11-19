@@ -1,0 +1,13 @@
+{
+  "base_url": "http://127.0.0.1:8014/PortfolioWebsite/",
+  "engine": "chromium",
+  "status": "PASS",
+  "physical_device_testing": false,
+  "checks": [
+    "unscaled responsive core app",
+    "native touch booking submitted",
+    "confirmation and acknowledgement both fully visible",
+    "native dismissal",
+    "no JS errors"
+  ]
+}

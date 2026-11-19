@@ -26,8 +26,8 @@ with sync_playwright() as p:
   page.locator('[data-filter="all"]').click()
   # Retained JBL art opens independently of the four-device exhibit.
   page.locator('[data-explore="jbl-artwork"]').click()
-  expect(page.locator('dialog')).to_be_visible();expect(page.locator('dialog h2')).to_have_text('JBL Premium Audio Campaign')
-  page.keyboard.press('Escape');expect(page.locator('dialog')).not_to_be_visible()
+  expect(page.locator('dialog.mobile-project-dialog')).to_be_visible();expect(page.locator('dialog.mobile-project-dialog h2')).to_have_text('JBL Premium Audio Campaign')
+  page.keyboard.press('Escape');expect(page.locator('dialog.mobile-project-dialog')).not_to_be_visible()
   page.locator('#museum-frame').scroll_into_view_if_needed();page.wait_for_timeout(1200)
   if not SMOKE: page.screenshot(path=str(OUT/f'gallery-{width}.png'),animations='disabled',timeout=90000)
   for project in ([] if SMOKE else ['tsero','tomford','earthhour']):
@@ -69,7 +69,7 @@ with sync_playwright() as p:
   assert frame.locator('.page.on').get_attribute('id')==active
   page.locator('#try-preview').click();expect(page.locator('#try-preview')).to_have_attribute('aria-pressed','false')
   page.locator('#try-preview').click();expect(page.locator('#try-preview')).to_have_attribute('aria-pressed','true')
-  page.emulate_media(reduced_motion='reduce');expect(page.locator('#demo-signal')).to_have_css('display','none')
+  page.emulate_media(reduced_motion='reduce');expect(page.locator('#tablet-outline .tablet-runner')).to_have_css('animation-name','none')
   # Keyboard toggles avoid forced coordinate clicks while camera alignment moves the control.
   page.locator('#try-preview').focus();page.locator('#try-preview').press('Enter')
   expect(page.locator('#try-preview')).to_have_attribute('aria-pressed','false')
@@ -97,7 +97,7 @@ with sync_playwright() as p:
  context=browser.new_context(viewport={'width':1280,'height':900})
  context.add_init_script("const getContext=HTMLCanvasElement.prototype.getContext;HTMLCanvasElement.prototype.getContext=function(type,...args){return /^webgl/.test(type)?null:getContext.call(this,type,...args)}")
  page=context.new_page();page.goto(BASE+'projects.html',wait_until='networkidle')
- expect(page.locator('#stage-fallback')).to_be_visible();page.locator('[data-explore="tsero"]').click();expect(page.locator('dialog')).to_be_visible()
+ expect(page.locator('#stage-fallback')).to_be_visible();page.locator('[data-explore="tsero"]').click();expect(page.locator('dialog.mobile-project-dialog')).to_be_visible()
  results.append({'mode':'no-webgl','status':'PASS','checks':['visible fallback','working project details']});context.close()
  # The collection remains reachable without scripting.
  context=browser.new_context(java_script_enabled=False,viewport={'width':390,'height':844},is_mobile=True,has_touch=True)

@@ -21,7 +21,7 @@ const PROJECTS = [
   },
   {
     id:'jbl',name:'MeeTab',shortName:'MEETAB',category:'uiux',categoryLabel:'Interactive App · Web Preview',year:'2026',device:'tablet',cover:"meetab-preview.jpg",screenshots:['project-jbl.png'],accent:'#51BCE5',
-    description:'MeeTab meeting-room app. Try its navigation, calendar, local sample bookings and animations inside the tablet. Portfolio demo uses sample data; account access is disabled.',
+    description:'MeeTab meeting-room app. Explore navigation, calendar and local sample bookings. Desktop uses the tablet screen; touch devices open a full-screen demo. Portfolio demo uses sample data; account access is disabled.',
     scene:{position:[-.95,-.84,.55],rotation:[-.13,-.16,.035],scale:.98},camera:{position:[0,.3,9.6],focusPosition:[-1.60,-.08,3.35],scale:1.35},interactiveUrl:null
   },
   {
@@ -91,12 +91,17 @@ function screenSurface(w,h,p,depth=.103){
  const shape=roundedShape(w,h,screenRadius(w,h,p));
  // MeshBasicMaterial is independent of spotlights/tone-mapping: posters stay genuinely screen-bright.
  const mat=new THREE.MeshBasicMaterial({color:'#ffffff',side:THREE.FrontSide,toneMapped:false,fog:false});
- const mesh=new THREE.Mesh(new THREE.ShapeGeometry(shape,32),mat);
+ const geometry=new THREE.ShapeGeometry(shape,32);
+ // ShapeGeometry uses world-space XY as UVs. Normalize before applying an image.
+ const positions=geometry.attributes.position,uv=geometry.attributes.uv;
+ for(let i=0;i<uv.count;i++)uv.setXY(i,positions.getX(i)/w+.5,positions.getY(i)/h+.5);
+ uv.needsUpdate=true;
+ const mesh=new THREE.Mesh(geometry,mat);
  mesh.position.z=depth;mesh.userData.projectId=p.id;mesh.userData.isScreen=true;
  mesh.renderOrder=4;meshes.push(mesh);return mesh;
 }
 function useOriginalArtwork(mesh,p,w,h){
- const cn=document.createElement('canvas'),size=compactView()?512:1024;
+ const cn=document.createElement('canvas'),size=compactView()&&p.id!=='jbl'?512:1024;
  cn.width=w>h?size:Math.round(size*w/h);cn.height=h>=w?size:Math.round(size*h/w);
  const ctx=cn.getContext('2d',{alpha:true}),cw=cn.width,ch=cn.height;
  ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';
@@ -177,7 +182,7 @@ function deviceFactory(p){const group=new THREE.Group();const colorMat=metal();l
  }
  group.position.set(...p.scene.position);group.rotation.set(...p.scene.rotation);group.scale.setScalar(p.scene.scale);addProjectHit(group,p);
  group.traverse(obj=>{if(obj.isMesh&&obj.material?.color){obj.material.userData.baseColor=obj.material.color.clone();}});
- return {hoverAmount:0,dimAmount:0,lightAmount:0,magnet:{x:0,y:0},project:p,group,screen:surface,screenBloom,screenLight,homePosition:group.position.clone(),homeQuaternion:group.quaternion.clone(),homeScale:p.scene.scale,screenDimensions:{w:sw,h:sh}};
+ return {hoverAmount:0,dimAmount:0,lightAmount:0,magnet:{x:0,y:0},project:p,group,screen:surface,screenBloom,screenLight,homePosition:group.position.clone(),homeQuaternion:group.quaternion.clone(),homeScale:p.scene.scale,screenDimensions:{w:sw,h:sh},bodyDimensions:{w,h,radius:.12}};
 }
 function makeGlowTexture(){const c=document.createElement('canvas');c.width=c.height=128;const ctx=c.getContext('2d'),grad=ctx.createRadialGradient(64,64,2,64,64,62);grad.addColorStop(0,'rgba(255,255,255,.58)');grad.addColorStop(.15,'rgba(255,255,255,.32)');grad.addColorStop(.45,'rgba(255,255,255,.11)');grad.addColorStop(1,'rgba(255,255,255,0)');ctx.fillStyle=grad;ctx.fillRect(0,0,128,128);return new THREE.CanvasTexture(c)}
 // Camera-facing *world-anchored* haze. The emitter never billboards away from its lamp.
@@ -412,6 +417,7 @@ function makeScene(){scene=new THREE.Scene();scene.fog=new THREE.FogExp2('#060A1
  focusRenderer.outputColorSpace=THREE.SRGBColorSpace;focusRenderer.toneMapping=THREE.ACESFilmicToneMapping;focusRenderer.toneMappingExposure=1.08;
  focusRenderer.shadowMap.enabled=innerWidth>760;focusRenderer.shadowMap.type=THREE.PCFSoftShadowMap;
  focusHost.appendChild(focusRenderer.domElement);
+ focusRenderer.domElement.addEventListener('webglcontextlost',event=>{event.preventDefault();closeProject();showFallback('Graphics context lost');});
 
  ambientLight=new THREE.HemisphereLight('#E6E6F2','#101624',1.18);scene.add(ambientLight);
  lightKey=new THREE.DirectionalLight('#EEF0FF',1.05);lightKey.position.set(-3.1,5.25,8.4);lightKey.castShadow=true;lightKey.shadow.mapSize.set(1024,1024);lightKey.shadow.camera.left=-10;lightKey.shadow.camera.right=10;lightKey.shadow.camera.top=8;lightKey.shadow.camera.bottom=-8;lightKey.shadow.bias=-0.00035;lightKey.shadow.radius=5;scene.add(lightKey);
@@ -463,7 +469,8 @@ function positionArtworkOverlays(){
  for(const p of PROJECTS){
   const d=displayItems.get(p.id),node=screenOverlays.get(p.id);
   if(!node||!d?.group.visible||!sceneReady)continue;
-  const w=d.screenDimensions.w*.5,h=d.screenDimensions.h*.5;
+  const w=d.screenDimensions.w*.5,h=d.screenDimensions.h*.5,width=512,height=512*h/w;
+  setScreenStyle(node,'height',height+'px');
   // Match the physical screen radius in both axes, before perspective projection.
   const radius=screenRadius(w*2,h*2,p),rx=radius/(w*2)*100,ry=radius/(h*2)*100;
   node.style.borderRadius=`${rx}% / ${ry}%`;
@@ -473,7 +480,7 @@ function positionArtworkOverlays(){
    const v=d.screen.localToWorld(new THREE.Vector3(x,y,0)).project(camera);
    return [(v.x*.5+.5)*vw,(-v.y*.5+.5)*vh];
   });
-  const co=solveHomography([[[0,0],target[0]],[[512,0],target[1]],[[512,512],target[2]],[[0,512],target[3]]]);
+  const co=solveHomography([[[0,0],target[0]],[[width,0],target[1]],[[width,height],target[2]],[[0,height],target[3]]]);
   if(!co)continue;
   const [a,b,c,d1,e,f,g,h1]=co;
   // Matrix4 CSS is column-major; projective terms live in row 4.
@@ -546,19 +553,35 @@ function ensureMeeTabPortal(){
  if(persistentMeeTabFrame)return persistentMeeTabFrame;
  const iframe=document.createElement('iframe');iframe.title='MeeTab interactive preview';iframe.width='1280';iframe.height='800';iframe.setAttribute('sandbox','allow-scripts');iframe.referrerPolicy='no-referrer';
  persistentMeeTabFrame=iframe;
- const signal=$('#demo-signal');
- if(signal){
-  signal.setAttribute('viewBox','0 0 1280 800');signal.setAttribute('preserveAspectRatio','none');
-  if(!signal.querySelector('rect')){const outline=document.createElementNS('http://www.w3.org/2000/svg','rect');for(const [key,value] of Object.entries({fill:'none',x:8,y:8,width:1264,height:784,rx:48,pathLength:1,'vector-effect':'non-scaling-stroke'}))outline.setAttribute(key,String(value));signal.replaceChildren(outline);}
- }
- portal.replaceChildren(iframe);if(signal)portal.append(signal);
- iframe.src=new URL("./meetab-demo.html",import.meta.url).href;portal.hidden=false;
+ portal.replaceChildren(iframe);
+ iframe.src=new URL("./meetab-demo.html?v=0.14.3",import.meta.url).href;portal.hidden=false;
  return iframe;
 }
-function sendPreviewMode(){if(!meeTabReady)return;persistentMeeTabFrame?.contentWindow?.postMessage({showroom:true,kind:'interactive',enabled:previewActive&&state==='focus'&&selected?.id==='jbl'},'*');}
+function sendPreviewMode(){if(!meeTabReady)return;persistentMeeTabFrame?.contentWindow?.postMessage({showroom:true,kind:'interactive',enabled:previewActive&&state==='focus'&&selected?.id==='jbl',mobile:mobileDemoOpen},'*');}
 
-let demoBlend=0;
+let demoBlend=0,mobileDemoOpen=false;
+const mobileDemo=$('#mobile-demo');
+function setMobileDemo(open){
+ if(mobileDemoOpen===open)return;
+ mobileDemoOpen=open;
+ if(open){
+  if(mobileDemo.open)mobileDemo.close();
+  mobileDemo.classList.remove('desktop-demo');
+  mobileDemo.classList.add('touch-demo');
+  $('#screen-portal').hidden=false;
+  mobileDemo.showModal();document.documentElement.classList.add('demo-modal-open');
+  $('#mobile-demo-close').focus();
+ }else{
+  mobileDemo.close();mobileDemo.classList.remove('touch-demo');document.documentElement.classList.remove('demo-modal-open');
+  queueSceneResize();lastRendered=-Infinity;
+  if(state==='focus')$('#try-preview').focus({preventScroll:true});
+ }
+ sendPreviewMode();
+}
+$('#mobile-demo-close').addEventListener('click',()=>{if(previewActive&&selected)activateInteractiveScreen(selected);});
+mobileDemo.addEventListener('cancel',event=>{event.preventDefault();if(previewActive&&selected)activateInteractiveScreen(selected);});
 function syncDemoWorkspace(){
+ if(!previewActive&&mobileDemoOpen)setMobileDemo(false);
  frame.classList.toggle('is-demo',previewActive);
  const workspace=$('.demo-workspace');workspace.inert=!previewActive;
  $('#try-preview').setAttribute('aria-pressed',String(previewActive));
@@ -573,7 +596,7 @@ function activateInteractiveScreen(p){
  if(p.id!=='jbl'||state!=='focus')return;
  ensureMeeTabPortal();previewActive=!previewActive;
  $('#try-preview').textContent=previewActive?'Exit preview':'Try now ↗';
- syncDemoWorkspace();sendPreviewMode();
+ syncDemoWorkspace();setMobileDemo(previewActive&&(compactView()||matchMedia('(pointer:coarse)').matches));sendPreviewMode();
 }
 function zoomEnvironment(delta,mode=0){
  if(state!=='focus'||!Number.isFinite(delta))return;
@@ -581,15 +604,15 @@ function zoomEnvironment(delta,mode=0){
  environmentZoomTarget=clamp(environmentZoomTarget*Math.exp(-clamp(units,-160,160)*.0018),.75,1.65);
 }
 window.addEventListener('wheel',event=>{
- if(state!=='focus'||event.ctrlKey||!frame.contains(event.target)||inspector.contains(event.target))return;
+ if(state!=='focus'||event.ctrlKey||!frame.contains(event.target)||inspector.contains(event.target)||mobileDemoOpen)return;
  event.preventDefault();event.stopPropagation();zoomEnvironment(event.deltaY,event.deltaMode);
 },{capture:true,passive:false});
 window.addEventListener('message',event=>{
  if(!persistentMeeTabFrame||event.source!==persistentMeeTabFrame.contentWindow||event.data?.showroom!==true)return;
  const msg=event.data;
  if(msg.kind==='ready'){meeTabReady=true;const button=$('#try-preview');button.disabled=false;button.textContent=previewActive?'Exit preview':'Try now ↗';sendPreviewMode();}
- if(msg.kind==='wheel')zoomEnvironment(msg.delta,msg.mode);
- if(msg.kind==='drag'&&state==='focus'&&selected?.id==='jbl'){
+ if(msg.kind==='wheel'&&!mobileDemoOpen)zoomEnvironment(msg.delta,msg.mode);
+ if(msg.kind==='drag'&&!mobileDemoOpen&&state==='focus'&&selected?.id==='jbl'){
   if(!Number.isFinite(msg.dx)||!Number.isFinite(msg.dy))return;
   focusTiltTarget.y=clamp(focusTiltTarget.y+clamp(msg.dx,-100,100)*.0034,-.26,.26);
   focusTiltTarget.x=clamp(focusTiltTarget.x+clamp(msg.dy,-100,100)*.0029,-.19,.19);
@@ -608,24 +631,40 @@ function positionScreenPortal(){
  const[a,b,c,d1,e,f,g,h1]=co;let transform=`matrix3d(${a},${d1},0,${g},${b},${e},0,${h1},0,0,1,0,${c},${f},0,1)`;
  const r=screenRadius(w*2,h*2,d.project);setScreenStyle(portal,'borderRadius',`${r/(w*2)*100}% / ${r/(h*2)*100}%`);
  const inFocus=state==='focus'&&selected?.id==='jbl';
- if(compactView()&&inFocus&&previewActive){
-  // An affine screen avoids perspective iframe hit-testing differences on touch browsers.
-  const available=vh-inspector.offsetHeight-90,depth=selected.camera.position[2]-selected.camera.focusPosition[2];
-  const unitPerPixel=2*Math.tan(camera.fov*Math.PI/360)*depth/vh;
-  const scale=Math.min(vw-44,d.screenDimensions.w*focusScale*1.09/unitPerPixel)/width;
-  const x=(vw-width*scale)/2,centerY=vh/2+(24+available/2-vh/2)*1.055,y=centerY-height*scale/2;
-  transform=`translate(${x}px,${y}px) scale(${scale})`;
- }
+ const showScreen=inFocus&&meeTabReady&&previewActive;
+ portal.hidden=!showScreen;
+ if(showScreen&&!mobileDemo.open){mobileDemo.classList.add('desktop-demo');mobileDemo.show();}
+ else if(!showScreen&&mobileDemo.open)mobileDemo.close();
 
  setScreenStyle(portal,'width',width+'px');setScreenStyle(portal,'height',height+'px');setScreenStyle(portal,'transform',transform);
  setScreenStyle(portal,'pointerEvents',inFocus&&previewActive?'auto':'none');
  const inert=!(inFocus&&previewActive);if(portal.inert!==inert)portal.inert=inert;
  const background=state!=='gallery'&&selected?.id!=='jbl';setScreenStyle(portal,'filter',background?'blur(5px) brightness(.42) saturate(.72)':'none');
  setScreenStyle(portal,'zIndex',state!=='gallery'&&selected?.id==='jbl'?'9':'3');
+ positionTabletOutline(d,inFocus);
  const button=$('#try-preview');button.hidden=!inFocus;
  // Keep the control still while the camera and tablet interpolate.
  const controlX=compactView()?vw*.75:clamp((vw-inspector.offsetWidth)/2,90,vw-inspector.offsetWidth-90),controlY=compactView()?vh-inspector.offsetHeight-56:Math.max(82,vh-110);
  if(inFocus){button.style.left=controlX+'px';button.style.top=controlY+'px';}
+}
+
+function positionTabletOutline(device,visible){
+ const outline=$('#tablet-outline');outline.toggleAttribute('hidden',!visible||mobileDemoOpen);
+ if(outline.hasAttribute('hidden'))return;
+ // Project a plane just OUTSIDE the whole body, not the smaller display.
+ const w=device.bodyDimensions.w+.085,h=device.bodyDimensions.h+.085,width=1000,height=1000*h/w;
+ const points=[[-w/2,h/2],[w/2,h/2],[w/2,-h/2],[-w/2,-h/2]].map(([x,y])=>{
+  const v=device.group.localToWorld(new THREE.Vector3(x,y,.12)).project(camera);
+  return[(v.x*.5+.5)*frame.clientWidth,(-v.y*.5+.5)*frame.clientHeight];
+ });
+ const co=solveHomography([[[0,0],points[0]],[[width,0],points[1]],[[width,height],points[2]],[[0,height],points[3]]]);if(!co)return;
+ const[a,b,c,d,e,f,g,h1]=co;
+ if(outline.viewBox.baseVal.width!==width){
+  outline.setAttribute('viewBox',`0 0 ${width} ${height}`);
+  outline.querySelectorAll('rect').forEach(rect=>{rect.setAttribute('width',width);rect.setAttribute('height',height);rect.setAttribute('rx',(.12+.0425)*width/w);});
+ }
+ setScreenStyle(outline,'width',width+'px');setScreenStyle(outline,'height',height+'px');
+ setScreenStyle(outline,'transform',`matrix3d(${a},${d},0,${g},${b},${e},0,${h1},0,0,1,0,${c},${f},0,1)`);
 }
 
 function clientPointer(event){const r=renderer.domElement.getBoundingClientRect();pointer.x=((event.clientX-r.left)/r.width)*2-1;pointer.y=-((event.clientY-r.top)/r.height)*2+1;lastPointer.x=pointer.x;lastPointer.y=pointer.y;}
@@ -685,6 +724,7 @@ function setupInteraction(){
 function render(time){
  if(!sceneReady)return;
  requestAnimationFrame(render);
+ if(mobileDemoOpen){lastFrame=time;return;}
  if(resizePending){resizePending=false;resizeScene();}
  if(document.hidden||(!stageVisible&&!movingTween)){lastFrame=time;return;}
  if(compactView()&&time-lastRendered<1000/30)return;lastRendered=time;
@@ -795,7 +835,7 @@ function render(time){
 }
 
 
-function installKeys(){document.addEventListener('keydown',e=>{if(e.key==='Escape'&&state!=='gallery'){e.preventDefault();closeProject()}else if((e.key==='ArrowLeft'||e.key==='ArrowRight')&&state==='focus'&&!modal?.open){const n=PROJECTS.length,i=PROJECTS.findIndex(p=>p.id===selected.id),j=(i+(e.key==='ArrowRight'?1:-1)+n)%n;queuedSelection=PROJECTS[j].id;closeProject()}});closeButton.addEventListener('click',closeProject);
+function installKeys(){document.addEventListener('keydown',e=>{if(mobileDemoOpen)return;if(e.key==='Escape'&&state!=='gallery'){e.preventDefault();closeProject()}else if((e.key==='ArrowLeft'||e.key==='ArrowRight')&&state==='focus'&&!modal?.open){const n=PROJECTS.length,i=PROJECTS.findIndex(p=>p.id===selected.id),j=(i+(e.key==='ArrowRight'?1:-1)+n)%n;queuedSelection=PROJECTS[j].id;closeProject()}});closeButton.addEventListener('click',closeProject);
  // Dismiss even when the user clicks outside the showroom frame (page header/archive).
  document.addEventListener('pointerdown',event=>{
   if(state!=='focus'||previewActive||!inspector.classList.contains('is-open'))return;
@@ -803,7 +843,7 @@ function installKeys(){document.addEventListener('keydown',e=>{if(e.key==='Escap
   closeProject();
  });
  resetButton.addEventListener('click',closeProject);}
-function showFallback(detail){stageLoading.classList.add('is-done');fallbackEl.hidden=false;labelsEl.hidden=true;if(detail)console.warn('[showroom] fallback:',detail);sceneReady=false;}
+function showFallback(detail){$('#tablet-outline').setAttribute('hidden','');$('#screen-portal').hidden=true;stageLoading.classList.add('is-done');fallbackEl.hidden=false;labelsEl.hidden=true;if(detail)console.warn('[showroom] fallback:',detail);sceneReady=false;}
 async function initialize(){try{const c=document.createElement('canvas');if(!(c.getContext('webgl2')||c.getContext('webgl'))){showFallback('WebGL not available');return}
  // No framework migration: dynamically load Three.js only on devices capable of the 3D showroom.
  await new Promise((resolve,reject)=>{const script=document.createElement('script');script.src=new URL('./vendor/three.js',import.meta.url).href;script.onload=resolve;script.onerror=()=>reject(new Error('Local Three.js engine did not load'));document.head.append(script)});THREE=window.SHOWROOM_THREE;if(!THREE)throw new Error('Local Three.js engine did not load');makeScene();frame.appendChild($('#try-preview'));if(!compactView())ensureMeeTabPortal();setupInteraction();stageLoading.classList.add('is-done');window.addEventListener('resize',queueSceneResize,{passive:true});const ro=new ResizeObserver(queueSceneResize);ro.observe(frame);const visibility=new IntersectionObserver(entries=>{stageVisible=entries[entries.length-1].isIntersecting},{rootMargin:'150px'});visibility.observe(frame);

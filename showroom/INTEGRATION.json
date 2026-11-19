@@ -3,21 +3,28 @@
   "uploaded_archive_commit": "ad239da8b9c2121cc9ef216646e46030684ec323",
   "archive_sha256": "46dd92f189b9fffaae719c4528c970ef47dc1c7766d02e691f2b4cf9a627accd",
   "original_site_commit": "9f9d437bc049b2277bc7ad697c7a69c37833f4b8",
-  "embedded_demo_sha256": "749fe707a9e098399453b3f588206be77e3e4c6efdedd5edf78f62343440c751",
-  "embedded_demo_matches_archive": true,
+  "embedded_demo_matches_archive": false,
   "mobile_update": {
     "date": "2026-11-17",
     "width_gate_removed": true,
     "phone_inspector": "bottom panel",
     "demo_loading": "on-demand, ready handshake before interaction",
-    "touch_screen": "affine app plane during phone interaction",
+    "touch_screen": "full-screen responsive phone adapter; desktop uses projected tablet screen",
     "backup_ref": "backup/pre-mobile-showroom-2026-11-17"
   },
-  "patch": "0.14.2",
+  "patch": "0.14.3",
   "overlay_update": {
     "date": "2026-11-19",
-    "neon": "screen-local SVG sharing the app transform",
+    "neon": "outer body-sized projected SVG with persistent halo",
     "resize": "coalesced, unchanged drawing buffers preserved",
-    "phone_projection": "one affine transform write per changed geometry"
+    "phone_projection": "no transformed iframe during touch use"
+  },
+  "original_embedded_demo_sha256": "749fe707a9e098399453b3f588206be77e3e4c6efdedd5edf78f62343440c751",
+  "current_demo_sha256": "8bab0600ae79cdbb4d5e04e2fc5d4c565cea5904f25e607fe8c0e328d05c2c49",
+  "mobile_demo_redesign": {
+    "date": "2026-11-19",
+    "backup_ref": "backup/pre-mobile-demo-redesign-2026-11-19",
+    "source_changes": "portfolio bridge and home/calendar/booking CSS adapter; original upload retained unchanged",
+    "texture_fix": "normalized ShapeGeometry UV coordinates"
   }
 }

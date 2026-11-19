@@ -1,0 +1,85 @@
+{
+  "base_url": "http://127.0.0.1:8014/PortfolioWebsite/",
+  "physical_device_testing": false,
+  "scenarios": [
+    {
+      "engine": "webkit",
+      "status": "PASS",
+      "profile": "phone DPR 2",
+      "responsive_sizes": [
+        [
+          360,
+          800
+        ],
+        [
+          430,
+          932
+        ],
+        [
+          844,
+          390
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "unchangedResizeBufferWrites": 0,
+      "outline": {
+        "outsidePortal": true,
+        "visible": true,
+        "outer": [
+          [
+            15.677245,
+            93.211032
+          ],
+          [
+            374.52176810073445,
+            72.59499685204617
+          ],
+          [
+            381.38593617869094,
+            320.4711933790901
+          ],
+          [
+            18.56203426649537,
+            329.52833070263137
+          ]
+        ],
+        "inner": [
+          [
+            34.282976,
+            112.396168
+          ],
+          [
+            355.51964584029406,
+            94.84063648513198
+          ],
+          [
+            361.189613893104,
+            300.66785533636823
+          ],
+          [
+            36.859338175948345,
+            309.6079176755448
+          ]
+        ],
+        "centerDistance": 0.715141518307346,
+        "fill": "none",
+        "stroke": "rgb(133, 234, 255)"
+      },
+      "checks": [
+        "correct gallery texture inspected in screenshot",
+        "outer-body outline beyond all four screen corners",
+        "native touch navigation, text entry, guests and duration",
+        "local booking submitted and confirmed",
+        "calendar cards rendered",
+        "no CSS transform on phone app",
+        "same iframe and form state on return",
+        "3D draw calls paused during demo",
+        "44px core controls",
+        "no horizontal overflow, errors or failed/external requests"
+      ]
+    }
+  ]
+}

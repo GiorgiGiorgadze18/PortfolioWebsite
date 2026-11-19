@@ -96,15 +96,17 @@
 .demo-note{display:block;font:400 10px/1.7 var(--font-heading);color:var(--muted);margin-top:15px}
 #try-preview{transition:background .25s,box-shadow .4s,border-color .25s}
 .is-demo #try-preview{background:#0b202b;color:#a4efff;border-color:#72dfff88;box-shadow:0 0 0 4px #52d4ff0d,0 8px 28px #0007}
-.is-demo #screen-portal{box-shadow:0 0 0 2px #80e8ff80,0 0 32px #4bd7ff30}
 .is-demo .stage-actions .interaction-hint{color:#83dfff}
-#demo-signal{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;overflow:hidden;opacity:0}
-#demo-signal rect{fill:none;stroke:#adf3ff;stroke-width:6;stroke-linecap:round;filter:drop-shadow(0 0 5px #60dfff);stroke-dasharray:.14 1;stroke-dashoffset:1}
-.is-demo #demo-signal{opacity:1}
-.is-demo #demo-signal rect{animation:demoSignal .8s cubic-bezier(.2,.65,.2,1) both}
-@keyframes demoSignal{0%{stroke-dashoffset:.15;opacity:0}12%{opacity:1}85%{opacity:1}100%{stroke-dashoffset:-1;opacity:0}}
+/* A body-sized projected SVG, outside the clipped app/screen portal. */
+#tablet-outline{position:absolute;left:0;top:0;z-index:9;overflow:visible;pointer-events:none;transform-origin:0 0}
+#tablet-outline[hidden]{display:none}
+#tablet-outline rect{fill:none;stroke:#85eaff;stroke-width:2;filter:drop-shadow(0 0 4px #40d8ff)}
+#tablet-outline .tablet-runner{stroke:#e4fcff;stroke-width:3;stroke-dasharray:.18 .82;opacity:0}
+.is-demo #tablet-outline .tablet-halo{stroke-width:2.5}
+.is-demo #tablet-outline .tablet-runner{opacity:1;animation:tabletSignal 3s linear infinite}
+@keyframes tabletSignal{to{stroke-dashoffset:-1}}
 .demo-announcement{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
-@media(prefers-reduced-motion:reduce){#showroom-canvas,.demo-workspace,.project-inspector .inspector-body,.project-inspector .inspector-buttons,.inspector-year,#try-preview{transition:opacity .12s}#demo-signal{display:none!important}}
+@media(prefers-reduced-motion:reduce){#showroom-canvas,.demo-workspace,.project-inspector .inspector-body,.project-inspector .inspector-buttons,.inspector-year,#try-preview{transition:opacity .12s}#tablet-outline .tablet-runner{animation:none!important;opacity:0!important}}
 
 /* Phone showroom: the same exhibit with a touch target grid and bottom inspector. */
 @media(max-width:600px){
@@ -130,3 +132,22 @@
  .demo-workspace p{font-size:11px;margin-bottom:10px}.demo-instructions{display:none}
  .demo-exit{min-height:44px}.demo-note{font-size:9px;margin-top:8px}
 }
+
+/* Touch demo is an explicit native-size view, never a floating image over a moving tablet. */
+.demo-modal-open{overflow:hidden}
+#mobile-demo{position:fixed;inset:0;width:100%;max-width:none;height:100%;height:100dvh;max-height:none;margin:0;padding:0;border:0;background:#fbfbfb;color:#303030;overflow:hidden}
+#mobile-demo::backdrop{background:#060a14}
+#mobile-demo[open]{display:flex;flex-direction:column}
+#mobile-demo header{flex:none;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:calc(10px + env(safe-area-inset-top)) 12px 10px;background:#101725;color:white;font:500 12px/1.4 var(--font-body)}
+#mobile-demo header strong,#mobile-demo header small{display:block}#mobile-demo header small{color:#b9c6da;font-size:10px}
+#mobile-demo-close{flex:none;min-height:44px;border:1px solid #85eaff66;background:#17303c;color:#c5f4ff;padding:8px 12px;border-radius:8px;font:600 11px var(--font-body)}
+#mobile-demo-close:focus-visible{outline:2px solid white;outline-offset:2px}
+#mobile-demo-body{flex:1;min-height:0;padding-bottom:env(safe-area-inset-bottom)}
+#mobile-demo-body iframe{display:block;width:100%;height:100%;border:0;background:#fbfbfb}
+
+/* The iframe stays under this dialog for its entire lifetime. No DOM reparent/reload. */
+#mobile-demo.desktop-demo[open]{display:contents}
+#mobile-demo.desktop-demo header{display:none}
+#mobile-demo.desktop-demo #mobile-demo-body{display:contents}
+#mobile-demo.touch-demo .screen-portal{position:relative;width:100%!important;height:100%!important;transform:none!important;border-radius:0!important;filter:none!important;z-index:auto!important}
+#mobile-demo.touch-demo .screen-portal[hidden]{display:none}
