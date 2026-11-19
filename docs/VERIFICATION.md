@@ -10,7 +10,9 @@ Current local reports: [Chromium phone](../tests/artifacts/tablet-chromium-local
 
 Visual evidence: [external tablet halo](../tests/artifacts/tablet-chromium-focus.png), [responsive booking form](../tests/artifacts/tablet-webkit-mobile-booking.png), [visible confirmation controls](../tests/artifacts/demo-confirmation-webkit-local.png). Full integration phone profiles use 390 px / DPR 2 and exercise 360×800, 430×932, 844×390, then 390×844. Ten unchanged resize events produce 0 buffer dimension writes; covered 3D draw calls stop. The Chromium integration additionally forces focus-context loss and checks the collection fallback.
 
-Public-site evidence is added after the Pages build and checksum verification. [Design research](MOBILE_UX_RESEARCH.md) · [Patch notes](../CHANGELOG.md)
+Public runtime `4e11b89ffaf7e3298068ec80dc978546bda651a3` is built by GitHub Pages and all 22 runtime files match the tested hashes. The public entry URL without a cache-busting query also serves v0.14.3. Both [public Chromium](../tests/artifacts/tablet-chromium-production.json) and [public WebKit](../tests/artifacts/tablet-webkit-production.json) passed the full native touch flow, four responsive sizes, saved state, paused draws/deferred buffer resizing, visible confirmation controls and clean return. [Public fallback checks](../tests/artifacts/fallback-v0143-production.json) also passed.
+
+[Deployment checksums](../tests/artifacts/production-deployment.json) · [Public Chromium confirmation](../tests/artifacts/tablet-chromium-booking-confirmed.png) · [Public WebKit confirmation](../tests/artifacts/tablet-webkit-booking-confirmed.png). Follow-up evidence commits preserve the same runtime hashes. [Design research](MOBILE_UX_RESEARCH.md) · [Patch notes](../CHANGELOG.md)
 
 ---
 

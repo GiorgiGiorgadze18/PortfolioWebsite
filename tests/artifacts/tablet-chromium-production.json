@@ -1,0 +1,85 @@
+{
+  "base_url": "https://giorgigiorgadze18.github.io/PortfolioWebsite/",
+  "physical_device_testing": false,
+  "scenarios": [
+    {
+      "engine": "chromium",
+      "status": "PASS",
+      "profile": "phone DPR 2",
+      "responsive_sizes": [
+        [
+          360,
+          800
+        ],
+        [
+          430,
+          932
+        ],
+        [
+          844,
+          390
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "unchangedResizeBufferWrites": 0,
+      "outline": {
+        "outsidePortal": true,
+        "visible": true,
+        "outer": [
+          [
+            15.6772,
+            93.211
+          ],
+          [
+            374.4824257685447,
+            72.58776623649146
+          ],
+          [
+            381.4271211770838,
+            320.50619949660893
+          ],
+          [
+            18.565906088267724,
+            329.5954984825748
+          ]
+        ],
+        "inner": [
+          [
+            34.283,
+            112.396
+          ],
+          [
+            355.4721637602726,
+            94.8277877998263
+          ],
+          [
+            361.04954241315966,
+            300.55112669172297
+          ],
+          [
+            36.85035907367062,
+            309.53280077463086
+          ]
+        ],
+        "centerDistance": 0.7166894494778934,
+        "fill": "none",
+        "stroke": "rgb(133, 234, 255)"
+      },
+      "checks": [
+        "correct gallery texture inspected in screenshot",
+        "outer-body outline beyond all four screen corners",
+        "native touch navigation, text entry, guests and duration",
+        "local booking submitted and confirmed",
+        "calendar cards rendered",
+        "no CSS transform on phone app",
+        "same iframe and form state on return",
+        "3D draw calls paused during demo",
+        "44px core controls",
+        "no horizontal overflow, errors or failed/external requests"
+      ]
+    }
+  ]
+}
