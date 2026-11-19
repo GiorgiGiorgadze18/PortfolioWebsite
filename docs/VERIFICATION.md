@@ -1,3 +1,13 @@
+# Overlay and phone stability — 2026-11-19
+
+The pre-fix phone build positioned the signal SVG across the entire showroom and wrote WebGL canvas width/height 80 times for ten unchanged resize events. The patch places the signal inside the screen portal, uses one projection per frame, and preserves drawing buffers unless their actual size or pixel ratio changes.
+
+Targeted checks are recorded in [Chromium phone results](../tests/artifacts/overlay-chromium-local.json), [WebKit phone results](../tests/artifacts/overlay-webkit-local.json), [desktop results](../tests/artifacts/overlay-chromium-desktop-local.json), and [the baseline measurement](../tests/artifacts/overlay-baseline-20261119.json). The checks cover alignment after dragging, zooming and phone orientation changes; resize allocation; app booking/state retention; reduced motion; and gallery cleanup. Current phone runs show zero redundant buffer writes and zero settled transform writes. Physical iPhone/Android testing is not claimed.
+
+[Phone overlay screenshot](../tests/artifacts/overlay-chromium-390.png) · [Patch notes](../CHANGELOG.md)
+
+---
+
 # Phone 3D verification — 2026-11-17
 
 The original v0.14 integration deliberately stopped 3D initialization at 600 px, hid the phone inspector, and forced the collection fallback to display. The phone regression now requires a real WebGL canvas, a hidden fallback, touch project selection, and interactive MeeTab navigation.
