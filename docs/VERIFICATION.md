@@ -1,3 +1,21 @@
+# v0.14.3 — tablet outline and responsive touch demo
+
+The earlier checks missed the reported bugs: they asserted an outline inside the screen and mapped a tap coordinate manually, while the user needed an outer-body halo and an app that stayed usable during touch interaction. Those historical reports remain below and do not establish that the visual defects were solved.
+
+Current regression: `python3 tests/tablet_mobile.py [base URL] --phone-only` or `--desktop-only`; add `--engine webkit` for the WebKit phone profile. It uses normal locator touch input in the untransformed app, completes and confirms a local booking, checks all four outline corners outside the display, exercises responsive widths/orientation and preserves the same iframe/time origin and form state. It also counts real WebGL draw calls while the phone demo covers the scene and canvas-buffer writes for unchanged resize notifications.
+
+Screenshots are inspected for cover distortion, the halo's external gap, header/form overlap and usable scrolling. Browser emulation and software rendering do not establish physical-phone frame rate, heat, battery use or actual iOS Safari/Android Chrome behavior. Physical-device validation remains outstanding.
+
+Current local reports: [Chromium phone](../tests/artifacts/tablet-chromium-local.json), [WebKit phone](../tests/artifacts/tablet-webkit-local.json), [Chromium desktop](../tests/artifacts/tablet-chromium-desktop-local.json), [fallbacks](../tests/artifacts/fallback-v0143-local.json). The final confirmation-layout adjustment was also tested independently in [Chromium](../tests/artifacts/demo-touch-chromium-local.json) and [WebKit](../tests/artifacts/demo-touch-webkit-local.json), requiring the acknowledgement button to fit inside its panel.
+
+Visual evidence: [external tablet halo](../tests/artifacts/tablet-chromium-focus.png), [responsive booking form](../tests/artifacts/tablet-webkit-mobile-booking.png), [visible confirmation controls](../tests/artifacts/demo-confirmation-webkit-local.png). Full integration phone profiles use 390 px / DPR 2 and exercise 360×800, 430×932, 844×390, then 390×844. Ten unchanged resize events produce 0 buffer dimension writes; covered 3D draw calls stop. The Chromium integration additionally forces focus-context loss and checks the collection fallback.
+
+Public-site evidence is added after the Pages build and checksum verification. [Design research](MOBILE_UX_RESEARCH.md) · [Patch notes](../CHANGELOG.md)
+
+---
+
+## Historical v0.14.2 measurements (superseded interaction tests)
+
 # Overlay and phone stability — 2026-11-19
 
 The pre-fix phone build positioned the signal SVG across the entire showroom and wrote WebGL canvas width/height 80 times for ten unchanged resize events. The patch places the signal inside the screen portal, uses one projection per frame, and preserves drawing buffers unless their actual size or pixel ratio changes.
@@ -45,7 +63,7 @@ The desktop 1440 px smoke check passed 3D startup, filters, preview exit/reentry
 
 ## Source and backup
 
-The supplied ZIP remains unchanged, and the exact embedded MeeTab document is retained. Phone behavior is implemented in the portfolio wrapper. The pre-fix published version is preserved on `backup/pre-mobile-showroom-2026-11-17`; the original full old-site backup remains on `backup/archive-pre-showroom-2026-11-16`.
+At the time of these historical runs, the supplied ZIP and embedded MeeTab document were unchanged. v0.14.3 preserves the ZIP and adds a phone adapter to the portfolio copy of the demo. The pre-fix published version is preserved on `backup/pre-mobile-showroom-2026-11-17`; the original full old-site backup remains on `backup/archive-pre-showroom-2026-11-16`.
 
 The November 16 baseline used a collection-only phone fallback. Its reports and phone screenshot are retained under [dated history](../tests/artifacts/history/2026-11-16/).
 
