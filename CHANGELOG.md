@@ -11,7 +11,7 @@
 
 ### Verification
 
-Chromium phone (390 px, DPR 2), WebKit phone (390 px), and Chromium desktop (1280 px) passed the targeted regression. Ten unchanged resize events produced 0 drawing-buffer dimension writes, versus 80 in the baseline. A real phone width change produced the 4 required writes; a settled phone preview produced 0 transform changes. Drag/zoom/orientation alignment, booking navigation, retained iframe state, reduced motion and gallery cleanup passed. These are emulated browser checks, not physical-device measurements.
+Chromium phone (390 px, DPR 2), WebKit phone (390 px), and Chromium desktop (1280 px) passed the targeted regression. Ten unchanged resize events produced 0 drawing-buffer dimension writes, versus 80 in the baseline. A real phone width change produced the 4 required writes; a settled phone preview produced 0 transform changes. Drag/zoom/orientation alignment, booking navigation, retained iframe state, reduced motion and gallery cleanup passed. The public-site phone checks also passed in both engines at DPR 2, with 0 redundant buffer writes and 0 settled transform changes. [Verification reports](docs/VERIFICATION.md). These are emulated browser checks, not physical-device measurements.
 
 ## 2026-11-17 — Phone 3D showroom
 

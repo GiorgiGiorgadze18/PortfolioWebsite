@@ -74,8 +74,12 @@ with sync_playwright() as p:
    resized=None
    screen=page.locator('#screen-portal').bounding_box();page.mouse.move(screen['x']+screen['width']/2,screen['y']+screen['height']/2);page.mouse.wheel(0,-90);page.wait_for_timeout(700);aligned(page)
   button.tap() if phone else button.click();expect(button).to_have_attribute('aria-pressed','false')
-  # Drag the selected device on its bezel before reentering the demo.
-  screen=page.locator('#screen-portal').bounding_box();x=screen['x']-3;y=screen['y']+screen['height']/2
+  # Bring the device back on screen after orientation changes, then drag its face.
+  # The inactive iframe is inert, so the foreground canvas receives this gesture.
+  page.locator('#museum-frame').scroll_into_view_if_needed();settle(page)
+  screen=page.locator('#screen-portal').bounding_box();x=screen['x']+screen['width']/2;y=screen['y']+screen['height']/2
+  assert 0<x<page.viewport_size['width'] and 80<y<page.viewport_size['height']
+  assert page.evaluate('([x,y])=>Boolean(document.elementFromPoint(x,y)?.closest("#focus-canvas"))',[x,y])
   page.mouse.move(x,y);page.mouse.down();page.mouse.move(x+16,y+9,steps=3);page.mouse.up();page.wait_for_timeout(500)
   button.tap() if phone else button.click();expect(button).to_have_attribute('aria-pressed','true');settle(page);aligned(page)
   assert child.evaluate('performance.timeOrigin')==identity

@@ -4,6 +4,10 @@ The pre-fix phone build positioned the signal SVG across the entire showroom and
 
 Targeted checks are recorded in [Chromium phone results](../tests/artifacts/overlay-chromium-local.json), [WebKit phone results](../tests/artifacts/overlay-webkit-local.json), [desktop results](../tests/artifacts/overlay-chromium-desktop-local.json), and [the baseline measurement](../tests/artifacts/overlay-baseline-20261119.json). The checks cover alignment after dragging, zooming and phone orientation changes; resize allocation; app booking/state retention; reduced motion; and gallery cleanup. Current phone runs show zero redundant buffer writes and zero settled transform writes. Physical iPhone/Android testing is not claimed.
 
+Public v0.14.2 runtime `fa438125597a822019394fdbfb367caa771dd2ca` passed the same phone stability checks in both engines at DPR 2. Both recorded zero redundant drawing-buffer writes and zero settled transform writes. All 22 deployed runtime files matched their tested hashes. Evidence-only updates preserve those runtime hashes.
+
+[Public Chromium](../tests/artifacts/overlay-chromium-production.json) · [Public WebKit](../tests/artifacts/overlay-webkit-production.json) · [Current deployment](../tests/artifacts/production-deployment.json)
+
 [Phone overlay screenshot](../tests/artifacts/overlay-chromium-390.png) · [Patch notes](../CHANGELOG.md)
 
 ---
@@ -51,4 +55,4 @@ The November 16 baseline used a collection-only phone fallback. Its reports and 
 
 The published runtime at `454911623ee7ccf35643cd8518524eac786dd831` passed the 390 px phone smoke check in both Chromium and WebKit: actual 3D, touch booking navigation, exit/reentry state, portrait/landscape resizing, mobile navigation and clean JavaScript/network checks. Chromium also passed native two-finger zoom. All 22 deployed showroom source files matched the tested SHA-256 manifest. Later evidence-only commits retain the same runtime checksums.
 
-[Public Chrome phone results](../tests/artifacts/mobile-chromium-production.json) · [Public WebKit phone results](../tests/artifacts/mobile-webkit-production.json) · [Deployment report](../tests/artifacts/production-deployment.json)
+[Public Chrome phone results](../tests/artifacts/mobile-chromium-production.json) · [Public WebKit phone results](../tests/artifacts/mobile-webkit-production.json) · [Deployment report](../tests/artifacts/history/2026-11-17/production-deployment.json)
