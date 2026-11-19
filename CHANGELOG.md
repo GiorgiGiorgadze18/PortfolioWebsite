@@ -7,6 +7,8 @@
 - Bind the Try now neon trace to the tablet's actual screen overlay so it follows the same transform during entry, dragging, zoom and phone layout changes.
 - Keep the phone preview transform on one projection path per frame and avoid clearing WebGL buffers for unchanged viewport notifications.
 
+[PR #4](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/4)
+
 ### Verification
 
 Chromium phone (390 px, DPR 2), WebKit phone (390 px), and Chromium desktop (1280 px) passed the targeted regression. Ten unchanged resize events produced 0 drawing-buffer dimension writes, versus 80 in the baseline. A real phone width change produced the 4 required writes; a settled phone preview produced 0 transform changes. Drag/zoom/orientation alignment, booking navigation, retained iframe state, reduced motion and gallery cleanup passed. These are emulated browser checks, not physical-device measurements.
