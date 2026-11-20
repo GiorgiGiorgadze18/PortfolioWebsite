@@ -509,6 +509,21 @@ body.night #calendarNotice{background:#242733;color:#E8E8EE}
 .phone-demo #md .mtxt{height:auto!important;position:relative;inset:auto;padding:24px 18px;min-height:100px}
 .phone-demo #md .mbtns{position:relative;inset:auto!important;gap:12px;padding:0 16px 20px}
 .phone-demo #md .mb{min-height:44px;width:auto;flex:1}
+/* Keep the tablet's scrolling content visible in short embedded viewports. */
+@media(max-height:310px){
+ .phone-demo #shared{left:12px;right:12px;top:2px;height:32px;gap:8px}
+ .phone-demo #shared #brandLockup,.phone-demo #sLogo{width:32px!important;height:26px!important}
+ .phone-demo #shared #sTitle{font-size:14px!important}
+ .phone-demo .page{top:36px;bottom:48px;padding:6px 12px 12px}
+ .phone-demo #p-home.on{gap:6px}
+ .phone-demo #p-home>.a,.phone-demo #p-home #hStat,.phone-demo #p-home #hTitle{font-size:14px!important}
+ .phone-demo #p-home #hRow{margin-top:0;gap:4px}
+ .phone-demo #nav,.phone-demo #nav.ctr{left:8px;right:8px;bottom:2px;height:44px}
+ .phone-demo #nav button{height:44px;font-size:12px}
+ .phone-demo #nav button svg{height:18px;width:18px}
+ .phone-demo #md .mtxt{padding:8px 12px;min-height:0;font-size:14px}
+ .phone-demo #md .mbtns{padding:0 8px 8px}
+}
 .phone-demo #toast{max-width:calc(100% - 32px);white-space:normal}
 @media(prefers-reduced-motion:reduce){.blob{animation:none!important}*,*:before,*:after{transition:none!important}}
 </style></head><body>

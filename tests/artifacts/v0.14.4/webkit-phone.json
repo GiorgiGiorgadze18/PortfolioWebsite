@@ -1,0 +1,85 @@
+{
+  "base_url": "http://127.0.0.1:8014/PortfolioWebsite/",
+  "physical_device_testing": false,
+  "scenarios": [
+    {
+      "engine": "webkit",
+      "status": "PASS",
+      "profile": "phone DPR 2",
+      "responsive_sizes": [
+        [
+          360,
+          800
+        ],
+        [
+          430,
+          932
+        ],
+        [
+          844,
+          390
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "unchangedResizeBufferWrites": 0,
+      "outline": {
+        "outsidePortal": true,
+        "visible": true,
+        "outer": [
+          [
+            13.67056,
+            82.220691
+          ],
+          [
+            376.32956,
+            82.220691
+          ],
+          [
+            376.32956,
+            325.894086245863
+          ],
+          [
+            13.67056,
+            325.894086245863
+          ]
+        ],
+        "inner": [
+          [
+            32.828101,
+            103.139823
+          ],
+          [
+            357.171899,
+            103.139823
+          ],
+          [
+            357.171899,
+            305.854697
+          ],
+          [
+            32.828101,
+            305.854697
+          ]
+        ],
+        "centerDistance": 0.4398713811605761,
+        "fill": "none",
+        "stroke": "rgb(184, 246, 255)"
+      },
+      "checks": [
+        "correct gallery texture inspected in screenshot",
+        "outer-body outline beyond all four screen corners",
+        "native touch navigation, text entry, guests and duration",
+        "local booking submitted and confirmed",
+        "calendar cards rendered",
+        "no CSS transform on phone app",
+        "same iframe and form state on return",
+        "tablet and live screen stay aligned through orientation changes",
+        "44px core controls",
+        "no horizontal overflow, errors or failed/external requests"
+      ]
+    }
+  ]
+}

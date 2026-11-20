@@ -69,7 +69,7 @@ with sync_playwright() as p:
   assert frame.locator('.page.on').get_attribute('id')==active
   page.locator('#try-preview').click();expect(page.locator('#try-preview')).to_have_attribute('aria-pressed','false')
   page.locator('#try-preview').click();expect(page.locator('#try-preview')).to_have_attribute('aria-pressed','true')
-  page.emulate_media(reduced_motion='reduce');expect(page.locator('#tablet-outline .tablet-runner')).to_have_css('animation-name','none')
+  page.emulate_media(reduced_motion='reduce');expect(page.locator('#tablet-outline rect')).to_have_css('animation-name','none')
   # Keyboard toggles avoid forced coordinate clicks while camera alignment moves the control.
   page.locator('#try-preview').focus();page.locator('#try-preview').press('Enter')
   expect(page.locator('#try-preview')).to_have_attribute('aria-pressed','false')

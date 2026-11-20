@@ -9,22 +9,23 @@
     "width_gate_removed": true,
     "phone_inspector": "bottom panel",
     "demo_loading": "on-demand, ready handshake before interaction",
-    "touch_screen": "full-screen responsive phone adapter; desktop uses projected tablet screen",
+    "touch_screen": "responsive app projected onto the camera-facing tablet screen",
     "backup_ref": "backup/pre-mobile-showroom-2026-11-17"
   },
-  "patch": "0.14.3",
+  "patch": "0.14.4",
   "overlay_update": {
-    "date": "2026-11-19",
-    "neon": "outer body-sized projected SVG with persistent halo",
+    "date": "2026-11-20",
+    "neon": "single outer body sweep on entering Try Now",
     "resize": "coalesced, unchanged drawing buffers preserved",
-    "phone_projection": "no transformed iframe during touch use"
+    "phone_projection": "native-size iframe positioned from projected screen corners"
   },
   "original_embedded_demo_sha256": "749fe707a9e098399453b3f588206be77e3e4c6efdedd5edf78f62343440c751",
-  "current_demo_sha256": "8bab0600ae79cdbb4d5e04e2fc5d4c565cea5904f25e607fe8c0e328d05c2c49",
+  "current_demo_sha256": "31707eb85586acb12a7ab5504424742bd65defdf6abb4b4f74e216b893d77893",
   "mobile_demo_redesign": {
     "date": "2026-11-19",
     "backup_ref": "backup/pre-mobile-demo-redesign-2026-11-19",
     "source_changes": "portfolio bridge and home/calendar/booking CSS adapter; original upload retained unchanged",
     "texture_fix": "normalized ShapeGeometry UV coordinates"
-  }
+  },
+  "inline_touch_backup": "backup/pre-inline-tablet-2026-11-20"
 }
