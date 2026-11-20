@@ -1,6 +1,6 @@
 # v0.14.4 — one sweep and embedded touch controls
 
-The regression verifies that the tablet outline appears on Try Now, completes one lap and fades out. It checks the in-tablet iframe through orientation changes, native touch booking and state retention after reopening. The desktop run checks projection through zoom and reduced motion. The phone runs use browser emulation.
+The regression verifies that the tablet outline appears on Try Now, completes one lap and fades out. It checks the in-tablet iframe through orientation changes, native touch booking and state retention after reopening. The desktop run checks projection through zoom and reduced motion. The phone runs use browser emulation. [Chromium phone results](../tests/artifacts/v0.14.4/chromium-phone.json) · [WebKit phone results](../tests/artifacts/v0.14.4/webkit-phone.json) · [Booking confirmation inside the tablet](../tests/artifacts/v0.14.4/embedded-booking.png).
 
 ## Historical v0.14.3 measurements
 

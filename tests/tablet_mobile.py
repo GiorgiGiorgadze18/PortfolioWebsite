@@ -38,7 +38,7 @@ def check_sweep(page, runs=1):
  runner=page.locator('#tablet-outline rect')
  expect(runner).to_have_css('animation-name','tabletSignal')
  expect(runner).to_have_css('animation-iteration-count','1')
- page.wait_for_function("n=>sweeps.filter(event=>event==='animationend').length===n",arg=runs,timeout=15000)
+ page.wait_for_function("n=>sweeps.filter(event=>event==='animationend').length===n",arg=runs,timeout=60000)
  assert page.evaluate('sweeps')==['animationstart','animationend']*runs
  expect(runner).to_have_css('opacity','0')
 

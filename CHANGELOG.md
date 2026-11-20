@@ -7,6 +7,8 @@
 - Try Now sends one neon sweep around the outside of the entire tablet. The light disappears after one lap and replays on the next entry.
 - Touch devices keep the live MeeTab demo inside the tablet in Projects. The tablet faces the viewer while the responsive app is active, so scrolling and typing work in the screen. The stationary scene redraws on resize. Exit preview restores 3D gestures and preserves the demo state.
 
+Chromium and WebKit phone emulation passed the embedded booking flow, a single sweep per activation, resize and orientation checks, and form state retention. See [verification](docs/VERIFICATION.md).
+
 ## 0.14.3 — 2026-11-19
 
 [PR #5](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/5)
