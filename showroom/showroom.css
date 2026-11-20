@@ -70,7 +70,7 @@
 .screen-portal{z-index:9}
 
 
-#try-preview{margin-left:auto;padding:10px 18px;border-radius:24px;background:var(--active-light);color:#060A14;font-weight:700;font-size:11px;letter-spacing:.04em}#try-preview:disabled{opacity:.45;cursor:default}.screen-portal{transform-origin:0 0;left:0!important;top:0!important}.screen-portal iframe{display:block}#try-preview[hidden]{display:none}
+#try-preview{margin-left:auto;padding:10px 18px;border-radius:24px;background:var(--active-light);color:#060A14;font-weight:700;font-size:11px;letter-spacing:.04em}#try-preview:disabled{opacity:.45;cursor:default}.screen-portal{transform-origin:0 0;left:0;top:0}.screen-portal iframe{display:block}#try-preview[hidden]{display:none}
 
 #try-preview{position:absolute;z-index:12;margin:0;min-width:148px;transform:translateX(-50%);box-shadow:0 6px 24px #0005;border:1px solid #ffffff45;transition:background .2s,box-shadow .2s}#try-preview:focus-visible{outline:2px solid white;outline-offset:4px}
 
@@ -100,13 +100,18 @@
 /* A body-sized projected SVG, outside the clipped app/screen portal. */
 #tablet-outline{position:absolute;left:0;top:0;z-index:9;overflow:visible;pointer-events:none;transform-origin:0 0}
 #tablet-outline[hidden]{display:none}
-#tablet-outline rect{fill:none;stroke:#85eaff;stroke-width:2;filter:drop-shadow(0 0 4px #40d8ff)}
-#tablet-outline .tablet-runner{stroke:#e4fcff;stroke-width:3;stroke-dasharray:.18 .82;opacity:0}
-.is-demo #tablet-outline .tablet-halo{stroke-width:2.5}
-.is-demo #tablet-outline .tablet-runner{opacity:1;animation:tabletSignal 3s linear infinite}
-@keyframes tabletSignal{to{stroke-dashoffset:-1}}
+#tablet-outline rect{fill:none;stroke:#b8f6ff;stroke-width:3;stroke-linecap:round;stroke-dasharray:.18 .82;filter:drop-shadow(0 0 5px #40d8ff);opacity:0}
+.is-demo #tablet-outline rect{animation:tabletSignal 1.25s linear 1 both}
+@keyframes tabletSignal{
+  0%{stroke-dashoffset:0;opacity:0}
+  7%{opacity:1}
+  90%{opacity:1}
+  100%{stroke-dashoffset:-1;opacity:0}
+}
+.screen-portal[hidden]{display:none}
+.screen-portal[inert]{pointer-events:none}
 .demo-announcement{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
-@media(prefers-reduced-motion:reduce){#showroom-canvas,.demo-workspace,.project-inspector .inspector-body,.project-inspector .inspector-buttons,.inspector-year,#try-preview{transition:opacity .12s}#tablet-outline .tablet-runner{animation:none!important;opacity:0!important}}
+@media(prefers-reduced-motion:reduce){#showroom-canvas,.demo-workspace,.project-inspector .inspector-body,.project-inspector .inspector-buttons,.inspector-year,#try-preview{transition:opacity .12s}#tablet-outline rect{animation:none!important}}
 
 /* Phone showroom: the same exhibit with a touch target grid and bottom inspector. */
 @media(max-width:600px){
@@ -132,22 +137,3 @@
  .demo-workspace p{font-size:11px;margin-bottom:10px}.demo-instructions{display:none}
  .demo-exit{min-height:44px}.demo-note{font-size:9px;margin-top:8px}
 }
-
-/* Touch demo is an explicit native-size view, never a floating image over a moving tablet. */
-.demo-modal-open{overflow:hidden}
-#mobile-demo{position:fixed;inset:0;width:100%;max-width:none;height:100%;height:100dvh;max-height:none;margin:0;padding:0;border:0;background:#fbfbfb;color:#303030;overflow:hidden}
-#mobile-demo::backdrop{background:#060a14}
-#mobile-demo[open]{display:flex;flex-direction:column}
-#mobile-demo header{flex:none;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:calc(10px + env(safe-area-inset-top)) 12px 10px;background:#101725;color:white;font:500 12px/1.4 var(--font-body)}
-#mobile-demo header strong,#mobile-demo header small{display:block}#mobile-demo header small{color:#b9c6da;font-size:10px}
-#mobile-demo-close{flex:none;min-height:44px;border:1px solid #85eaff66;background:#17303c;color:#c5f4ff;padding:8px 12px;border-radius:8px;font:600 11px var(--font-body)}
-#mobile-demo-close:focus-visible{outline:2px solid white;outline-offset:2px}
-#mobile-demo-body{flex:1;min-height:0;padding-bottom:env(safe-area-inset-bottom)}
-#mobile-demo-body iframe{display:block;width:100%;height:100%;border:0;background:#fbfbfb}
-
-/* The iframe stays under this dialog for its entire lifetime. No DOM reparent/reload. */
-#mobile-demo.desktop-demo[open]{display:contents}
-#mobile-demo.desktop-demo header{display:none}
-#mobile-demo.desktop-demo #mobile-demo-body{display:contents}
-#mobile-demo.touch-demo .screen-portal{position:relative;width:100%!important;height:100%!important;transform:none!important;border-radius:0!important;filter:none!important;z-index:auto!important}
-#mobile-demo.touch-demo .screen-portal[hidden]{display:none}
