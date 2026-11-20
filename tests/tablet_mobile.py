@@ -6,6 +6,10 @@ import argparse,json,os,re
 from playwright.sync_api import sync_playwright,expect
 OUT=Path(os.environ.get('SHOWROOM_TEST_OUTPUT', Path(__file__).parent/'artifacts'))
 
+def capture(page, out, name):
+ if os.environ.get('SHOWROOM_TEST_SCREENSHOTS'):
+  page.screenshot(path=str(out/name))
+
 def outer_outline(page):
  data=page.evaluate('''()=>{
   const outline=document.querySelector('#tablet-outline'),screen=document.querySelector('#screen-portal');
@@ -54,10 +58,10 @@ def check_phone(browser,base,out,engine):
  assert not any('meetab-demo.html' in u for u in requests)
  expect(page.locator('.archive-card')).to_have_count(5)
  for target in page.locator('.device-label').all():assert target.bounding_box()['height']>=44
- page.wait_for_timeout(900);page.screenshot(path=str(out/f'tablet-{engine}-gallery.png'))
+ page.wait_for_timeout(900);capture(page,out,f'tablet-{engine}-gallery.png')
  print('Gallery ready',engine,flush=True)
  page.locator('.device-label[data-id="jbl"]').tap();expect(page.locator('#try-preview')).to_be_visible();expect(page.locator('#try-preview')).to_be_enabled();expect(page.locator('#tablet-outline')).to_be_hidden()
- page.wait_for_timeout(800);page.screenshot(path=str(out/f'tablet-{engine}-focus.png'))
+ page.wait_for_timeout(800);capture(page,out,f'tablet-{engine}-focus.png')
  observe(page);page.evaluate("()=>{for(let i=0;i<10;i++)dispatchEvent(new Event('resize'))}");page.wait_for_timeout(400)
  unchanged=page.evaluate('metrics.bufferWrites');assert unchanged==0,unchanged
  assert page.locator('dialog[open]').count()==0
@@ -73,9 +77,13 @@ def check_phone(browser,base,out,engine):
  # Header must be fully above scrolling app content, with readable unscaled controls.
  assert child.locator('#shared').bounding_box()['height']<80
  assert child.locator('#shared').bounding_box()['y']+child.locator('#shared').bounding_box()['height']<=child.locator('#p-home').bounding_box()['y']
- page.screenshot(path=str(out/f'tablet-{engine}-mobile-home.png'))
+ capture(page,out,f'tablet-{engine}-mobile-home.png')
  app.locator('#nav [data-go="book"]').tap();expect(app.locator('#p-book')).to_have_class('page on');page.wait_for_timeout(750)
- app.locator('#fTitle').fill('Touch booking test');app.locator('#gPlus').tap();expect(app.locator('#gNum')).to_have_text('2')
+ app.locator('#fTitle').fill('Touch booking test')
+ # Center the control in the nested scroller, as a visitor would before tapping.
+ app.locator('#gPlus').evaluate("el=>el.scrollIntoView({block:'center'})")
+ app.locator('#gPlus').tap()
+ expect(app.locator('#gNum')).to_have_text('2',timeout=10000)
  app.locator('#fDur [data-v="30"]').tap();expect(app.locator('#fDur [data-v="30"]')).to_have_class('on')
  sizes=[]
  for width,height in [(360,800),(430,932),(844,390),(390,844)]:
@@ -86,7 +94,7 @@ def check_phone(browser,base,out,engine):
    box=child.locator(target).bounding_box();assert box['width']>=44 and box['height']>=44,(width,target,box)
   outer_outline(page)
   sizes.append([width,height])
- app.locator('#fTitle').scroll_into_view_if_needed();page.screenshot(path=str(out/f'tablet-{engine}-mobile-booking.png'))
+ app.locator('#fTitle').scroll_into_view_if_needed();capture(page,out,f'tablet-{engine}-mobile-booking.png')
  page.locator('#try-preview').tap();expect(page.locator('#screen-portal')).to_be_hidden()
  expect(page.locator('#try-preview')).to_be_focused();expect(page.locator('#tablet-outline')).to_be_hidden()
  page.locator('#try-preview').tap();expect(app.locator('#fTitle')).to_have_value('Touch booking test');assert child.evaluate('performance.timeOrigin')==identity
@@ -102,7 +110,7 @@ def check_phone(browser,base,out,engine):
  expect(app.locator('#ov')).to_have_class(re.compile('on'));expect(app.locator('#md')).to_contain_text('დაიჯავშნა');expect(app.locator('#md')).to_have_css('opacity','1');page.wait_for_timeout(450)
  panel=child.locator('#md').bounding_box();ack=child.locator('#md .mb').first.bounding_box()
  assert ack['y']>=panel['y'] and ack['y']+ack['height']<=panel['y']+panel['height']+1,'Confirmation button is clipped'
- page.screenshot(path=str(out/f'tablet-{engine}-booking-confirmed.png'))
+ capture(page,out,f'tablet-{engine}-booking-confirmed.png')
  app.locator('#md .mb').first.tap();app.locator('#nav [data-go="cal"]').tap();expect(app.locator('#p-cal')).to_have_class('page on')
  page.wait_for_timeout(700);assert app.locator('#grid .card').count()>0
  page.locator('#try-preview').tap();page.locator('#inspector-close').tap();expect(page.locator('#device-labels')).not_to_have_class(re.compile('is-hidden'))
@@ -129,7 +137,7 @@ def check_desktop(browser,base,out,engine):
  box=page.locator('#screen-portal').bounding_box();page.mouse.move(box['x']+box['width']/2,box['y']+box['height']/2);page.mouse.wheel(0,-100);page.wait_for_timeout(800);zoomed=outer_outline(page);assert active['outer']!=zoomed['outer']
  observe(page);page.evaluate("()=>{for(let i=0;i<10;i++)dispatchEvent(new Event('resize'))}");page.wait_for_timeout(400);assert page.evaluate('metrics.bufferWrites')==0
  app=page.frame_locator('#screen-portal iframe');app.locator('#nav [data-go="book"]').focus();app.locator('#nav [data-go="book"]').press('Enter');expect(app.locator('#p-book')).to_have_class('page on')
- page.wait_for_timeout(850);page.screenshot(path=str(out/f'tablet-{engine}-desktop-neon.png'))
+ page.wait_for_timeout(850);capture(page,out,f'tablet-{engine}-desktop-neon.png')
  page.emulate_media(reduced_motion='reduce');expect(page.locator('#tablet-outline rect')).to_have_css('animation-name','none')
  page.locator('#try-preview').click();page.locator('#reset-view').click();expect(page.locator('#tablet-outline')).not_to_be_visible()
  for project,name in [('tsero','Tsero App'),('tomford','Tom Ford Tobacco Vanille'),('earthhour','Earth Hour')]:
