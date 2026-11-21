@@ -12,7 +12,7 @@
     "touch_screen": "desktop home capture with 55% dark overlay and desktop prompt on Try Now",
     "backup_ref": "backup/pre-mobile-showroom-2026-11-17"
   },
-  "patch": "0.14.6",
+  "patch": "0.15.0",
   "overlay_update": {
     "date": "2026-11-20",
     "neon": "single outer body sweep on entering Try Now",
@@ -37,5 +37,21 @@
     ],
     "backup_ref": "backup/pre-mobile-static-demo-2026-11-21",
     "future_integrations_policy": "AGENTS.md"
+  },
+  "tsero_demo": {
+    "source_repository": "TseroApp",
+    "source_commit": "3946431684af3553f575cdd7213be607db992b1e",
+    "source_path": "web/",
+    "embedded_path": "showroom/tsero/",
+    "source_files_byte_identical": 72,
+    "entry": "showroom/tsero/index.html?start=home",
+    "viewport": [
+      375,
+      811
+    ],
+    "screen_artwork": "assets/tsero-desktop-home.webp",
+    "original_poster": "assets/project-tsero.jpg",
+    "original_poster_sha256": "65800b19f27375e12347b3e3bd01d783228710736cf0b0763e42a8776f87f884",
+    "previous_release_ref": "backup/pre-tsero-showroom-2026-11-22"
   }
 }

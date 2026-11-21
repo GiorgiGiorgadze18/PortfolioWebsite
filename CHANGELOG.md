@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.15.0 — 2026-11-22
+
+- Add the Tsero web demo to the 3D phone. On desktop, Try Now opens the original web app at its 375×811 reference size, with the menu, cart, simulated payment and bundled delivery map. Each app keeps its own demo session while browsing Projects.
+- On mobile, show the real Tsero home screen on the phone. Try Now opens the project HUD and darkens the screen by 55% with the desktop prompt. The phone never downloads the live demo.
+- Keep the original Tsero artwork at `assets/project-tsero.jpg` and continue using it in the collection. The 3D phone uses a separate home screenshot.
+
 ## 0.14.6 — 2026-11-21
 
 [PR #8](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/8)

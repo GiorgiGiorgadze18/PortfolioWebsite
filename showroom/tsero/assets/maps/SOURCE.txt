@@ -1,0 +1,10 @@
+Tbilisi offline map data
+
+© OpenStreetMap contributors. This cropped and reprojected vector dataset is made available under the Open Database License 1.0. The machine-readable derivative is included as tbilisi.tsv.
+
+Copyright attribution: https://www.openstreetmap.org/copyright
+License: https://opendatacommons.org/licenses/odbl/1-0/
+Source: https://github.com/Tutuperekup/guli-maps-data/releases/download/latest/tbilisi.pmtiles
+Original build: https://build.protomaps.com/20261120.pmtiles
+
+The marker is illustrative and does not describe a live delivery.
