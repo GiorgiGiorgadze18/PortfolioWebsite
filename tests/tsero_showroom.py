@@ -80,7 +80,8 @@ def desktop(browser, base, output):
     assert abs(app.locator('#app').evaluate('el=>el.getBoundingClientRect().height') - 811) < 0.1
     button_box = button.bounding_box()
     screen_box = iframe.bounding_box()
-    assert button_box['x'] >= screen_box['x'] + screen_box['width'], (button_box, screen_box)
+    assert abs(button_box['x'] + button_box['width']/2 - screen_box['x'] - screen_box['width']/2) < 8
+    assert button_box['y'] >= screen_box['y'] + screen_box['height'] - 2
     expect(page.locator('#tablet-outline')).to_have_attribute('data-project', 'tsero')
     print('Tsero home visible at 375×811', flush=True)
     if os.environ.get('SHOWROOM_TEST_SCREENSHOTS'):

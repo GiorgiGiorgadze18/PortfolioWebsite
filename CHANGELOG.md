@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.15.1 — 2026-11-22
+
+- Center Tsero, MeeTab and Try Now between the left edge and the desktop inspector. Reduce the tablet’s initial tilt and leave room below the phone for the button.
+
 ## 0.15.0 — 2026-11-22
 
 [PR #9](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/9)

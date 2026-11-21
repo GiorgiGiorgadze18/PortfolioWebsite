@@ -564,7 +564,7 @@ function revealShowroom(){
 }
 function openPanel(){if(compactView())resizeScene();frame.classList.add('is-focused');$('#inspector-backdrop').classList.add('is-open');inspector.classList.add('is-open');inspector.setAttribute('aria-hidden','false');inspector.inert=false;resetButton.hidden=false;requestAnimationFrame(()=>{closeButton.focus({preventScroll:true});revealShowroom();});updatePreviewButton();sendPreviewMode();}
 function closePanel(){environmentZoomTarget=1;previewActive=false;demoBlend=0;syncDemoWorkspace();$('#try-preview').hidden=true;frame.classList.remove('is-focused');$('#inspector-backdrop').classList.remove('is-open');inspector.classList.remove('is-open');inspector.setAttribute('aria-hidden','true');inspector.inert=true;resetButton.hidden=true;sendPreviewMode();}
-function chooseProject(id){environmentZoom=environmentZoomTarget=1;if(camera){camera.zoom=1;camera.updateProjectionMatrix();}const p=ARCHIVE_PROJECTS.find(x=>x.id===id);if(!p)return;if(p===JBL_ARTWORK){openAccessibleDetail(p);return}if(!sceneReady){openAccessibleDetail(p);return}if(p.demo?.bridge)ensureDemoFrame(p);revealShowroom();if(state==='focus'&&selected?.id===id){closeProject();return}if(state!=='gallery'){queuedSelection=id;closeProject();return}hovered=keyboardHovered=pointerHovered=null;pointerInGallery=false;frame.classList.remove('has-hover');selected=p;state='opening';setForeground(id,true);frame.classList.add('is-focused');setPanel(p);setAccent(p.accent);labelsEl.classList.add('is-hidden');labelsEl.inert=true;$('#stage-caption').textContent=`${p.shortName} · DRAG TO ROTATE ±15°`;lightAccent.position.set(...p.scene.position).add(new THREE.Vector3(0,.72,2.95));const d=displayItems.get(id);const focusEuler=p.device==='phone'?new THREE.Euler(-.06,.14,.015):p.device==='monitor'?new THREE.Euler(-.02,-.08,0):p.device==='tablet'?new THREE.Euler(-.07,-.10,.02):new THREE.Euler(-.03,-.11,0);const quat=new THREE.Quaternion().setFromEuler(focusEuler);focusTilt.x=focusTilt.y=0;focusTiltTarget.x=focusTiltTarget.y=0;const layout=focusLayout(p);focusScale=layout.scale;runTween(id,layout.position,quat,focusScale,new THREE.Vector3(...p.camera.position),900,()=>{state='focus';selectedBaseQuaternion=quat.clone();openPanel()})}
+function chooseProject(id){environmentZoom=environmentZoomTarget=1;if(camera){camera.zoom=1;camera.updateProjectionMatrix();}const p=ARCHIVE_PROJECTS.find(x=>x.id===id);if(!p)return;if(p===JBL_ARTWORK){openAccessibleDetail(p);return}if(!sceneReady){openAccessibleDetail(p);return}if(p.demo?.bridge)ensureDemoFrame(p);revealShowroom();if(state==='focus'&&selected?.id===id){closeProject();return}if(state!=='gallery'){queuedSelection=id;closeProject();return}hovered=keyboardHovered=pointerHovered=null;pointerInGallery=false;frame.classList.remove('has-hover');selected=p;state='opening';setForeground(id,true);frame.classList.add('is-focused');setPanel(p);setAccent(p.accent);labelsEl.classList.add('is-hidden');labelsEl.inert=true;$('#stage-caption').textContent=`${p.shortName} · DRAG TO ROTATE ±15°`;lightAccent.position.set(...p.scene.position).add(new THREE.Vector3(0,.72,2.95));const d=displayItems.get(id);const focusEuler=p.device==='phone'?new THREE.Euler(-.06,.14,.015):p.device==='monitor'?new THREE.Euler(-.02,-.08,0):p.device==='tablet'?new THREE.Euler(-.035,-.045,0):new THREE.Euler(-.03,-.11,0);const quat=new THREE.Quaternion().setFromEuler(focusEuler);focusTilt.x=focusTilt.y=0;focusTiltTarget.x=focusTiltTarget.y=0;const layout=focusLayout(p);focusScale=layout.scale;runTween(id,layout.position,quat,focusScale,new THREE.Vector3(...p.camera.position),900,()=>{state='focus';selectedBaseQuaternion=quat.clone();openPanel()})}
 function closeProject(){if(state==='gallery'||state==='closing')return;const p=selected;if(!p)return;closePanel();state='closing';setAccent('#D0BCFF');const d=displayItems.get(p.id);focusTilt.x=focusTilt.y=0;focusTiltTarget.x=focusTiltTarget.y=0;runTween(p.id,d.homePosition,d.homeQuaternion,d.homeScale,new THREE.Vector3(startLook.x,startLook.y,startLook.z),750,()=>{setForeground(p.id,false);state='gallery';selected=null;selectedBaseQuaternion=null;const returnControl=document.querySelector(`[data-explore="${p.id}"]`);if(frame.contains(document.activeElement))returnControl?.focus({preventScroll:true});labelsEl.classList.remove('is-hidden');labelsEl.inert=false;$('#stage-caption').textContent='CURATED EXPERIENCES';if(queuedSelection){const next=queuedSelection;queuedSelection=null;chooseProject(next)}})}
 const demoFrames=new Map();
 const currentDemoFrame=()=>demoFrames.get(selected?.id);
@@ -705,9 +705,7 @@ function positionScreenPortal(){
  if(inFocus){
   // Keep the control still while the camera and device interpolate.
   const galleryWidth=vw-inspector.offsetWidth;
-  const phonePreview=selected.device==='phone'&&galleryWidth>=330;
-  const desktopX=phonePreview?galleryWidth-82:clamp(galleryWidth/2,90,galleryWidth-90);
-  const x=compactView()?vw*.75:desktopX;
+  const x=compactView()?vw*.75:galleryWidth/2;
   const y=compactView()?vh-inspector.offsetHeight-56:Math.max(82,vh-110);
   const button=$('#try-preview');
   setScreenStyle(button,'left',x+'px');
@@ -929,15 +927,33 @@ function render(time){
     d.group.scale.setScalar(focusScale);
    }else{
     d.group.quaternion.copy(selectedBaseQuaternion).slerp(new THREE.Quaternion(),demoBlend*.92).multiply(qy).multiply(qx);
-    d.group.scale.setScalar(focusScale*(1+.035*demoBlend));
+     d.group.scale.setScalar(focusScale*(1+.035*demoBlend));
    }
   }
  }
 // Project against the current frame, before either renderer updates world matrices.
  environmentZoom=motionReduced()?environmentZoomTarget:THREE.MathUtils.lerp(environmentZoom,environmentZoomTarget,1-Math.exp(-delta*9));
  camera.zoom=staticPreview()?1:environmentZoom*(1+.055*demoBlend);camera.updateProjectionMatrix();
- scene.updateMatrixWorld(true);
  camera.updateMatrixWorld(true);
+ if(state==='focus'&&selected?.demo&&!compactView()){
+  const device=displayItems.get(selected.id);
+  const galleryWidth=frame.clientWidth-inspector.offsetWidth;
+  const targetX=galleryWidth/frame.clientWidth-1;
+  device.group.position.fromArray(selected.camera.focusPosition);
+  const depth=camera.position.clone().sub(device.group.position).applyQuaternion(camera.quaternion.clone().invert()).z;
+  const unitsPerPixel=2*Math.tan(camera.fov*Math.PI/360)*depth/(frame.clientHeight*camera.zoom);
+  const widthScale=(galleryWidth-24)*unitsPerPixel/device.bodyDimensions.w;
+  const heightScale=(frame.clientHeight-160)*unitsPerPixel/device.bodyDimensions.h;
+  device.group.scale.setScalar(Math.min(device.group.scale.x,widthScale,heightScale));
+  // Keep the screen centered even when the camera zoom changes.
+  device.group.updateMatrixWorld(true);
+  const screenCenter=device.screen.getWorldPosition(new THREE.Vector3());
+  const projected=screenCenter.clone().project(camera);
+  const targetY=2*(selected.device==='phone'?48:0)/frame.clientHeight;
+  const centered=new THREE.Vector3(targetX,targetY,projected.z).unproject(camera);
+  device.group.position.add(centered.sub(screenCenter));
+ }
+ scene.updateMatrixWorld(true);
  renderLabels(time);
  positionArtworkOverlays();
  positionScreenPortal();
