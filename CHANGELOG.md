@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.15.1 — 2026-11-22
+
+[PR #10](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/10)
+
+- Center Tsero, MeeTab and Try Now between the left edge and the desktop inspector. Reduce the tablet’s initial tilt and leave room below the phone for the button.
+
+Verified horizontal centering and clearance in desktop WebKit at 1024 and 1280 px.
+
 ## 0.15.0 — 2026-11-22
 
 [PR #9](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/9)
