@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.15.3 — 2026-11-22
+
+- Click outside a device during Preview to close it and return to the gallery. Device surfaces and inspector controls remain interactive.
+
 ## 0.15.2 — 2026-11-22
 [PR #11](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/11)
 

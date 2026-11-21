@@ -12,7 +12,7 @@
     "touch_screen": "desktop home capture with 55% dark overlay and desktop prompt on Try Now",
     "backup_ref": "backup/pre-mobile-showroom-2026-11-17"
   },
-  "patch": "0.15.2",
+  "patch": "0.15.3",
   "overlay_update": {
     "date": "2026-11-20",
     "neon": "single outer body sweep on entering Try Now",
