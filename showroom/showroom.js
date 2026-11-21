@@ -12,7 +12,7 @@ const PROJECTS = [
   {
     id:'tsero',name:'Tsero App',shortName:'TSERO',category:'uiux',categoryLabel:'Mobile App · UI/UX',year:'2026',device:'phone',cover:'project-tsero.jpg',screenArtwork:'tsero-desktop-home.webp',screenshots:['project-tsero.jpg'],accent:'#FF3316',
     demo:{
-      src:'./tsero/index.html?start=home',width:375,height:811,
+      src:'./tsero/index.html?start=home&v=0.15.2',width:375,height:811,
       description:'Tsero is live inside the phone. Browse restaurants and place a sample order.',
       guide:'Scroll inside the phone to browse',
       note:'Demo only · Sign-in, payment and delivery are simulated',
