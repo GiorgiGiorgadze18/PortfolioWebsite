@@ -2,7 +2,7 @@
 
 The phone regression checks the actual desktop home screenshot request, the existing HUD, the 55% black overlay with white text, the one-pass neon, exit and reopening, and alignment through portrait and landscape sizes. It verifies that a fresh touch visit never downloads or mounts the live MeeTab app. The desktop check exercises the live booking navigation, outer neon and reduced motion.
 
-[Mobile preview screenshot](../tests/artifacts/v0.14.5/mobile-notice.png) · [WebKit phone report](../tests/artifacts/v0.14.5/webkit-phone.json) · [Rules for future apps](../AGENTS.md)
+[Mobile preview screenshot](../tests/artifacts/v0.14.5/mobile-notice.png) · [Chromium phone report](../tests/artifacts/v0.14.5/chromium-phone.json) · [WebKit phone report](../tests/artifacts/v0.14.5/webkit-phone.json) · [Rules for future apps](../AGENTS.md)
 
 ## Historical v0.14.4 measurements
 
