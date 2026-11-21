@@ -2,7 +2,9 @@
 
 ## 0.14.6 — 2026-11-21
 
-- Use the same curved return icon for Back to Gallery across platforms. iPhone Safari now renders the line icon in the button color.
+[PR #8](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/8)
+
+- Use the same curved return icon for Back to Gallery across platforms. The line icon follows the button color. Checked the icon and gallery return in WebKit phone and desktop emulation.
 
 ## 0.14.5 — 2026-11-21
 
