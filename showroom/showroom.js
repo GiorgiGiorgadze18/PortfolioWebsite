@@ -789,15 +789,14 @@ function setupInteraction(){
  canvas.addEventListener('pointercancel',()=>{galleryPress=null;});
  const touches=new Map();let pinchDistance=0;
  front.addEventListener('pointerdown',event=>{
-  if(state!=='focus'||!selected)return;
+  if(state!=='focus'||!selected||event.button!==0)return;
   if(event.pointerType==='touch'){touches.set(event.pointerId,{x:event.clientX,y:event.clientY});if(touches.size===2){const [a,b]=[...touches.values()];pinchDistance=Math.hypot(a.x-b.x,a.y-b.y);front.setPointerCapture(event.pointerId);event.preventDefault();return;}}
   clientPointer(event);
   // Only actual device pixels begin a drag; blank space dismisses.
   raycaster.layers.set(ACTIVE_LAYER);raycaster.setFromCamera(pointer,camera);
-  const d=displayItems.get(selected.id);
   const hit=raycaster.intersectObjects(meshes.filter(m=>m.userData.projectId===selected.id),false).length>0;
   raycaster.layers.set(0);
-  if(!hit&&!previewActive){closeProject();return;}
+  if(!hit){closeProject();return;}
   event.stopPropagation();event.preventDefault();dragOrbit=true;
   pointerDownPos={x:event.clientX,y:event.clientY};front.setPointerCapture(event.pointerId);
   front.style.cursor='grabbing';
@@ -967,7 +966,7 @@ function render(time){
 function installKeys(){document.addEventListener('keydown',e=>{if(e.key==='Escape'&&state!=='gallery'){e.preventDefault();closeProject()}else if((e.key==='ArrowLeft'||e.key==='ArrowRight')&&state==='focus'&&!modal?.open){const n=PROJECTS.length,i=PROJECTS.findIndex(p=>p.id===selected.id),j=(i+(e.key==='ArrowRight'?1:-1)+n)%n;queuedSelection=PROJECTS[j].id;closeProject()}});closeButton.addEventListener('click',closeProject);
  // Dismiss even when the user clicks outside the showroom frame (page header/archive).
  document.addEventListener('pointerdown',event=>{
-  if(state!=='focus'||previewActive||!inspector.classList.contains('is-open'))return;
+  if(state!=='focus'||event.button!==0||!inspector.classList.contains('is-open'))return;
   if(inspector.contains(event.target)||event.target.closest('#screen-portal')||focusHost.contains(event.target)||event.target.closest('.stage-actions,#try-preview'))return;
   closeProject();
  });
