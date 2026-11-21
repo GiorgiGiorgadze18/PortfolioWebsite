@@ -143,3 +143,38 @@
  .demo-workspace p{font-size:11px;margin-bottom:10px}.demo-instructions{display:none}
  .demo-exit{min-height:44px}.demo-note{font-size:9px;margin-top:8px}
 }
+
+
+/* Draw the return arrow independently of the platform's emoji font. */
+.gallery-return-icon {
+  position: relative;
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-inline-end: 6px;
+  vertical-align: middle;
+}
+.gallery-return-icon::before,
+.gallery-return-icon::after {
+  position: absolute;
+  box-sizing: border-box;
+  content: "";
+}
+.gallery-return-icon::before {
+  top: 2px;
+  left: 3px;
+  width: 8px;
+  height: 6px;
+  border: 1.5px solid currentColor;
+  border-left: 0;
+  border-radius: 0 4px 4px 0;
+}
+.gallery-return-icon::after {
+  top: 5px;
+  left: 2px;
+  width: 4px;
+  height: 4px;
+  border-bottom: 1.5px solid currentColor;
+  border-left: 1.5px solid currentColor;
+  transform: rotate(45deg);
+}
