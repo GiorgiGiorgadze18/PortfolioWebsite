@@ -1,0 +1,8 @@
+{
+  "base_url": "http://127.0.0.1:8014/PortfolioWebsite/",
+  "engine": "webkit",
+  "physical_device_testing": false,
+  "passed": {
+    "desktop": "375\u00d7811 live home, mouse ordering flow and checkout drag, cart retention, demo payment, bundled map, MeeTab session isolation"
+  }
+}

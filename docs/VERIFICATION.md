@@ -1,4 +1,12 @@
-# v0.14.5 — static phone preview
+# v0.15.0 — Tsero web export in the showroom
+
+All 72 files in the Tsero web export match its source commit byte for byte. The original poster matches the previous portfolio release byte for byte and remains in the collection.
+
+The desktop test runs from the projected home screen through an order, simulated payment and the bundled map. It verifies the 375×811 viewport, cart retention, the unobstructed viewport and switching to live MeeTab booking. The mobile tests cover portrait and landscape, the original poster link, the screenshot, HUD and 55% overlay. They check that neither live app is requested. Phone runs use emulation.
+
+[Desktop view](../tests/artifacts/v0.15.0/desktop-demo.png) · [Mobile view](../tests/artifacts/v0.15.0/mobile-notice.png) · [Desktop WebKit](../tests/artifacts/v0.15.0/tsero-webkit-desktop.json) · [Phone WebKit](../tests/artifacts/v0.15.0/tsero-webkit-phone.json) · [Phone Chromium](../tests/artifacts/v0.15.0/tsero-chromium-phone.json)
+
+## Historical v0.14.5 measurements
 
 The phone regression checks the actual desktop home screenshot request, the existing HUD, the 55% black overlay with white text, the one-pass neon, exit and reopening, and alignment through portrait and landscape sizes. It verifies that a fresh touch visit never downloads or mounts the live MeeTab app. The desktop check exercises the live booking navigation, outer neon and reduced motion.
 

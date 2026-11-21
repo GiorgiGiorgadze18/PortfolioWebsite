@@ -10,24 +10,36 @@
 
 const PROJECTS = [
   {
-    id:'tsero',name:'Tsero App',shortName:'TSERO',category:'uiux',categoryLabel:'Mobile App · UI/UX',year:'2026',device:'phone',cover:'project-tsero.jpg',screenshots:['project-tsero.jpg'],accent:'#FF3316',
+    id:'tsero',name:'Tsero App',shortName:'TSERO',category:'uiux',categoryLabel:'Mobile App · UI/UX',year:'2026',device:'phone',cover:'project-tsero.jpg',screenArtwork:'tsero-desktop-home.webp',screenshots:['project-tsero.jpg'],accent:'#FF3316',
+    demo:{
+      src:'./tsero/index.html?start=home',width:375,height:811,
+      description:'Tsero is live inside the phone. Browse restaurants and place a sample order.',
+      guide:'Scroll inside the phone to browse',
+      note:'Demo only · Sign-in, payment and delivery are simulated',
+    },
     description:'The name “Tsero” comes from the Georgian word for stork, symbolizing delivery, movement and speed. The app explores modern, user-centered food ordering with browsing, courier tracking, checkout, payment, and profile settings. Branding, logo, color system, UI/UX and interactive prototyping were designed by Giorgi Giorgadze. This is a personal portfolio concept.',
-    scene:{position:[-3.25,-.2,.47],rotation:[-.12,.28,-.04],scale:1},camera:{position:[0,.28,9.6],focusPosition:[-1.75,-.06,3.55],scale:1.34},interactiveUrl:null
+    scene:{position:[-3.25,-.2,.47],rotation:[-.12,.28,-.04],scale:1},camera:{position:[0,.28,9.6],focusPosition:[-1.75,-.06,3.55],scale:1.34}
   },
   {
     id:'tomford',name:'Tom Ford Tobacco Vanille',shortName:'TOBACCO VANILLE',category:'graphics',categoryLabel:'Product Visual · Graphics',year:'2025',device:'monitor',cover:'project-tomford.png',screenshots:['project-tomford.png'],accent:'#C08A55',
     description:'A Photoshop product-visual composition exploring warm tobacco and vanilla tones through lighting, texture and smoke. The artwork emphasizes color harmony and visual depth around the fragrance. This is an independently created design exercise, not an official brand campaign.',
-    scene:{position:[1.53,1.10,-.55],rotation:[-.03,-.18,.01],scale:.93},camera:{position:[0,.3,9.5],focusPosition:[-1.30,.02,3.2],scale:1.18},interactiveUrl:null
+    scene:{position:[1.53,1.10,-.55],rotation:[-.03,-.18,.01],scale:.93},camera:{position:[0,.3,9.5],focusPosition:[-1.30,.02,3.2],scale:1.18}
   },
   {
     id:'jbl',name:'MeeTab',shortName:'MEETAB',category:'uiux',categoryLabel:'Interactive App · Web Preview',year:'2026',device:'tablet',cover:"meetab-preview.jpg",screenArtwork:"meetab-desktop-home.webp",screenshots:['project-jbl.png'],accent:'#51BCE5',
+    demo:{
+      src:'./meetab-demo.html?v=0.14.5',width:1280,height:800,bridge:true,
+      description:'MeeTab is live inside the tablet. Try a booking — your progress stays here.',
+      guide:'Scroll to zoom the scene',
+      note:'Sample data only · Account access is disabled',
+    },
     description:'MeeTab meeting-room app. Explore navigation, calendar and local sample bookings. The portfolio demo uses sample data; account access is disabled.',
-    scene:{position:[-.95,-.84,.55],rotation:[-.13,-.16,.035],scale:.98},camera:{position:[0,.3,9.6],focusPosition:[-1.60,-.08,3.35],scale:1.35},interactiveUrl:null
+    scene:{position:[-.95,-.84,.55],rotation:[-.13,-.16,.035],scale:.98},camera:{position:[0,.3,9.6],focusPosition:[-1.60,-.08,3.35],scale:1.35}
   },
   {
     id:'earthhour',name:'Earth Hour Campaign Poster',shortName:'EARTH HOUR',category:'graphics',categoryLabel:'Poster Design · Graphics',year:'2025',device:'poster',cover:'project-earthhour.png',screenshots:['project-earthhour.png'],accent:'#94B57B',
     description:'A vector campaign poster created in Adobe Illustrator, emphasizing custom shape building, vector path precision and controlled typography. The composition is designed for scalable print and digital presentation. Independent portfolio work.',
-    scene:{position:[3.82,-.30,.25],rotation:[-.02,-.12,-.01],scale:.87},camera:{position:[0,.3,9.5],focusPosition:[-1.56,.05,3.38],scale:1.33},interactiveUrl:null
+    scene:{position:[3.82,-.30,.25],rotation:[-.02,-.12,-.01],scale:.87},camera:{position:[0,.3,9.5],focusPosition:[-1.56,.05,3.38],scale:1.33}
   }
 ];
 const JBL_ARTWORK = {id:'jbl-artwork',name:'JBL Premium Audio Campaign',shortName:'JBL',category:'graphics',categoryLabel:'Advertising · Graphics',year:'2025',device:'artwork',cover:'project-jbl.png',description:'JBL Premium Audio Campaign — advertising visual by Giorgi Giorgadze. Independent portfolio work.'};
@@ -103,7 +115,7 @@ function screenSurface(w,h,p,depth=.103){
  mesh.renderOrder=4;meshes.push(mesh);return mesh;
 }
 function useOriginalArtwork(mesh,p,w,h){
- const cn=document.createElement('canvas'),size=compactView()&&p.id!=='jbl'?512:1024;
+ const cn=document.createElement('canvas'),size=compactView()&&!p.screenArtwork?512:1024;
  cn.width=w>h?size:Math.round(size*w/h);cn.height=h>=w?size:Math.round(size*h/w);
  const ctx=cn.getContext('2d',{alpha:true}),cw=cn.width,ch=cn.height;
  ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';
@@ -154,9 +166,11 @@ function useOriginalArtwork(mesh,p,w,h){
 function addProjectHit(group,p){group.traverse(o=>{if(o.isMesh){o.userData.projectId=p.id;meshes.push(o)}})}
 function deviceFactory(p){const group=new THREE.Group();const colorMat=metal();let w,h,d;
  switch(p.device){case'phone':w=1.12;h=2.24;d=.11;break;case'tablet':w=2.3;h=1.5175;d=.09;break;case'monitor':w=2.68;h=1.64;d=.13;break;default:w=1.65;h=2.18;d=.095;}
- const body=roundedPlate(w,h,d,p.device==='phone'?.19:.12,colorMat);group.add(body);
+ const bodyRadius=p.device==='phone'?.19:.12;
+ const body=roundedPlate(w,h,d,bodyRadius,colorMat);group.add(body);
  const bezel=roundedPlate(w-.09,h-.09,.028,p.device==='phone'?.14:.09,surfaceMaterial({color:'#111520',metalness:.18,roughness:.88,clearcoat:.05}));bezel.position.z=.045;group.add(bezel);
- const sw=w-(p.device==='phone'?.15:.16),sh=h-(p.device==='phone'?.22:.18);
+ const sh=h-(p.device==='phone'?.22:.18);
+ const sw=p.demo?sh*p.demo.width/p.demo.height:w-(p.device==='phone'?.15:.16);
  const recess=new THREE.Mesh(new THREE.ShapeGeometry(roundedShape(sw+.07,sh+.07,screenRadius(sw,sh,p)+.035),32),new THREE.MeshBasicMaterial({color:'#06080E'}));recess.position.z=.081;group.add(recess);
  const surface=screenSurface(sw,sh,p,.104);group.add(surface);useOriginalArtwork(surface,p,sw,sh);
  const glassMat=surfaceMaterial({color:'#ffffff',metalness:0,roughness:.03,transparent:true,opacity:.02,clearcoat:1,clearcoatRoughness:.05,reflectivity:.38,ior:1.46,depthWrite:false});glassMat.dithering=true;
@@ -185,7 +199,7 @@ function deviceFactory(p){const group=new THREE.Group();const colorMat=metal();l
  }
  group.position.set(...p.scene.position);group.rotation.set(...p.scene.rotation);group.scale.setScalar(p.scene.scale);addProjectHit(group,p);
  group.traverse(obj=>{if(obj.isMesh&&obj.material?.color){obj.material.userData.baseColor=obj.material.color.clone();}});
- return {hoverAmount:0,dimAmount:0,lightAmount:0,magnet:{x:0,y:0},project:p,group,screen:surface,screenBloom,screenLight,homePosition:group.position.clone(),homeQuaternion:group.quaternion.clone(),homeScale:p.scene.scale,screenDimensions:{w:sw,h:sh},bodyDimensions:{w,h,radius:.12}};
+ return {hoverAmount:0,dimAmount:0,lightAmount:0,magnet:{x:0,y:0},project:p,group,screen:surface,screenBloom,screenLight,homePosition:group.position.clone(),homeQuaternion:group.quaternion.clone(),homeScale:p.scene.scale,screenDimensions:{w:sw,h:sh},bodyDimensions:{w,h,radius:bodyRadius}};
 }
 function makeGlowTexture(){const c=document.createElement('canvas');c.width=c.height=128;const ctx=c.getContext('2d'),grad=ctx.createRadialGradient(64,64,2,64,64,62);grad.addColorStop(0,'rgba(255,255,255,.58)');grad.addColorStop(.15,'rgba(255,255,255,.32)');grad.addColorStop(.45,'rgba(255,255,255,.11)');grad.addColorStop(1,'rgba(255,255,255,0)');ctx.fillStyle=grad;ctx.fillRect(0,0,128,128);return new THREE.CanvasTexture(c)}
 // Camera-facing *world-anchored* haze. The emitter never billboards away from its lamp.
@@ -445,6 +459,7 @@ function setHovered(id,source='pointer'){
 // WebGL screen stays bright as a fallback if remote assets are blocked altogether.
 const screenOverlays=new Map();
 function makeArtworkOverlay(p){
+ if(p.screenArtwork)return;
  const node=document.createElement('div');node.className='screen-artwork';
  const wash=document.createElement('div');wash.className='screen-artwork-wash';
  const picture=document.createElement('img');picture.alt='';picture.decoding='async';picture.loading='eager';
@@ -491,8 +506,6 @@ function positionArtworkOverlays(){
   const focused=(activeLayerOn&&selected?.id===p.id);
   if(focused){if(node.parentElement!==focusScreenHost)focusScreenHost.append(node)}
   else if(node.parentElement!==screenHost)screenHost.append(node);
-  // Background artwork remains on the same blurred layer as its device throughout focus.
-  node.style.visibility=p.id==='jbl'?'hidden':'visible';
  }
 }
 function projectScreenProjection(d){const pos=d.screen.getWorldPosition(new THREE.Vector3());return pos.project(camera)}
@@ -551,80 +564,101 @@ function revealShowroom(){
 }
 function openPanel(){if(compactView())resizeScene();frame.classList.add('is-focused');$('#inspector-backdrop').classList.add('is-open');inspector.classList.add('is-open');inspector.setAttribute('aria-hidden','false');inspector.inert=false;resetButton.hidden=false;requestAnimationFrame(()=>{closeButton.focus({preventScroll:true});revealShowroom();});updatePreviewButton();sendPreviewMode();}
 function closePanel(){environmentZoomTarget=1;previewActive=false;demoBlend=0;syncDemoWorkspace();$('#try-preview').hidden=true;frame.classList.remove('is-focused');$('#inspector-backdrop').classList.remove('is-open');inspector.classList.remove('is-open');inspector.setAttribute('aria-hidden','true');inspector.inert=true;resetButton.hidden=true;sendPreviewMode();}
-function chooseProject(id){environmentZoom=environmentZoomTarget=1;if(camera){camera.zoom=1;camera.updateProjectionMatrix();}const p=ARCHIVE_PROJECTS.find(x=>x.id===id);if(!p)return;if(p===JBL_ARTWORK){openAccessibleDetail(p);return}if(!sceneReady){openAccessibleDetail(p);return}if(p.id==='jbl')ensureMeeTabPortal();revealShowroom();if(state==='focus'&&selected?.id===id){closeProject();return}if(state!=='gallery'){queuedSelection=id;closeProject();return}hovered=keyboardHovered=pointerHovered=null;pointerInGallery=false;frame.classList.remove('has-hover');selected=p;state='opening';setForeground(id,true);frame.classList.add('is-focused');setPanel(p);setAccent(p.accent);labelsEl.classList.add('is-hidden');labelsEl.inert=true;$('#stage-caption').textContent=`${p.shortName} · DRAG TO ROTATE ±15°`;lightAccent.position.set(...p.scene.position).add(new THREE.Vector3(0,.72,2.95));const d=displayItems.get(id);const focusEuler=p.device==='phone'?new THREE.Euler(-.06,.14,.015):p.device==='monitor'?new THREE.Euler(-.02,-.08,0):p.device==='tablet'?new THREE.Euler(-.07,-.10,.02):new THREE.Euler(-.03,-.11,0);const quat=new THREE.Quaternion().setFromEuler(focusEuler);focusTilt.x=focusTilt.y=0;focusTiltTarget.x=focusTiltTarget.y=0;const layout=focusLayout(p);focusScale=layout.scale;runTween(id,layout.position,quat,focusScale,new THREE.Vector3(...p.camera.position),900,()=>{state='focus';selectedBaseQuaternion=quat.clone();openPanel()})}
+function chooseProject(id){environmentZoom=environmentZoomTarget=1;if(camera){camera.zoom=1;camera.updateProjectionMatrix();}const p=ARCHIVE_PROJECTS.find(x=>x.id===id);if(!p)return;if(p===JBL_ARTWORK){openAccessibleDetail(p);return}if(!sceneReady){openAccessibleDetail(p);return}if(p.demo?.bridge)ensureDemoFrame(p);revealShowroom();if(state==='focus'&&selected?.id===id){closeProject();return}if(state!=='gallery'){queuedSelection=id;closeProject();return}hovered=keyboardHovered=pointerHovered=null;pointerInGallery=false;frame.classList.remove('has-hover');selected=p;state='opening';setForeground(id,true);frame.classList.add('is-focused');setPanel(p);setAccent(p.accent);labelsEl.classList.add('is-hidden');labelsEl.inert=true;$('#stage-caption').textContent=`${p.shortName} · DRAG TO ROTATE ±15°`;lightAccent.position.set(...p.scene.position).add(new THREE.Vector3(0,.72,2.95));const d=displayItems.get(id);const focusEuler=p.device==='phone'?new THREE.Euler(-.06,.14,.015):p.device==='monitor'?new THREE.Euler(-.02,-.08,0):p.device==='tablet'?new THREE.Euler(-.07,-.10,.02):new THREE.Euler(-.03,-.11,0);const quat=new THREE.Quaternion().setFromEuler(focusEuler);focusTilt.x=focusTilt.y=0;focusTiltTarget.x=focusTiltTarget.y=0;const layout=focusLayout(p);focusScale=layout.scale;runTween(id,layout.position,quat,focusScale,new THREE.Vector3(...p.camera.position),900,()=>{state='focus';selectedBaseQuaternion=quat.clone();openPanel()})}
 function closeProject(){if(state==='gallery'||state==='closing')return;const p=selected;if(!p)return;closePanel();state='closing';setAccent('#D0BCFF');const d=displayItems.get(p.id);focusTilt.x=focusTilt.y=0;focusTiltTarget.x=focusTiltTarget.y=0;runTween(p.id,d.homePosition,d.homeQuaternion,d.homeScale,new THREE.Vector3(startLook.x,startLook.y,startLook.z),750,()=>{setForeground(p.id,false);state='gallery';selected=null;selectedBaseQuaternion=null;const returnControl=document.querySelector(`[data-explore="${p.id}"]`);if(frame.contains(document.activeElement))returnControl?.focus({preventScroll:true});labelsEl.classList.remove('is-hidden');labelsEl.inert=false;$('#stage-caption').textContent='CURATED EXPERIENCES';if(queuedSelection){const next=queuedSelection;queuedSelection=null;chooseProject(next)}})}
-let persistentMeeTabFrame=null,meeTabReady=false;
-function ensureMeeTabPortal(){
- if(mobilePreviewMedia.matches)return;
- const portal=$('#screen-portal');
- if(persistentMeeTabFrame)return persistentMeeTabFrame;
- const iframe=document.createElement('iframe');iframe.title='MeeTab interactive preview';iframe.width='1280';iframe.height='800';iframe.setAttribute('sandbox','allow-scripts');iframe.referrerPolicy='no-referrer';
- persistentMeeTabFrame=iframe;
+const demoFrames=new Map();
+const currentDemoFrame=()=>demoFrames.get(selected?.id);
+
+function ensureDemoFrame(project){
+ if(!project?.demo||mobilePreviewMedia.matches||demoFrames.has(project.id))return;
+ const {src,width,height,bridge}=project.demo;
+ const iframe=document.createElement('iframe');
+ iframe.title=`${project.name} interactive demo`;
+ iframe.width=width;
+ iframe.height=height;
+ iframe.referrerPolicy='no-referrer';
  iframe.hidden=true;
- portal.append(iframe);
- iframe.src=new URL("./meetab-demo.html?v=0.14.5",import.meta.url).href;
- return iframe;
+ // MeeTab's opaque frame uses its ready/gesture bridge. The local Tsero export
+ // uses same-origin modules and map data, with its own content security policy.
+ if(bridge)iframe.setAttribute('sandbox','allow-scripts');
+ const session={iframe,ready:false};
+ demoFrames.set(project.id,session);
+ if(!bridge)iframe.addEventListener('load',()=>markDemoReady(project.id,session),{once:true});
+ iframe.src=new URL(src,import.meta.url).href;
+ $('#screen-portal').append(iframe);
 }
-function sendPreviewMode() {
- if (!meeTabReady) return;
- persistentMeeTabFrame.contentWindow.postMessage({
-  showroom: true,
-  kind: 'interactive',
-  enabled: !mobilePreviewMedia.matches && previewActive && state === 'focus' && selected?.id === 'jbl',
- }, '*');
+
+function markDemoReady(projectId,session){
+ session.ready=true;
+ if(selected?.id!==projectId)return;
+ updatePreviewButton();
+ if(previewActive&&!mobilePreviewMedia.matches)syncDemoWorkspace();
+ sendPreviewMode();
+}
+
+function sendPreviewMode(){
+ const session=currentDemoFrame();
+ if(!selected?.demo?.bridge||!session?.ready)return;
+ session.iframe.contentWindow.postMessage({
+  showroom:true,
+  kind:'interactive',
+  enabled:!mobilePreviewMedia.matches&&previewActive&&state==='focus',
+ },'*');
 }
 
 let demoBlend=0;
 let staticFramePainted=false;
-function updatePreviewButton() {
- const button = $('#try-preview');
- button.hidden = state !== 'focus' || selected?.id !== 'jbl';
- button.disabled = !previewActive && !mobilePreviewMedia.matches && !meeTabReady;
- button.textContent = previewActive ? 'Exit preview' : button.disabled ? 'Loading demo…' : 'Try now ↗';
+function updatePreviewButton(){
+ const button=$('#try-preview');
+ button.hidden=state!=='focus'||!selected?.demo;
+ const waitingForBridge=selected?.demo?.bridge&&!currentDemoFrame()?.ready;
+ button.disabled=Boolean(!previewActive&&!mobilePreviewMedia.matches&&waitingForBridge);
+ button.textContent=previewActive?'Exit preview':button.disabled?'Loading demo…':'Try now ↗';
 }
 
 function syncDemoWorkspace(){
  staticFramePainted=false;
  const mobile=mobilePreviewMedia.matches;
+ const session=currentDemoFrame();
  frame.classList.toggle('is-demo',previewActive);
  frame.classList.toggle('is-static-demo',staticPreview());
  const workspace=$('.demo-workspace');
- const restoreFocus=!previewActive&&(workspace.contains(document.activeElement)||document.activeElement===persistentMeeTabFrame);
+ const restoreFocus=!previewActive&&(workspace.contains(document.activeElement)||document.activeElement===session?.iframe);
  workspace.inert=!previewActive;
- $('#screen-portal').inert=!previewActive||mobile;
- if(!previewActive)$('#screen-portal').hidden=true;
+ const portal=$('#screen-portal');
+ portal.inert=!previewActive||mobile||!session?.ready;
+ if(!previewActive)portal.hidden=true;
  updatePreviewButton();
  $('#try-preview').setAttribute('aria-pressed',String(previewActive));
- $('#demo-status').textContent=mobile?'PREVIEW ACTIVE':'DEMO ACTIVE';
- $('#demo-description').textContent=mobile
-  ?$('#desktop-demo-notice strong').textContent
-  :'MeeTab is live inside the tablet. Try a booking — your progress stays here.';
  const hint=$('.interaction-hint');
  hint.innerHTML='<span class="hint-dot"></span>';
- hint.append(previewActive
-  ?(mobile?'DESKTOP DEMO · MEETAB':'INTERACTIVE MODE · MEETAB')
-  :'SELECT A DEVICE TO EXPLORE');
- const announcement=$('#demo-announcement');
- if(staticPreview()){
-  announcement.textContent=$('#demo-description').textContent;
- }else if(previewActive){
-  announcement.textContent=meeTabReady?'Demo active. MeeTab is ready to use.':'Loading MeeTab demo.';
+ if(previewActive){
+  const description=mobile?$('#desktop-demo-notice strong').textContent:
+    session?.ready?selected.demo.description:`Loading ${selected.name} demo…`;
+  $('#demo-status').textContent=mobile?'PREVIEW ACTIVE':session?.ready?'DEMO ACTIVE':'LOADING DEMO';
+  $('#demo-description').textContent=description;
+  $('#demo-guide-open').textContent=`Click the screen to use ${selected.name}`;
+  $('#demo-guide-scroll').textContent=selected.demo.guide;
+  $('.demo-note').textContent=selected.demo.note;
+  $('#demo-announcement').textContent=description;
+  hint.append(`${mobile?'DESKTOP DEMO':'INTERACTIVE MODE'} · ${selected.shortName}`);
  }else{
-  announcement.textContent=mobile?'Preview ended.':'Preview ended. Your progress is saved.';
+  hint.append('SELECT A DEVICE TO EXPLORE');
+  $('#demo-announcement').textContent=mobile?'Preview ended.':'Preview ended. Your progress is saved.';
  }
  if(restoreFocus)$('#try-preview').focus({preventScroll:true});
 }
 
-function activateInteractiveScreen(p){
- if(p.id!=='jbl'||state!=='focus')return;
- ensureMeeTabPortal();
+function activateInteractiveScreen(project){
+ if(!project.demo||state!=='focus')return;
  previewActive=!previewActive;
+ if(previewActive)ensureDemoFrame(project);
  syncDemoWorkspace();
  sendPreviewMode();
 }
 
 mobilePreviewMedia.addEventListener('change',()=>{
- if(selected?.id==='jbl')ensureMeeTabPortal();
+ if(previewActive||selected?.demo?.bridge)ensureDemoFrame(selected);
  syncDemoWorkspace();
  sendPreviewMode();
  queueSceneResize();
@@ -639,12 +673,16 @@ window.addEventListener('wheel',event=>{
  event.preventDefault();event.stopPropagation();zoomEnvironment(event.deltaY,event.deltaMode);
 },{capture:true,passive:false});
 window.addEventListener('message',event=>{
- if(!persistentMeeTabFrame||event.source!==persistentMeeTabFrame.contentWindow||event.data?.showroom!==true)return;
+ const project=PROJECTS.find(p=>p.demo?.bridge&&demoFrames.get(p.id)?.iframe.contentWindow===event.source);
+ if(!project||event.data?.showroom!==true)return;
  const msg=event.data;
- if(msg.kind==='ready'){meeTabReady=true;updatePreviewButton();if(previewActive&&!mobilePreviewMedia.matches)syncDemoWorkspace();sendPreviewMode();}
- if(msg.kind==='wheel'&&!staticPreview())zoomEnvironment(msg.delta,msg.mode);
- if(msg.kind==='drag'&&!staticPreview()&&state==='focus'&&selected?.id==='jbl'){
-  if(!Number.isFinite(msg.dx)||!Number.isFinite(msg.dy))return;
+ if(msg.kind==='ready'){
+  markDemoReady(project.id,demoFrames.get(project.id));
+  return;
+ }
+ if(!previewActive||staticPreview()||state!=='focus'||selected!==project)return;
+ if(msg.kind==='wheel')zoomEnvironment(msg.delta,msg.mode);
+ if(msg.kind==='drag'&&Number.isFinite(msg.dx)&&Number.isFinite(msg.dy)){
   focusTiltTarget.y=clamp(focusTiltTarget.y+clamp(msg.dx,-100,100)*.0034,-.26,.26);
   focusTiltTarget.x=clamp(focusTiltTarget.x+clamp(msg.dy,-100,100)*.0029,-.19,.19);
  }
@@ -655,21 +693,42 @@ function setScreenStyle(element,key,value){
  if(values[key]===value)return;values[key]=value;element.style[key]=value;
 }
 function positionScreenPortal(){
- const portal=$('#screen-portal'),d=displayItems.get('jbl');if(!d)return;
- const w=d.screenDimensions.w/2,h=d.screenDimensions.h/2,vw=frame.clientWidth,vh=frame.clientHeight;
+ const portal=$('#screen-portal');
+ const inFocus=state==='focus'&&Boolean(selected?.demo);
+ const session=currentDemoFrame();
+ const showNotice=inFocus&&staticPreview();
+ const showApp=inFocus&&previewActive&&!mobilePreviewMedia.matches&&Boolean(session?.ready);
+ const showScreen=showNotice||showApp;
+ for(const entry of demoFrames.values())entry.iframe.hidden=!(showApp&&entry===session);
+
+ const vw=frame.clientWidth,vh=frame.clientHeight;
+ if(inFocus){
+  // Keep the control still while the camera and device interpolate.
+  const galleryWidth=vw-inspector.offsetWidth;
+  const phonePreview=selected.device==='phone'&&galleryWidth>=330;
+  const desktopX=phonePreview?galleryWidth-82:clamp(galleryWidth/2,90,galleryWidth-90);
+  const x=compactView()?vw*.75:desktopX;
+  const y=compactView()?vh-inspector.offsetHeight-56:Math.max(82,vh-110);
+  const button=$('#try-preview');
+  setScreenStyle(button,'left',x+'px');
+  setScreenStyle(button,'top',y+'px');
+ }
+ const device=inFocus?displayItems.get(selected.id):null;
+ positionTabletOutline(device,showScreen);
+ if(!showScreen){
+  portal.hidden=true;
+  portal.inert=true;
+  $('#desktop-demo-notice').hidden=true;
+  return;
+ }
+
+ const w=device.screenDimensions.w/2,h=device.screenDimensions.h/2;
  const points=[[-w,h],[w,h],[w,-h],[-w,-h]].map(([x,y])=>{
-  const v=d.screen.localToWorld(new THREE.Vector3(x,y,0)).project(camera);
+  const v=device.screen.localToWorld(new THREE.Vector3(x,y,0)).project(camera);
   return [(v.x*.5+.5)*vw,(-v.y*.5+.5)*vh];
  });
- const inFocus=state==='focus'&&selected?.id==='jbl';
- const showNotice=inFocus&&staticPreview();
- const showApp=inFocus&&previewActive&&!mobilePreviewMedia.matches&&meeTabReady;
- const showScreen=showNotice||showApp;
- portal.hidden=!showScreen;
- portal.inert=!showApp;
- $('#desktop-demo-notice').hidden=!showNotice;
- if(persistentMeeTabFrame)persistentMeeTabFrame.hidden=!showApp;
- let width=1280,height=800,left=0,top=0,transform='none';
+ let {width,height}=selected.demo;
+ let left=0,top=0,transform='none';
  if(showNotice){
   // The camera-facing screen uses its projected size so the notice stays readable.
   width=points[1][0]-points[0][0];
@@ -681,18 +740,16 @@ function positionScreenPortal(){
   const[a,b,c,d,e,f,g,h]=co;
   transform=`matrix3d(${a},${d},0,${g},${b},${e},0,${h},0,0,1,0,${c},${f},0,1)`;
  }
- const r=screenRadius(w*2,h*2,d.project);
+ const r=screenRadius(w*2,h*2,selected);
  setScreenStyle(portal,'borderRadius',`${r/(w*2)*100}% / ${r/(h*2)*100}%`);
  setScreenStyle(portal,'width',width+'px');
  setScreenStyle(portal,'height',height+'px');
  setScreenStyle(portal,'left',left+'px');
  setScreenStyle(portal,'top',top+'px');
  setScreenStyle(portal,'transform',transform);
- positionTabletOutline(d,showScreen);
- const button=$('#try-preview');button.hidden=!inFocus;
- // Keep the control still while the camera and tablet interpolate.
- const controlX=compactView()?vw*.75:clamp((vw-inspector.offsetWidth)/2,90,vw-inspector.offsetWidth-90),controlY=compactView()?vh-inspector.offsetHeight-56:Math.max(82,vh-110);
- if(inFocus){button.style.left=controlX+'px';button.style.top=controlY+'px';}
+ $('#desktop-demo-notice').hidden=!showNotice;
+ portal.inert=!showApp;
+ portal.hidden=false;
 }
 
 function positionTabletOutline(device,visible){
@@ -706,7 +763,8 @@ function positionTabletOutline(device,visible){
  });
  const co=solveHomography([[[0,0],points[0]],[[width,0],points[1]],[[width,height],points[2]],[[0,height],points[3]]]);if(!co)return;
  const[a,b,c,d,e,f,g,h1]=co;
- if(outline.viewBox.baseVal.width!==width){
+ if(outline.dataset.project!==device.project.id){
+  outline.dataset.project=device.project.id;
   outline.setAttribute('viewBox',`0 0 ${width} ${height}`);
   outline.querySelectorAll('rect').forEach(rect=>{rect.setAttribute('width',width);rect.setAttribute('height',height);rect.setAttribute('rx',(device.bodyDimensions.radius+.0425)*width/w);});
  }
@@ -901,7 +959,7 @@ function installKeys(){document.addEventListener('keydown',e=>{if(e.key==='Escap
 function showFallback(detail){$('#tablet-outline').setAttribute('hidden','');$('#screen-portal').hidden=true;stageLoading.classList.add('is-done');fallbackEl.hidden=false;labelsEl.hidden=true;if(detail)console.warn('[showroom] fallback:',detail);sceneReady=false;}
 async function initialize(){try{const c=document.createElement('canvas');if(!(c.getContext('webgl2')||c.getContext('webgl'))){showFallback('WebGL not available');return}
  // No framework migration: dynamically load Three.js only on devices capable of the 3D showroom.
- await new Promise((resolve,reject)=>{const script=document.createElement('script');script.src=new URL('./vendor/three.js',import.meta.url).href;script.onload=resolve;script.onerror=()=>reject(new Error('Local Three.js engine did not load'));document.head.append(script)});THREE=window.SHOWROOM_THREE;if(!THREE)throw new Error('Local Three.js engine did not load');makeScene();frame.appendChild($('#try-preview'));ensureMeeTabPortal();setupInteraction();stageLoading.classList.add('is-done');window.addEventListener('resize',queueSceneResize,{passive:true});const ro=new ResizeObserver(queueSceneResize);ro.observe(frame);const visibility=new IntersectionObserver(entries=>{stageVisible=entries[entries.length-1].isIntersecting},{rootMargin:'150px'});visibility.observe(frame);
+ await new Promise((resolve,reject)=>{const script=document.createElement('script');script.src=new URL('./vendor/three.js',import.meta.url).href;script.onload=resolve;script.onerror=()=>reject(new Error('Local Three.js engine did not load'));document.head.append(script)});THREE=window.SHOWROOM_THREE;if(!THREE)throw new Error('Local Three.js engine did not load');makeScene();frame.appendChild($('#try-preview'));ensureDemoFrame(PROJECTS.find(p=>p.demo?.bridge));setupInteraction();stageLoading.classList.add('is-done');window.addEventListener('resize',queueSceneResize,{passive:true});const ro=new ResizeObserver(queueSceneResize);ro.observe(frame);const visibility=new IntersectionObserver(entries=>{stageVisible=entries[entries.length-1].isIntersecting},{rootMargin:'150px'});visibility.observe(frame);
  }catch(error){console.error('[showroom] 3D initialization failed',error);showFallback(error.message)}}
 setMenu();buildArchive();installKeys();initialize();
 
