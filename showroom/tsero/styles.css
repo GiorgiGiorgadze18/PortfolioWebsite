@@ -409,3 +409,15 @@ input { color: var(--ink); min-width: 0; }
   *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
   .courier-call, .delivery-status i { animation: none; }
 }
+
+/* Preserve text selection in fields while the demo behaves like an app. */
+.app {
+  -webkit-user-select: none;
+  user-select: none;
+}
+.app input,
+.app textarea,
+.app [contenteditable="true"] {
+  -webkit-user-select: text;
+  user-select: text;
+}
