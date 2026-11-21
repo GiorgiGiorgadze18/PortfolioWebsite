@@ -1,6 +1,8 @@
 # Changelog
 
 ## 0.15.2 — 2026-11-22
+[PR #11](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/11)
+
 
 - Prevent page text from highlighting during mouse drags in the Tsero demo. Search and form fields retain normal text selection.
 
