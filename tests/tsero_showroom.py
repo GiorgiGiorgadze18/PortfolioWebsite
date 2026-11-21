@@ -77,7 +77,7 @@ def desktop(browser, base, output):
     expect(screen).to_have_class('screen page-home')
     assert screen.evaluate('() => [innerWidth, innerHeight]') == [375, 811]
     expect(app.locator('#app')).to_have_css('width', '375px')
-    expect(app.locator('#app')).to_have_css('height', '811px')
+    assert abs(app.locator('#app').evaluate('el=>el.getBoundingClientRect().height') - 811) < 0.1
     button_box = button.bounding_box()
     screen_box = iframe.bounding_box()
     assert button_box['x'] >= screen_box['x'] + screen_box['width'], (button_box, screen_box)
@@ -102,13 +102,23 @@ def desktop(browser, base, output):
     expect(app.locator('.cart-line')).to_have_count(1)
     thumb = app.locator('.slider-thumb')
     thumb.scroll_into_view_if_needed()
-    track_box = app.locator('.checkout-slider').bounding_box()
-    thumb_box = thumb.bounding_box()
-    grip_x = thumb_box['x'] + thumb_box['width'] / 2
-    grip_y = thumb_box['y'] + thumb_box['height'] / 2
-    page.mouse.move(grip_x, grip_y)
+    # Project the app's local slider track through the same perspective as the phone.
+    points = page.locator('#screen-portal').evaluate("""portal => {
+        const matrix = new DOMMatrix(getComputedStyle(portal).transform);
+        const stage = portal.offsetParent.getBoundingClientRect();
+        const thumb = portal.querySelector('iframe:not([hidden])').contentDocument.querySelector('.slider-thumb');
+        const box = thumb.getBoundingClientRect();
+        const track = thumb.parentNode;
+        const travel = track.clientWidth - thumb.offsetWidth - thumb.offsetLeft * 2;
+        return [0, travel].map(dx => {
+            const point = matrix.transformPoint(new DOMPoint(box.x + box.width / 2 + dx, box.y + box.height / 2));
+            return [stage.x + portal.offsetParent.clientLeft + point.x / point.w,
+                stage.y + portal.offsetParent.clientTop + point.y / point.w];
+        });
+    }""")
+    page.mouse.move(*points[0])
     page.mouse.down()
-    page.mouse.move(grip_x + track_box['width'] - thumb_box['width'], grip_y, steps=8)
+    page.mouse.move(*points[1], steps=8)
     page.mouse.up()
     expect(screen).to_have_class('screen page-payment')
     app.get_by_label('Delivery address').fill('Portfolio test address')
