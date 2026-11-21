@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.14.5 — 2026-11-21
+
+[PR #7](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/7)
+
+- The 3D tablet shows a capture of MeeTab's desktop home screen. On mobile, Try Now opens the existing HUD and puts a 55% black overlay with a white message over the tablet display: “Try the interactive demo on a computer.”
+- Phones use the still image throughout the visit and skip the live app download. Desktop visitors use the interactive demo in the tablet.
+- Make the screenshot, dimmed notice and desktop-only app the standard for future showroom integrations. See the [repository instructions](AGENTS.md).
+
+Chromium and WebKit phone emulation passed portrait and landscape checks, the two preview cycles and the absence of app requests. Desktop WebKit passed live booking navigation and the one-pass neon check. See [verification](docs/VERIFICATION.md).
+
 ## 0.14.4 — 2026-11-20
 
 [PR #6](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/6)

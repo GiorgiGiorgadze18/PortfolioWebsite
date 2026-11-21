@@ -1,4 +1,4 @@
-"""v0.14.4: one-shot outer glow and native touch inside the tablet.
+"""Static phone preview and interactive desktop tablet.
 Run with --phone-only, --desktop-only, or --engine webkit --phone-only.
 """
 from pathlib import Path
@@ -60,60 +60,59 @@ def check_phone(browser,base,out,engine):
  for target in page.locator('.device-label').all():assert target.bounding_box()['height']>=44
  page.wait_for_timeout(900);capture(page,out,f'tablet-{engine}-gallery.png')
  print('Gallery ready',engine,flush=True)
- page.locator('.device-label[data-id="jbl"]').tap();expect(page.locator('#try-preview')).to_be_visible();expect(page.locator('#try-preview')).to_be_enabled();expect(page.locator('#tablet-outline')).to_be_hidden()
- page.wait_for_timeout(800);capture(page,out,f'tablet-{engine}-focus.png')
- observe(page);page.evaluate("()=>{for(let i=0;i<10;i++)dispatchEvent(new Event('resize'))}");page.wait_for_timeout(400)
- unchanged=page.evaluate('metrics.bufferWrites');assert unchanged==0,unchanged
- assert page.locator('dialog[open]').count()==0
- page.locator('#try-preview').tap();expect(page.locator('#screen-portal')).to_be_visible()
- alignment=outer_outline(page);check_sweep(page)
- app=page.frame_locator('#screen-portal iframe');expect(app.locator('html')).to_have_class('phone-demo')
- child=next(f for f in page.frames if f!=page.main_frame);identity=child.evaluate('performance.timeOrigin')
- assert child.evaluate("getComputedStyle(document.querySelector('#stage')).transform")=='none'
+ page.locator('.device-label[data-id="jbl"]').tap()
+ button=page.locator('#try-preview')
  portal=page.locator('#screen-portal')
+ notice=page.locator('#desktop-demo-notice')
+ workspace=page.locator('.demo-workspace')
+ expect(button).to_be_enabled()
+ expect(button).to_be_visible()
+ expect(notice).to_be_hidden()
+ expect(portal).to_be_hidden()
+ assert any(u.endswith('/meetab-desktop-home.webp') for u in requests)
+ capture(page,out,f'tablet-{engine}-focus.png')
+ observe(page)
+ page.evaluate("()=>{for(let i=0;i<10;i++)dispatchEvent(new Event('resize'))}")
+ page.wait_for_timeout(400)
+ unchanged=page.evaluate('metrics.bufferWrites')
+ assert unchanged==0,unchanged
+ button.tap()
+ expect(notice).to_be_visible()
+ expect(workspace).to_be_visible()
+ expect(workspace).to_contain_text('Try the interactive demo on a computer.')
+ expect(workspace).to_contain_text('PREVIEW ACTIVE')
+ expect(notice).to_have_css('background-color','rgba(0, 0, 0, 0.55)')
+ expect(notice).to_have_css('color','rgb(255, 255, 255)')
  expect(portal).to_have_css('transform','none')
+ expect(portal).to_have_css('pointer-events','none')
+ expect(button).to_have_attribute('aria-pressed','true')
  assert page.locator('dialog[open]').count()==0
- assert page.evaluate("document.querySelector('#museum-frame').contains(document.querySelector('#screen-portal'))")
- # Header must be fully above scrolling app content, with readable unscaled controls.
- assert child.locator('#shared').bounding_box()['height']<80
- assert child.locator('#shared').bounding_box()['y']+child.locator('#shared').bounding_box()['height']<=child.locator('#p-home').bounding_box()['y']
- capture(page,out,f'tablet-{engine}-mobile-home.png')
- app.locator('#nav [data-go="book"]').tap();expect(app.locator('#p-book')).to_have_class('page on');page.wait_for_timeout(750)
- app.locator('#fTitle').fill('Touch booking test')
- # Center the control in the nested scroller, as a visitor would before tapping.
- app.locator('#gPlus').evaluate("el=>el.scrollIntoView({block:'center'})")
- app.locator('#gPlus').tap()
- expect(app.locator('#gNum')).to_have_text('2',timeout=10000)
- app.locator('#fDur [data-v="30"]').tap();expect(app.locator('#fDur [data-v="30"]')).to_have_class('on')
+ alignment=outer_outline(page)
+ check_sweep(page)
+ capture(page,out,f'tablet-{engine}-desktop-notice.png')
  sizes=[]
  for width,height in [(360,800),(430,932),(844,390),(390,844)]:
-  page.set_viewport_size({'width':width,'height':height});page.wait_for_timeout(150)
-  assert child.evaluate('document.documentElement.scrollWidth<=innerWidth')
-  assert child.locator('#fTitle').input_value()=='Touch booking test'
-  for target in ['#nav [data-go="book"]','#fTitle','#gPlus','#fDur [data-v="30"]']:
-   box=child.locator(target).bounding_box();assert box['width']>=44 and box['height']>=44,(width,target,box)
+  page.set_viewport_size({'width':width,'height':height})
+  page.wait_for_timeout(300)
+  expect(notice).to_be_visible()
+  assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
   outer_outline(page)
+  screen=portal.bounding_box()
+  text=notice.locator('strong').bounding_box()
+  assert text['width']<=screen['width'] and text['height']<screen['height'],(screen,text)
   sizes.append([width,height])
- app.locator('#fTitle').scroll_into_view_if_needed();capture(page,out,f'tablet-{engine}-mobile-booking.png')
- page.locator('#try-preview').tap();expect(page.locator('#screen-portal')).to_be_hidden()
- expect(page.locator('#try-preview')).to_be_focused();expect(page.locator('#tablet-outline')).to_be_hidden()
- page.locator('#try-preview').tap();expect(app.locator('#fTitle')).to_have_value('Touch booking test');assert child.evaluate('performance.timeOrigin')==identity
+ button.tap()
+ expect(notice).to_be_hidden()
+ expect(portal).to_be_hidden()
+ expect(button).to_have_attribute('aria-pressed','false')
+ button.tap()
+ expect(notice).to_be_visible()
  check_sweep(page, runs=2)
- print('Native form, responsive sizes and state retention verified',engine,flush=True)
- # Submit a local sample booking through normal visible touch controls.
- app.locator('#fDur [data-v="15"]').tap()
- slots=app.locator('#fSlots button:enabled')
- if slots.count():
-  slots.first.tap();expect(slots.first).to_have_class('on',timeout=5000)
- print('Available sample booking selected',engine,flush=True)
- expect(app.locator('#bOk')).to_be_enabled(timeout=5000);app.locator('#bOk').tap()
- expect(app.locator('#ov')).to_have_class(re.compile('on'));expect(app.locator('#md')).to_contain_text('დაიჯავშნა');expect(app.locator('#md')).to_have_css('opacity','1');page.wait_for_timeout(450)
- panel=child.locator('#md').bounding_box();ack=child.locator('#md .mb').first.bounding_box()
- assert ack['y']>=panel['y'] and ack['y']+ack['height']<=panel['y']+panel['height']+1,'Confirmation button is clipped'
- capture(page,out,f'tablet-{engine}-booking-confirmed.png')
- app.locator('#md .mb').first.tap();app.locator('#nav [data-go="cal"]').tap();expect(app.locator('#p-cal')).to_have_class('page on')
- page.wait_for_timeout(700);assert app.locator('#grid .card').count()>0
- page.locator('#try-preview').tap();page.locator('#inspector-close').tap();expect(page.locator('#device-labels')).not_to_have_class(re.compile('is-hidden'))
+ assert len(page.frames)==1
+ assert not any('meetab-demo.html' in u for u in requests)
+ button.tap()
+ page.locator('#inspector-close').tap()
+ expect(page.locator('#device-labels')).not_to_have_class(re.compile('is-hidden'))
  page.locator('[data-explore="jbl-artwork"]').tap();expect(page.locator('dialog.mobile-project-dialog')).to_be_visible();page.locator('.mobile-dialog-close').tap()
  if engine=='chromium':
   page.locator('#focus-canvas canvas').evaluate("c=>c.getContext('webgl2').getExtension('WEBGL_lose_context').loseContext()")
@@ -121,7 +120,7 @@ def check_phone(browser,base,out,engine):
   page.locator('[data-explore="tsero"]').tap();expect(page.locator('.mobile-project-dialog')).to_be_visible()
  assert not errors,errors;assert not failed,failed
  assert not [u for u in requests if not u.startswith((base,'data:','blob:'))]
- result={'engine':engine,'status':'PASS','profile':'phone DPR 2','responsive_sizes':sizes,'unchangedResizeBufferWrites':unchanged,'outline':alignment,'checks':['correct gallery texture inspected in screenshot','outer-body outline beyond all four screen corners','native touch navigation, text entry, guests and duration','local booking submitted and confirmed','calendar cards rendered','no CSS transform on phone app','same iframe and form state on return','tablet and live screen stay aligned through orientation changes','44px core controls','no horizontal overflow, errors or failed/external requests']}
+ result={'engine':engine,'status':'PASS','profile':'phone DPR 2','responsive_sizes':sizes,'unchangedResizeBufferWrites':unchanged,'outline':alignment,'checks':['desktop home screenshot loaded','Try Now opens the HUD and desktop notice','white text at 55% black opacity','notice and tablet stay aligned after resizing and rotation','no live app document requested or mounted','one neon sweep per entry','close and reopen','no errors or failed/external requests']}
  c.close();return result
 
 def check_desktop(browser,base,out,engine):
@@ -130,6 +129,8 @@ def check_desktop(browser,base,out,engine):
  page.locator('[data-explore="jbl"]').click();expect(page.locator('#try-preview')).to_be_visible();expect(page.locator('#tablet-outline')).to_be_hidden();expect(page.locator('#try-preview')).to_be_enabled()
  print('Desktop focus ready',engine,flush=True)
  page.locator('#try-preview').click();expect(page.locator('#screen-portal')).to_be_visible()
+ expect(page.locator('#desktop-demo-notice')).to_be_hidden()
+ expect(page.locator('#screen-portal iframe')).to_be_visible()
  check_sweep(page)
  active=outer_outline(page)
  frame=page.locator('#museum-frame').bounding_box();actual=page.locator('#screen-portal').bounding_box();xs=[p[0] for p in active['inner']];ys=[p[1] for p in active['inner']]
