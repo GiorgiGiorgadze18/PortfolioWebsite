@@ -1,4 +1,10 @@
-# v0.14.4 — one sweep and embedded touch controls
+# v0.14.5 — static phone preview
+
+The phone regression checks the actual desktop home screenshot request, the existing HUD, the 55% black overlay with white text, the one-pass neon, exit and reopening, and alignment through portrait and landscape sizes. It verifies that a fresh touch visit never downloads or mounts the live MeeTab app. The desktop check exercises the live booking navigation, outer neon and reduced motion.
+
+[Mobile preview screenshot](../tests/artifacts/v0.14.5/mobile-notice.png) · [WebKit phone report](../tests/artifacts/v0.14.5/webkit-phone.json) · [Rules for future apps](../AGENTS.md)
+
+## Historical v0.14.4 measurements
 
 The regression verifies that the tablet outline appears on Try Now, completes one lap and fades out. It checks the in-tablet iframe through orientation changes, native touch booking and state retention after reopening. The desktop run checks projection through zoom and reduced motion. The phone runs use browser emulation. [Chromium phone results](../tests/artifacts/v0.14.4/chromium-phone.json) · [WebKit phone results](../tests/artifacts/v0.14.4/webkit-phone.json) · [Booking confirmation inside the tablet](../tests/artifacts/v0.14.4/embedded-booking.png).
 

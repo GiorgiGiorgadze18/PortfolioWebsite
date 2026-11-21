@@ -110,6 +110,12 @@
 }
 .screen-portal[hidden]{display:none}
 .screen-portal[inert]{pointer-events:none}
+.screen-portal iframe[hidden],#desktop-demo-notice[hidden]{display:none}
+.is-static-demo .screen-portal{background:transparent;container-type:inline-size}
+.is-static-demo .demo-instructions{display:none}
+#desktop-demo-notice{position:absolute;inset:0;display:grid;place-items:center;padding:12px;background:rgb(0 0 0 / 55%);color:#fff;text-align:center;font:700 16px/1.3 var(--font-body)}
+#desktop-demo-notice strong{max-width:24ch;font-size:clamp(14px,5cqi,24px)}
+
 .demo-announcement{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
 @media(prefers-reduced-motion:reduce){#showroom-canvas,.demo-workspace,.project-inspector .inspector-body,.project-inspector .inspector-buttons,.inspector-year,#try-preview{transition:opacity .12s}#tablet-outline rect{animation:none!important}}
 

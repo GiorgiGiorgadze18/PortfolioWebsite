@@ -1,0 +1,83 @@
+{
+  "base_url": "http://127.0.0.1:8014/PortfolioWebsite/",
+  "physical_device_testing": false,
+  "scenarios": [
+    {
+      "engine": "webkit",
+      "status": "PASS",
+      "profile": "phone DPR 2",
+      "responsive_sizes": [
+        [
+          360,
+          800
+        ],
+        [
+          430,
+          932
+        ],
+        [
+          844,
+          390
+        ],
+        [
+          390,
+          844
+        ]
+      ],
+      "unchangedResizeBufferWrites": 0,
+      "outline": {
+        "outsidePortal": true,
+        "visible": true,
+        "outer": [
+          [
+            13.67056,
+            82.220691
+          ],
+          [
+            376.32956,
+            82.220691
+          ],
+          [
+            376.32956,
+            325.894086245863
+          ],
+          [
+            13.67056,
+            325.894086245863
+          ]
+        ],
+        "inner": [
+          [
+            32.828101,
+            103.139823
+          ],
+          [
+            357.171899,
+            103.139823
+          ],
+          [
+            357.171899,
+            305.854697
+          ],
+          [
+            32.828101,
+            305.854697
+          ]
+        ],
+        "centerDistance": 0.4398713811605761,
+        "fill": "none",
+        "stroke": "rgb(184, 246, 255)"
+      },
+      "checks": [
+        "desktop home screenshot loaded",
+        "Try Now opens the HUD and desktop notice",
+        "white text at 55% black opacity",
+        "notice and tablet stay aligned after resizing and rotation",
+        "no live app document requested or mounted",
+        "one neon sweep per entry",
+        "close and reopen",
+        "no errors or failed/external requests"
+      ]
+    }
+  ]
+}

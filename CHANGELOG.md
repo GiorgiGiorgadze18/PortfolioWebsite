@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.14.5 — 2026-11-21
+
+- The 3D tablet shows a capture of MeeTab's desktop home screen. On mobile, Try Now opens the existing HUD and puts a 55% black overlay with a white message over the tablet display: “Try the interactive demo on a computer.”
+- Phones use the still image throughout the visit and skip the live app download. Desktop visitors use the interactive demo in the tablet.
+- Make the screenshot, dimmed notice and desktop-only app the standard for future showroom integrations. See the [repository instructions](AGENTS.md).
+
 ## 0.14.4 — 2026-11-20
 
 [PR #6](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/6)

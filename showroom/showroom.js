@@ -20,8 +20,8 @@ const PROJECTS = [
     scene:{position:[1.53,1.10,-.55],rotation:[-.03,-.18,.01],scale:.93},camera:{position:[0,.3,9.5],focusPosition:[-1.30,.02,3.2],scale:1.18},interactiveUrl:null
   },
   {
-    id:'jbl',name:'MeeTab',shortName:'MEETAB',category:'uiux',categoryLabel:'Interactive App · Web Preview',year:'2026',device:'tablet',cover:"meetab-preview.jpg",screenshots:['project-jbl.png'],accent:'#51BCE5',
-    description:'MeeTab meeting-room app. Explore navigation, calendar and local sample bookings. Try the demo on the tablet screen. Portfolio demo uses sample data; account access is disabled.',
+    id:'jbl',name:'MeeTab',shortName:'MEETAB',category:'uiux',categoryLabel:'Interactive App · Web Preview',year:'2026',device:'tablet',cover:"meetab-preview.jpg",screenArtwork:"meetab-desktop-home.webp",screenshots:['project-jbl.png'],accent:'#51BCE5',
+    description:'MeeTab meeting-room app. Explore navigation, calendar and local sample bookings. The portfolio demo uses sample data; account access is disabled.',
     scene:{position:[-.95,-.84,.55],rotation:[-.13,-.16,.035],scale:.98},camera:{position:[0,.3,9.6],focusPosition:[-1.60,-.08,3.35],scale:1.35},interactiveUrl:null
   },
   {
@@ -63,9 +63,9 @@ reduceMotionMedia.addEventListener('change',()=>{
  displayItems.forEach(d=>{d.magnet.x=d.magnet.y=0;});
  if(movingTween)tickTween(movingTween.start+movingTween.duration);
 });
-const coarsePointer = matchMedia('(pointer:coarse)');
+const mobilePreviewMedia = matchMedia('(max-width:600px), (pointer:coarse)');
 const compactView=()=>matchMedia('(max-width:600px)').matches;
-const touchDemo = () => previewActive && (compactView() || coarsePointer.matches);
+const staticPreview = () => previewActive && mobilePreviewMedia.matches;
 let focusScale=1,stageVisible=true,lastRendered=0,resizePending=false;
 const GALLERY_PIXEL_RATIO=innerWidth<900?1.0:1.18;
 const FOCUS_PIXEL_RATIO=innerWidth<900?1.15:1.58;
@@ -127,7 +127,7 @@ function useOriginalArtwork(mesh,p,w,h){
  texture.magFilter=THREE.LinearFilter;
  texture.generateMipmaps=true;
  mesh.material.map=texture;mesh.material.color.set('#ffffff');mesh.material.needsUpdate=true;
- const candidates=assetFallbacks(p.cover);
+ const candidates=assetFallbacks(p.screenArtwork ?? p.cover);
  const loadCandidate=(idx=0)=>{
   if(idx>=candidates.length){renderPlaceholder('ORIGINAL IMAGE UNAVAILABLE');texture.needsUpdate=true;return;}
   const image=new Image();image.decoding='async';image.crossOrigin='anonymous';
@@ -142,6 +142,7 @@ function useOriginalArtwork(mesh,p,w,h){
    const edgeShade=ctx.createLinearGradient(0,0,0,ch);edgeShade.addColorStop(0,'rgba(255,255,255,.06)');edgeShade.addColorStop(.18,'rgba(255,255,255,.02)');edgeShade.addColorStop(1,'rgba(0,0,0,.10)');ctx.fillStyle=edgeShade;ctx.fillRect(0,0,cw,ch);
    const gloss=ctx.createLinearGradient(0,0,cw,ch);gloss.addColorStop(0,'rgba(255,255,255,.08)');gloss.addColorStop(.18,'rgba(255,255,255,.03)');gloss.addColorStop(.52,'rgba(255,255,255,0)');ctx.fillStyle=gloss;ctx.fillRect(0,0,cw,ch*.7);
    texture.needsUpdate=true;mesh.userData.artworkReady=true;
+   if(p.screenArtwork)staticFramePainted=false;
   };
   image.onerror=()=>loadCandidate(idx+1);
   image.src=candidates[idx];
@@ -548,18 +549,20 @@ function revealShowroom(){
  const root=document.documentElement,previous=root.style.scrollBehavior;
  root.style.scrollBehavior='auto';frame.scrollIntoView({behavior:'auto',block:'center'});root.style.scrollBehavior=previous;
 }
-function openPanel(){if(compactView())resizeScene();frame.classList.add('is-focused');$('#inspector-backdrop').classList.add('is-open');inspector.classList.add('is-open');inspector.setAttribute('aria-hidden','false');inspector.inert=false;resetButton.hidden=false;requestAnimationFrame(()=>{closeButton.focus({preventScroll:true});revealShowroom();});const tryButton=$('#try-preview');tryButton.hidden=selected?.id!=='jbl';tryButton.disabled=selected?.id==='jbl'&&!meeTabReady;tryButton.textContent=tryButton.disabled?'Loading demo…':previewActive?'Exit preview':'Try now ↗';sendPreviewMode();}
+function openPanel(){if(compactView())resizeScene();frame.classList.add('is-focused');$('#inspector-backdrop').classList.add('is-open');inspector.classList.add('is-open');inspector.setAttribute('aria-hidden','false');inspector.inert=false;resetButton.hidden=false;requestAnimationFrame(()=>{closeButton.focus({preventScroll:true});revealShowroom();});updatePreviewButton();sendPreviewMode();}
 function closePanel(){environmentZoomTarget=1;previewActive=false;demoBlend=0;syncDemoWorkspace();$('#try-preview').hidden=true;frame.classList.remove('is-focused');$('#inspector-backdrop').classList.remove('is-open');inspector.classList.remove('is-open');inspector.setAttribute('aria-hidden','true');inspector.inert=true;resetButton.hidden=true;sendPreviewMode();}
 function chooseProject(id){environmentZoom=environmentZoomTarget=1;if(camera){camera.zoom=1;camera.updateProjectionMatrix();}const p=ARCHIVE_PROJECTS.find(x=>x.id===id);if(!p)return;if(p===JBL_ARTWORK){openAccessibleDetail(p);return}if(!sceneReady){openAccessibleDetail(p);return}if(p.id==='jbl')ensureMeeTabPortal();revealShowroom();if(state==='focus'&&selected?.id===id){closeProject();return}if(state!=='gallery'){queuedSelection=id;closeProject();return}hovered=keyboardHovered=pointerHovered=null;pointerInGallery=false;frame.classList.remove('has-hover');selected=p;state='opening';setForeground(id,true);frame.classList.add('is-focused');setPanel(p);setAccent(p.accent);labelsEl.classList.add('is-hidden');labelsEl.inert=true;$('#stage-caption').textContent=`${p.shortName} · DRAG TO ROTATE ±15°`;lightAccent.position.set(...p.scene.position).add(new THREE.Vector3(0,.72,2.95));const d=displayItems.get(id);const focusEuler=p.device==='phone'?new THREE.Euler(-.06,.14,.015):p.device==='monitor'?new THREE.Euler(-.02,-.08,0):p.device==='tablet'?new THREE.Euler(-.07,-.10,.02):new THREE.Euler(-.03,-.11,0);const quat=new THREE.Quaternion().setFromEuler(focusEuler);focusTilt.x=focusTilt.y=0;focusTiltTarget.x=focusTiltTarget.y=0;const layout=focusLayout(p);focusScale=layout.scale;runTween(id,layout.position,quat,focusScale,new THREE.Vector3(...p.camera.position),900,()=>{state='focus';selectedBaseQuaternion=quat.clone();openPanel()})}
 function closeProject(){if(state==='gallery'||state==='closing')return;const p=selected;if(!p)return;closePanel();state='closing';setAccent('#D0BCFF');const d=displayItems.get(p.id);focusTilt.x=focusTilt.y=0;focusTiltTarget.x=focusTiltTarget.y=0;runTween(p.id,d.homePosition,d.homeQuaternion,d.homeScale,new THREE.Vector3(startLook.x,startLook.y,startLook.z),750,()=>{setForeground(p.id,false);state='gallery';selected=null;selectedBaseQuaternion=null;const returnControl=document.querySelector(`[data-explore="${p.id}"]`);if(frame.contains(document.activeElement))returnControl?.focus({preventScroll:true});labelsEl.classList.remove('is-hidden');labelsEl.inert=false;$('#stage-caption').textContent='CURATED EXPERIENCES';if(queuedSelection){const next=queuedSelection;queuedSelection=null;chooseProject(next)}})}
 let persistentMeeTabFrame=null,meeTabReady=false;
 function ensureMeeTabPortal(){
+ if(mobilePreviewMedia.matches)return;
  const portal=$('#screen-portal');
  if(persistentMeeTabFrame)return persistentMeeTabFrame;
  const iframe=document.createElement('iframe');iframe.title='MeeTab interactive preview';iframe.width='1280';iframe.height='800';iframe.setAttribute('sandbox','allow-scripts');iframe.referrerPolicy='no-referrer';
  persistentMeeTabFrame=iframe;
- portal.replaceChildren(iframe);
- iframe.src=new URL("./meetab-demo.html?v=0.14.4",import.meta.url).href;
+ iframe.hidden=true;
+ portal.append(iframe);
+ iframe.src=new URL("./meetab-demo.html?v=0.14.5",import.meta.url).href;
  return iframe;
 }
 function sendPreviewMode() {
@@ -567,46 +570,80 @@ function sendPreviewMode() {
  persistentMeeTabFrame.contentWindow.postMessage({
   showroom: true,
   kind: 'interactive',
-  enabled: previewActive && state === 'focus' && selected?.id === 'jbl',
-  mobile: touchDemo(),
+  enabled: !mobilePreviewMedia.matches && previewActive && state === 'focus' && selected?.id === 'jbl',
  }, '*');
 }
 
 let demoBlend=0;
-let touchFramePainted=false;
+let staticFramePainted=false;
+function updatePreviewButton() {
+ const button = $('#try-preview');
+ button.hidden = state !== 'focus' || selected?.id !== 'jbl';
+ button.disabled = !previewActive && !mobilePreviewMedia.matches && !meeTabReady;
+ button.textContent = previewActive ? 'Exit preview' : button.disabled ? 'Loading demo…' : 'Try now ↗';
+}
+
 function syncDemoWorkspace(){
- touchFramePainted=false;
+ staticFramePainted=false;
+ const mobile=mobilePreviewMedia.matches;
  frame.classList.toggle('is-demo',previewActive);
- const workspace=$('.demo-workspace');workspace.inert=!previewActive;
+ frame.classList.toggle('is-static-demo',staticPreview());
+ const workspace=$('.demo-workspace');
+ const restoreFocus=!previewActive&&(workspace.contains(document.activeElement)||document.activeElement===persistentMeeTabFrame);
+ workspace.inert=!previewActive;
+ $('#screen-portal').inert=!previewActive||mobile;
+ if(!previewActive)$('#screen-portal').hidden=true;
+ updatePreviewButton();
  $('#try-preview').setAttribute('aria-pressed',String(previewActive));
- const interactive=previewActive&&state==='focus'&&selected?.id==='jbl';
- $('#screen-portal').inert=!interactive;
- $('.interaction-hint').innerHTML=previewActive?'<span class="hint-dot"></span> INTERACTIVE MODE · MEETAB':'<span class="hint-dot"></span> SELECT A DEVICE TO EXPLORE';
- $('#demo-announcement').textContent=previewActive?'Demo active. MeeTab is ready to use.':'Preview ended. Your progress is saved.';
- if(!previewActive&&(workspace.contains(document.activeElement)||document.activeElement===persistentMeeTabFrame))$('#try-preview').focus({preventScroll:true});
+ $('#demo-status').textContent=mobile?'PREVIEW ACTIVE':'DEMO ACTIVE';
+ $('#demo-description').textContent=mobile
+  ?$('#desktop-demo-notice strong').textContent
+  :'MeeTab is live inside the tablet. Try a booking — your progress stays here.';
+ const hint=$('.interaction-hint');
+ hint.innerHTML='<span class="hint-dot"></span>';
+ hint.append(previewActive
+  ?(mobile?'DESKTOP DEMO · MEETAB':'INTERACTIVE MODE · MEETAB')
+  :'SELECT A DEVICE TO EXPLORE');
+ const announcement=$('#demo-announcement');
+ if(staticPreview()){
+  announcement.textContent=$('#demo-description').textContent;
+ }else if(previewActive){
+  announcement.textContent=meeTabReady?'Demo active. MeeTab is ready to use.':'Loading MeeTab demo.';
+ }else{
+  announcement.textContent=mobile?'Preview ended.':'Preview ended. Your progress is saved.';
+ }
+ if(restoreFocus)$('#try-preview').focus({preventScroll:true});
 }
 
 function activateInteractiveScreen(p){
  if(p.id!=='jbl'||state!=='focus')return;
- ensureMeeTabPortal();previewActive=!previewActive;
- $('#try-preview').textContent=previewActive?'Exit preview':'Try now ↗';
- syncDemoWorkspace();sendPreviewMode();
+ ensureMeeTabPortal();
+ previewActive=!previewActive;
+ syncDemoWorkspace();
+ sendPreviewMode();
 }
+
+mobilePreviewMedia.addEventListener('change',()=>{
+ if(selected?.id==='jbl')ensureMeeTabPortal();
+ syncDemoWorkspace();
+ sendPreviewMode();
+ queueSceneResize();
+});
 function zoomEnvironment(delta,mode=0){
- if(state!=='focus'||touchDemo()||!Number.isFinite(delta))return;
+ if(state!=='focus'||staticPreview()||!Number.isFinite(delta))return;
  const units=delta*(mode===1?16:mode===2?frame.clientHeight:1);
  environmentZoomTarget=clamp(environmentZoomTarget*Math.exp(-clamp(units,-160,160)*.0018),.75,1.65);
 }
 window.addEventListener('wheel',event=>{
- if(state!=='focus'||touchDemo()||event.ctrlKey||!frame.contains(event.target)||inspector.contains(event.target))return;
+ if(state!=='focus'||staticPreview()||event.ctrlKey||!frame.contains(event.target)||inspector.contains(event.target))return;
  event.preventDefault();event.stopPropagation();zoomEnvironment(event.deltaY,event.deltaMode);
 },{capture:true,passive:false});
 window.addEventListener('message',event=>{
  if(!persistentMeeTabFrame||event.source!==persistentMeeTabFrame.contentWindow||event.data?.showroom!==true)return;
  const msg=event.data;
- if(msg.kind==='ready'){meeTabReady=true;const button=$('#try-preview');button.disabled=false;button.textContent=previewActive?'Exit preview':'Try now ↗';sendPreviewMode();}
- if(msg.kind==='wheel'&&!touchDemo())zoomEnvironment(msg.delta,msg.mode);
- if(msg.kind==='drag'&&!touchDemo()&&state==='focus'&&selected?.id==='jbl'){
+ if(msg.kind==='ready'){meeTabReady=true;updatePreviewButton();if(previewActive&&!mobilePreviewMedia.matches)syncDemoWorkspace();sendPreviewMode();}
+ if(msg.kind==='wheel'&&!staticPreview())zoomEnvironment(msg.delta,msg.mode);
+ if(msg.kind==='drag'&&!staticPreview()&&state==='focus'&&selected?.id==='jbl'){
   if(!Number.isFinite(msg.dx)||!Number.isFinite(msg.dy))return;
   focusTiltTarget.y=clamp(focusTiltTarget.y+clamp(msg.dx,-100,100)*.0034,-.26,.26);
   focusTiltTarget.x=clamp(focusTiltTarget.x+clamp(msg.dy,-100,100)*.0029,-.19,.19);
@@ -625,13 +662,16 @@ function positionScreenPortal(){
   return [(v.x*.5+.5)*vw,(-v.y*.5+.5)*vh];
  });
  const inFocus=state==='focus'&&selected?.id==='jbl';
- const showScreen=inFocus&&meeTabReady&&previewActive;
+ const showNotice=inFocus&&staticPreview();
+ const showApp=inFocus&&previewActive&&!mobilePreviewMedia.matches&&meeTabReady;
+ const showScreen=showNotice||showApp;
  portal.hidden=!showScreen;
- const responsive=touchDemo();
+ portal.inert=!showApp;
+ $('#desktop-demo-notice').hidden=!showNotice;
+ if(persistentMeeTabFrame)persistentMeeTabFrame.hidden=!showApp;
  let width=1280,height=800,left=0,top=0,transform='none';
- if(responsive){
-  // The tablet faces the camera. The iframe can use the projected screen's
-  // actual size and layout coordinates for native touch and scrolling.
+ if(showNotice){
+  // The camera-facing screen uses its projected size so the notice stays readable.
   width=points[1][0]-points[0][0];
   height=points[3][1]-points[0][1];
   [left,top]=points[0];
@@ -708,7 +748,7 @@ function setupInteraction(){
  });
  front.addEventListener('pointermove',event=>{
   if(state!=='focus'||!selected)return;
-  if(touchDemo())return;
+  if(staticPreview())return;
   if(touches.has(event.pointerId)){touches.set(event.pointerId,{x:event.clientX,y:event.clientY});if(touches.size===2){const [a,b]=[...touches.values()],distance=Math.hypot(a.x-b.x,a.y-b.y);if(pinchDistance)environmentZoomTarget=clamp(environmentZoomTarget*distance/pinchDistance,.75,1.65);pinchDistance=distance;event.preventDefault();return;}}
   const r=front.getBoundingClientRect();const px=(event.clientX-r.left)/r.width*2-1,py=1-(event.clientY-r.top)/r.height*2;
   if(dragOrbit&&pointerDownPos){
@@ -732,9 +772,9 @@ function setupInteraction(){
 function render(time){
  if(!sceneReady)return;
  requestAnimationFrame(render);
- if(resizePending){resizePending=false;touchFramePainted=false;resizeScene();}
- // Touch mode holds the 3D tablet still. The live HTML and CSS sweep animate independently.
- if(touchDemo()&&touchFramePainted){lastFrame=time;return;}
+ if(resizePending){resizePending=false;staticFramePainted=false;resizeScene();}
+ // Hold the tablet still behind the phone notice. The CSS sweep runs independently.
+ if(staticPreview()&&staticFramePainted){lastFrame=time;return;}
  if(document.hidden||(!stageVisible&&!movingTween)){lastFrame=time;return;}
  if(compactView()&&time-lastRendered<1000/30)return;lastRendered=time;
  const delta=Math.min(.055,(time-lastFrame)/1000||.016),speed=Math.min(1,delta*(motionReduced()?30:7.5));
@@ -826,7 +866,7 @@ function render(time){
    const qx=new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(1,0,0),focusTilt.x);
    const qy=new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0,1,0),focusTilt.y);
    demoBlend=motionReduced()?(previewActive?1:0):THREE.MathUtils.lerp(demoBlend,previewActive?1:0,1-Math.exp(-delta*8));
-   if(touchDemo()){
+   if(staticPreview()){
     d.group.quaternion.copy(camera.quaternion);
     d.group.scale.setScalar(focusScale);
    }else{
@@ -837,7 +877,7 @@ function render(time){
  }
 // Project against the current frame, before either renderer updates world matrices.
  environmentZoom=motionReduced()?environmentZoomTarget:THREE.MathUtils.lerp(environmentZoom,environmentZoomTarget,1-Math.exp(-delta*9));
- camera.zoom=touchDemo()?1:environmentZoom*(1+.055*demoBlend);camera.updateProjectionMatrix();
+ camera.zoom=staticPreview()?1:environmentZoom*(1+.055*demoBlend);camera.updateProjectionMatrix();
  scene.updateMatrixWorld(true);
  camera.updateMatrixWorld(true);
  renderLabels(time);
@@ -846,7 +886,7 @@ function render(time){
  if(glowSprite)glowSprite.material.opacity=0;
  camera.layers.set(0);renderer.render(scene,camera);
  if(activeLayerOn){camera.layers.set(ACTIVE_LAYER);focusRenderer.render(scene,camera);camera.layers.set(0);}
- touchFramePainted=touchDemo();
+ staticFramePainted=staticPreview();
 }
 
 
@@ -861,7 +901,7 @@ function installKeys(){document.addEventListener('keydown',e=>{if(e.key==='Escap
 function showFallback(detail){$('#tablet-outline').setAttribute('hidden','');$('#screen-portal').hidden=true;stageLoading.classList.add('is-done');fallbackEl.hidden=false;labelsEl.hidden=true;if(detail)console.warn('[showroom] fallback:',detail);sceneReady=false;}
 async function initialize(){try{const c=document.createElement('canvas');if(!(c.getContext('webgl2')||c.getContext('webgl'))){showFallback('WebGL not available');return}
  // No framework migration: dynamically load Three.js only on devices capable of the 3D showroom.
- await new Promise((resolve,reject)=>{const script=document.createElement('script');script.src=new URL('./vendor/three.js',import.meta.url).href;script.onload=resolve;script.onerror=()=>reject(new Error('Local Three.js engine did not load'));document.head.append(script)});THREE=window.SHOWROOM_THREE;if(!THREE)throw new Error('Local Three.js engine did not load');makeScene();frame.appendChild($('#try-preview'));if(!compactView())ensureMeeTabPortal();setupInteraction();stageLoading.classList.add('is-done');window.addEventListener('resize',queueSceneResize,{passive:true});const ro=new ResizeObserver(queueSceneResize);ro.observe(frame);const visibility=new IntersectionObserver(entries=>{stageVisible=entries[entries.length-1].isIntersecting},{rootMargin:'150px'});visibility.observe(frame);
+ await new Promise((resolve,reject)=>{const script=document.createElement('script');script.src=new URL('./vendor/three.js',import.meta.url).href;script.onload=resolve;script.onerror=()=>reject(new Error('Local Three.js engine did not load'));document.head.append(script)});THREE=window.SHOWROOM_THREE;if(!THREE)throw new Error('Local Three.js engine did not load');makeScene();frame.appendChild($('#try-preview'));ensureMeeTabPortal();setupInteraction();stageLoading.classList.add('is-done');window.addEventListener('resize',queueSceneResize,{passive:true});const ro=new ResizeObserver(queueSceneResize);ro.observe(frame);const visibility=new IntersectionObserver(entries=>{stageVisible=entries[entries.length-1].isIntersecting},{rootMargin:'150px'});visibility.observe(frame);
  }catch(error){console.error('[showroom] 3D initialization failed',error);showFallback(error.message)}}
 setMenu();buildArchive();installKeys();initialize();
 
