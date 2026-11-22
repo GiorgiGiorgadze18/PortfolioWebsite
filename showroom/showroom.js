@@ -18,12 +18,12 @@ const PROJECTS = [
       note:'Demo only · Sign-in, payment and delivery are simulated',
     },
     description:'The name “Tsero” comes from the Georgian word for stork, symbolizing delivery, movement and speed. The app explores modern, user-centered food ordering with browsing, courier tracking, checkout, payment, and profile settings. Branding, logo, color system, UI/UX and interactive prototyping were designed by Giorgi Giorgadze. This is a personal portfolio concept.',
-    scene:{position:[-3.25,-.2,.47],rotation:[-.12,.28,-.04],scale:1},camera:{position:[0,.28,9.6],focusPosition:[-1.75,-.06,3.55],scale:1.34}
+    scene:{position:[-1.75,-.2,1.2],rotation:[-.06,.12,-.02],scale:1},camera:{position:[0,.28,9.6],focusPosition:[-1.75,-.06,3.55],scale:1.34}
   },
   {
-    id:'tomford',name:'Tom Ford Tobacco Vanille',shortName:'TOBACCO VANILLE',category:'graphics',categoryLabel:'Product Visual · Graphics',year:'2025',device:'monitor',cover:'project-tomford.png',screenshots:['project-tomford.png'],accent:'#C08A55',
+    id:'tomford',name:'Tom Ford Tobacco Vanille',shortName:'TOBACCO VANILLE',artAspect:627/1115,category:'graphics',categoryLabel:'Product Visual · Graphics',year:'2025',device:'poster',cover:'project-tomford.png',screenshots:['project-tomford.png'],accent:'#C08A55',
     description:'A Photoshop product-visual composition exploring warm tobacco and vanilla tones through lighting, texture and smoke. The artwork emphasizes color harmony and visual depth around the fragrance. This is an independently created design exercise, not an official brand campaign.',
-    scene:{position:[1.53,1.10,-.55],rotation:[-.03,-.18,.01],scale:.93},camera:{position:[0,.3,9.5],focusPosition:[-1.30,.02,3.2],scale:1.18}
+    scene:{position:[-2.65,-.21,1.23],rotation:[-.045,.08,0],scale:1},camera:{position:[0,.3,9.5],focusPosition:[-1.30,.02,3.2],scale:1.18}
   },
   {
     id:'jbl',name:'MeeTab',shortName:'MEETAB',category:'uiux',categoryLabel:'Interactive App · Web Preview',year:'2026',device:'tablet',cover:"meetab-preview.jpg",screenArtwork:"meetab-desktop-home.webp",screenshots:['project-jbl.png'],accent:'#51BCE5',
@@ -34,16 +34,26 @@ const PROJECTS = [
       note:'Sample data only · Account access is disabled',
     },
     description:'MeeTab meeting-room app. Explore navigation, calendar and local sample bookings. The portfolio demo uses sample data; account access is disabled.',
-    scene:{position:[-.95,-.84,.55],rotation:[-.13,-.16,.035],scale:.98},camera:{position:[0,.3,9.6],focusPosition:[-1.60,-.08,3.35],scale:1.35}
+    scene:{position:[1.65,-.535,1.18],rotation:[-.045,-.08,.01],scale:1.12},camera:{position:[0,.3,9.6],focusPosition:[-1.60,-.08,3.35],scale:1.35}
   },
   {
-    id:'earthhour',name:'Earth Hour Campaign Poster',shortName:'EARTH HOUR',category:'graphics',categoryLabel:'Poster Design · Graphics',year:'2025',device:'poster',cover:'project-earthhour.png',screenshots:['project-earthhour.png'],accent:'#94B57B',
+    id:'earthhour',name:'Earth Hour Campaign Poster',shortName:'EARTH HOUR',artAspect:1797/2542,category:'graphics',categoryLabel:'Poster Design · Graphics',year:'2025',device:'poster',cover:'project-earthhour.png',screenshots:['project-earthhour.png'],accent:'#94B57B',
     description:'A vector campaign poster created in Adobe Illustrator, emphasizing custom shape building, vector path precision and controlled typography. The composition is designed for scalable print and digital presentation. Independent portfolio work.',
-    scene:{position:[3.82,-.30,.25],rotation:[-.02,-.12,-.01],scale:.87},camera:{position:[0,.3,9.5],focusPosition:[-1.56,.05,3.38],scale:1.33}
+    scene:{position:[0,-.21,1.23],rotation:[-.045,0,0],scale:1},camera:{position:[0,.3,9.5],focusPosition:[-1.56,.05,3.38],scale:1.33}
   }
 ];
-const JBL_ARTWORK = {id:'jbl-artwork',name:'JBL Premium Audio Campaign',shortName:'JBL',category:'graphics',categoryLabel:'Advertising · Graphics',year:'2025',device:'artwork',cover:'project-jbl.png',description:'JBL Premium Audio Campaign — advertising visual by Giorgi Giorgadze. Independent portfolio work.'};
-const ARCHIVE_PROJECTS = [...PROJECTS, JBL_ARTWORK];
+PROJECTS.push({
+ id:'jbl-artwork',name:'JBL Premium Audio Campaign',shortName:'JBL',category:'graphics',
+ categoryLabel:'Advertising · Graphics',year:'2025',device:'poster',artAspect:2480/3508,
+ cover:'project-jbl.png',accent:'#FF785C',
+ description:'JBL Premium Audio Campaign — advertising visual by Giorgi Giorgadze. Independent portfolio work.',
+ scene:{position:[2.65,-.21,1.23],rotation:[-.045,-.08,0],scale:1},
+ camera:{position:[0,.3,9.5],focusPosition:[-1.56,.05,3.38],scale:1.33},
+});
+const ARCHIVE_PROJECTS = PROJECTS;
+const projectSide = project => project.category==='graphics'?'graphics':'apps';
+let shelfAssembly, shelfSides;
+let gallerySide='apps', shelfTurn=null, queuedSide=null;
 const LOCAL_BASE = ['http:','https:','file:'].includes(location.protocol) ? new URL('./assets/',location.href).href : './assets/';
 
 const assetUrl=(filename)=>filename.startsWith('data:')?filename:window.SHOWROOM_EMBEDDED_ASSETS?.[filename]||`${window.SHOWROOM_ASSET_BASE||LOCAL_BASE}${encodeURIComponent(filename)}`;
@@ -67,7 +77,7 @@ const ACTIVE_LAYER=1; let activeLayerOn=false, pointerDownPos=null;
 const startLook={x:0,y:.55,z:10.45};
 const reduceMotionMedia=matchMedia('(prefers-reduced-motion: reduce)');
 const motionReduced=()=>reduceMotionMedia.matches;
-let pointerInGallery=false, relay=null, keyboardHovered=null, pointerHovered=null;
+let pointerInGallery=false, keyboardHovered=null, pointerHovered=null;
 let environmentZoom=1,environmentZoomTarget=1,previewActive=false;
 reduceMotionMedia.addEventListener('change',()=>{
  if(!motionReduced())return;
@@ -84,7 +94,7 @@ const FOCUS_PIXEL_RATIO=innerWidth<900?1.15:1.58;
 
 function setAccent(hex){frame.style.setProperty('--active-light',hex);halo.style.background=`radial-gradient(ellipse 46% 54% at 48% 48%, ${hex}19, transparent 70%)`;if(THREE&&accentTarget) accentTarget.set(hex);}
 function setMenu(){const toggle=$('#menu-toggle'),menu=$('#mobile-menu');toggle.addEventListener('click',()=>{const open=toggle.getAttribute('aria-expanded')==='true';toggle.setAttribute('aria-expanded',String(!open));menu.hidden=open;});menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.hidden=true;toggle.setAttribute('aria-expanded','false')}));window.addEventListener('scroll',()=>$('#navbar').classList.toggle('is-scrolled',scrollY>16),{passive:true})}
-function archiveCard(p){const article=document.createElement('article');article.className='archive-card';article.setAttribute('role','listitem');article.dataset.category=p.category;article.innerHTML=`<div class="archive-thumb"><img loading="lazy" src="${assetUrl(p.cover)}" alt="${p.name} original design artwork"></div><div class="archive-info"><span class="archive-kind">${p.categoryLabel.toUpperCase()}</span><h3>${p.name}</h3><p>${p.year} · ${p.device.toUpperCase()} DISPLAY</p><button type="button" class="archive-action" data-explore="${p.id}">EXPLORE PROJECT &nbsp; ↗</button></div>`;const img=article.querySelector('img');let candidateIndex=0;const candidateUrls=assetFallbacks(p.cover);img.src=candidateUrls[0];img.addEventListener('error',()=>{candidateIndex++;if(candidateIndex<candidateUrls.length){img.src=candidateUrls[candidateIndex];return;}img.hidden=true;const note=document.createElement('span');note.className='archive-image-unavailable';note.textContent='Artwork not loaded · '+p.shortName;article.querySelector('.archive-thumb').append(note)});article.querySelector('button').addEventListener('click',()=>chooseProject(p.id));return article;}
+function archiveCard(p){const article=document.createElement('article');article.className='archive-card';article.setAttribute('role','listitem');article.dataset.category=p.category;article.innerHTML=`<div class="archive-thumb"><img loading="lazy" src="${assetUrl(p.cover)}" alt="${p.name} original design artwork"></div><div class="archive-info"><span class="archive-kind">${p.categoryLabel.toUpperCase()}</span><h3>${p.name}</h3><p>${p.year} · ${p.device.toUpperCase()} DISPLAY</p><button type="button" class="archive-action" data-explore="${p.id}">EXPLORE PROJECT &nbsp; ↗</button></div>`;const img=article.querySelector('img');let candidateIndex=0;const candidateUrls=assetFallbacks(p.cover);img.src=candidateUrls[0];img.addEventListener('error',()=>{candidateIndex++;if(candidateIndex<candidateUrls.length){img.src=candidateUrls[candidateIndex];return;}img.hidden=true;const note=document.createElement('span');note.className='archive-image-unavailable';note.textContent='Artwork not loaded · '+p.shortName;article.querySelector('.archive-thumb').append(note)});article.querySelector('button').addEventListener('click',()=>{if(p.id==='jbl-artwork')openAccessibleDetail(p);else chooseProject(p.id);});return article;}
 function buildArchive(){ARCHIVE_PROJECTS.forEach(p=>projectGrid.append(archiveCard(p)));document.querySelectorAll('.filter').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.filter').forEach(x=>{x.classList.toggle('is-active',x===b);x.setAttribute('aria-pressed',String(x===b))});projectGrid.querySelectorAll('.archive-card').forEach(card=>{card.hidden=b.dataset.filter!=='all'&&card.dataset.category!==b.dataset.filter;});}));}
 let modal;
 function openAccessibleDetail(p){if(!modal){modal=document.createElement('dialog');modal.className='mobile-project-dialog';modal.innerHTML='<div class="mobile-project-inner"><button class="mobile-dialog-close" type="button" aria-label="Close">×</button><p class="mobile-dialog-kicker"></p><h2></h2><div class="mobile-dialog-art"><img alt=""></div><p class="mobile-dialog-description"></p><a class="mobile-dialog-link" target="_blank" rel="noopener noreferrer">VIEW ORIGINAL ARTWORK ↗</a></div>';document.body.append(modal);modal.querySelector('button').addEventListener('click',()=>modal.close());modal.addEventListener('click',e=>{if(e.target===modal)modal.close()});const s=document.createElement('style');s.textContent='.mobile-project-dialog{border:1px solid rgba(208,188,255,.32);border-radius:13px;box-shadow:0 30px 100px rgba(0,0,0,.8);background:#0A0E1A;color:white;max-width:min(660px,calc(100vw - 32px));max-height:90vh;padding:0}.mobile-project-dialog::backdrop{background:rgba(3,5,12,.86);backdrop-filter:blur(10px)}.mobile-project-inner{padding:25px;position:relative}.mobile-dialog-close{position:absolute;right:13px;top:11px;font-size:26px;border:0;background:transparent;color:white}.mobile-dialog-kicker{font-size:10px;color:#D0BCFF;letter-spacing:.18em}.mobile-project-inner h2{font:800 26px Inter,sans-serif;margin:8px 0 20px;line-height:1.2}.mobile-dialog-art{display:flex;justify-content:center;background:#050711;max-height:42vh}.mobile-dialog-art img{max-height:42vh;max-width:100%;object-fit:contain}.mobile-dialog-description{color:rgba(255,255,255,.7);font:400 13px/1.7 Inter,sans-serif}.mobile-dialog-link{display:inline-block;margin-top:9px;padding:11px 16px;border:1px solid #D0BCFF;color:#D0BCFF;border-radius:30px;font:700 10px Space Grotesk,sans-serif}';document.head.append(s)}modal.querySelector('.mobile-dialog-kicker').textContent=p.categoryLabel.toUpperCase()+' · '+p.year;modal.querySelector('h2').textContent=p.name;const img=modal.querySelector('img');img.src=assetUrl(p.cover);img.alt=p.name+' artwork';modal.querySelector('.mobile-dialog-description').textContent=p.description;modal.querySelector('.mobile-dialog-link').href=assetUrl(p.cover);if(!modal.open)modal.showModal();}
@@ -165,7 +175,7 @@ function useOriginalArtwork(mesh,p,w,h){
 
 function addProjectHit(group,p){group.traverse(o=>{if(o.isMesh){o.userData.projectId=p.id;meshes.push(o)}})}
 function deviceFactory(p){const group=new THREE.Group();const colorMat=metal();let w,h,d;
- switch(p.device){case'phone':w=1.12;h=2.24;d=.11;break;case'tablet':w=2.3;h=1.5175;d=.09;break;case'monitor':w=2.68;h=1.64;d=.13;break;default:w=1.65;h=2.18;d=.095;}
+ switch(p.device){case'phone':w=1.12;h=2.24;d=.11;break;case'tablet':w=2.3;h=1.5175;d=.09;break;case'monitor':w=2.68;h=1.64;d=.13;break;default:h=2.25;w=(h-.18)*p.artAspect+.16;d=.095;}
  const bodyRadius=p.device==='phone'?.19:.12;
  const body=roundedPlate(w,h,d,bodyRadius,colorMat);group.add(body);
  const bezel=roundedPlate(w-.09,h-.09,.028,p.device==='phone'?.14:.09,surfaceMaterial({color:'#111520',metalness:.18,roughness:.88,clearcoat:.05}));bezel.position.z=.045;group.add(bezel);
@@ -232,7 +242,7 @@ function alignSoftBeam(beam){
  const {origin,end}=beam.userData;
  const axis=beamSideScratch.axis??=new THREE.Vector3(),view=beamSideScratch.view??=new THREE.Vector3();
  const side=beamSideScratch.side??=new THREE.Vector3(),point=beamSideScratch.point??=new THREE.Vector3();
- axis.subVectors(end,origin).normalize();view.subVectors(camera.position,origin).normalize();
+ axis.subVectors(end,origin).normalize();view.subVectors(beam.parent.worldToLocal(view.copy(camera.position)),origin).normalize();
  side.crossVectors(axis,view).normalize();if(side.lengthSq()<.01)side.set(1,0,0);
  const position=beam.geometry.attributes.position;
  for(let i=0;i<4;i++){
@@ -272,34 +282,6 @@ function makeLightParticles(origin,height,index){
   transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,toneMapped:false
  });
  const points=new THREE.Points(geometry,material);points.frustumCulled=false;scene.add(points);return points;
-}
-function buildLightRelay(){
- const material=new THREE.ShaderMaterial({
-  uniforms:{uOpacity:{value:0},uColor:{value:new THREE.Color('#D0BCFF')}},
-  vertexShader:`varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}`,
-  fragmentShader:`varying vec2 vUv;uniform float uOpacity;uniform vec3 uColor;
-   void main(){vec2 p=(vUv-0.5)*2.0;float a=exp(-p.x*p.x*4.0-p.y*p.y*5.0);
-    a*=1.0-smoothstep(0.65,1.0,max(abs(p.x),abs(p.y)));
-    gl_FragColor=vec4(uColor,a*uOpacity);}`,
-  transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,toneMapped:false
- });
- const mesh=new THREE.Mesh(new THREE.PlaneGeometry(1.65,.20),material);
- mesh.rotation.x=-Math.PI/2;mesh.position.set(-5.6,-1.389,-1.455);scene.add(mesh);
- relay={mesh,lastId:null,targetX:-5.6,amount:0,age:0,colorTarget:new THREE.Color('#D0BCFF')};
-}
-function updateLightRelay(activeId,delta){
- if(!relay)return;
- if(activeId!==relay.lastId){
-  relay.lastId=activeId;
-  const project=PROJECTS.find(p=>p.id===activeId);
-  if(project){relay.targetX=project.scene.position[0];relay.colorTarget.set(project.accent);relay.age=0;}
- }
- relay.age+=delta;
- const reduced=motionReduced(),k=1-Math.exp(-delta*(reduced?28:7));
- relay.mesh.position.x=reduced?relay.targetX:THREE.MathUtils.lerp(relay.mesh.position.x,relay.targetX,k);
- relay.amount=THREE.MathUtils.lerp(relay.amount,activeId?1:0,k);
- relay.mesh.material.uniforms.uColor.value.lerp(relay.colorTarget,k);
- relay.mesh.material.uniforms.uOpacity.value=relay.amount*(reduced?.18:(.16+.72*Math.exp(-relay.age*1.5)));
 }
 function makeShadowTexture(){
  if(shadowTexture)return shadowTexture;
@@ -349,82 +331,121 @@ function buildReflectionEnvironment(){
  return t;
 }
 function buildArchitecture(){
- const wall=new THREE.MeshStandardMaterial({map:grainTexture('linen'),color:'#A5A6B8',metalness:.06,roughness:.82,bumpMap:grainTexture('linen'),bumpScale:.035});
- const back=new THREE.Mesh(new THREE.BoxGeometry(14,6.3,.35),wall);
- back.position.set(0,.05,-2.25);back.receiveShadow=true;scene.add(back);
- const floor=new THREE.Mesh(new THREE.BoxGeometry(17,.12,4.4),material('#252A37',.48,.43));
- floor.position.set(0,-2.02,-.3);floor.receiveShadow=true;scene.add(floor);
- // Warm satin walnut shelves, champagne bronze edging, cool lavender lights.
- const walnut=surfaceMaterial({map:grainTexture('walnut'),color:'#BBA390',roughness:.48,metalness:.08,clearcoat:.17,bumpMap:grainTexture('walnut'),bumpScale:.025});
+ const wallTexture=grainTexture('linen');
+ const wall=surfaceMaterial({map:wallTexture,color:'#A5A6B8',roughness:.82});
+ const walnutTexture=grainTexture('walnut');
+ const walnut=surfaceMaterial({map:walnutTexture,color:'#BBA390',roughness:.48,metalness:.08,bumpMap:walnutTexture,bumpScale:.025});
  const brass=material('#947B5D',.77,.28);
- for(const [y,shelfWidth,shelfX,shelfZ] of [[-1.5,12.1,0,-.78],[-.36,3.45,1.52,-.82]]){
-  const shelf=new THREE.Mesh(new THREE.BoxGeometry(shelfWidth,.2,1.45),walnut);
-  shelf.position.set(shelfX,y,shelfZ);shelf.castShadow=true;shelf.receiveShadow=true;scene.add(shelf);
-  const edge=new THREE.Mesh(new THREE.BoxGeometry(shelfWidth,.038,.04),brass);
-  edge.position.set(shelfX,y+.093,shelfZ+.72);scene.add(edge);
-  const lip=new THREE.Mesh(new THREE.BoxGeometry(shelfWidth,.035,.08),material('#444153',.58,.3));
-  lip.position.set(shelfX,y-.074,shelfZ+.744);scene.add(lip);
-  const ledMat=new THREE.MeshBasicMaterial({color:'#D0BCFF'});
-  const led=new THREE.Mesh(new THREE.BoxGeometry(shelfWidth-.12,.012,.022),ledMat);
-  led.position.set(shelfX,y-.105,shelfZ+.77);scene.add(led);accentReactiveMaterials.push(ledMat);
-  const rearLedMat=new THREE.MeshBasicMaterial({color:'#A79AF8'});
-  const rearLed=new THREE.Mesh(new THREE.BoxGeometry(shelfWidth-.18,.010,.018),rearLedMat);
-  rearLed.position.set(shelfX,y+.106,shelfZ-.68);scene.add(rearLed);accentReactiveMaterials.push(rearLedMat);
-  const rearGlow=new THREE.Mesh(new THREE.PlaneGeometry(shelfWidth-.2,.18),new THREE.MeshBasicMaterial({color:'#A79AF8',transparent:true,opacity:.055,depthWrite:false}));
-  rearGlow.position.set(shelfX,y-.01,shelfZ-.715);scene.add(rearGlow);accentReactiveMaterials.push(rearGlow.material);
- }
- for(const x of [-5.95,0,5.95]){
-  const col=new THREE.Mesh(new THREE.BoxGeometry(.11,5.55,.64),material('#5B5260',.7,.38));
-  col.position.set(x,-.15,-1.65);scene.add(col);
-  const inset=new THREE.Mesh(new THREE.BoxGeometry(.024,5.3,.01),brass);
-  inset.position.set(x+.057,-.15,-1.308);scene.add(inset);
- }
- const horiz=new THREE.Mesh(new THREE.BoxGeometry(12,.09,.24),brass);
- horiz.position.set(0,2.3,-1.66);scene.add(horiz);
- for(let i=0;i<8;i++){
-  const rail=new THREE.Mesh(new THREE.BoxGeometry(.018,3,.016),material(i%2?'#4A4455':'#3A3747',.58,.46));
-  rail.position.set(-5.15+i*1.47,0,-2.025);scene.add(rail);
- }
- const backGlowMat=new THREE.MeshBasicMaterial({color:'#9272CD',transparent:true,opacity:.04,depthWrite:false});
- const backGlow=new THREE.Mesh(new THREE.PlaneGeometry(10,4.4),backGlowMat);
- backGlow.position.set(0,0,-2.012);scene.add(backGlow);accentReactiveMaterials.push(backGlowMat);
- const wallWash=new THREE.Mesh(new THREE.PlaneGeometry(12.6,4.9),new THREE.MeshBasicMaterial({map:makeShadowTexture(),transparent:true,opacity:.16,depthWrite:false}));
- wallWash.position.set(0,-.48,-1.99);wallWash.scale.set(1.22,1.1,1);scene.add(wallWash);
- // Soft baked contact occlusion complements real-time shadow maps without a heavy SSAO pass.
- const shadowMap=makeShadowTexture();
- for(const project of PROJECTS){
-  const [x,y,z]=project.scene.position;
-  const shelfY=(project.id==='tomford')?-.255:-1.38;
-  const shadow=new THREE.Mesh(new THREE.PlaneGeometry(project.device==='monitor'?2.75:1.68,.95),new THREE.MeshBasicMaterial({map:shadowMap,transparent:true,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-1}));
-  shadow.rotation.x=-Math.PI/2;shadow.position.set(x,shelfY,z-.20);shadow.scale.set(1.04,1,1);scene.add(shadow);
+ const led=new THREE.MeshBasicMaterial({color:'#D0BCFF'});
+ accentReactiveMaterials.push(led);
+
+ function box(parent, size, position, material, castsShadow=false){
+  const mesh=new THREE.Mesh(new THREE.BoxGeometry(...size),material);
+  mesh.position.set(...position);
+  mesh.castShadow=castsShadow;
+  mesh.receiveShadow=true;
+  parent.add(mesh);
  }
 
+ box(scene,[18,7,.3],[0,.4,-6.5],wall);
+ box(scene,[19,.12,16],[0,-2.02,0],material('#252A37',.48,.43));
+ shelfAssembly=new THREE.Group();
+ scene.add(shelfAssembly);
+ shelfSides={apps:new THREE.Group(),graphics:new THREE.Group()};
+ shelfSides.graphics.rotation.y=Math.PI;
+ shelfAssembly.add(shelfSides.apps,shelfSides.graphics);
+
+ // One shared cabinet, with decks facing outward on both sides.
+ box(shelfAssembly,[8.8,4.6,.24],[0,.48,0],wall,true);
+ for(const x of [-4.4,4.4]){
+  box(shelfAssembly,[.13,4.7,.58],[x,.46,0],brass,true);
+ }
+ for(const side of Object.values(shelfSides)){
+  box(side,[8.8,.2,1.72],[0,-1.5,.97],walnut,true);
+  box(side,[8.8,.10,1.35],[0,2.78,.78],walnut,true);
+  box(side,[8.8,.035,.04],[0,-1.426,1.84],brass);
+  box(side,[8.64,.014,.026],[0,-1.59,1.8],led);
+  box(side,[8.6,.014,.027],[0,2.72,1.42],led);
+  for(const x of [-3.25,-1.65,0,1.65,3.25]){
+   box(side,[.023,3.92,.027],[x,.64,.135],brass);
+  }
+ }
 }
+
+function updateShelfControls(){
+ const moving=Boolean(shelfTurn);
+ document.querySelectorAll('[data-shelf-side]').forEach(button=>{
+  button.setAttribute('aria-pressed',String(button.dataset.shelfSide===gallerySide));
+  button.setAttribute('aria-disabled',String(moving));
+ });
+ labelsEl.inert=moving||state!=='gallery';
+ labelsEl.classList.toggle('is-hidden',labelsEl.inert);
+ for(const label of labelsEl.children){
+  const project=PROJECTS.find(p=>p.id===label.dataset.id);
+  label.hidden=projectSide(project)!==gallerySide;
+ }
+}
+
+function showShelfSide(side){
+ if(shelfTurn||side===gallerySide)return;
+ if(state!=='gallery'){
+  queuedSide=side;
+  closeProject();
+  return;
+ }
+ hovered=keyboardHovered=pointerHovered=null;
+ pointerInGallery=false;
+ setAccent('#D0BCFF');
+ frame.classList.remove('has-hover');
+ shelfTurn={side,from:shelfAssembly.rotation.y,to:side==='graphics'?Math.PI:0,start:performance.now()};
+ updateShelfControls();
+ if(motionReduced())tickShelfTurn(performance.now());
+}
+
+function tickShelfTurn(time){
+ if(!shelfTurn)return;
+ const turn=shelfTurn;
+ const t=motionReduced()?1:clamp((time-turn.start)/950,0,1);
+ const smooth=t*t*(3-2*t);
+ shelfAssembly.rotation.y=THREE.MathUtils.lerp(turn.from,turn.to,smooth);
+ if(t<1)return;
+ gallerySide=turn.side;
+ shelfTurn=null;
+ frame.dataset.shelf=gallerySide;
+ $('#stage-caption').textContent=gallerySide==='apps'?'INTERACTIVE APPS':'GRAPHIC DESIGN';
+ updateShelfControls();
+ if(queuedSelection){
+  const id=queuedSelection;
+  queuedSelection=null;
+  chooseProject(id);
+ }
+}
+
 function buildShowroomSpots(){
  const softMap=makeGlowTexture();
  for(const [index,p] of PROJECTS.entries()){
   const [x]=p.scene.position;
-  const top=2.94,fixtureZ=-.45;
+  const top=2.63,fixtureZ=1.25;
   const fixture=new THREE.Mesh(new THREE.CylinderGeometry(.205,.235,.19,48),material('#A18C72',.67,.33));
-  fixture.position.set(x,top,fixtureZ);scene.add(fixture);
+  fixture.position.set(x,top,fixtureZ);
   const ring=new THREE.Mesh(new THREE.TorusGeometry(.166,.019,12,48),new THREE.MeshBasicMaterial({color:'#FFF3E8',transparent:true,opacity:0,depthWrite:false}));
-  ring.rotation.x=Math.PI/2;ring.position.set(x,top-.11,fixtureZ);scene.add(ring);
-  // Every optical component shares the emitting ring's exact world-space centre.
-  const origin=ring.position.clone(),end=new THREE.Vector3(x,-1.95,fixtureZ);
+  ring.rotation.x=Math.PI/2;ring.position.set(x,top-.11,fixtureZ);
+  // Every optical component shares the emitting ring's centre in the rotating shelf.
+  const origin=ring.position.clone(),end=new THREE.Vector3(x,-1.38,fixtureZ);
   const beam=makeSoftBeam(origin,end);
   const flare=new THREE.Sprite(new THREE.SpriteMaterial({map:softMap,color:'#FFF7F0',transparent:true,opacity:0,depthWrite:false,blending:THREE.AdditiveBlending}));
-  flare.position.copy(origin);flare.scale.set(.94,.94,1);scene.add(flare);
+  flare.position.copy(origin);flare.scale.set(.94,.94,1);
   const spot=new THREE.SpotLight('#FFF9EF',0,10.5,.62,.72,1.05);
   spot.position.copy(origin);spot.target.position.copy(end);
   // Stable shadow topology: fading a light must never disable its cast shadow.
   spot.visible=!compactView();spot.castShadow=true;spot.shadow.mapSize.set(512,512);spot.shadow.bias=-.00012;spot.shadow.normalBias=.018;
   spot.shadow.autoUpdate=false;spot.shadow.needsUpdate=true;
-  scene.add(spot.target);scene.add(spot);
   const particles=makeLightParticles(origin,origin.y-end.y,index);
+  const parent=shelfSides[projectSide(p)];
+  parent.add(fixture,ring,beam,flare,particles,spot,spot.target);
   exhibitSpots.set(p.id,{spot,ring,beam,flare,particles,amount:0});
  }
- buildLightRelay();
-}
+ }
 
 
 function makeScene(){scene=new THREE.Scene();scene.fog=new THREE.FogExp2('#060A14',.016);const rect=sceneHost.getBoundingClientRect();camera=new THREE.PerspectiveCamera(42,Math.max(rect.width,1)/Math.max(rect.height,1),.05,120);camera.position.set(startLook.x,startLook.y,startLook.z);camera.lookAt(0,-.08,0);cameraTarget=new THREE.Vector3(0,-.08,0);renderer=new THREE.WebGLRenderer({alpha:true,antialias:true,powerPreference:compactView()?'low-power':'high-performance',precision:'highp'});renderer.setClearAlpha(0);renderer.setSize(rect.width,rect.height,false);renderer.setPixelRatio(Math.min(devicePixelRatio,compactView()?1.25:GALLERY_PIXEL_RATIO));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.02;renderer.shadowMap.enabled=!compactView();renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.useLegacyLights=false;sceneHost.appendChild(renderer.domElement);renderer.domElement.addEventListener('webglcontextlost',event=>{event.preventDefault();closeProject();showFallback('Graphics context lost');});
@@ -443,13 +464,23 @@ function makeScene(){scene=new THREE.Scene();scene.fog=new THREE.FogExp2('#060A1
  const warmFill=new THREE.PointLight('#F5CF9D',0.95,7,2.2);warmFill.position.set(-4.6,-.55,2.2);scene.add(warmFill);
  accentTarget=new THREE.Color('#D0BCFF');accentCurrent=accentTarget.clone();scene.environment=buildReflectionEnvironment();scene.environmentIntensity=.18;buildArchitecture();
  glowSprite=new THREE.Sprite(new THREE.SpriteMaterial({map:makeGlowTexture(),color:'#D0BCFF',transparent:true,opacity:0,depthWrite:false,blending:THREE.AdditiveBlending}));glowSprite.scale.set(4.6,3.6,1);glowSprite.position.set(0,.4,-1.65);
- PROJECTS.forEach(p=>{const d=deviceFactory(p);scene.add(d.group);displayItems.set(p.id,d);makeArtworkOverlay(p)});buildShowroomSpots();scene.traverse(o=>{if(o.isLight)o.layers.enable(ACTIVE_LAYER)});
- raycaster=new THREE.Raycaster();pointer=new THREE.Vector2(10,10);sceneReady=true;initialTime=performance.now();labels();resizeScene();render(initialTime);
+ PROJECTS.forEach(p=>{const d=deviceFactory(p);shelfSides[projectSide(p)].add(d.group);displayItems.set(p.id,d);makeArtworkOverlay(p)});buildShowroomSpots();scene.traverse(o=>{if(o.isLight)o.layers.enable(ACTIVE_LAYER)});
+ raycaster=new THREE.Raycaster();pointer=new THREE.Vector2(10,10);sceneReady=true;initialTime=performance.now();labels();updateShelfControls();
+ $('#shelf-switch').hidden=false;
+ for(const button of document.querySelectorAll('[data-shelf-side]')){
+  button.addEventListener('click',()=>{
+   if(shelfTurn)return;
+   queuedSelection=null;
+   if(button.dataset.shelfSide===gallerySide){queuedSide=null;return;}
+   showShelfSide(button.dataset.shelfSide);
+  });
+ }
+ resizeScene();render(initialTime);
 }
 function labels(){PROJECTS.forEach((p,i)=>{const b=document.createElement('button');b.className='device-label';b.type='button';b.dataset.id=p.id;b.innerHTML=`<strong>${p.shortName}</strong><small>${p.categoryLabel.toUpperCase()}</small>`;b.style.opacity='0';b.style.left='-300px';b.addEventListener('click',()=>chooseProject(p.id));b.addEventListener('pointerenter',()=>{keyboardHovered=null;setHovered(p.id);});b.addEventListener('pointerleave',()=>setHovered(null));b.addEventListener('focus',()=>setHovered(p.id,'keyboard'));b.addEventListener('blur',()=>setHovered(null,'keyboard'));labelsEl.append(b)})}
 function setHovered(id,source='pointer'){
  if(source==='keyboard')keyboardHovered=id;else pointerHovered=id;
- if(state!=='gallery')return;
+ if(state!=='gallery'||shelfTurn)return;
  const next=keyboardHovered||pointerHovered;
  if(hovered===next)return;
  hovered=next;setAccent(PROJECTS.find(p=>p.id===next)?.accent||'#D0BCFF');frame.classList.toggle('has-hover',Boolean(next));
@@ -487,6 +518,7 @@ function positionArtworkOverlays(){
  for(const p of PROJECTS){
   const d=displayItems.get(p.id),node=screenOverlays.get(p.id);
   if(!node||!d?.group.visible||!sceneReady)continue;
+  node.style.visibility=!shelfTurn&&projectSide(p)===gallerySide?'visible':'hidden';
   const w=d.screenDimensions.w*.5,h=d.screenDimensions.h*.5,width=512,height=512*h/w;
   setScreenStyle(node,'height',height+'px');
   // Match the physical screen radius in both axes, before perspective projection.
@@ -521,7 +553,7 @@ function resizeScene(){
  if(!renderer)return;
  const w=sceneHost.clientWidth,h=sceneHost.clientHeight;if(!w||!h)return;
  camera.aspect=w/h;camera.fov=innerWidth<900?49:42;
- startLook.z=compactView()?Math.max(10.45,5/(Math.tan(camera.fov*Math.PI/360)*camera.aspect)+.7):10.45;
+ startLook.z=compactView()?Math.max(10.45,4.85/(Math.tan(camera.fov*Math.PI/360)*camera.aspect)+.7):10.45;
  camera.updateProjectionMatrix();if(state==='gallery')camera.position.z=startLook.z;
  const galleryChanged=fitRenderer(renderer,w,h,Math.min(devicePixelRatio,compactView()?1.25:GALLERY_PIXEL_RATIO));
  const focusChanged=focusRenderer&&fitRenderer(focusRenderer,w,h,Math.min(devicePixelRatio,compactView()?1.25:FOCUS_PIXEL_RATIO));
@@ -555,7 +587,7 @@ function setForeground(id,enabled){
  d.group.traverse(obj=>{if(obj.isMesh)obj.layers.set(enabled?ACTIVE_LAYER:0)});
  activeLayerOn=enabled;focusHost.classList.toggle('is-active',enabled);
 }
-function setPanel(p){$('#inspector-index').textContent=`EXHIBIT ${String(PROJECTS.indexOf(p)+1).padStart(2,'0')} / 04`;$('#inspector-kicker').textContent=p.categoryLabel.toUpperCase();$('#inspector-title').textContent=p.name;$('#inspector-year').textContent=p.year;$('#inspector-description').textContent=p.description;$('#inspector-open').href=p.id==='jbl'?'https://github.com/GiorgiGiorgadze18/MeeTab1.1':assetUrl(p.cover);$('#inspector-open').textContent=p.id==='jbl'?'MEETAB PROJECT ↗':'VIEW ORIGINAL ARTWORK ↗';}
+function setPanel(p){$('#inspector-index').textContent=`EXHIBIT ${String(PROJECTS.indexOf(p)+1).padStart(2,'0')} / 05`;$('#inspector-kicker').textContent=p.categoryLabel.toUpperCase();$('#inspector-title').textContent=p.name;$('#inspector-year').textContent=p.year;$('#inspector-description').textContent=p.description;$('#inspector-open').href=p.id==='jbl'?'https://github.com/GiorgiGiorgadze18/MeeTab1.1':assetUrl(p.cover);$('#inspector-open').textContent=p.id==='jbl'?'MEETAB PROJECT ↗':'VIEW ORIGINAL ARTWORK ↗';}
 function revealShowroom(){
  const rect=frame.getBoundingClientRect();
  if(rect.top>=($('#navbar')?.offsetHeight||0)&&rect.bottom<=innerHeight)return;
@@ -564,8 +596,85 @@ function revealShowroom(){
 }
 function openPanel(){if(compactView())resizeScene();frame.classList.add('is-focused');$('#inspector-backdrop').classList.add('is-open');inspector.classList.add('is-open');inspector.setAttribute('aria-hidden','false');inspector.inert=false;resetButton.hidden=false;requestAnimationFrame(()=>{closeButton.focus({preventScroll:true});revealShowroom();});updatePreviewButton();sendPreviewMode();}
 function closePanel(){environmentZoomTarget=1;previewActive=false;demoBlend=0;syncDemoWorkspace();$('#try-preview').hidden=true;frame.classList.remove('is-focused');$('#inspector-backdrop').classList.remove('is-open');inspector.classList.remove('is-open');inspector.setAttribute('aria-hidden','true');inspector.inert=true;resetButton.hidden=true;sendPreviewMode();}
-function chooseProject(id){environmentZoom=environmentZoomTarget=1;if(camera){camera.zoom=1;camera.updateProjectionMatrix();}const p=ARCHIVE_PROJECTS.find(x=>x.id===id);if(!p)return;if(p===JBL_ARTWORK){openAccessibleDetail(p);return}if(!sceneReady){openAccessibleDetail(p);return}if(p.demo?.bridge)ensureDemoFrame(p);revealShowroom();if(state==='focus'&&selected?.id===id){closeProject();return}if(state!=='gallery'){queuedSelection=id;closeProject();return}hovered=keyboardHovered=pointerHovered=null;pointerInGallery=false;frame.classList.remove('has-hover');selected=p;state='opening';setForeground(id,true);frame.classList.add('is-focused');setPanel(p);setAccent(p.accent);labelsEl.classList.add('is-hidden');labelsEl.inert=true;$('#stage-caption').textContent=`${p.shortName} · DRAG TO ROTATE ±15°`;lightAccent.position.set(...p.scene.position).add(new THREE.Vector3(0,.72,2.95));const d=displayItems.get(id);const focusEuler=p.device==='phone'?new THREE.Euler(-.06,.14,.015):p.device==='monitor'?new THREE.Euler(-.02,-.08,0):p.device==='tablet'?new THREE.Euler(-.035,-.045,0):new THREE.Euler(-.03,-.11,0);const quat=new THREE.Quaternion().setFromEuler(focusEuler);focusTilt.x=focusTilt.y=0;focusTiltTarget.x=focusTiltTarget.y=0;const layout=focusLayout(p);focusScale=layout.scale;runTween(id,layout.position,quat,focusScale,new THREE.Vector3(...p.camera.position),900,()=>{state='focus';selectedBaseQuaternion=quat.clone();openPanel()})}
-function closeProject(){if(state==='gallery'||state==='closing')return;const p=selected;if(!p)return;closePanel();state='closing';setAccent('#D0BCFF');const d=displayItems.get(p.id);focusTilt.x=focusTilt.y=0;focusTiltTarget.x=focusTiltTarget.y=0;runTween(p.id,d.homePosition,d.homeQuaternion,d.homeScale,new THREE.Vector3(startLook.x,startLook.y,startLook.z),750,()=>{setForeground(p.id,false);state='gallery';selected=null;selectedBaseQuaternion=null;const returnControl=document.querySelector(`[data-explore="${p.id}"]`);if(frame.contains(document.activeElement))returnControl?.focus({preventScroll:true});labelsEl.classList.remove('is-hidden');labelsEl.inert=false;$('#stage-caption').textContent='CURATED EXPERIENCES';if(queuedSelection){const next=queuedSelection;queuedSelection=null;chooseProject(next)}})}
+function chooseProject(id){
+ const project=PROJECTS.find(item=>item.id===id);
+ if(!project)return;
+ if(!sceneReady){openAccessibleDetail(project);return;}
+ if(shelfTurn){queuedSelection=id;return;}
+ const side=projectSide(project);
+ if(side!==gallerySide){
+  queuedSelection=id;
+  showShelfSide(side);
+  return;
+ }
+ if(state==='focus'&&selected?.id===id){closeProject();return;}
+ if(state!=='gallery'){queuedSelection=id;closeProject();return;}
+ environmentZoom=environmentZoomTarget=1;
+ camera.zoom=1;
+ camera.updateProjectionMatrix();
+ if(project.demo?.bridge)ensureDemoFrame(project);
+ revealShowroom();
+ hovered=keyboardHovered=pointerHovered=null;
+ pointerInGallery=false;
+ frame.classList.remove('has-hover');
+ selected=project;
+ state='opening';
+ scene.attach(displayItems.get(id).group);
+ setForeground(id,true);
+ frame.classList.add('is-focused');
+ setPanel(project);
+ setAccent(project.accent);
+ updateShelfControls();
+ $('#stage-caption').textContent=project.shortName+' · DRAG TO ROTATE ±15°';
+ lightAccent.position.copy(shelfSides[side].localToWorld(new THREE.Vector3(...project.scene.position))).add(new THREE.Vector3(0,.72,2.95));
+ const angles={phone:[-.06,.14,.015],tablet:[-.035,-.045,0],poster:[-.03,-.11,0]};
+ const quaternion=new THREE.Quaternion().setFromEuler(new THREE.Euler(...angles[project.device]));
+ focusTilt.x=focusTilt.y=0;
+ focusTiltTarget.x=focusTiltTarget.y=0;
+ const layout=focusLayout(project);
+ focusScale=layout.scale;
+ runTween(id,layout.position,quaternion,focusScale,new THREE.Vector3(...project.camera.position),900,()=>{
+  state='focus';
+  selectedBaseQuaternion=quaternion.clone();
+  openPanel();
+ });
+}
+
+function closeProject(){
+ if(state==='gallery'||state==='closing'||!selected)return;
+ const project=selected;
+ const exhibit=displayItems.get(project.id);
+ const side=shelfSides[projectSide(project)];
+ closePanel();
+ state='closing';
+ setAccent('#D0BCFF');
+ focusTilt.x=focusTilt.y=0;
+ focusTiltTarget.x=focusTiltTarget.y=0;
+ const homePosition=side.localToWorld(exhibit.homePosition.clone());
+ const homeQuaternion=side.getWorldQuaternion(new THREE.Quaternion()).multiply(exhibit.homeQuaternion);
+ runTween(project.id,homePosition,homeQuaternion,exhibit.homeScale,new THREE.Vector3(startLook.x,startLook.y,startLook.z),750,()=>{
+  side.attach(exhibit.group);
+  setForeground(project.id,false);
+  state='gallery';
+  selected=null;
+  selectedBaseQuaternion=null;
+  const returnControl=document.querySelector('[data-explore="'+project.id+'"]');
+  if(frame.contains(document.activeElement)&&!document.activeElement.closest('#shelf-switch'))returnControl?.focus({preventScroll:true});
+  updateShelfControls();
+  $('#stage-caption').textContent=gallerySide==='apps'?'INTERACTIVE APPS':'GRAPHIC DESIGN';
+  if(queuedSide){
+   const nextSide=queuedSide;
+   queuedSide=null;
+   showShelfSide(nextSide);
+   return;
+  }
+  if(queuedSelection){
+   const nextProject=queuedSelection;
+   queuedSelection=null;
+   chooseProject(nextProject);
+  }
+ });
+}
 const demoFrames=new Map();
 const currentDemoFrame=()=>demoFrames.get(selected?.id);
 
@@ -771,21 +880,23 @@ function positionTabletOutline(device,visible){
 }
 
 function clientPointer(event){const r=renderer.domElement.getBoundingClientRect();pointer.x=((event.clientX-r.left)/r.width)*2-1;pointer.y=-((event.clientY-r.top)/r.height)*2+1;lastPointer.x=pointer.x;lastPointer.y=pointer.y;}
-function identifyUnderPointer(){raycaster.setFromCamera(pointer,camera);const hits=raycaster.intersectObjects(meshes,false);return hits.length?hits[0].object.userData.projectId:null}
+function identifyUnderPointer(){raycaster.setFromCamera(pointer,camera);const hits=raycaster.intersectObjects(meshes,false).filter(({object})=>
+ projectSide(displayItems.get(object.userData.projectId).project)===gallerySide
+ && displayItems.get(object.userData.projectId).group.visible);return hits.length?hits[0].object.userData.projectId:null}
 function setupInteraction(){
  $('.demo-exit').addEventListener('click',()=>{if(previewActive&&selected)activateInteractiveScreen(selected);});
  $('#try-preview').addEventListener('click',()=>{if(state==='focus'&&selected)activateInteractiveScreen(selected);});
  const canvas=renderer.domElement,front=focusRenderer.domElement;
  canvas.addEventListener('pointermove',event=>{
   clientPointer(event);pointerInGallery=event.pointerType!=='touch';keyboardHovered=null;
-  if(state!=='gallery')return;
+  if(state!=='gallery'||shelfTurn)return;
   const id=identifyUnderPointer();canvas.style.cursor=id?'pointer':'default';setHovered(id);
  });
  canvas.addEventListener('pointerleave',()=>{pointerInGallery=false;lastPointer.x=lastPointer.y=0;setHovered(null);});
  canvas.addEventListener('pointercancel',()=>{pointerInGallery=false;setHovered(null);});
  let galleryPress=null;
- canvas.addEventListener('pointerdown',event=>{if(state!=='gallery')return;clientPointer(event);galleryPress={id:identifyUnderPointer(),x:event.clientX,y:event.clientY};});
- canvas.addEventListener('pointerup',event=>{if(state==='gallery'&&galleryPress?.id&&Math.hypot(event.clientX-galleryPress.x,event.clientY-galleryPress.y)<12)chooseProject(galleryPress.id);galleryPress=null;});
+ canvas.addEventListener('pointerdown',event=>{if(state!=='gallery'||shelfTurn)return;clientPointer(event);galleryPress={id:identifyUnderPointer(),x:event.clientX,y:event.clientY};});
+ canvas.addEventListener('pointerup',event=>{if(state==='gallery'&&!shelfTurn&&galleryPress?.id&&Math.hypot(event.clientX-galleryPress.x,event.clientY-galleryPress.y)<12)chooseProject(galleryPress.id);galleryPress=null;});
  canvas.addEventListener('pointercancel',()=>{galleryPress=null;});
  const touches=new Map();let pinchDistance=0;
  front.addEventListener('pointerdown',event=>{
@@ -830,22 +941,21 @@ function render(time){
  if(resizePending){resizePending=false;staticFramePainted=false;resizeScene();}
  // Hold the tablet still behind the phone notice. The CSS sweep runs independently.
  if(staticPreview()&&staticFramePainted){lastFrame=time;return;}
- if(document.hidden||(!stageVisible&&!movingTween)){lastFrame=time;return;}
+ if(document.hidden||(!stageVisible&&!movingTween&&!shelfTurn)){lastFrame=time;return;}
  if(compactView()&&time-lastRendered<1000/30)return;lastRendered=time;
  const delta=Math.min(.055,(time-lastFrame)/1000||.016),speed=Math.min(1,delta*(motionReduced()?30:7.5));
- lastFrame=time;tickTween(time);
+ lastFrame=time;tickTween(time);tickShelfTurn(time);
  accentCurrent.lerp(accentTarget,1-Math.exp(-delta*2.4));
  lightAccent.color.copy(accentCurrent);if(glowSprite)glowSprite.material.color.copy(accentCurrent);
  accentReactiveMaterials.forEach(m=>m.color.copy(accentCurrent));
  const activeId=modal?.open?null:(state==='gallery'?hovered:(state==='closing'?null:selected?.id));
- updateLightRelay(activeId,delta);
  const targetAmbient=state==='focus'?0.92:(activeId?1.02:0.90);
  const targetKey=state==='focus'?0.98:(activeId?1.18:0.94);
  ambientLight.intensity = damp(ambientLight.intensity,targetAmbient,Math.min(1,delta*4.0),Math.min(1,delta*1.25));
  lightKey.intensity = damp(lightKey.intensity,targetKey,Math.min(1,delta*4.0),Math.min(1,delta*1.25));
  scene.environmentIntensity = damp(scene.environmentIntensity,((activeId||state==='focus')?0.18:0.11),Math.min(1,delta*3.4),Math.min(1,delta*1.05));
  for(const p of PROJECTS){
-  const d=displayItems.get(p.id),targetHover=state==='gallery'&&hovered===p.id?1:0;
+  const d=displayItems.get(p.id),targetHover=state==='gallery'&&!shelfTurn&&hovered===p.id?1:0;
   const targetDim=activeId&&activeId!==p.id?1:0;
   d.hoverAmount = motionReduced()?0:damp(d.hoverAmount,targetHover,1-Math.exp(-delta*6),1-Math.exp(-delta*2.2));
   d.lightAmount=damp(d.lightAmount,activeId===p.id?1:0,1-Math.exp(-delta*(motionReduced()?28:6.0)),1-Math.exp(-delta*(motionReduced()?28:2.2)));
@@ -890,7 +1000,7 @@ function render(time){
   }
  }
  const now=time-initialTime;
- if(state==='gallery'&&!movingTween){
+ if(state==='gallery'&&!movingTween&&!shelfTurn){
   const px=motionReduced()?0:lastPointer.x*.08,py=motionReduced()?0:lastPointer.y*.05;
   camera.position.x+=(px-camera.position.x)*Math.min(1,delta*1.8);
   camera.position.y+=((startLook.y+py)-camera.position.y)*Math.min(1,delta*1.8);
@@ -963,15 +1073,15 @@ function render(time){
 }
 
 
-function installKeys(){document.addEventListener('keydown',e=>{if(e.key==='Escape'&&state!=='gallery'){e.preventDefault();closeProject()}else if((e.key==='ArrowLeft'||e.key==='ArrowRight')&&state==='focus'&&!modal?.open){const n=PROJECTS.length,i=PROJECTS.findIndex(p=>p.id===selected.id),j=(i+(e.key==='ArrowRight'?1:-1)+n)%n;queuedSelection=PROJECTS[j].id;closeProject()}});closeButton.addEventListener('click',closeProject);
+function installKeys(){document.addEventListener('keydown',e=>{if(e.key==='Escape'&&state!=='gallery'){e.preventDefault();closeProject()}else if((e.key==='ArrowLeft'||e.key==='ArrowRight')&&state==='focus'&&!modal?.open){const projects=PROJECTS.filter(p=>projectSide(p)===gallerySide),n=projects.length,i=projects.findIndex(p=>p.id===selected.id),j=(i+(e.key==='ArrowRight'?1:-1)+n)%n;queuedSelection=projects[j].id;closeProject()}});closeButton.addEventListener('click',closeProject);
  // Dismiss even when the user clicks outside the showroom frame (page header/archive).
  document.addEventListener('pointerdown',event=>{
   if(state!=='focus'||event.button!==0||!inspector.classList.contains('is-open'))return;
-  if(inspector.contains(event.target)||event.target.closest('#screen-portal')||focusHost.contains(event.target)||event.target.closest('.stage-actions,#try-preview'))return;
+  if(inspector.contains(event.target)||event.target.closest('#screen-portal')||focusHost.contains(event.target)||event.target.closest('.stage-actions,#try-preview,#shelf-switch'))return;
   closeProject();
  });
  resetButton.addEventListener('click',closeProject);}
-function showFallback(detail){$('#tablet-outline').setAttribute('hidden','');$('#screen-portal').hidden=true;stageLoading.classList.add('is-done');fallbackEl.hidden=false;labelsEl.hidden=true;if(detail)console.warn('[showroom] fallback:',detail);sceneReady=false;}
+function showFallback(detail){$('#shelf-switch').hidden=true;$('#tablet-outline').setAttribute('hidden','');$('#screen-portal').hidden=true;stageLoading.classList.add('is-done');fallbackEl.hidden=false;labelsEl.hidden=true;if(detail)console.warn('[showroom] fallback:',detail);sceneReady=false;}
 async function initialize(){try{const c=document.createElement('canvas');if(!(c.getContext('webgl2')||c.getContext('webgl'))){showFallback('WebGL not available');return}
  // No framework migration: dynamically load Three.js only on devices capable of the 3D showroom.
  await new Promise((resolve,reject)=>{const script=document.createElement('script');script.src=new URL('./vendor/three.js',import.meta.url).href;script.onload=resolve;script.onerror=()=>reject(new Error('Local Three.js engine did not load'));document.head.append(script)});THREE=window.SHOWROOM_THREE;if(!THREE)throw new Error('Local Three.js engine did not load');makeScene();frame.appendChild($('#try-preview'));ensureDemoFrame(PROJECTS.find(p=>p.demo?.bridge));setupInteraction();stageLoading.classList.add('is-done');window.addEventListener('resize',queueSceneResize,{passive:true});const ro=new ResizeObserver(queueSceneResize);ro.observe(frame);const visibility=new IntersectionObserver(entries=>{stageVisible=entries[entries.length-1].isIntersecting},{rootMargin:'150px'});visibility.observe(frame);

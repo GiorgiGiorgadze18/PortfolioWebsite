@@ -57,7 +57,7 @@ def check_phone(browser,base,out,engine):
  expect(page.locator('#showroom-canvas canvas')).to_be_visible();expect(page.locator('#stage-fallback')).not_to_be_visible()
  assert not any('meetab-demo.html' in u for u in requests)
  expect(page.locator('.archive-card')).to_have_count(5)
- for target in page.locator('.device-label').all():assert target.bounding_box()['height']>=44
+ for target in page.locator('.device-label:visible').all():assert target.bounding_box()['height']>=44
  page.wait_for_timeout(900);capture(page,out,f'tablet-{engine}-gallery.png')
  print('Gallery ready',engine,flush=True)
  page.locator('.device-label[data-id="jbl"]').tap()

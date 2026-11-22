@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.16.0 — 2026-11-22
+
+[PR #13](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/13)
+
+- Rotate the 3D shelves 180° with the UI / UX and Graphic Design controls. Tsero and MeeTab face forward. Tobacco Vanille, Earth Hour and JBL artwork are displayed on the reverse.
+- Open the exhibit inspector from either face. On phones, Try Now shows the existing screenshot and desktop prompt for both apps. Reduced motion switches sides immediately.
+
+Verified both faces, all three artworks, desktop demos and the phone portrait and landscape flows in Chromium and WebKit browser emulation. Phone emulation made zero live demo requests. The WebKit MeeTab regression also passed the single outline sweep and unchanged canvas resize checks.
+
+### Constellation and home hero
+
+- Add a shared constellation background to Home, Projects, Contact and About. It uses the existing accents and honors reduced motion. Near the 3D showroom, the background holds a still frame and clips the area covered by the stage.
+- Reveal the original Home heading by letter and its paragraph by word, then enable cursor repulsion on hover-capable devices. Preserve the original text flow and styling.
+- Remove a broken decorative image request on About. The certificate preview and link still use the original file.
+
+Verified all four pages, original wrapping, the hero reveal and pointer behavior in Chromium and WebKit desktop and phone emulation. The browser checks reported zero console errors. The constellation drew zero frames during the active WebGL samples.
+
 ## 0.15.3 — 2026-11-22
 
 [PR #12](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/12)

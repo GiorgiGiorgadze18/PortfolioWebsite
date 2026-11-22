@@ -1,0 +1,55 @@
+#hero :is(.hero__title, .hero__bio):has(> .hero-motion-layer) {
+  position: relative;
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+#hero .hero-motion-layer {
+  position: absolute;
+  inset: 0;
+  visibility: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+
+#hero .hero-motion-active > .hero-motion-layer { visibility: visible; }
+#hero .hero-motion-active > .hero-motion-source { opacity: 0; }
+
+#hero .hero-motion-layer :is(.w, .mk) {
+  position: absolute;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  height: calc(var(--word-height) + .1em);
+  line-height: var(--word-height);
+  padding-bottom: .1em;
+  margin-bottom: -.1em;
+}
+
+#hero .hero-motion-layer :is(.ch, .wd) {
+  position: absolute;
+  display: inline-block;
+  top: 0;
+}
+
+#hero .hero-motion-layer .ch {
+  transform: translateY(110%);
+  transition: transform 1s cubic-bezier(.2,.9,.2,1) var(--intro-delay),
+    translate .35s ease-out, scale .35s ease-out, color .35s;
+}
+
+#hero .hero-motion-layer .wd {
+  transform: translateY(100%);
+  transition: transform .9s cubic-bezier(.2,.9,.2,1) var(--intro-delay),
+    translate .35s ease-out;
+}
+
+html.hero-go #hero .hero-motion-layer :is(.ch, .wd) { transform: none; }
+html.hero-done #hero .hero-motion-layer .w,
+html.hero-words-done #hero .hero-motion-layer .mk { overflow: visible; }
+
+@media (prefers-reduced-motion: reduce) {
+  #hero .hero-motion-active > .hero-motion-layer { visibility: hidden; }
+  #hero .hero-motion-active > .hero-motion-source { opacity: 1; }
+}

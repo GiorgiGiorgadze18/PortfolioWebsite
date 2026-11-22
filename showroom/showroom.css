@@ -178,3 +178,42 @@
   border-left: 1.5px solid currentColor;
   transform: rotate(45deg);
 }
+
+/* The room stays fixed while the cabinet turns between its two exhibits. */
+.shelf-switch {
+  position: absolute;
+  z-index: 12;
+  top: 48px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid #d0bcff33;
+  border-radius: 24px;
+  background: #0a101eea;
+}
+.shelf-switch[hidden], .device-label[hidden] { display: none; }
+.shelf-switch button {
+  min-height: 36px;
+  padding: 0 15px;
+  border: 0;
+  border-radius: 20px;
+  background: transparent;
+  color: #d9ccef;
+  font: 600 11px var(--font-body);
+  white-space: nowrap;
+}
+.shelf-switch button[aria-pressed="true"] {
+  background: #d0bcff;
+  color: #131022;
+}
+.shelf-switch button:focus-visible { outline: 2px solid #83dfff; outline-offset: 2px; }
+.shelf-switch button[aria-disabled="true"] { cursor: wait; }
+.museum-frame.is-focused .shelf-switch { left: 24px; transform: none; }
+@media (max-width: 600px) {
+  .shelf-switch { top: 35px; }
+  .shelf-switch button { min-height: 44px; }
+  .museum-frame.is-focused .shelf-switch { left: 50%; transform: translateX(-50%); }
+  .museum-frame[data-shelf="graphics"] .device-labels { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
