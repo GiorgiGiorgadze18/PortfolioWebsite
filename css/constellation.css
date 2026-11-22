@@ -1,0 +1,22 @@
+body > .constellation {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.constellation ~ :is(main, footer, #site-root) {
+  position: relative;
+  z-index: 1;
+}
+
+/* Let the network show through the existing hero gradients. */
+body:has(> .constellation) :is(.hero, .projects-page-hero) .parallax-bg {
+  background-color: color-mix(in srgb, var(--clr-bg-deep, var(--bg)) 22%, transparent);
+}
+
+body:has(> .constellation) .projects-hero .hero-gradient {
+  background-color: color-mix(in srgb, var(--clr-bg-deep, var(--bg)) 22%, transparent);
+}

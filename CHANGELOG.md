@@ -9,6 +9,12 @@
 
 Verified both faces, all three artworks, desktop demos and the phone portrait and landscape flows in Chromium and WebKit browser emulation. Phone emulation made zero live demo requests. The WebKit MeeTab regression also passed the single outline sweep and unchanged canvas resize checks.
 
+### Constellation and home hero
+
+- Add a shared constellation background to Home, Projects, Contact and About. It uses the existing accents, honors reduced motion and holds a still frame near the 3D showroom.
+- Reveal the original Home heading by letter and its paragraph by word, then enable cursor repulsion on hover-capable devices. Preserve the original text flow and styling.
+- Remove a broken decorative image request on About. The certificate preview and link still use the original file.
+
 ## 0.15.3 — 2026-11-22
 
 [PR #12](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/12)
