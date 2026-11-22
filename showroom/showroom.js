@@ -68,7 +68,7 @@ const closeButton=$('#inspector-close'), resetButton=$('#reset-view');
 const halo=$('#ambient-halo'),shelfSwitch=$('#shelf-switch'),outline=$('#tablet-outline');
 const outlinePaths=outline.querySelectorAll('path');
 let outlinePending=false,outlineRunning=false;
-const focusHost=$('#focus-canvas'), screenHost=$('#screen-overlays'), focusScreenHost=$('#focus-screen-overlays');
+const focusHost=$('#focus-canvas');
 let THREE, renderer, focusRenderer, scene, camera, raycaster, pointer, ambientLight, lightKey, lightAccent, glowSprite;
 let accentTarget, accentCurrent, movingTween, selected=null, hovered=null, cameraTarget, portalPlane;
 let sceneReady=false, state='gallery', queuedSelection=null, lastFrame=0, initialTime=0, lastPointer={x:0,y:0};
@@ -93,8 +93,8 @@ const compactView=()=>compactMedia.matches;
 const staticPreview = () => previewActive && mobilePreviewMedia.matches;
 let stageVisible=true,lastRendered=0,resizePending=false;
 let backdropZoom=NaN,backdropSettlesAt=0;
-const GALLERY_PIXEL_RATIO=innerWidth<900?1.0:1.18;
-const FOCUS_PIXEL_RATIO=innerWidth<900?1.15:1.58;
+const GALLERY_PIXEL_RATIO=1.4;
+const FOCUS_PIXEL_RATIO=1.65;
 
 function setAccent(hex){frame.style.setProperty('--active-light',hex);halo.style.background=`radial-gradient(ellipse 46% 54% at 48% 48%, ${hex}19, transparent 70%)`;if(THREE&&accentTarget) accentTarget.set(hex);}
 function setMenu(){const toggle=$('#menu-toggle'),menu=$('#mobile-menu');toggle.addEventListener('click',()=>{const open=toggle.getAttribute('aria-expanded')==='true';toggle.setAttribute('aria-expanded',String(!open));menu.hidden=open;});menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.hidden=true;toggle.setAttribute('aria-expanded','false')}));window.addEventListener('scroll',()=>$('#navbar').classList.toggle('is-scrolled',scrollY>16),{passive:true})}
@@ -129,7 +129,7 @@ function screenSurface(w,h,p,depth=.103){
  mesh.renderOrder=4;meshes.push(mesh);return mesh;
 }
 function useOriginalArtwork(mesh,p,w,h){
- const cn=document.createElement('canvas'),size=mobilePreviewMedia.matches&&!p.screenArtwork?512:1024;
+ const cn=document.createElement('canvas'),size=512;
  cn.width=w>h?size:Math.round(size*w/h);cn.height=h>=w?size:Math.round(size*h/w);
  const ctx=cn.getContext('2d',{alpha:true}),cw=cn.width,ch=cn.height;
  ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';
@@ -158,16 +158,17 @@ function useOriginalArtwork(mesh,p,w,h){
   if(idx>=candidates.length){renderPlaceholder('ORIGINAL IMAGE UNAVAILABLE');texture.needsUpdate=true;return;}
   const image=new Image();image.decoding='async';image.crossOrigin='anonymous';
   image.onload=()=>{
-   ctx.clearRect(0,0,cw,ch);
-   const cover=Math.max(cw/image.width,ch/image.height);
+   // Keep the screen's native proportions and cap resident texture memory.
+   const limit=Math.min(2048,renderer.capabilities.maxTextureSize);
+   const density=Math.min(image.width/w,image.height/h,limit/Math.max(w,h));
+   cn.width=Math.max(1,Math.round(w*density));
+   cn.height=Math.max(1,Math.round(h*density));
+   ctx.imageSmoothingQuality='high';
+   const cover=Math.max(cn.width/image.width,cn.height/image.height);
    const dw=image.width*cover,dh=image.height*cover;
-   const dx=(cw-dw)/2,dy=(ch-dh)/2;
-   ctx.save();
+   const dx=(cn.width-dw)/2,dy=(cn.height-dh)/2;
    ctx.drawImage(image,dx,dy,dw,dh);
-   ctx.restore();
-   const edgeShade=ctx.createLinearGradient(0,0,0,ch);edgeShade.addColorStop(0,'rgba(255,255,255,.06)');edgeShade.addColorStop(.18,'rgba(255,255,255,.02)');edgeShade.addColorStop(1,'rgba(0,0,0,.10)');ctx.fillStyle=edgeShade;ctx.fillRect(0,0,cw,ch);
-   const gloss=ctx.createLinearGradient(0,0,cw,ch);gloss.addColorStop(0,'rgba(255,255,255,.08)');gloss.addColorStop(.18,'rgba(255,255,255,.03)');gloss.addColorStop(.52,'rgba(255,255,255,0)');ctx.fillStyle=gloss;ctx.fillRect(0,0,cw,ch*.7);
-   texture.needsUpdate=true;mesh.userData.artworkReady=true;
+   texture.needsUpdate=true;
    if(p.screenArtwork)staticFramePainted=false;
   };
   image.onerror=()=>loadCandidate(idx+1);
@@ -189,7 +190,6 @@ function deviceFactory(p){const group=new THREE.Group();const colorMat=metal();l
  const surface=screenSurface(sw,sh,p,.104);group.add(surface);useOriginalArtwork(surface,p,sw,sh);
  const glassMat=surfaceMaterial({color:'#ffffff',metalness:0,roughness:.03,transparent:true,opacity:.02,clearcoat:1,clearcoatRoughness:.05,reflectivity:.38,ior:1.46,depthWrite:false});glassMat.dithering=true;
  const glass=new THREE.Mesh(new THREE.ShapeGeometry(roundedShape(sw,sh,screenRadius(sw,sh,p)),32),glassMat);glass.position.z=.114;group.add(glass);
- const screenBloom=new THREE.Sprite(new THREE.SpriteMaterial({map:makeGlowTexture(),color:'#ffffff',transparent:true,opacity:.08,depthWrite:false,blending:THREE.AdditiveBlending}));screenBloom.position.set(0,0,.118);screenBloom.scale.set(sw*1.18,sh*1.18,1);group.add(screenBloom);
  const screenLight=new THREE.PointLight('#ffffff',0.16,p.device==='monitor'?4.4:(p.device==='tablet'?3.5:3),2);screenLight.position.set(0,0,.72);screenLight.visible=!mobilePreviewMedia.matches;group.add(screenLight);
  if(p.device==='phone'){
   const earpiece=new THREE.Mesh(new THREE.CapsuleGeometry(.038,.065,4,10),new THREE.MeshBasicMaterial({color:'#0A0D14'}));earpiece.rotation.z=Math.PI/2;earpiece.position.set(0,h/2-.092,.111);group.add(earpiece);
@@ -213,7 +213,7 @@ function deviceFactory(p){const group=new THREE.Group();const colorMat=metal();l
  }
  group.position.set(...p.scene.position);group.rotation.set(...p.scene.rotation);group.scale.setScalar(p.scene.scale);addProjectHit(group,p);
  group.traverse(obj=>{if(obj.isMesh&&obj.material?.color){obj.material.userData.baseColor=obj.material.color.clone();}});
- return {hoverAmount:0,dimAmount:0,lightAmount:0,magnet:{x:0,y:0},project:p,group,screen:surface,screenBloom,screenLight,homePosition:group.position.clone(),homeQuaternion:group.quaternion.clone(),homeScale:p.scene.scale,screenDimensions:{w:sw,h:sh},bodyDimensions:{w,h,radius:bodyRadius}};
+ return {hoverAmount:0,dimAmount:0,lightAmount:0,magnet:{x:0,y:0},project:p,group,screen:surface,screenLight,homePosition:group.position.clone(),homeQuaternion:group.quaternion.clone(),homeScale:p.scene.scale,screenDimensions:{w:sw,h:sh},bodyDimensions:{w,h,radius:bodyRadius}};
 }
 function makeGlowTexture(){const c=document.createElement('canvas');c.width=c.height=128;const ctx=c.getContext('2d'),grad=ctx.createRadialGradient(64,64,2,64,64,62);grad.addColorStop(0,'rgba(255,255,255,.58)');grad.addColorStop(.15,'rgba(255,255,255,.32)');grad.addColorStop(.45,'rgba(255,255,255,.11)');grad.addColorStop(1,'rgba(255,255,255,0)');ctx.fillStyle=grad;ctx.fillRect(0,0,128,128);return new THREE.CanvasTexture(c)}
 // Camera-facing *world-anchored* haze. The emitter never billboards away from its lamp.
@@ -486,10 +486,10 @@ function buildShowroomSpots(){
  }
 
 
-function makeScene(){scene=new THREE.Scene();scene.fog=new THREE.FogExp2('#060A14',.016);const rect=sceneHost.getBoundingClientRect();camera=new THREE.PerspectiveCamera(42,Math.max(rect.width,1)/Math.max(rect.height,1),.05,120);camera.position.set(startLook.x,startLook.y,startLook.z);camera.lookAt(0,-.08,0);cameraTarget=new THREE.Vector3(0,-.08,0);renderer=new THREE.WebGLRenderer({alpha:true,antialias:true,powerPreference:mobilePreviewMedia.matches?'low-power':'high-performance',precision:'highp'});renderer.setClearAlpha(0);renderer.setSize(rect.width,rect.height,false);renderer.setPixelRatio(Math.min(devicePixelRatio,mobilePreviewMedia.matches?1:GALLERY_PIXEL_RATIO));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.02;renderer.shadowMap.enabled=!mobilePreviewMedia.matches;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.useLegacyLights=false;sceneHost.appendChild(renderer.domElement);renderer.domElement.addEventListener('webglcontextlost',event=>{event.preventDefault();closeProject();showFallback('Graphics context lost');});
+function makeScene(){scene=new THREE.Scene();scene.fog=new THREE.FogExp2('#060A14',.016);const rect=sceneHost.getBoundingClientRect();camera=new THREE.PerspectiveCamera(42,Math.max(rect.width,1)/Math.max(rect.height,1),.05,120);camera.position.set(startLook.x,startLook.y,startLook.z);camera.lookAt(0,-.08,0);cameraTarget=new THREE.Vector3(0,-.08,0);renderer=new THREE.WebGLRenderer({alpha:true,antialias:true,powerPreference:mobilePreviewMedia.matches?'low-power':'high-performance',precision:'highp'});renderer.setClearAlpha(0);renderer.setSize(rect.width,rect.height,false);renderer.setPixelRatio(Math.min(devicePixelRatio,GALLERY_PIXEL_RATIO));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.02;renderer.shadowMap.enabled=!mobilePreviewMedia.matches;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.useLegacyLights=false;sceneHost.appendChild(renderer.domElement);renderer.domElement.addEventListener('webglcontextlost',event=>{event.preventDefault();closeProject();showFallback('Graphics context lost');});
  focusRenderer=new THREE.WebGLRenderer({alpha:true,antialias:true,powerPreference:mobilePreviewMedia.matches?'low-power':'high-performance',precision:'highp'});
  focusRenderer.setClearColor(0x000000,0);focusRenderer.setSize(rect.width,rect.height,false);
- focusRenderer.setPixelRatio(Math.min(devicePixelRatio,mobilePreviewMedia.matches?1.12:FOCUS_PIXEL_RATIO));
+ focusRenderer.setPixelRatio(Math.min(devicePixelRatio,FOCUS_PIXEL_RATIO));
  focusRenderer.outputColorSpace=THREE.SRGBColorSpace;focusRenderer.toneMapping=THREE.ACESFilmicToneMapping;focusRenderer.toneMappingExposure=1.08;
  focusRenderer.shadowMap.enabled=!mobilePreviewMedia.matches&&innerWidth>760;focusRenderer.shadowMap.type=THREE.PCFSoftShadowMap;
  focusHost.appendChild(focusRenderer.domElement);
@@ -509,7 +509,7 @@ function makeScene(){scene=new THREE.Scene();scene.fog=new THREE.FogExp2('#060A1
  const warmFill=new THREE.PointLight('#F5CF9D',0.95,7,2.2);warmFill.position.set(-4.6,-.55,2.2);scene.add(warmFill);
  accentTarget=new THREE.Color('#D0BCFF');accentCurrent=accentTarget.clone();scene.environment=buildReflectionEnvironment();scene.environmentIntensity=.18;buildArchitecture();
  glowSprite=new THREE.Sprite(new THREE.SpriteMaterial({map:makeGlowTexture(),color:'#D0BCFF',transparent:true,opacity:0,depthWrite:false,blending:THREE.AdditiveBlending}));glowSprite.scale.set(4.6,3.6,1);glowSprite.position.set(0,.4,-1.65);
- PROJECTS.forEach(p=>{const d=deviceFactory(p),side=shelfSides[projectSide(p)];side.add(d.group);d.contact=addShelfContact(p,side);d.mobileShadow=addMobileCastShadow(d,side);displayItems.set(p.id,d);makeArtworkOverlay(p)});buildShowroomSpots();scene.traverse(o=>{if(o.isLight)o.layers.enable(ACTIVE_LAYER)});
+ PROJECTS.forEach(p=>{const d=deviceFactory(p),side=shelfSides[projectSide(p)];side.add(d.group);d.contact=addShelfContact(p,side);d.mobileShadow=addMobileCastShadow(d,side);displayItems.set(p.id,d)});buildShowroomSpots();scene.traverse(o=>{if(o.isLight)o.layers.enable(ACTIVE_LAYER)});
  raycaster=new THREE.Raycaster();pointer=new THREE.Vector2(10,10);sceneReady=true;initialTime=performance.now();labels();updateShelfControls();
  shelfSwitch.hidden=false;
  for(const button of shelfSwitch.querySelectorAll('[data-shelf-side]')){
@@ -530,22 +530,6 @@ function setHovered(id,source='pointer'){
  if(hovered===next)return;
  hovered=next;setAccent(PROJECTS.find(p=>p.id===next)?.accent||'#D0BCFF');frame.classList.toggle('has-hover',Boolean(next));
 }
-// DOM image proxy draws the genuine artwork on top of the 3D screen. Unlike drawing
-// cross-origin images into a canvas, normal <img> does not require CORS permission.
-// WebGL screen stays bright as a fallback if remote assets are blocked altogether.
-const screenOverlays=new Map();
-function makeArtworkOverlay(p){
- if(p.screenArtwork)return;
- const node=document.createElement('div');node.className='screen-artwork';
- const wash=document.createElement('div');wash.className='screen-artwork-wash';
- const picture=document.createElement('img');picture.alt='';picture.decoding='async';picture.loading='eager';
- node.append(wash,picture);
- let at=0;const urls=assetFallbacks(p.cover);
- const tryNext=()=>{if(at<urls.length){const src=urls[at++];picture.src=src;wash.style.backgroundImage=`url("${src}")`}else node.classList.add('not-loaded')};
- picture.addEventListener('load',()=>node.classList.add('is-loaded'));
- picture.addEventListener('error',tryNext);tryNext();
- screenHost.append(node);screenOverlays.set(p.id,node);
-}
 function solveHomography(pairs){
  const m=[];
  for(const [[u,v],[x,y]] of pairs){m.push([u,v,1,0,0,0,-u*x,-v*x,x]);m.push([0,0,0,u,v,1,-u*y,-v*y,y]);}
@@ -558,36 +542,6 @@ function solveHomography(pairs){
  }
  return m.map(r=>r[8]);
 }
-function positionArtworkOverlays(){
- const vw=sceneHost.clientWidth,vh=sceneHost.clientHeight,lightweight=mobilePreviewMedia.matches;
- for(const p of PROJECTS){
-  const d=displayItems.get(p.id),node=screenOverlays.get(p.id);
-  if(!node)continue;
-  const visible=!lightweight&&!shelfTurn&&d.group.visible&&projectSide(p)===gallerySide;
-  setScreenStyle(node,'visibility',visible?'visible':'hidden');
-  if(!visible)continue;
-  const w=d.screenDimensions.w*.5,h=d.screenDimensions.h*.5,width=512,height=512*h/w;
-  setScreenStyle(node,'height',height+'px');
-  // Match the physical screen radius in both axes, before perspective projection.
-  const radius=screenRadius(w*2,h*2,p),rx=radius/(w*2)*100,ry=radius/(h*2)*100;
-  node.style.borderRadius=`${rx}% / ${ry}%`;
-  node.style.clipPath=`inset(0 round ${rx}% / ${ry}%)`;
-  const corners=[[-w,h],[w,h],[w,-h],[-w,-h]];
-  const target=corners.map(([x,y])=>{
-   const v=d.screen.localToWorld(new THREE.Vector3(x,y,0)).project(camera);
-   return [(v.x*.5+.5)*vw,(-v.y*.5+.5)*vh];
-  });
-  const co=solveHomography([[[0,0],target[0]],[[width,0],target[1]],[[width,height],target[2]],[[0,height],target[3]]]);
-  if(!co)continue;
-  const [a,b,c,d1,e,f,g,h1]=co;
-  // Matrix4 CSS is column-major; projective terms live in row 4.
-  node.style.transform=`matrix3d(${a},${d1},0,${g},${b},${e},0,${h1},0,0,1,0,${c},${f},0,1)`;
-  const focused=(activeLayerOn&&selected?.id===p.id);
-  if(focused){if(node.parentElement!==focusScreenHost)focusScreenHost.append(node)}
-  else if(node.parentElement!==screenHost)screenHost.append(node);
- }
-}
-function projectScreenProjection(d){const pos=d.screen.getWorldPosition(new THREE.Vector3());return pos.project(camera)}
 function renderLabels(now){
  if(state!=='gallery'||shelfTurn)return;
  const compact=compactView();
@@ -616,8 +570,8 @@ function resizeScene(){
  startLook.z=compactView()?Math.max(10.45,4.85/(Math.tan(camera.fov*Math.PI/360)*camera.aspect)+.7):10.45;
  camera.updateProjectionMatrix();if(state==='gallery')camera.position.z=startLook.z;
  backdropZoom=NaN;
- const galleryChanged=fitRenderer(renderer,w,h,Math.min(devicePixelRatio,mobilePreviewMedia.matches?1:GALLERY_PIXEL_RATIO));
- const focusChanged=focusRenderer&&fitRenderer(focusRenderer,w,h,Math.min(devicePixelRatio,mobilePreviewMedia.matches?1.12:FOCUS_PIXEL_RATIO));
+ const galleryChanged=fitRenderer(renderer,w,h,Math.min(devicePixelRatio,GALLERY_PIXEL_RATIO));
+ const focusChanged=focusRenderer&&fitRenderer(focusRenderer,w,h,Math.min(devicePixelRatio,FOCUS_PIXEL_RATIO));
  renderer.shadowMap.enabled=!mobilePreviewMedia.matches;if(focusRenderer)focusRenderer.shadowMap.enabled=!mobilePreviewMedia.matches&&innerWidth>760;
  if(state==='opening'&&movingTween){
   const {toCam,toQuat,start,duration,done}=movingTween;
@@ -1089,25 +1043,14 @@ function render(time){
   d.dimAmount = damp(d.dimAmount,targetDim,Math.min(1,delta*6.2),Math.min(1,delta*1.85));
   const isFocus=selected?.id===p.id && state!=='gallery';
   const bodyBrightness=isFocus?1.12:(.80+.28*d.lightAmount-.30*d.dimAmount);
-  const screenBloomStrength=isFocus?1.0:(.18+.54*d.lightAmount);
   d.group.traverse(o=>{
    if(!o.isMesh||!o.material?.userData.baseColor)return;
-   if(o.userData.isScreen){
-    const targetScreen=isFocus?1.04:(.84+.11*d.lightAmount);
-    o.material.color.setScalar(targetScreen);
-    return;
-   }
+   if(o.userData.isScreen)return;
    o.material.color.copy(o.material.userData.baseColor).multiplyScalar(bodyBrightness);
   });
-  if(d.screenBloom){const targetBloom=0.04 + screenBloomStrength*.28;d.screenBloom.material.opacity=damp(d.screenBloom.material.opacity,targetBloom,Math.min(1,delta*7.0),Math.min(1,delta*3.2));}
   if(d.screenLight){
     const targetLight=isFocus?(p.device==='monitor'?3.9:3.0):(.18+d.lightAmount*(p.device==='monitor'?2.32:1.72));
     d.screenLight.intensity = damp(d.screenLight.intensity,targetLight,Math.min(1,delta*7.0),Math.min(1,delta*3.2));
-  }
-  const overlay=screenOverlays.get(p.id);
-  if(overlay){
-    overlay.style.setProperty('--screen-brightness', String(isFocus?1.06:(.82+.16*d.lightAmount)));
-    overlay.style.setProperty('--screen-wash-opacity', String(isFocus?.22:(.06+.10*d.lightAmount)));
   }
   if(rig){
    const amount=rig.amount=d.lightAmount;
@@ -1178,7 +1121,6 @@ function render(time){
  }
  scene.updateMatrixWorld(true);
  renderLabels(time);
- positionArtworkOverlays();
  positionScreenPortal();
  if(glowSprite)glowSprite.material.opacity=0;
  camera.layers.set(0);

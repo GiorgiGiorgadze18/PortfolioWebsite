@@ -12,7 +12,7 @@
     "touch_screen": "desktop home capture with 55% dark overlay and desktop prompt on Try Now",
     "backup_ref": "backup/pre-mobile-showroom-2026-11-17"
   },
-  "patch": "0.16.2",
+  "patch": "0.16.3",
   "overlay_update": {
     "date": "2026-11-20",
     "neon": "single outer body sweep on entering Try Now",
@@ -32,8 +32,8 @@
     "date": "2026-11-21",
     "screen_artwork": "assets/meetab-desktop-home.webp",
     "capture_size": [
-      1280,
-      800
+      2560,
+      1600
     ],
     "backup_ref": "backup/pre-mobile-static-demo-2026-11-21",
     "future_integrations_policy": "AGENTS.md"
@@ -56,6 +56,10 @@
     "portfolio_overrides": [
       "styles.css: disable selection outside editable fields",
       "index.html: version the stylesheet"
+    ],
+    "capture_size": [
+      750,
+      1622
     ]
   }
 }
