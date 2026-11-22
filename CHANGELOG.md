@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.16.9 — 2026-11-23
+
+- Version the Contact terminal stylesheet and script URLs so a refreshed Contact page requests the full-height layout even if the earlier nested-scroll assets are cached.
+
 ## 0.16.8 — 2026-11-23
 [PR #21](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/21)
 
