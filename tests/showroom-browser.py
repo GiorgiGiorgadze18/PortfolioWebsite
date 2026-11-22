@@ -20,11 +20,11 @@ with sync_playwright() as p:
   expect(page.locator('#stage-enter')).to_have_class(re.compile('is-done'))
   expect(page.locator('#showroom-canvas canvas')).to_be_visible()
   expect(page.locator('.archive-card')).to_have_count(5)
-  expect(page.locator('.device-label')).to_have_count(4)
+  expect(page.locator('.device-label:visible')).to_have_count(2)
   page.locator('[data-filter="uiux"]').click();expect(page.locator('.archive-card:visible')).to_have_count(2)
   page.locator('[data-filter="graphics"]').click();expect(page.locator('.archive-card:visible')).to_have_count(3)
   page.locator('[data-filter="all"]').click()
-  # Retained JBL art opens independently of the four-device exhibit.
+  # The archive keeps its direct JBL artwork dialog.
   page.locator('[data-explore="jbl-artwork"]').click()
   expect(page.locator('dialog.mobile-project-dialog')).to_be_visible();expect(page.locator('dialog.mobile-project-dialog h2')).to_have_text('JBL Premium Audio Campaign')
   page.keyboard.press('Escape');expect(page.locator('dialog.mobile-project-dialog')).not_to_be_visible()
@@ -88,8 +88,8 @@ with sync_playwright() as p:
   assert not failed,failed
   assert not external,external
   assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
-  results.append({'width':width,'status':'PASS','checks':['3D and artwork load','five projects and category filters','all four device inspectors','JBL retained','MeeTab booking','same iframe and state after exit/reentry','repeated toggles','reduced motion','gallery cleanup','navigation prefix','no JS errors, failed responses or external requests']})
-  if SMOKE and 'all four device inspectors' in results[-1]['checks']: results[-1]['checks'].remove('all four device inspectors')
+  results.append({'width':width,'status':'PASS','checks':['3D and artwork load','five projects and category filters','project inspectors','JBL retained','MeeTab booking','same iframe and state after exit/reentry','repeated toggles','reduced motion','gallery cleanup','navigation prefix','no JS errors, failed responses or external requests']})
+  if SMOKE and 'project inspectors' in results[-1]['checks']: results[-1]['checks'].remove('project inspectors')
   print(json.dumps(results[-1]),flush=True);context.close()
  from mobile_showroom import check_phones
  if not args.desktop_only:results.extend(check_phones(browser,BASE,OUT,smoke=SMOKE))
