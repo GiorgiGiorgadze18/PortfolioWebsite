@@ -110,6 +110,7 @@
     track.fit();
     new ResizeObserver(track.fit).observe(track.element);
   }
+  document.fonts.ready.then(() => tracks.forEach(track => track.fit()));
 
   function start() {
     setTimeout(() => {
