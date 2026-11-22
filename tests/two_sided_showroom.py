@@ -17,6 +17,7 @@ def desktop(browser, url):
     page = browser.new_page(viewport={'width': 1280, 'height': 1000})
     errors = []
     page.on('pageerror', lambda error: errors.append(str(error)))
+    page.on('console', lambda message: errors.append(message.text) if 'GL_INVALID' in message.text else None)
     page.goto(url)
     stage = page.locator('#museum-frame')
     graphics = page.get_by_role('button', name='Graphic Design', exact=True)
@@ -71,6 +72,7 @@ def phone(browser, url):
     requests, errors = [], []
     page.on('request', lambda request: requests.append(request.url))
     page.on('pageerror', lambda error: errors.append(str(error)))
+    page.on('console', lambda message: errors.append(message.text) if 'GL_INVALID' in message.text else None)
     page.goto(url)
     stage = page.locator('#museum-frame')
     apps = page.get_by_role('button', name='UI / UX', exact=True)
