@@ -1,6 +1,7 @@
 # Changelog
 
 ## 0.16.8 — 2026-11-23
+[PR #21](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/21)
 
 - Keep the completed Contact boot log above the form and let the entire terminal scroll with the page after the sequence. Remove the nested scroll and the automatic jump inside the terminal.
 - Tighten the Contact terminal spacing and headings on narrow phones while keeping form text at 16px.
