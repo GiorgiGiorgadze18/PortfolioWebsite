@@ -1,0 +1,71 @@
+.scroll-hint {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: max-content;
+  max-width: 100%;
+  padding-inline: 12px;
+  color: var(--clr-cyan);
+  font: 700 .75rem/1.4 var(--font-mono, var(--ff-body));
+  letter-spacing: .2em;
+  text-align: center;
+  text-transform: uppercase;
+  transition: opacity .4s;
+}
+
+.scroll-hint::before { content: attr(data-label); }
+
+.scroll-hint i {
+  position: relative;
+  width: 26px;
+  height: 42px;
+  border: 2px solid currentColor;
+  border-radius: 14px;
+}
+
+.scroll-hint i::after {
+  position: absolute;
+  top: 8px;
+  left: calc(50% - 2px);
+  width: 4px;
+  height: 8px;
+  border-radius: 2px;
+  background: currentColor;
+  content: "";
+  animation: hint-wheel 1.6s ease-in-out infinite;
+}
+
+.scroll-hint::after {
+  width: 1px;
+  height: 18px;
+  background: currentColor;
+  content: "";
+  animation: hint-line 1.6s ease-in-out infinite;
+}
+
+.scroll-hint:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 5px;
+  border-radius: var(--radius-sm);
+}
+
+@keyframes hint-wheel {
+  0% { opacity: 0; translate: 0 0; }
+  30% { opacity: 1; }
+  100% { opacity: 0; translate: 0 14px; }
+}
+
+@keyframes hint-line {
+  0%, 100% { opacity: .3; }
+  50% { opacity: 1; }
+}
+
+@media (hover: none) {
+  .scroll-hint[data-touch-label]::before { content: attr(data-touch-label); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-hint { transition: none; }
+  .scroll-hint i::after, .scroll-hint::after { animation: none; }
+}

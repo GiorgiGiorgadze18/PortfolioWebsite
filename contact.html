@@ -12,6 +12,10 @@
   <link rel="stylesheet" href="css/contact.css">
   <link rel="stylesheet" href="css/constellation.css">
   <script defer src="js/constellation.js"></script>
+  <link rel="stylesheet" href="css/scroll-hint.css">
+  <link rel="stylesheet" href="css/contact-terminal.css">
+  <script type="module" src="js/contact-terminal.js"></script>
+  <noscript><style>.contact-intro [data-animate] { opacity: 1; transform: none; }</style></noscript>
 </head>
 <body>
   <header class="navbar" id="navbar">
@@ -44,6 +48,7 @@
   </div>
 
   <main>
+    <div class="contact-intro">
     <section class="projects-page-hero" aria-label="Contact">
       <div class="parallax-bg" id="parallax-bg" aria-hidden="true"></div>
       <div class="container">
@@ -58,7 +63,7 @@
       </div>
     </section>
 
-    <section class="contact-panel" aria-label="Secure message form">
+    <section class="contact-panel contact-panel--intro" aria-label="Contact details">
       <div class="container">
         <div class="contact-panel__grid">
           <article class="contact-card contact-card--info" data-animate data-delay="1">
@@ -92,37 +97,78 @@
           </article>
         </div>
 
-        <div class="contact-panel__card" data-animate data-delay="1.4">
-          <div class="contact-panel__head">
-            <img src="assets/vector-mail.svg" alt="Mail icon" class="contact-panel__icon">
-            <div>
-              <p class="contact-panel__tag">SECURE TRANSMISSION.EXE</p>
-              <h2 class="contact-panel__title">Send your message securely</h2>
+      </div>
+      <a class="scroll-hint" href="#secure-transmission" data-terminal-start
+         data-label="SCROLL DOWN TO ESTABLISH CONNECTION"
+         data-touch-label="SWIPE UP TO ESTABLISH CONNECTION"
+         aria-label="Scroll to secure transmission">
+        <i aria-hidden="true"></i>
+      </a>
+    </section>
+    </div>
+
+    <section class="pin" id="secure-transmission" aria-labelledby="terminal-heading">
+      <div class="stick">
+        <div class="container terminal-layout">
+          <div class="contact-panel__card terminal-window">
+            <div class="terminal-chrome">
+              <span class="terminal-window__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="terminal-window__file">secure_transmission.exe</span>
+              <a class="terminal-skip" href="#terminal-form" hidden>Skip animation · go to the form</a>
+            </div>
+            <div class="terminal-body" tabindex="-1">
+              <div class="terminal-boot">
+                <pre class="terminal-log"><span class="terminal-log__complete">&gt; boot secure_transmission.exe
+&gt; resolving tbilisi.ge ......... OK
+&gt; handshake: giorgi.giorgadzee.16 ... OK
+&gt; encrypting payload ........... OK
+&gt; channel open // AVAILABLE FOR PROJECTS</span><span class="terminal-log__typed" aria-hidden="true"></span></pre>
+                <div class="terminal-progress">
+                  <progress max="100" value="100" aria-label="Connection progress"></progress>
+                  <span aria-hidden="true">100%</span>
+                </div>
+              </div>
+
+              <div id="terminal-form">
+                <div class="contact-panel__head">
+                  <img src="assets/vector-mail.svg" alt="Mail icon" class="contact-panel__icon">
+                  <div>
+                    <p class="contact-panel__tag">SECURE TRANSMISSION.EXE</p>
+                    <h2 class="contact-panel__title" id="terminal-heading">Send your message securely</h2>
+                  </div>
+                </div>
+
+                <form class="contact-form" action="https://formspree.io/f/xjgdyjka" method="POST">
+                  <div class="contact-form__grid">
+                    <label class="contact-form__field">
+                      <span>Initiator Name</span>
+                      <input type="text" name="name" placeholder="Enter designation..." required>
+                    </label>
+                    <label class="contact-form__field">
+                      <span>Return Address</span>
+                      <input type="email" name="email" placeholder="email@server.com" required>
+                    </label>
+                  </div>
+
+                  <label class="contact-form__field contact-form__field--full">
+                    <span>Payload / Message</span>
+                    <textarea name="message" rows="7" placeholder="Formulate transmission data..." required></textarea>
+                  </label>
+
+                  <input type="hidden" name="_subject" value="New message from portfolio contact form">
+                  <button type="submit" class="btn btn--primary contact-form__submit">
+                    TRANSMIT&nbsp;▸
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
+        </div>
 
-          <form class="contact-form" action="https://formspree.io/f/xjgdyjka" method="POST">
-            <div class="contact-form__grid">
-              <label class="contact-form__field">
-                <span>Initiator Name</span>
-                <input type="text" name="name" placeholder="Enter designation..." required>
-              </label>
-              <label class="contact-form__field">
-                <span>Return Address</span>
-                <input type="email" name="email" placeholder="email@server.com" required>
-              </label>
-            </div>
-
-            <label class="contact-form__field contact-form__field--full">
-              <span>Payload / Message</span>
-              <textarea name="message" rows="7" placeholder="Formulate transmission data..." required></textarea>
-            </label>
-
-            <input type="hidden" name="_subject" value="New message from portfolio contact form">
-            <button type="submit" class="btn btn--primary contact-form__submit">
-              TRANSMIT&nbsp;▸
-            </button>
-          </form>
+        <div class="scroll-hint terminal-hint" data-terminal-hint aria-hidden="true"
+             data-label="SCROLL DOWN TO ESTABLISH CONNECTION"
+             data-touch-label="SWIPE UP TO ESTABLISH CONNECTION">
+          <i></i>
         </div>
       </div>
     </section>
