@@ -5,10 +5,12 @@ const timeline = section?.querySelector('.timeline');
 const railTop = 12;
 const railBottom = 10;
 
-if (timeline) {
+if (timeline?.lastElementChild) {
   const items = Array.from(timeline.querySelectorAll('.timeline-entry'), entry => ({
     entry, dot: entry.querySelector('.timeline-entry__dot'), progress: null, active: false,
   }));
+  const lastEntry = items.at(-1).entry;
+  const lastCard = lastEntry.querySelector('.timeline-entry__content');
   let progress = null;
 
   registerScrollMotion({
@@ -26,8 +28,12 @@ if (timeline) {
     },
     update({height, lerp}) {
       const bounds = section.getBoundingClientRect();
-      const target = clampProgress((height * .65 - bounds.top) / Math.max(1, bounds.height));
-      progress = lerp(progress, target, .14);
+      // Use the card’s layout center so its own entrance translate cannot shift the endpoint.
+      const lastCenter = timeline.getBoundingClientRect().top + lastEntry.offsetTop +
+        lastCard.offsetTop + lastCard.offsetHeight / 2;
+      const distance = lastCenter - bounds.top + height * .15;
+      const target = clampProgress((height * .65 - bounds.top) / Math.max(1, distance));
+      progress = lastCenter <= height / 2 ? 1 : lerp(progress, target, .14);
 
       // Both offsets use static layout, so an animated card cannot move its own trigger.
       const railLength = Math.max(0, timeline.clientHeight - railTop - railBottom);
