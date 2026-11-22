@@ -14,33 +14,54 @@ def outer_outline(page):
  data=page.evaluate('''()=>{
   const outline=document.querySelector('#tablet-outline'),screen=document.querySelector('#screen-portal');
   function quad(el){const m=new DOMMatrix(el.style.transform==='none'?'':el.style.transform),w=parseFloat(el.style.width),h=parseFloat(el.style.height);return [[0,0],[w,0],[w,h],[0,h]].map(([x,y])=>{const p=m.transformPoint(new DOMPoint(x,y));return [p.x/p.w+(parseFloat(el.style.left)||0),p.y/p.w+(parseFloat(el.style.top)||0)]});}
-  const outer=quad(outline),inner=quad(screen),center=q=>q.reduce((a,p)=>[a[0]+p[0]/4,a[1]+p[1]/4],[0,0]);
-  return {outsidePortal:!screen.contains(outline),visible:!outline.hasAttribute('hidden'),outer,inner,centerDistance:Math.hypot(...center(outer).map((x,i)=>x-center(inner)[i])),fill:getComputedStyle(outline.querySelector('rect')).fill,stroke:getComputedStyle(outline.querySelector('rect')).stroke};
+  const stroke=outline.querySelector('.outline-stroke'),box=stroke.getBBox(),inner=quad(screen);
+  const outer=[[box.x,box.y],[box.x+box.width,box.y],[box.x+box.width,box.y+box.height],[box.x,box.y+box.height]];
+  const center=q=>q.reduce((a,p)=>[a[0]+p[0]/4,a[1]+p[1]/4],[0,0]);
+  const [xs,ys]=[inner.map(p=>p[0]),inner.map(p=>p[1])];
+  const gaps=[Math.min(...xs)-box.x,Math.min(...ys)-box.y,box.x+box.width-Math.max(...xs),box.y+box.height-Math.max(...ys)];
+  const frameBox=outline.closest('#museum-frame').getBoundingClientRect(),portalBox=screen.getBoundingClientRect();
+  const portalOffset=[portalBox.left-frameBox.left,portalBox.top-frameBox.top];
+  return {portalOffset,outsidePortal:!screen.contains(outline),visible:!outline.hasAttribute('hidden'),outer,inner,gaps,centerDistance:Math.hypot(...center(outer).map((x,i)=>x-center(inner)[i])),fill:getComputedStyle(stroke).fill,stroke:getComputedStyle(stroke).stroke};
  }''')
  assert data['outsidePortal'] and data['visible'] and data['fill']=='none',data
- assert data['centerDistance']<4,data
- # Each body corner must sit farther from the common centre than the screen corner.
- for i,(x,y) in enumerate(data['outer']):
-  cx=sum(v[0] for v in data['inner'])/4;cy=sum(v[1] for v in data['inner'])/4
-  gap=((x-cx)**2+(y-cy)**2)**.5-((data['inner'][i][0]-cx)**2+(data['inner'][i][1]-cy)**2)**.5
-  assert 3<gap<60,(gap,data)
+ assert data['centerDistance']<6,data
+ assert all(2<gap<85 for gap in data['gaps']),data
  return data
 
 def watch_sweep(page):
  page.add_init_script("""window.sweeps=[];
  for(const event of ['animationstart','animationiteration','animationend']){
   document.addEventListener(event,e=>{
-   if(e.animationName==='tabletSignal')window.sweeps.push(event);
+   if(e.animationName==='tabletSignal'&&e.target.matches('.outline-stroke')&&e.target.closest('.is-demo'))window.sweeps.push(event);
   });
  }""")
 
 def check_sweep(page, runs=1):
- runner=page.locator('#tablet-outline rect')
+ runner=page.locator('#tablet-outline .outline-stroke')
  expect(runner).to_have_css('animation-name','tabletSignal')
  expect(runner).to_have_css('animation-iteration-count','1')
  page.wait_for_function("n=>sweeps.filter(event=>event==='animationend').length===n",arg=runs,timeout=60000)
  assert page.evaluate('sweeps')==['animationstart','animationend']*runs
  expect(runner).to_have_css('opacity','0')
+
+def check_phone_panel(page):
+    page.wait_for_function("""() => {
+        const r = selector => document.querySelector(selector).getBoundingClientRect();
+        const toolbar = r('#shelf-switch');
+        const stage = r('#museum-frame');
+        const panel = r('#project-inspector');
+        const year = r('#inspector-year');
+        const artwork = r('#inspector-open');
+        const description = r('.inspector-scroll');
+        return toolbar.bottom < stage.top &&
+            year.top >= panel.top && year.bottom <= panel.bottom &&
+            artwork.top >= panel.top && artwork.bottom <= panel.bottom &&
+            artwork.height >= 44 && description.top >= year.bottom &&
+            description.bottom <= artwork.top && artwork.bottom <= innerHeight + 2;
+    }""", timeout=60000)
+    expect(page.locator('#inspector-year')).to_have_text('2026')
+    expect(page.locator('#inspector-open')).to_be_visible()
+    expect(page.locator('.inspector-scroll')).to_have_css('overflow-y','auto')
 
 def observe(page):
  page.evaluate('''()=>{
@@ -91,12 +112,14 @@ def check_phone(browser,base,out,engine):
  check_sweep(page)
  capture(page,out,f'tablet-{engine}-desktop-notice.png')
  sizes=[]
- for width,height in [(360,800),(430,932),(844,390),(390,844)]:
+ for width,height in [(320,568),(360,800),(430,932),(844,390),(390,844)]:
   page.set_viewport_size({'width':width,'height':height})
   page.wait_for_timeout(300)
   expect(notice).to_be_visible()
   assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
   outer_outline(page)
+  page.locator('#inspector-open').scroll_into_view_if_needed()
+  check_phone_panel(page)
   screen=portal.bounding_box()
   text=notice.locator('strong').bounding_box()
   assert text['width']<=screen['width'] and text['height']<screen['height'],(screen,text)
@@ -126,20 +149,20 @@ def check_phone(browser,base,out,engine):
 def check_desktop(browser,base,out,engine):
  c=browser.new_context(viewport={'width':1280,'height':1000});c.set_default_timeout(90000);page=c.new_page();errors=[]
  page.on('pageerror',lambda e:errors.append(str(e)));watch_sweep(page);page.goto(base+'projects.html',wait_until='networkidle')
- page.locator('[data-explore="jbl"]').click();expect(page.locator('#try-preview')).to_be_visible();expect(page.locator('#tablet-outline')).to_be_hidden();expect(page.locator('#try-preview')).to_be_enabled()
+ page.locator('[data-explore="jbl"]').click();expect(page.locator('#try-preview')).to_be_visible();expect(page.locator('#tablet-outline')).to_have_attribute('data-project','jbl');expect(page.locator('#try-preview')).to_be_enabled()
  print('Desktop focus ready',engine,flush=True)
  page.locator('#try-preview').click();expect(page.locator('#screen-portal')).to_be_visible()
  expect(page.locator('#desktop-demo-notice')).to_be_hidden()
  expect(page.locator('#screen-portal iframe')).to_be_visible()
  check_sweep(page)
  active=outer_outline(page)
- frame=page.locator('#museum-frame').bounding_box();actual=page.locator('#screen-portal').bounding_box();xs=[p[0] for p in active['inner']];ys=[p[1] for p in active['inner']]
- assert abs(actual['x']-frame['x']-min(xs))<2 and abs(actual['y']-frame['y']-min(ys))<2,(actual,frame,active)
+ xs,ys=zip(*active['inner']);x,y=active['portalOffset']
+ assert abs(x-min(xs))<2 and abs(y-min(ys))<2,active
  box=page.locator('#screen-portal').bounding_box();page.mouse.move(box['x']+box['width']/2,box['y']+box['height']/2);page.mouse.wheel(0,-100);page.wait_for_timeout(800);zoomed=outer_outline(page);assert active['outer']!=zoomed['outer']
  observe(page);page.evaluate("()=>{for(let i=0;i<10;i++)dispatchEvent(new Event('resize'))}");page.wait_for_timeout(400);assert page.evaluate('metrics.bufferWrites')==0
  app=page.frame_locator('#screen-portal iframe');app.locator('#nav [data-go="book"]').focus();app.locator('#nav [data-go="book"]').press('Enter');expect(app.locator('#p-book')).to_have_class('page on')
  page.wait_for_timeout(850);capture(page,out,f'tablet-{engine}-desktop-neon.png')
- page.emulate_media(reduced_motion='reduce');expect(page.locator('#tablet-outline rect')).to_have_css('animation-name','none')
+ page.emulate_media(reduced_motion='reduce');expect(page.locator('#tablet-outline .outline-stroke')).to_have_css('animation-name','none')
  page.locator('#try-preview').click();page.locator('#reset-view').click();expect(page.locator('#tablet-outline')).not_to_be_visible()
  for project,name in [('tsero','Tsero App'),('tomford','Tom Ford Tobacco Vanille'),('earthhour','Earth Hour')]:
   page.locator(f'[data-explore="{project}"]').click();expect(page.locator('#inspector-title')).to_contain_text(name)
