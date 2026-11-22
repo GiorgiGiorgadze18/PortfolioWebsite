@@ -2,8 +2,12 @@
 
 ## 0.16.4 — 2026-11-22 (draft)
 
+[PR #17](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/17)
+
 - Upload the high-resolution preview on each display to a new GPU texture after the image loads. This restores the two app screenshots and three original posters in the gallery and focused view.
 - Project each exhibit’s rounded silhouette from its overhead light onto the wood shelf and onto the room floor when the exhibit is brought forward. Feather the shadow edges and clip them to the receiving surface.
+
+Verified the restored gallery images in rendered browser captures. Pixel comparisons found a separate shelf shadow for all five exhibits and a floor shadow in focus in WebKit desktop and phone emulation. Both shelves and Try Now flows passed in WebKit.
 
 ## 0.16.3 — 2026-11-22
 
