@@ -72,7 +72,7 @@ const focusHost=$('#focus-canvas');
 let THREE, renderer, focusRenderer, scene, camera, raycaster, pointer, ambientLight, lightKey, lightAccent, glowSprite;
 let accentTarget, accentCurrent, movingTween, selected=null, hovered=null, cameraTarget, portalPlane;
 let sceneReady=false, state='gallery', queuedSelection=null, lastFrame=0, initialTime=0, lastPointer={x:0,y:0};
-let selectedBaseQuaternion=null, dragOrbit=false, shadowTexture=null,castShadowTexture=null;
+let selectedBaseQuaternion=null, dragOrbit=false, shadowTexture=null;
 const focusTilt={x:0,y:0}, focusTiltTarget={x:0,y:0};
 const meshes=[], displayItems=new Map(), accentReactiveMaterials=[], exhibitSpots=new Map();
 const ACTIVE_LAYER=1; let activeLayerOn=false, pointerDownPos=null;
@@ -146,30 +146,36 @@ function useOriginalArtwork(mesh,p,w,h){
   ctx.fillText(message,cw/2,ch/2+22);
  };
  renderPlaceholder('LOADING ORIGINAL ARTWORK');
- const texture=new THREE.CanvasTexture(cn);
- texture.colorSpace=THREE.SRGBColorSpace;
- texture.anisotropy=Math.min(16,renderer.capabilities.getMaxAnisotropy());
- texture.minFilter=THREE.LinearMipmapLinearFilter;
- texture.magFilter=THREE.LinearFilter;
- texture.generateMipmaps=true;
- mesh.material.map=texture;mesh.material.color.set('#ffffff');mesh.material.needsUpdate=true;
+ function createTexture(image){
+  const texture=new THREE.CanvasTexture(image);
+  texture.colorSpace=THREE.SRGBColorSpace;
+  texture.anisotropy=Math.min(16,renderer.capabilities.getMaxAnisotropy());
+  return texture;
+ }
+ mesh.material.map=createTexture(cn);
+ mesh.material.needsUpdate=true;
  const candidates=assetFallbacks(p.screenArtwork ?? p.cover);
  const loadCandidate=(idx=0)=>{
-  if(idx>=candidates.length){renderPlaceholder('ORIGINAL IMAGE UNAVAILABLE');texture.needsUpdate=true;return;}
+  if(idx>=candidates.length){renderPlaceholder('ORIGINAL IMAGE UNAVAILABLE');mesh.material.map.needsUpdate=true;return;}
   const image=new Image();image.decoding='async';image.crossOrigin='anonymous';
   image.onload=()=>{
    // Keep the screen's native proportions and cap resident texture memory.
    const limit=Math.min(2048,renderer.capabilities.maxTextureSize);
    const density=Math.min(image.width/w,image.height/h,limit/Math.max(w,h));
-   cn.width=Math.max(1,Math.round(w*density));
-   cn.height=Math.max(1,Math.round(h*density));
-   ctx.imageSmoothingQuality='high';
-   const cover=Math.max(cn.width/image.width,cn.height/image.height);
+   const artwork=document.createElement('canvas');
+   artwork.width=Math.max(1,Math.round(w*density));
+   artwork.height=Math.max(1,Math.round(h*density));
+   const paint=artwork.getContext('2d');
+   paint.imageSmoothingQuality='high';
+   const cover=Math.max(artwork.width/image.width,artwork.height/image.height);
    const dw=image.width*cover,dh=image.height*cover;
-   const dx=(cn.width-dw)/2,dy=(cn.height-dh)/2;
-   ctx.drawImage(image,dx,dy,dw,dh);
-   texture.needsUpdate=true;
-   if(p.screenArtwork)staticFramePainted=false;
+   paint.drawImage(image,(artwork.width-dw)/2,(artwork.height-dh)/2,dw,dh);
+   // The placeholder already owns immutable GPU storage at a different size.
+   const placeholder=mesh.material.map;
+   mesh.material.map=createTexture(artwork);
+   placeholder.dispose();
+   staticFramePainted=false;
+   backdropZoom=NaN;
   };
   image.onerror=()=>loadCandidate(idx+1);
   image.src=candidates[idx];
@@ -303,31 +309,78 @@ function addShelfContact(project,side){
  side.add(contact);
  return contact;
 }
-function addMobileCastShadow(device,side){
- if(!castShadowTexture){
-  const canvas=document.createElement('canvas');canvas.width=canvas.height=96;
-  const ctx=canvas.getContext('2d');
-  ctx.shadowColor='rgba(0,0,0,.8)';ctx.shadowBlur=8;ctx.fillStyle='rgba(0,0,0,.42)';
-  ctx.beginPath();ctx.roundRect(8,8,80,80,8);ctx.fill();
-  castShadowTexture=new THREE.CanvasTexture(canvas);
+const DECK_Y=-1.4, FLOOR_Y=-1.96, LAMP_Z=.89;
+
+function addCastShadow(device,side){
+ const {w,h,radius}=device.bodyDimensions;
+ const outline=roundedShape(w,h,radius).getPoints(4);
+ if(outline[0].equals(outline.at(-1)))outline.pop();
+ const count=outline.length;
+ const geometry=new THREE.BufferGeometry();
+ const positions=new THREE.Float32BufferAttribute(new Float32Array((1+count*2)*3),3);
+ positions.setUsage(THREE.DynamicDrawUsage);
+ geometry.setAttribute('position',positions);
+ const opacity=new Array(count+1).fill(1).concat(new Array(count).fill(0));
+ geometry.setAttribute('aEdge',new THREE.Float32BufferAttribute(opacity,1));
+ const indices=[];
+ for(let i=0;i<count;i++){
+  const a=1+i,b=1+(i+1)%count;
+  indices.push(0,a,b,a,a+count,b,b,a+count,b+count);
  }
- const geometry=new THREE.PlaneGeometry(1,1);
- const coordinates=geometry.attributes.position;
- const {w,h}=device.bodyDimensions;
- const point=new THREE.Vector3();
- device.group.updateMatrix();
- for(let i=0;i<coordinates.count;i++){
-  point.set(coordinates.getX(i)*(w+.15),coordinates.getY(i)*(h+.15),0).applyMatrix4(device.group.matrix);
-  const drop=Math.max(0,point.y+1.4);
-  coordinates.setXYZ(i,point.x+drop*.42,-1.397,Math.min(1.825,point.z+drop*.23));
- }
- geometry.computeBoundingSphere();
- const shadow=new THREE.Mesh(geometry,new THREE.MeshBasicMaterial({
-  map:castShadowTexture,transparent:true,opacity:.86,depthWrite:false,toneMapped:false,side:THREE.DoubleSide
+ geometry.setIndex(indices);
+ const mesh=new THREE.Mesh(geometry,new THREE.ShaderMaterial({
+  uniforms:{bounds:{value:new THREE.Vector4()},strength:{value:0}},
+  vertexShader:`attribute float aEdge; varying float vEdge; varying vec2 vGround;
+   void main(){vEdge=aEdge;vGround=position.xz;
+    gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}`,
+  fragmentShader:`uniform vec4 bounds;uniform float strength; varying float vEdge; varying vec2 vGround;
+   void main(){vec2 edge=min(vGround-bounds.xy,bounds.zw-vGround);
+    float feather=smoothstep(0.0,0.035,min(edge.x,edge.y));
+    gl_FragColor=vec4(0.0,0.0,0.0,feather*vEdge*strength);}`,
+  side:THREE.DoubleSide,transparent:true,depthWrite:false,toneMapped:false
  }));
- side.add(shadow);
- return shadow;
+ mesh.frustumCulled=false;
+ side.add(mesh);
+ return {mesh,outline,positions,side,lastPose:new THREE.Matrix4(),onFloor:null,
+  points:outline.map(()=>new THREE.Vector3()),lamp:new THREE.Vector3(),center:new THREE.Vector3()};
 }
+
+function updateCastShadow(device,rig,onFloor){
+ const {mesh,outline,positions,side,lastPose,points,lamp,center}=device.cast;
+ device.group.updateMatrix();
+ if(device.cast.onFloor===onFloor&&lastPose.equals(device.group.matrix))return;
+ lastPose.copy(device.group.matrix);
+ device.cast.onFloor=onFloor;
+ const receiver=onFloor?scene:side;
+ if(mesh.parent!==receiver)receiver.add(mesh);
+ const y=onFloor?FLOOR_Y:DECK_Y;
+ mesh.material.uniforms.bounds.value.set(...(onFloor?[-9.5,-8,9.5,8]:[-4.4,.11,4.4,1.83]));
+ mesh.material.uniforms.strength.value=onFloor?.65:.68;
+
+ lamp.copy(rig.spot.position);
+ if(onFloor){
+  // Place the overhead source slightly forward so the floor projection stays in view.
+  lamp.set(device.group.position.x-.52,3.7,device.group.position.z+.62);
+  lightAccent.position.copy(lamp);
+ }
+ center.set(0,0,0);
+ for(let i=0;i<outline.length;i++){
+  const point=points[i].set(outline[i].x,outline[i].y,.04).applyMatrix4(device.group.matrix);
+  point.lerp(lamp,(point.y-y)/Math.min(-.15,point.y-lamp.y));
+  center.add(point);
+ }
+ center.divideScalar(outline.length);
+ positions.setXYZ(0,center.x,y+.003,center.z);
+ for(let i=0;i<points.length;i++){
+  const point=points[i];
+  const dx=point.x-center.x,dz=point.z-center.z;
+  const feather=.09/Math.max(.02,Math.hypot(dx,dz));
+  positions.setXYZ(i+1,point.x,y+.003,point.z);
+  positions.setXYZ(i+1+points.length,point.x+dx*feather,y+.003,point.z+dz*feather);
+ }
+ positions.needsUpdate=true;
+}
+
 function grainTexture(kind){
  const canvas=document.createElement('canvas');canvas.width=512;canvas.height=256;
  const ctx=canvas.getContext('2d'),pixels=ctx.createImageData(512,256);
@@ -387,7 +440,7 @@ function buildArchitecture(){
  }
 
  box(scene,[18,7,.3],[0,.4,-6.5],wall);
- box(scene,[19,.12,16],[0,-2.02,0],material('#252A37',.48,.43));
+ box(scene,[19,.12,16],[0,FLOOR_Y-.06,0],material('#252A37',.48,.43));
  shelfAssembly=new THREE.Group();
  scene.add(shelfAssembly);
  shelfSides={apps:new THREE.Group(),graphics:new THREE.Group()};
@@ -400,7 +453,7 @@ function buildArchitecture(){
   box(shelfAssembly,[.13,4.7,.58],[x,.46,0],brass,true);
  }
  for(const side of Object.values(shelfSides)){
-  box(side,[8.8,.2,1.72],[0,-1.5,.97],walnut,true);
+  box(side,[8.8,.2,1.72],[0,DECK_Y-.10,.97],walnut,true);
   box(side,[8.8,.10,1.35],[0,2.78,.78],walnut,true);
   box(side,[8.8,.035,.04],[0,-1.426,1.84],brass);
   box(side,[8.64,.014,.026],[0,-1.59,1.8],led);
@@ -465,13 +518,13 @@ function buildShowroomSpots(){
  const softMap=makeGlowTexture();
  for(const [index,p] of PROJECTS.entries()){
   const [x]=p.scene.position;
-  const top=2.63,fixtureZ=1.25;
+  const top=2.63,fixtureZ=LAMP_Z;
   const fixture=new THREE.Mesh(new THREE.CylinderGeometry(.205,.235,.19,48),material('#A18C72',.67,.33));
-  fixture.position.set(x,top,fixtureZ);
+  fixture.position.set(x-.21,top,fixtureZ);
   const ring=new THREE.Mesh(new THREE.TorusGeometry(.166,.019,12,48),new THREE.MeshBasicMaterial({color:'#FFF3E8',transparent:true,opacity:0,depthWrite:false}));
-  ring.rotation.x=Math.PI/2;ring.position.set(x,top-.11,fixtureZ);
+  ring.rotation.x=Math.PI/2;ring.position.set(x-.21,top-.11,fixtureZ);
   // Every optical component shares the emitting ring's centre in the rotating shelf.
-  const origin=ring.position.clone(),end=new THREE.Vector3(x,-1.38,fixtureZ);
+  const origin=ring.position.clone(),end=new THREE.Vector3(x,-1.38,1.30);
   const beam=makeSoftBeam(origin,end);
   const flare=new THREE.Sprite(new THREE.SpriteMaterial({map:softMap,color:'#FFF7F0',transparent:true,opacity:0,depthWrite:false,blending:THREE.AdditiveBlending}));
   flare.position.copy(origin);flare.scale.set(.94,.94,1);
@@ -509,7 +562,7 @@ function makeScene(){scene=new THREE.Scene();scene.fog=new THREE.FogExp2('#060A1
  const warmFill=new THREE.PointLight('#F5CF9D',0.95,7,2.2);warmFill.position.set(-4.6,-.55,2.2);scene.add(warmFill);
  accentTarget=new THREE.Color('#D0BCFF');accentCurrent=accentTarget.clone();scene.environment=buildReflectionEnvironment();scene.environmentIntensity=.18;buildArchitecture();
  glowSprite=new THREE.Sprite(new THREE.SpriteMaterial({map:makeGlowTexture(),color:'#D0BCFF',transparent:true,opacity:0,depthWrite:false,blending:THREE.AdditiveBlending}));glowSprite.scale.set(4.6,3.6,1);glowSprite.position.set(0,.4,-1.65);
- PROJECTS.forEach(p=>{const d=deviceFactory(p),side=shelfSides[projectSide(p)];side.add(d.group);d.contact=addShelfContact(p,side);d.mobileShadow=addMobileCastShadow(d,side);displayItems.set(p.id,d)});buildShowroomSpots();scene.traverse(o=>{if(o.isLight)o.layers.enable(ACTIVE_LAYER)});
+ PROJECTS.forEach(p=>{const d=deviceFactory(p),side=shelfSides[projectSide(p)];side.add(d.group);d.contact=addShelfContact(p,side);d.cast=addCastShadow(d,side);displayItems.set(p.id,d)});buildShowroomSpots();scene.traverse(o=>{if(o.isLight)o.layers.enable(ACTIVE_LAYER)});
  raycaster=new THREE.Raycaster();pointer=new THREE.Vector2(10,10);sceneReady=true;initialTime=performance.now();labels();updateShelfControls();
  shelfSwitch.hidden=false;
  for(const button of shelfSwitch.querySelectorAll('[data-shelf-side]')){
@@ -1025,7 +1078,7 @@ function render(time){
   const onVisibleFace=!lightweight||Boolean(shelfTurn)||projectSide(p)===gallerySide;
   d.group.visible=onVisibleFace;
   d.contact.visible=onVisibleFace;
-  d.mobileShadow.visible=lightweight&&onVisibleFace;
+  d.cast.mesh.visible=onVisibleFace;
   const rig=exhibitSpots.get(p.id);
   // Keep desktop light counts stable through a turn to reuse shader programs.
   rig.spot.visible=!lightweight;
@@ -1036,7 +1089,6 @@ function render(time){
   }
   const targetDim=activeId&&activeId!==p.id?1:0;
   d.contact.material.opacity=damp(d.contact.material.opacity,selected===p?0:1,Math.min(1,delta*9),Math.min(1,delta*9));
-  d.mobileShadow.material.opacity=d.contact.material.opacity*.86;
   d.hoverAmount = motionReduced()?0:damp(d.hoverAmount,targetHover,1-Math.exp(-delta*6),1-Math.exp(-delta*2.2));
   d.lightAmount=damp(d.lightAmount,activeId===p.id?1:0,1-Math.exp(-delta*(motionReduced()?28:6.0)),1-Math.exp(-delta*(motionReduced()?28:2.2)));
   if(d.lightAmount<.0001&&activeId!==p.id)d.lightAmount=0;
@@ -1119,13 +1171,16 @@ function render(time){
   device.group.position.copy(layout.position);
   device.group.scale.setScalar(layout.scale);
  }
+ for(const [id,device] of displayItems){
+  if(device.cast.mesh.visible)updateCastShadow(device,exhibitSpots.get(id),device.group.parent===scene);
+ }
  scene.updateMatrixWorld(true);
  renderLabels(time);
  positionScreenPortal();
  if(glowSprite)glowSprite.material.opacity=0;
  camera.layers.set(0);
  // The phone's room can stay painted while the foreground exhibit rotates.
- if(!lightweight||state!=='focus'||time<backdropSettlesAt||!(Math.abs(backdropZoom-camera.zoom)<.001)){
+ if(!lightweight||state!=='focus'||time<backdropSettlesAt||dragOrbit||Math.abs(focusTilt.x-focusTiltTarget.x)+Math.abs(focusTilt.y-focusTiltTarget.y)>.001||!(Math.abs(backdropZoom-camera.zoom)<.001)){
   renderer.render(scene,camera);
   backdropZoom=camera.zoom;
  }
