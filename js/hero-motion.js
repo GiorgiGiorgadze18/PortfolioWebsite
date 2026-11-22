@@ -113,6 +113,7 @@
 
   function start() {
     setTimeout(() => {
+      if (ready) return;
       if (reduced.matches) return finish();
       tracks.forEach(track => track.fit());
       root.classList.add('hero-go');
@@ -138,9 +139,9 @@
         const dx = left + x - (pointer?.x ?? Infinity);
         const dy = top + y - (pointer?.y ?? Infinity);
         const distance = Math.hypot(dx, dy);
-        if (distance > 0 && distance < track.radius) {
+        if (distance < track.radius) {
           const strength = 1 - distance / track.radius;
-          const shift = strength * track.shift / distance;
+          const shift = strength * track.shift / (distance || 1);
           glyph.style.translate = `${dx * shift}px ${dy * shift}px`;
           if (track.grow) glyph.style.scale = String(1 + strength * track.grow);
           if (color) glyph.style.color = `color-mix(in srgb, var(--clr-cyan) ${strength * 100}%, ${color})`;

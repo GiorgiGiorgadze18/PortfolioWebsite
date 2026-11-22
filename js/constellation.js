@@ -135,6 +135,10 @@
   }
 
   function animate(time) {
+    if (document.hidden || reduced.matches || showStage) {
+      syncMotion();
+      return;
+    }
     frameId = requestAnimationFrame(animate);
     const interval = time - lastFrame;
     if (interval < 1000 / 30 - 1) return;
