@@ -2,9 +2,13 @@
 
 ## 0.16.3 — 2026-11-22 (draft)
 
+[PR #16](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/16)
+
 - Keep the constellation moving above and below the Projects showroom. Reduce its update rate while the 3D scene shares the viewport and pause it when the scene fills the visible area.
 - Remove the two decorative postscript labels and the vertical “Thoughtfully crafted” caption.
 - Render the original poster art and higher-density screenshots directly on all five exhibits, before and after selection. Remove the softening overlays and cap texture and canvas sizes. Try Now remains available on both app exhibits.
+
+Verified top-of-page animation and all five loaded texture sizes in Chromium desktop and phone emulation. WebKit passed both shelves and Try Now on desktop and phone emulation.
 
 ## 0.16.2 — 2026-11-22
 
