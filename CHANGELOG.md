@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.16.2 — 2026-11-22 (draft)
+## 0.16.2 — 2026-11-22
 
 [PR #15](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/15)
 
