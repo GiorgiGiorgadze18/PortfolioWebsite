@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/index.css?v=0.16.1">
   <link rel="stylesheet" href="css/constellation.css">
   <script defer src="js/constellation.js"></script>
   <link rel="stylesheet" href="css/hero-motion.css">
@@ -60,8 +60,10 @@
          Swap in a real bg image by editing .parallax-bg in style.css
     ═══════════════════════════════════════════════════════════ -->
     <section class="hero" id="hero" aria-label="Introduction">
-      <div class="parallax-bg" id="parallax-bg" aria-hidden="true"></div>
-      <div class="hero__grid-overlay" aria-hidden="true"></div>
+      <div class="hero__backdrop" aria-hidden="true">
+        <div class="parallax-bg" id="parallax-bg"></div>
+        <div class="hero__grid-overlay"></div>
+      </div>
 
       <div class="container hero__container">
 

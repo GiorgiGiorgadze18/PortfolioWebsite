@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.16.1 — 2026-11-22
+
+[PR #14](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/14)
+
+- Fade the Home hero backdrop into the next section to remove the hard gradient edge.
+- Open the phone, tablet and posters directly into the final centered view. Use the same screen alignment throughout the opening and interactive view.
+- Apply MeeTab coral, Tsero red, and colors sampled from each poster to the corresponding project controls and body outline. Posters now get one outline sweep when selected.
+- Shorten the actual cast shadows and add compact contact shadows below each exhibit stand. Remove the broad screen glow that made the edges look detached.
+
+Verified the Home transition and matching opening and interactive positions for all five exhibits in desktop and phone emulation using Chromium and WebKit. Also verified MeeTab’s phone preview, one-time outline and screen alignment after resizing in WebKit.
+
 ## 0.16.0 — 2026-11-22
 
 [PR #13](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/13)

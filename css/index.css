@@ -462,6 +462,13 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
   overflow: hidden;
 }
 
+.hero__backdrop {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mask-image: linear-gradient(#000 68%, transparent);
+}
+
 /* ── Parallax background ──────────────────────────────────────
    Currently renders a gradient placeholder.
    TO ENABLE A REAL IMAGE:
