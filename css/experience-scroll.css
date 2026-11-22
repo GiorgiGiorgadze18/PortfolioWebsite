@@ -1,0 +1,34 @@
+#experience.experience-scroll-enabled .timeline::before,
+#experience.experience-scroll-enabled .timeline::after {
+  content: '';
+  position: absolute;
+  top: 12px;
+  bottom: 10px;
+  left: 5.5px;
+  width: 2px;
+  background: var(--clr-cyan);
+  z-index: 0;
+  pointer-events: none;
+}
+#experience.experience-scroll-enabled .timeline::before { opacity: .18; }
+#experience.experience-scroll-enabled .timeline::after {
+  transform-origin: top;
+  transform: scaleY(var(--timeline-progress, 0));
+}
+
+#experience.experience-scroll-enabled .timeline-entry[data-animate] {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+:where(#experience.experience-scroll-enabled) .timeline-entry__content {
+  opacity: calc(.45 + .55 * var(--timeline-activation, 0));
+  translate: 0 calc(16px * (1 - var(--timeline-activation, 0)));
+}
+:where(#experience.experience-scroll-enabled) .timeline-entry__dot {
+  scale: calc(1 + .2 * var(--timeline-activation, 0));
+  background-color: color-mix(in srgb, var(--clr-cyan) calc(100% * var(--timeline-activation, 0)), var(--clr-bg-deep));
+}
+:where(#experience.experience-scroll-enabled) .timeline-entry.is-scroll-active .timeline-entry__dot {
+  box-shadow: var(--glow-sm);
+}

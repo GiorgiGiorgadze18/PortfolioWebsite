@@ -1,0 +1,28 @@
+/* Clipping preserves horizontal containment without making body a scroll container. */
+@supports (overflow: clip) {
+  html.hero-scroll-enabled,
+  html.hero-scroll-enabled body { overflow-x: clip; }
+}
+
+.hero-scroll-enabled #hero {
+  position: sticky;
+  top: var(--hero-sticky-top, 0px);
+  z-index: 1;
+}
+
+.hero-scroll-enabled #hero .hero__container {
+  transform: var(--hero-scroll-transform, none);
+  opacity: var(--hero-scroll-opacity, 1);
+  filter: var(--hero-scroll-filter, none);
+}
+.hero-scroll-enabled #hero .hero__photo-wrap { translate: 0 var(--hero-photo-offset, 0px); }
+.hero-scroll-enabled #hero .hero__content { translate: 0 var(--hero-text-offset, 0px); }
+.hero-scroll-enabled #hero .parallax-bg { translate: 0 var(--hero-parallax-compensation, 0px); }
+
+.hero-scroll-enabled #disciplines {
+  position: relative;
+  z-index: 2;
+  background-image: linear-gradient(var(--clr-bg-deep), var(--clr-bg-deep));
+  background-repeat: no-repeat;
+  background-size: 100% var(--hero-overlap, 0px);
+}

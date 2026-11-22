@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.16.5 — 2026-11-23
+
+[PR #18](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/18)
+
+- Keep the Home hero sticky as Core Disciplines covers it. Scroll scales and fades the existing intro, with gentle blur and different offsets for the photo and copy.
+- Fill the existing Experience rail as the page scrolls. Each node lights up and its card moves into place when the fill reaches it. The sequence runs in reverse on scroll-up.
+- Respect reduced motion and let tall layouts scroll through the Hero content before it pins.
+
+Verified the original geometry, sticky overlap, forward/reverse timeline activation and reduced motion in Chromium and WebKit at 1366×900, 390×844, 320×568 and 844×390. Phone profiles were emulated.
+
+Rollback baseline: published v0.16.4 at `15885ae`. Revert `75442b9` for the Hero or `6297d9d` for Experience. The shared scheduler `b7e5e6e` can be reverted after both effects are removed. Refresh the deployment manifest for the resulting Home files before publishing a rollback.
+
 ## 0.16.4 — 2026-11-22
 
 [PR #17](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/17)
