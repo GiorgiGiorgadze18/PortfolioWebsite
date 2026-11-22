@@ -7,7 +7,7 @@
 - Rotate the 3D shelves 180° with the UI / UX and Graphic Design controls. Tsero and MeeTab face forward. Tobacco Vanille, Earth Hour and JBL artwork are displayed on the reverse.
 - Open the exhibit inspector from either face. On phones, Try Now shows the existing screenshot and desktop prompt for both apps. Reduced motion switches sides immediately.
 
-Verified both faces, all three artworks, desktop demos and the phone portrait and landscape flows in WebKit browser emulation. Phone emulation made zero live demo requests.
+Verified both faces, all three artworks, desktop demos and the phone portrait and landscape flows in Chromium and WebKit browser emulation. Phone emulation made zero live demo requests. The WebKit MeeTab regression also passed the single outline sweep and unchanged canvas resize checks.
 
 ## 0.15.3 — 2026-11-22
 
