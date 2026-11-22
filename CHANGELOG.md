@@ -1,12 +1,13 @@
 # Changelog
 
 ## 0.16.10 — 2026-11-23
+
 [PR #23](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/23)
 
-- Add a three-layer CSS hologram alongside the Home Core Disciplines heading. Keep the existing cards and Projects showroom intact.
-- Add damped pointer and touch rotation, independent floating motion, and a static reduced-motion view. Pause idle animation when the hologram leaves the viewport.
+- Apply translucent cyan glass, layered content and moving reflections to all ten existing Core Disciplines cards. Preserve each heading, description, list, tool tag and icon.
+- Add damped pointer and touch tilt, staggered floating motion, and a static reduced-motion view. Pause floating when a card leaves the viewport.
 
-Verified perspective, panel depths, floating motion, reduced motion, and fit at desktop and portrait and landscape phone sizes in Chromium and WebKit. Mouse return was checked in both engines and touch gestures in Chromium emulation. Inspected desktop and 320px screenshots. Rollback baseline is `1154cc6`, saved at `backup/before-home-hologram`.
+Verified all ten original card bodies against the published baseline, and checked desktop, 320px and 390px portrait, and landscape in Chromium and WebKit. Checked mouse return in both, touch drag in Chromium phone emulation, and the static no-JavaScript fallback. The original Projects and shared spotlight sources are unchanged. Rollback baseline is `1154cc6`, saved at `backup/before-home-hologram`.
 
 ## 0.16.9 — 2026-11-23
 

@@ -720,38 +720,6 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
   grid-column: 1 / -1;
 }
 
-/* ── Discipline Card ── */
-.discipline-card {
-  background: var(--clr-bg-card);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid var(--clr-border);
-  border-radius: var(--radius);
-  padding: 38px 36px;
-  position: relative;
-  overflow: hidden;
-  transition: border-color var(--t-base), box-shadow var(--t-base), transform var(--t-base);
-}
-
-/* Top edge line on hover */
-.discipline-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent 0%, var(--clr-cyan) 50%, transparent 100%);
-  opacity: 0;
-  transition: opacity var(--t-base);
-}
-
-.discipline-card:hover {
-  border-color: var(--clr-border-hover);
-  box-shadow: 0 10px 48px rgba(0,0,0,0.30), var(--glow-xs);
-  transform: translateY(-5px);
-}
-
-.discipline-card:hover::before { opacity: 1; }
-
 /* Icon + Title header row */
 .discipline-card__header {
   display: flex;
@@ -828,8 +796,6 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
   box-shadow: var(--glow-xs);
   flex-shrink: 0;
 }
-
-.discipline-card:hover .discipline-card__list li { color: rgba(255,255,255,0.68); }
 
 /* Tool tags */
 .discipline-card__tools {
@@ -1515,7 +1481,6 @@ button { background: none; border: none; cursor: pointer; font-family: inherit; 
   }
 
   .hero__title { font-size: 30px; }
-  .discipline-card { padding: 26px 22px; }
   .timeline { padding-left: 24px; }
   .timeline-entry { padding-left: 24px; }
   .timeline-entry__dot { left: -24px; }
