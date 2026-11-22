@@ -17,6 +17,8 @@
   <script defer src="js/constellation.js"></script>
   <link rel="stylesheet" href="css/hero-motion.css">
   <script defer src="js/hero-motion.js"></script>
+  <link rel="stylesheet" href="css/hologram.css">
+  <script defer src="js/hologram.js"></script>
 </head>
 <body>
 
@@ -151,10 +153,37 @@
     <section class="disciplines" id="disciplines" aria-labelledby="disc-title">
       <div class="container">
 
-        <div class="section-header" data-animate>
-          <p class="section-label">WHAT I DO</p>
-          <!-- Inter ExtraBold 800 @ 48px per spec -->
-          <h2 class="section-title" id="disc-title">CORE DISCIPLINES</h2>
+        <div class="disciplines-intro">
+          <div class="section-header" data-animate>
+            <p class="section-label">WHAT I DO</p>
+            <!-- Inter ExtraBold 800 @ 48px per spec -->
+            <h2 class="section-title" id="disc-title">CORE DISCIPLINES</h2>
+          </div>
+
+          <figure class="hologram" data-hologram aria-label="Design system interface with three swatches, component bars, and a live UI value of 98.4%">
+            <div class="hologram__space" aria-hidden="true">
+              <div class="hologram__group">
+                <div class="hologram__panel hologram__panel--design">
+                  <div class="hologram__glass">
+                    <span>DESIGN SYSTEM</span>
+                    <div class="hologram__swatches"><i></i><i></i><i></i></div>
+                  </div>
+                </div>
+                <div class="hologram__panel hologram__panel--components">
+                  <div class="hologram__glass">
+                    <span>COMPONENTS</span>
+                    <div class="hologram__bars"><i></i><i></i><i></i></div>
+                  </div>
+                </div>
+                <div class="hologram__panel hologram__panel--live">
+                  <div class="hologram__glass">
+                    <span><i class="hologram__signal">◈</i> LIVE UI</span>
+                    <strong>98.4%</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </figure>
         </div>
 
         <div class="disciplines__section" data-animate data-delay="1">

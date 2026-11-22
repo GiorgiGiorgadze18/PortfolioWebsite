@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.16.10 — 2026-11-23
+
+- Add a three-layer CSS hologram alongside the Home Core Disciplines heading. Keep the existing cards and Projects showroom intact.
+- Add damped pointer and touch rotation, independent floating motion, and a static reduced-motion view. Pause idle animation when the hologram leaves the viewport.
+
+Verified perspective, panel depths, floating motion, reduced motion, and fit at desktop and portrait and landscape phone sizes in Chromium and WebKit. Mouse return was checked in both engines and touch gestures in Chromium emulation. Inspected desktop and 320px screenshots. Rollback baseline is `1154cc6`, saved at `backup/before-home-hologram`.
+
 ## 0.16.9 — 2026-11-23
 
 [PR #22](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/22)
