@@ -15,6 +15,8 @@ Verified both faces, all three artworks, desktop demos and the phone portrait an
 - Reveal the original Home heading by letter and its paragraph by word, then enable cursor repulsion on hover-capable devices. Preserve the original text flow and styling.
 - Remove a broken decorative image request on About. The certificate preview and link still use the original file.
 
+Verified all four pages, original wrapping, the hero reveal and pointer behavior in Chromium and WebKit desktop and phone emulation. The browser checks reported zero console errors. The constellation drew zero frames during the active WebGL samples.
+
 ## 0.15.3 — 2026-11-22
 
 [PR #12](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/12)
