@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.16.7 — 2026-11-23
+
+- Turn the Contact form pane into a pinned terminal boot sequence with scroll-scrubbed typing, a progress bar, form reveal, and an armed Transmit state. Keep the original fields, native validation, and Formspree POST.
+- Add reusable desktop and touch scroll hints, a keyboard-accessible Skip link, and a static form for reduced motion and no JavaScript. On short screens the first hint follows the contact cards and the unlocked terminal body can scroll to Transmit.
+
+Verified forward and reverse scrolling, the unlock and armed thresholds, Skip, Tab and focus, portrait and landscape layouts, reduced motion, and the no-JavaScript fallback in Chromium and WebKit desktop and phone emulation. Verified required and email validation and intercepted the original Formspree POST locally. Browser checks reported zero console errors with the local test server. Live inbox delivery and physical devices were outside those checks.
+
 ## 0.16.6 — 2026-11-23
 
 [PR #19](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/19)
