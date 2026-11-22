@@ -19,7 +19,7 @@
   let points = [];
   let neighbors = [];
   let width = 0, height = 0, pixelRatio = 0, spacing = 0;
-  let showStage = false, staticFrame = false, pointer = null;
+  let showStage = false, stageCoversViewport = false, staticFrame = false, pointer = null;
   let frameId = 0, lastFrame = 0, elapsed = 0, resizeTimer;
   let updateStageClip;
 
@@ -136,13 +136,13 @@
   }
 
   function animate(time) {
-    if (document.hidden || reduced.matches || showStage) {
+    if (document.hidden || reduced.matches || stageCoversViewport) {
       syncMotion();
       return;
     }
     frameId = requestAnimationFrame(animate);
     const interval = time - lastFrame;
-    if (interval < 1000 / 30 - 1) return;
+    if (interval < 1000 / (showStage ? 15 : 30) - 1) return;
     const delta = Math.min(interval / 1000, .075);
     lastFrame = time;
     elapsed += delta;
@@ -153,7 +153,7 @@
     cancelAnimationFrame(frameId);
     frameId = 0;
     if (document.hidden) return;
-    if (reduced.matches || showStage) {
+    if (reduced.matches || stageCoversViewport) {
       if (!staticFrame) draw(false);
       staticFrame = true;
     } else {
@@ -182,7 +182,7 @@
   document.addEventListener('visibilitychange', syncMotion);
   reduced.addEventListener('change', syncMotion);
 
-  // Freeze the network near the showroom and exclude the covered area from compositing.
+  // Animate the exposed background and exclude the showroom from compositing.
   const stage = document.querySelector('#museum-frame');
   if (stage) {
     let clipFrame = 0;
@@ -191,6 +191,11 @@
       const bounds = stage.getBoundingClientRect();
       const top = Math.max(0, bounds.top);
       const bottom = Math.min(height, bounds.bottom);
+      const covered = top <= (document.querySelector('#navbar')?.offsetHeight ?? 0) && bottom >= height - 1;
+      if (stageCoversViewport !== covered) {
+        stageCoversViewport = covered;
+        syncMotion();
+      }
       canvas.style.clipPath = showStage && bottom > top
         ? `polygon(evenodd, 0 0, 100% 0, 100% 100%, 0 100%, 0 0, 0 ${top}px, 0 ${bottom}px, 100% ${bottom}px, 100% ${top}px, 0 ${top}px)`
         : '';
@@ -200,13 +205,12 @@
       if (showStage && !clipFrame) clipFrame = requestAnimationFrame(clipAroundStage);
     }
 
-    showStage = true;
     updateStageClip = queueClip;
     new IntersectionObserver(([entry]) => {
       showStage = entry.isIntersecting;
       clipAroundStage();
       syncMotion();
-    }, {rootMargin: '150px'}).observe(stage);
+    }).observe(stage);
     window.addEventListener('scroll', queueClip, {passive: true});
     new ResizeObserver(queueClip).observe(stage);
   }

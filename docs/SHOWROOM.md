@@ -13,10 +13,10 @@ The supplied v0.14 showroom is integrated directly into `projects.html`. The rep
 - `showroom/vendor/three.js` and its license: the supplied local 3D engine.
 - `showroom/assets/`: local font files, font CSS, and font licenses.
 - `assets/meetab-preview.jpg`: the original embedded MeeTab cover used in the collection.
-- `assets/meetab-desktop-home.webp`: a 1280×800 capture of the desktop MeeTab demo home screen, used as the tablet texture.
+- `assets/meetab-desktop-home.webp`: a 2560×1600 capture of the desktop MeeTab demo home screen, used as the tablet texture.
 - `showroom/SOURCE.json`: supplied MeeTab provenance.
 - `showroom/tsero/`: TseroApp's complete `web/` export at commit `3946431684af3553f575cdd7213be607db992b1e`, including font and map attribution. Run `showroom/tsero/index.html?start=home` inside a 375×811 viewport to see the reference layout.
-- `assets/tsero-desktop-home.webp`: a capture of the Tsero web demo home screen at 375×811.
+- `assets/tsero-desktop-home.webp`: a capture of the Tsero web demo home screen at 750×1622 (375×811 viewport).
 - `assets/project-tsero.jpg`: preserved original poster. The collection and View Original Artwork still use this file.
 
 Home, About, Contact, their assets, and their shared JavaScript are unchanged. Projects uses its own module to avoid duplicate event handlers.
@@ -84,7 +84,7 @@ GitHub Pages already deploys `main` from the repository root using its legacy bu
 
 ## v0.14.5 — static app previews on phones
 
-MeeTab's still image comes from the desktop demo at its 1280×800 screen size. Try Now opens the existing HUD and renders a 55% black overlay and white message on the tablet screen in mobile and compact layouts. Portrait and landscape touch devices rely on the screenshot. Exit preview removes the overlay. The one-pass neon animation follows the outer body on entry. Desktop uses the live demo and retains its state between openings.
+MeeTab's still image comes from the desktop demo at twice its 1280×800 viewport resolution. Try Now opens the existing HUD and renders a 55% black overlay and white message on the tablet screen in mobile and compact layouts. Portrait and landscape touch devices rely on the screenshot. Exit preview removes the overlay. The one-pass neon animation follows the outer body on entry. Desktop uses the live demo and retains its state between openings.
 
 Use the same pattern for future integrated apps. See [repository instructions](../AGENTS.md). Run `python3 tests/tablet_mobile.py --phone-only` to test the mobile HUD, the overlay and the absence of an app iframe. The `--desktop-only` profile checks live booking navigation and the outer outline.
 
