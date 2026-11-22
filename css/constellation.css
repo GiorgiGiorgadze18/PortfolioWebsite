@@ -5,6 +5,7 @@ body > .constellation {
   height: 100%;
   z-index: 0;
   pointer-events: none;
+  contain: paint;
 }
 
 .constellation ~ :is(main, footer, #site-root) {

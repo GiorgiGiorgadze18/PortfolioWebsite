@@ -21,6 +21,7 @@
   let width = 0, height = 0, pixelRatio = 0, spacing = 0;
   let showStage = false, staticFrame = false, pointer = null;
   let frameId = 0, lastFrame = 0, elapsed = 0, resizeTimer;
+  let updateStageClip;
 
   function build() {
     const {clientWidth, clientHeight} = document.documentElement;
@@ -174,20 +175,40 @@
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
       build();
+      updateStageClip?.();
       syncMotion();
     }, 130);
   }, {passive: true});
   document.addEventListener('visibilitychange', syncMotion);
   reduced.addEventListener('change', syncMotion);
 
-  // The showroom owns the frame budget whenever its stage could be rendering.
+  // Freeze the network near the showroom and exclude the covered area from compositing.
   const stage = document.querySelector('#museum-frame');
   if (stage) {
+    let clipFrame = 0;
+    function clipAroundStage() {
+      clipFrame = 0;
+      const bounds = stage.getBoundingClientRect();
+      const top = Math.max(0, bounds.top);
+      const bottom = Math.min(height, bounds.bottom);
+      canvas.style.clipPath = showStage && bottom > top
+        ? `polygon(evenodd, 0 0, 100% 0, 100% 100%, 0 100%, 0 0, 0 ${top}px, 0 ${bottom}px, 100% ${bottom}px, 100% ${top}px, 0 ${top}px)`
+        : '';
+    }
+
+    function queueClip() {
+      if (showStage && !clipFrame) clipFrame = requestAnimationFrame(clipAroundStage);
+    }
+
     showStage = true;
+    updateStageClip = queueClip;
     new IntersectionObserver(([entry]) => {
       showStage = entry.isIntersecting;
+      clipAroundStage();
       syncMotion();
     }, {rootMargin: '150px'}).observe(stage);
+    window.addEventListener('scroll', queueClip, {passive: true});
+    new ResizeObserver(queueClip).observe(stage);
   }
 
   build();

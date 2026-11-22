@@ -11,7 +11,7 @@ Verified both faces, all three artworks, desktop demos and the phone portrait an
 
 ### Constellation and home hero
 
-- Add a shared constellation background to Home, Projects, Contact and About. It uses the existing accents, honors reduced motion and holds a still frame near the 3D showroom.
+- Add a shared constellation background to Home, Projects, Contact and About. It uses the existing accents and honors reduced motion. Near the 3D showroom, the background holds a still frame and clips the area covered by the stage.
 - Reveal the original Home heading by letter and its paragraph by word, then enable cursor repulsion on hover-capable devices. Preserve the original text flow and styling.
 - Remove a broken decorative image request on About. The certificate preview and link still use the original file.
 
