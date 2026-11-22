@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.16.9 — 2026-11-23
+
+[PR #22](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/22)
+
+- Version the Contact terminal stylesheet and script URLs so a refreshed Contact page requests the full-height layout even if the earlier nested-scroll assets are cached.
+
+Verified in Chromium phone emulation with the old asset URLs serving cached copies. The revised page had zero internal overflow and Transmit was reachable via page scrolling.
+
 ## 0.16.8 — 2026-11-23
 [PR #21](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/21)
 
