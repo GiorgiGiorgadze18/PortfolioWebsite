@@ -103,17 +103,20 @@
 #try-preview{transition:background .25s,box-shadow .4s,border-color .25s}
 .is-demo #try-preview{background:color-mix(in srgb,var(--active-light) 16%,var(--bg));color:var(--active-tint);border-color:var(--active-border);box-shadow:0 8px 28px #0007}
 .is-demo .stage-actions .interaction-hint{color:var(--active-tint)}
-/* A body-sized projected SVG, outside the clipped app/screen portal. */
-#tablet-outline{position:absolute;left:0;top:0;z-index:9;overflow:visible;pointer-events:none;transform-origin:0 0}
+/* Draw in viewport coordinates above the embedded screen and both renderers. */
+#tablet-outline{position:absolute;inset:0;width:100%;height:100%;z-index:10;overflow:visible;pointer-events:none}
 #tablet-outline[hidden]{display:none}
-#tablet-outline rect{fill:none;stroke:var(--active-tint);stroke-width:3;stroke-linecap:round;stroke-dasharray:.18 .82;filter:drop-shadow(0 0 5px var(--active-light));opacity:0}
-.is-demo #tablet-outline rect,.is-artwork #tablet-outline rect{animation:tabletSignal 1.25s linear 1 both}
+#tablet-outline path{fill:none;stroke-linecap:round;stroke-dasharray:.21 .79;opacity:0}
+#tablet-outline .outline-glow{stroke:var(--active-light);stroke-width:8}
+#tablet-outline .outline-stroke{stroke:var(--active-tint);stroke-width:2.8}
+#tablet-outline.is-sweeping path{animation:tabletSignal 1.25s linear 1 both}
 @keyframes tabletSignal{
   0%{stroke-dashoffset:0;opacity:0}
-  7%{opacity:1}
-  90%{opacity:1}
+  8%{opacity:.95}
+  86%{opacity:.95}
   100%{stroke-dashoffset:-1;opacity:0}
 }
+#tablet-outline.is-sweeping .outline-glow{opacity:.3;stroke:color-mix(in srgb,var(--active-light) 47%,transparent)}
 .screen-portal[hidden]{display:none}
 .screen-portal[inert]{pointer-events:none}
 .screen-portal iframe[hidden],#desktop-demo-notice[hidden]{display:none}
@@ -123,25 +126,32 @@
 #desktop-demo-notice strong{max-width:24ch;font-size:clamp(14px,5cqi,24px)}
 
 .demo-announcement{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
-@media(prefers-reduced-motion:reduce){#showroom-canvas,.demo-workspace,.project-inspector .inspector-body,.project-inspector .inspector-buttons,.inspector-year,#try-preview{transition:opacity .12s}#tablet-outline rect{animation:none!important}}
+@media(prefers-reduced-motion:reduce){#showroom-canvas,.demo-workspace,.project-inspector .inspector-body,.project-inspector .inspector-buttons,.inspector-year,#try-preview{transition:opacity .12s}#tablet-outline path{animation:none!important}}
 
-/* Phone showroom: the same exhibit with a touch target grid and bottom inspector. */
+.inspector-header{display:flex;flex-direction:column;flex:none}
+.inspector-scroll{display:contents}
+
+ /* Phone showroom: the same exhibit with a touch target grid and bottom inspector. */
 @media(max-width:600px){
- .museum-frame{height:min(680px,calc(100svh - 96px));min-height:540px}
+ .museum-frame{height:min(680px,calc(100svh - 96px));min-height:470px;--phone-inspector-height:clamp(194px,33svh,246px)}
  .museum-frame .stage-fallback[hidden]{display:none}
  .museum-frame .stage-fallback:not([hidden]){display:flex}
  .device-labels[hidden]{display:none}
  .device-labels{display:grid;grid-template-columns:1fr 1fr;gap:8px;inset:auto 16px 70px;pointer-events:none}
  .device-label{position:relative;left:auto!important;top:auto!important;transform:none!important;min-width:0;min-height:48px;padding:8px 4px;border-radius:8px}
  .device-label:after{display:none}.device-label small{font-size:7px}.device-label strong{font-size:10px}
- .project-inspector{display:flex!important;top:auto;bottom:0;width:100%;height:220px;transition:transform .28s ease,opacity .2s,visibility .2s;padding:14px 18px 18px;border-left:0;border-top:1px solid var(--active-border);transform:translateY(105%)}
+ .project-inspector{display:flex!important;top:auto;bottom:0;width:100%;height:var(--phone-inspector-height);overflow:hidden;transition:transform .28s ease,opacity .2s,visibility .2s;padding:12px 16px 10px;border-left:0;border-top:1px solid var(--active-border);transform:translateY(105%)}
  .project-inspector.is-open{transform:translateY(0)}
  .inspector-close{top:8px;right:10px;width:44px;height:44px}
  .inspector-index{margin:0 48px 6px 0;font-size:8px}.inspector-accent{display:none}
  .inspector-kicker{font-size:9px;margin:0 48px 5px 0}.project-inspector h3{font-size:22px;margin-right:42px}
- .inspector-year{margin-bottom:8px}.inspector-body{padding-top:7px;font-size:12px}.inspector-body p{margin:0}
- .inspector-buttons{padding-top:12px}.inspector-buttons a{min-height:44px}
- .museum-frame.is-focused .stage-actions{bottom:232px;left:16px;right:16px;min-height:44px}
+ .inspector-header,.inspector-buttons{flex:none}
+ .inspector-year,.is-demo .inspector-year{margin:2px 0 6px;opacity:1;visibility:visible;max-height:none}
+ .inspector-scroll{display:block;flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}
+ .inspector-body{padding-top:7px;font-size:12px}.inspector-body p{margin:0}
+ .inspector-buttons,.is-demo .inspector-buttons{padding-top:6px;visibility:visible;opacity:1;max-height:none;pointer-events:auto}
+ .inspector-buttons a{min-height:44px}
+ .museum-frame.is-focused .stage-actions{bottom:calc(var(--phone-inspector-height) + 10px);left:16px;right:16px;min-height:44px}
  .museum-frame.is-focused .interaction-hint{display:none}
  #reset-view{min-height:44px;width:calc(50% - 8px);font-size:9px;text-align:left}
  #try-preview{min-height:44px;min-width:0;width:calc(50% - 24px);font-size:10px}
@@ -150,6 +160,19 @@
  .demo-exit{min-height:44px}.demo-note{font-size:9px;margin-top:8px}
 }
 
+
+@media (max-width:600px), (pointer:coarse){
+ .museum-frame.is-focused .showroom-canvas,.museum-frame.is-demo .showroom-canvas{filter:brightness(.40) saturate(.72)}
+}
+/* Protect metadata and actions on touch landscape as well as narrow phones. */
+@media (hover:none) and (max-height:500px) and (min-width:601px){
+ .museum-frame{height:calc(100svh - 76px);min-height:280px}
+ .project-inspector{padding-top:48px;padding-bottom:14px;overflow:hidden}
+ .inspector-scroll{display:block;flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain}
+ .inspector-year,.is-demo .inspector-year{opacity:1;visibility:visible;max-height:none}
+ .inspector-buttons,.is-demo .inspector-buttons{flex:none;visibility:visible;opacity:1;max-height:none;pointer-events:auto}
+ .inspector-buttons a{min-height:44px}
+}
 
 /* Draw the return arrow independently of the platform's emoji font. */
 .gallery-return-icon {
@@ -185,51 +208,55 @@
   transform: rotate(45deg);
 }
 
-/* The room stays fixed while the cabinet turns between its two exhibits. */
+/* Keep the shelf controls above the scene at every viewport width. */
 .shelf-switch {
-  position: absolute;
-  z-index: 12;
-  top: 48px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
+  position: relative;
+  width: max-content;
+  max-width: calc(100% - 24px);
+  margin: 0 auto 14px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 4px;
   padding: 4px;
   border: 1px solid #d0bcff33;
-  border-radius: 24px;
-  background: #0a101eea;
+  border-radius: 26px;
+  background: #0a101e;
 }
 .shelf-switch[hidden], .device-label[hidden] { display: none; }
+.shelf-switch::before {
+  content: "";
+  position: absolute;
+  inset: 4px auto 4px 4px;
+  width: calc(50% - 6px);
+  border-radius: 22px;
+  background: #d0bcff;
+  transition: transform .38s cubic-bezier(.22,.7,.28,1);
+}
+.shelf-switch[data-side="graphics"]::before { transform: translateX(calc(100% + 4px)); }
 .shelf-switch button {
-  min-height: 36px;
-  padding: 0 15px;
+  position: relative;
+  min-height: 44px;
+  padding: 0 clamp(10px, 3vw, 20px);
   border: 0;
-  border-radius: 20px;
+  border-radius: 22px;
   background: transparent;
   color: #d9ccef;
   font: 600 11px var(--font-body);
   white-space: nowrap;
+  transition: color .2s ease;
 }
-.shelf-switch button[aria-pressed="true"] {
-  background: #d0bcff;
-  color: #131022;
-}
+.shelf-switch[data-side="apps"] [data-shelf-side="apps"],
+.shelf-switch[data-side="graphics"] [data-shelf-side="graphics"] { color: #131022; }
 .shelf-switch button:focus-visible { outline: 2px solid #83dfff; outline-offset: 2px; }
 .shelf-switch button[aria-disabled="true"] { cursor: wait; }
-.museum-frame.is-focused .shelf-switch { left: 24px; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .shelf-switch::before, .shelf-switch button { transition: none; }
+}
 @media (max-width: 600px) {
-  .shelf-switch { top: 35px; }
-  .shelf-switch button { min-height: 44px; }
-  .museum-frame.is-focused .shelf-switch { left: 50%; transform: translateX(-50%); }
   .museum-frame[data-shelf="graphics"] .device-labels { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
-
 
 .archive-card .archive-kind,
 .archive-card .archive-action,
 .project-inspector .inspector-kicker { color: var(--active-tint); }
 .archive-card .archive-action:hover { border-color: var(--active-light); }
-.museum-frame.is-focused .shelf-switch button[aria-pressed="true"] {
-  background: var(--active-light);
-  color: var(--bg);
-}

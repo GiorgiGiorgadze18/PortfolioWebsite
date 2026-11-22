@@ -5,9 +5,9 @@ import os
 from playwright.sync_api import expect, sync_playwright
 
 
-def expect_face(stage, side, projects):
+def expect_face(page, stage, side, projects):
     expect(stage).to_have_attribute('data-shelf', side)
-    expect(stage.locator(f'[data-shelf-side="{side}"]')).to_have_attribute('aria-pressed', 'true')
+    expect(page.locator(f'[data-shelf-side="{side}"]')).to_have_attribute('aria-pressed', 'true')
     labels = stage.locator('.device-label:visible')
     expect(labels).to_have_count(len(projects))
     assert set(labels.evaluate_all('(labels) => labels.map(label => label.dataset.id)')) == set(projects)
@@ -19,21 +19,21 @@ def desktop(browser, url):
     page.on('pageerror', lambda error: errors.append(str(error)))
     page.goto(url)
     stage = page.locator('#museum-frame')
-    graphics = stage.get_by_role('button', name='Graphic Design', exact=True)
+    graphics = page.get_by_role('button', name='Graphic Design', exact=True)
     titles = {
         'tomford': 'Tom Ford Tobacco Vanille',
         'earthhour': 'Earth Hour Campaign Poster',
         'jbl-artwork': 'JBL Premium Audio Campaign',
     }
-    expect_face(stage, 'apps', ('tsero', 'jbl'))
+    expect_face(page, stage, 'apps', ('tsero', 'jbl'))
     # Read the live DOM in the same task as the click to catch the animation state.
     assert graphics.evaluate("""button => {
         button.click();
         return button.getAttribute('aria-disabled') === 'true' &&
-            button.closest('#museum-frame').dataset.shelf === 'apps' &&
+            document.querySelector('#museum-frame').dataset.shelf === 'apps' &&
             document.querySelector('#device-labels').inert;
     }""")
-    expect_face(stage, 'graphics', titles)
+    expect_face(page, stage, 'graphics', titles)
     page.emulate_media(reduced_motion='reduce')
     for project, title in titles.items():
         stage.locator(f'.device-label[data-id="{project}"]').click()
@@ -41,7 +41,7 @@ def desktop(browser, url):
         expect(page.locator('#project-inspector')).to_have_attribute('aria-hidden', 'false')
         expect(page.locator('#try-preview')).to_be_hidden()
         page.locator('#reset-view').click()
-        expect_face(stage, 'graphics', titles)
+        expect_face(page, stage, 'graphics', titles)
 
     page.locator('[data-explore="tsero"]').click()
     expect(stage).to_have_attribute('data-shelf', 'apps')
@@ -50,7 +50,7 @@ def desktop(browser, url):
     button.click()
     expect(page.frame_locator('iframe[title="Tsero App interactive demo"]').locator('#screen')).to_have_class('screen page-home')
     graphics.click()
-    expect_face(stage, 'graphics', titles)
+    expect_face(page, stage, 'graphics', titles)
     expect(page.locator('#screen-portal')).to_be_hidden()
 
     page.locator('[data-explore="jbl"]').click()
@@ -73,19 +73,19 @@ def phone(browser, url):
     page.on('pageerror', lambda error: errors.append(str(error)))
     page.goto(url)
     stage = page.locator('#museum-frame')
-    apps = stage.get_by_role('button', name='UI / UX', exact=True)
-    graphics = stage.get_by_role('button', name='Graphic Design', exact=True)
-    expect_face(stage, 'apps', ('tsero', 'jbl'))
+    apps = page.get_by_role('button', name='UI / UX', exact=True)
+    graphics = page.get_by_role('button', name='Graphic Design', exact=True)
+    expect_face(page, stage, 'apps', ('tsero', 'jbl'))
     assert graphics.bounding_box()['height'] >= 44
     graphics.tap()
-    expect_face(stage, 'graphics', ('tomford', 'earthhour', 'jbl-artwork'))
+    expect_face(page, stage, 'graphics', ('tomford', 'earthhour', 'jbl-artwork'))
     stage.locator('.device-label[data-id="earthhour"]').tap()
     expect(page.locator('#project-inspector')).to_have_attribute('aria-hidden', 'false')
     expect(page.locator('#try-preview')).to_be_hidden()
     page.locator('#reset-view').tap()
     page.set_viewport_size({'width': 844, 'height': 390})
     apps.tap()
-    expect_face(stage, 'apps', ('tsero', 'jbl'))
+    expect_face(page, stage, 'apps', ('tsero', 'jbl'))
     for project in ('tsero', 'jbl'):
         stage.locator(f'.device-label[data-id="{project}"]').tap()
         page.locator('#try-preview').tap()

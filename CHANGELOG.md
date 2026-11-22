@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.16.2 — 2026-11-22 (draft)
+
+- Draw the project-colored body outline directly in the stage SVG. Play one sweep on selection and replay it when entering Try Now, above both the live desktop app and the phone screenshot.
+- Move the animated UI / UX and Graphic Design switch above the 3D stage. On phones, keep the project year and artwork action visible while the description scrolls.
+- Restore directional shelf shadows. Touch devices use projected silhouettes and contact shadows with a lower render resolution, and reuse the room frame while the focused device rotates.
+- Use the default arrow over Home text and add the MeeTab card to Best Projects.
+
 ## 0.16.1 — 2026-11-22
 
 [PR #14](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/14)

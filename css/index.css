@@ -109,6 +109,9 @@ body {
   background-size: 36px 36px;
 }
 
+main { cursor: default; }
+main a, main button { cursor: pointer; }
+
 ul, ol { list-style: none; }
 img    { max-width: 100%; display: block; }
 a      { text-decoration: none; color: inherit; transition: color var(--t-base); }
