@@ -5,9 +5,9 @@
 [PR #23](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/23)
 
 - Apply translucent cyan glass, layered content and moving reflections to all ten existing Core Disciplines cards. Preserve each heading, description, list, tool tag and icon.
-- Add damped pointer and touch tilt, staggered floating motion, and a static reduced-motion view. Pause floating when a card leaves the viewport.
+- Add damped pointer and touch tilt, staggered floating motion, and a static reduced-motion view. Pause floating offscreen, and synchronize cards in multi-column rows so they stay aligned. Keep the backdrop blur with a lighter tint.
 
-Verified all ten original card bodies against the published baseline, and checked desktop, 320px and 390px portrait, and landscape in Chromium and WebKit. Checked mouse return in both, touch drag in Chromium phone emulation, and the static no-JavaScript fallback. The original Projects and shared spotlight sources are unchanged. Rollback baseline is `1154cc6`, saved at `backup/before-home-hologram`.
+Verified all ten original card bodies against the published baseline, and checked desktop, 320px and 390px portrait, and landscape in Chromium and WebKit. Verified the existing Experience fill and nodes on forward and reverse scroll in both engines. Checked mouse return in both, touch drag in Chromium phone emulation, and the static no-JavaScript fallback. The original Projects and shared spotlight sources are unchanged. Rollback baseline is `1154cc6`, saved at `backup/before-home-hologram`.
 
 ## 0.16.9 — 2026-11-23
 

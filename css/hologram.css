@@ -8,16 +8,19 @@
   touch-action: pan-y pinch-zoom;
 }
 
-.discipline-card:nth-child(3n + 2) {
-  --holo-float: 5px;
-  --holo-duration: 4.9s;
-  --holo-delay: -1.3s;
-}
+/* Stagger only the single-column layout so cards in a row rise together. */
+@media (max-width: 768px) {
+  .discipline-card:nth-child(3n + 2) {
+    --holo-float: 5px;
+    --holo-duration: 4.9s;
+    --holo-delay: -1.3s;
+  }
 
-.discipline-card:nth-child(3n) {
-  --holo-float: -4px;
-  --holo-duration: 4.3s;
-  --holo-delay: -2.1s;
+  .discipline-card:nth-child(3n) {
+    --holo-float: -4px;
+    --holo-duration: 4.3s;
+    --holo-delay: -2.1s;
+  }
 }
 
 .discipline-card.is-tilting { z-index: 1; }
@@ -49,7 +52,7 @@
 
 @supports ((backdrop-filter: blur(8px)) or (-webkit-backdrop-filter: blur(8px))) {
   .discipline-card__surface::before {
-    background: linear-gradient(145deg, #92fcf01e, #4c859414 74%), #112334b8;
+    background: linear-gradient(145deg, #92fcf01e, #4c859414 74%), #11233491;
     -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
   }
