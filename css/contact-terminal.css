@@ -128,35 +128,26 @@
   html.contact-motion-enabled, html.contact-motion-enabled body { overflow-x: clip; }
 }
 
-.contact-motion-enabled #secure-transmission { height: 340vh; scroll-margin-top: 0; }
+.contact-motion-enabled #secure-transmission { scroll-margin-top: 0; }
+
+/* Reserve the scrub distance separately from the terminal's natural height. */
+.contact-motion-enabled #secure-transmission::after {
+  display: block;
+  height: 240vh;
+  content: "";
+}
 
 .contact-motion-enabled .stick {
   position: sticky;
   top: 0;
-  height: 100svh;
+  min-height: 100svh;
   padding-block: calc(var(--nav-h) + 10px) 12px;
-  overflow: hidden;
   display: grid;
-  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
   place-items: center;
 }
 
-.contact-motion-enabled .terminal-layout {
-  display: grid;
-  grid-template-rows: minmax(0, 1fr);
-  min-height: 0;
-  max-height: 100%;
-  padding-block: 0;
-}
-
-.contact-motion-enabled .terminal-window {
-  display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
-  min-height: 0;
-}
-
-.contact-motion-enabled .terminal-body { overflow: hidden; }
-.contact-motion-enabled .is-unlocked .terminal-body { overflow-y: auto; }
+.contact-motion-enabled .terminal-layout { padding-block: 0; }
 
 .contact-motion-enabled #terminal-form {
   opacity: var(--terminal-form-opacity, 1);
@@ -172,7 +163,7 @@
 .contact-motion-enabled .terminal-hint {
   display: flex;
   position: absolute;
-  inset: auto 0 14px;
+  inset: auto 0 calc(100% - 100svh + 14px);
   margin-inline: auto;
   pointer-events: none;
   z-index: 1;
@@ -181,6 +172,24 @@
 .terminal-hint.is-faded { opacity: 0; }
 
 @media (max-height: 520px) {
-  .contact-motion-enabled .terminal-hint { gap: 4px; bottom: 8px; }
+  .contact-motion-enabled .terminal-hint { gap: 4px; bottom: calc(100% - 100svh + 8px); }
   .contact-motion-enabled .terminal-hint::after { height: 8px; }
+}
+
+#terminal-form { scroll-margin-top: calc(var(--nav-h) + 12px); }
+
+@media (max-width: 600px) {
+  .terminal-chrome { gap: 4px 8px; }
+  .terminal-body .contact-panel__head { gap: 10px; margin-bottom: 14px; }
+  .terminal-body .contact-panel__icon { width: 42px; height: 42px; padding: 10px; flex: none; }
+  .terminal-body .contact-panel__title { font-size: clamp(1.15rem, 5.5vw, 1.55rem); }
+  .terminal-body .contact-panel__tag { font-size: 10px; overflow-wrap: anywhere; }
+  .terminal-boot { padding: 10px; margin-bottom: 14px; }
+  .terminal-log { font-size: .73rem; }
+  .terminal-body .contact-form,
+  .terminal-body .contact-form__grid { gap: 12px; }
+  .terminal-body .contact-form input,
+  .terminal-body .contact-form textarea { font-size: 16px; padding: 12px; }
+  .terminal-body .contact-form textarea { min-height: 8rem; }
+  .terminal-body .contact-form__submit { justify-self: stretch; }
 }
