@@ -2,7 +2,7 @@ import {clampProgress, registerScrollMotion} from './scroll-motion.js';
 
 const pin = document.querySelector('#secure-transmission');
 const terminal = pin.querySelector('.terminal-window');
-const body = terminal.querySelector('.terminal-body');
+const stick = pin.querySelector('.stick');
 const completeLog = terminal.querySelector('.terminal-log__complete');
 const typedLog = terminal.querySelector('.terminal-log__typed');
 const bar = terminal.querySelector('progress');
@@ -43,16 +43,7 @@ function render(p) {
   formFrame.style.setProperty('--terminal-form-opacity', easedReveal);
   formFrame.style.setProperty('--terminal-form-offset', (1 - easedReveal) * 24 + 'px');
 
-  const unlocked = p > .88;
-  const lockChanged = formFrame.inert === unlocked;
-  formFrame.inert = !unlocked;
-  terminal.classList.toggle('is-unlocked', unlocked);
-  if (lockChanged) {
-    // Short viewports can scroll within the window once the form is ready.
-    body.scrollTop = unlocked && active
-      ? Math.max(0, body.scrollTop + formFrame.getBoundingClientRect().top - body.getBoundingClientRect().top - 8)
-      : 0;
-  }
+  formFrame.inert = p <= .88;
 
   submit.classList.toggle('armed', active && p > .92);
   if (p > .05) hintHidden = true;
@@ -63,8 +54,12 @@ function render(p) {
 function goToForm() {
   target = progress = 1;
   render(progress);
-  const end = window.scrollY + pin.getBoundingClientRect().bottom - window.innerHeight;
-  window.scrollTo({top: Math.ceil(end), behavior: 'instant'});
+  const rect = pin.getBoundingClientRect();
+  const stickRect = stick.getBoundingClientRect();
+  const formOffset = formFrame.getBoundingClientRect().top - stickRect.top;
+  const margin = parseFloat(getComputedStyle(formFrame).scrollMarginTop);
+  const end = window.scrollY + rect.bottom - stickRect.height;
+  window.scrollTo({top: Math.ceil(end + Math.max(0, formOffset - margin)), behavior: 'instant'});
 }
 
 function handleLink(link, navigate) {
@@ -109,11 +104,11 @@ registerScrollMotion({
     const scrolled = rect.top < -1 ? -rect.top : 0;
     target = form.contains(document.activeElement)
       ? 1
-      : clampProgress(scrolled / Math.max(1, rect.height - height));
+      : clampProgress(scrolled / Math.max(1, rect.height - stick.offsetHeight));
     progress = lerp(progress, target, .12);
     return progress !== target;
   },
   paint() {
     if (active && visible) render(progress);
   },
-}, pin);
+}, pin, stick);
