@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.16.6 — 2026-11-23
+
+[PR #19](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/19)
+
+- Restore the original Home hero by removing its sticky scroll and curtain effects.
+- Keep the Experience timeline animation and complete the fill when the last card reaches the center of the viewport.
+
+Verified midpoint completion, reverse scrolling, and initial reduced motion in Chromium and WebKit desktop, portrait-phone, and landscape-phone emulation.
+
 ## 0.16.5 — 2026-11-23
 
 [PR #18](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/18)
