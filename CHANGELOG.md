@@ -2,6 +2,8 @@
 
 ## 0.16.7 — 2026-11-23
 
+[PR #20](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/20)
+
 - Turn the Contact form pane into a pinned terminal boot sequence with scroll-scrubbed typing, a progress bar, form reveal, and an armed Transmit state. Keep the original fields, native validation, and Formspree POST.
 - Add reusable desktop and touch scroll hints, a keyboard-accessible Skip link, and a static form for reduced motion and no JavaScript. On short screens the first hint follows the contact cards and the unlocked terminal body can scroll to Transmit.
 
