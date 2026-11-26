@@ -1,0 +1,1 @@
+PASS: lifecycle restore, 10 cycles, invalid assets, interrupted load cleanup, idempotent disposal

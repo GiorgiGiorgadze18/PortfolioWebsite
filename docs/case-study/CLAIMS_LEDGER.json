@@ -46,6 +46,19 @@
         }
       ],
       "status": "verified-dev"
+    },
+    {
+      "id": "jbl-owner-intent",
+      "claim": "The 2025 JBL composition aims to communicate premium audio quality through a sky-inspired blue palette; owner specifies The Bolt Font and Amsterdam Handwriting.",
+      "status": "concept",
+      "source": "designerIntent",
+      "evidence": [
+        {
+          "path": "docs/case-study/evidence/jbl/notes-JBL.md",
+          "archive": "docs/case-study/docs-casestudy-projects.7z"
+        }
+      ],
+      "note": "Owner-reported design intent and font attribution, not an official JBL affiliation or licensed font-file verification"
     }
   ],
   "excludedUnverified": [

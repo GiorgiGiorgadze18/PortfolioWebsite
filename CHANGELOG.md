@@ -308,3 +308,8 @@ Chromium phone (390 px, DPR 2), WebKit phone (390 px), and Chromium desktop (128
 
 - Gate 0 approved; added isolated pure timeline and exact critically damped spring, not yet connected to production UI.
 - Node tests cover reverse seeks, immutable sampling, invalid data and refresh-rate equivalence. Uploaded JBL archive inspection blocked by attachment downloader read-only filesystem. Phase 1 partial, Gate 1 not reached; no merge/deployment.
+
+## Case Study JBL source inspection — 2026-11-26
+
+- Read owner notes and measured32 supplied PNGs. Preserve original archive; added candidate grouped assets, hashes, recomposition preview and explicit FAIL metrics; all unpublished and not animated.
+- Added isolated lifecycle/DisplaySurface and native-scroll observer. Node lifecycle and timeline tests pass; browser integration not yet run. No showroom changes, merge or deployment.

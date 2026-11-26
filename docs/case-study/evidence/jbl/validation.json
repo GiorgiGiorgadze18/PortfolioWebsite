@@ -1,0 +1,619 @@
+{
+  "originals": [
+    {
+      "path": "JBL_0000_\u10e1\u10d0\u10d9\u10d8\u10d3\u10d8-\u10d0\u10dc\u10d0\u10e0\u10d4\u10d9\u10da\u10d8.png",
+      "sha256": "e3b34927afe44a7730ccfe2a8e3a0d8367b31ca2b0905db3c6f03947a1e8721e",
+      "bytes": 192913,
+      "canvas": [
+        2480,
+        3508
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "bbox": [
+        568,
+        3042,
+        1835,
+        3448
+      ]
+    },
+    {
+      "path": "JBL_0000s_0000_Premium.png",
+      "sha256": "12c59c44d178abf9f4345f0b80f64ffe7220d2726af9c5211a31f5fb6d993089",
+      "bytes": 85357,
+      "canvas": [
+        2480,
+        3508
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "bbox": [
+        1778,
+        521,
+        2351,
+        886
+      ]
+    },
+    {
+      "path": "JBL_0000s_0001_JBL-.png",
+      "sha256": "b194bbbaa9a77ffd88dd82a6e8eeefd6555318f3306995352d15683c7bbf9ab9",
+      "bytes": 53206,
+      "canvas": [
+        2480,
+        3508
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "bbox": [
+        1319,
+        171,
+        2337,
+        637
+      ]
+    },
+    {
+      "path": "JBL_0000s_0002_Layer-2.png",
+      "sha256": "c3a754dac20cf644a36af7ba6f7f56393d3eb4fd4f72b08bbb50c008b61f104b",
+      "bytes": 166929,
+      "canvas": [
+        2480,
+        3508
+      ],
+      "alpha": [
+        0,
+        155
+      ],
+      "bbox": [
+        0,
+        0,
+        2480,
+        3153
+      ]
+    },
+    {
+      "path": "JBL_0000s_0003_Layer-1.png",
+      "sha256": "e5ee2ed1f5a6726bdc297a249a35a651a2a277ff95a2cc7fe797f29601c9c1fd",
+      "bytes": 808612,
+      "canvas": [
+        2480,
+        3508
+      ],
+      "alpha": [
+        0,
+        225
+      ],
+      "bbox": [
+        726,
+        0,
+        2480,
+        2304
+      ]
+    },
+    {
+      "path": "JBL_0001_\u10d1\u10d4\u10e5\u10d2\u10e0\u10d0\u10e3\u10dc\u10d3\u10d8.png",
+      "sha256": "096aff745431b9f556a7a9bc5061577763de150b1ef07ad5a57e750acacb71a7",
+      "bytes": 1385152,
+      "canvas": [
+        2480,
+        3508
+      ],
+      "alpha": [
+        255,
+        255
+      ],
+      "bbox": [
+        0,
+        0,
+        2480,
+        3508
+      ]
+    },
+    {
+      "path": "JBL_0001s_0000_JBL-\u10ec\u10d8\u10dc\u10d0.png",
+      "sha256": "eb48aaf3492385a15fa563b164a6208be78897c9965b15a69bc377360b9bfbc1",
+      "bytes": 856304,
+      "canvas": [
+        2480,
+        3508
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "bbox": [
+        876,
+        1462,
+        1913,
+        2973
+      ]
+    },
+    {
+      "path": "JBL_0001s_0000s_0000_believer.png",
+      "sha256": "bb762701e80cd94b6ce9d458457c4d2feb8651a72bf58629f053b863131b59f9",
+      "bytes": 48172,
+      "canvas": [
+        2480,
+        3508
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "bbox": [
+        609,
+        2775,
+        806,
+        2838
+      ]
+    },
+    {
+      "path": "JBL_0001s_0000s_0001_IMAGINE-DRAGONS.png",
+      "sha256": "4024ad6e6779ab1cf82dc9ab0d1cae281124d4dc31b6824f96c791e134d5b1d4",
+      "bytes": 61133,
+      "canvas": [
+        2480,
+        3508
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "bbox": [
+        609,
+        2705,
+        1310,
+        2797
+      ]
+    },
+    {
+      "path": "JBL_0001s_0000s_0002_Audio.png",
+      "sha256": "074b4849bd91fafa9b274147a03dd3b007de8c6264e9ff7b0891ed0f157633ff",
+      "bytes": 149902,
+      "canvas": [
+        2480,
+        3508
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "bbox": [
+        459,
+        1714,
+        1564,
+        2499
+      ]
+    },
+    {
+      "path": "JBL_0001s_0000s_0003_Music-Player-HUD-PNG.png",
+      "sha256": "6f8eb9cd906edb3bc463da3ee5031771c47d9adc79d124b4a0c691b320c5bf92",
+      "bytes": 53008,
+      "canvas": [
+        2480,
+        3508
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "bbox": [
+        649,
+        2846,
+        1235,
+        2968
+      ]
+    },
+    {
+      "path": "JBL_0001s_0000s_0004_Music-Player-Line-OVERLAY.png",
+      "sha256": "51fbac36dee22f7f1eb172bbfc822d68fa1310b29d51307a46e57f880402839b",
+      "bytes": 43990,
+      "canvas": [
+        2480,
+        3508
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "bbox": [
+        1202,
+        2897,
+        1741,
+        2914
+      ]
+    },
+    {
+      "path": "JBL_0001s_0001_\u10e1\u10d0\u10d9\u10d8\u10d3\u10d8.png",
+      "sha256": "36e36993ae7caea06c164f1fede831dba5dfdcc4259ba0e2d5c19b55660c8131",
+      "bytes": 644610,
+      "canvas": [
+        2480,
+        3508
+      ],
+      "alpha": [
+        0,
+        212
+      ],
+      "bbox": [
+        567,
+        1754,
+        1835,
+        3021
+      ]
+    },
+    {
+      "path": "JBL_0001s_0002_JBL---\u10e3\u10d9\u10d0\u10dc\u10d0.png",
+      "sha256": "f7b1e76b99e9669d84099f8060210f3c50fe22749aad6cede78d902cb6d14d0a",
+      "bytes": 378136,
+      "canvas": [
+        2480,
+        3508
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "bbox": [
+        480,
+        1754,
+        1215,
+        2959
+      ]
+    },
+    {
+      "path": "JBL_0002s_0000_\u10e1\u10d0\u10d9\u10d8\u10d3\u10d8\u10e1-\u10e9\u10e0\u10d3\u10d8\u10da\u10d8-1.png",
+      "sha256": "de28113b9d033967e75f1b80d24079b68393957d6da0e4f1bfc5efe7bd2615bd",
+      "bytes": 73374,
+      "canvas": [
+        2480,
+        3508
+      ],
+      "alpha": [
+        0,
+        213
+      ],
+      "bbox": [
+        309,
+        2858,
+        2095,
+        3185
+      ]
+    },
+    {
+      "path": "JBL_0002s_0001_\u10e1\u10d0\u10d9\u10d8\u10d3\u10d8\u10e1-\u10e9\u10e0\u10d3\u10d8\u10da\u10d8-3.png",
+      "sha256": "b3d22c578a160aa607cd5b7db7fe4a3e4a130078cd77144d238785db6b17243f",
+      "bytes": 63099,
+      "canvas": [
+        2480,
+        3508
+      ],
+      "alpha": [
+        0,
+        236
+      ],
+      "bbox": [
+        611,
+        2891,
+        1792,
+        3113
+      ]
+    },
+    {
+      "path": "JBL_0002s_0002_\u10e1\u10d0\u10d9\u10d8\u10d3\u10d8\u10e1-\u10e9\u10e0\u10d3\u10d8\u10da\u10d8-2.png",
+      "sha256": "7d207261b1ac1455d8f05731d704e6b0f19cf62988a5ac6d502773ea23477aae",
+      "bytes": 63104,
+      "canvas": [
+        2480,
+        3508
+      ],
+      "alpha": [
+        0,
+        236
+      ],
+      "bbox": [
+        592,
+        2891,
+        1773,
+        3113
+      ]
+    },
+    {
+      "path": "JBL_0003s_0000_\u10ee\u10d0\u10d6\u10d4\u10d1\u10d8-\u10d0\u10dc\u10d0\u10e0\u10d4\u10d9\u10da\u10d8-\u10db\u10d0\u10e0\u10ea\u10d4\u10ee\u10dc\u10d0.png",
+      "sha256": "72fa1ede2bab16fc2503fcf33f3f1c5aad71d9493f81826b4d81b80c001630a7",
+      "bytes": 69368,
+      "canvas": [
+        2480,
+        3508
+      ],
+      "alpha": [
+        0,
+        203
+      ],
+      "bbox": [
+        0,
+        2737,
+        923,
+        3306
+      ]
+    },
+    {
+      "path": "JBL_0003s_0001_\u10e5\u10d5\u10d4\u10d3\u10d0-\u10de\u10da\u10d0\u10e2\u10e4\u10dd\u10e0\u10db\u10d0.png",
+      "sha256": "a5b0f8a7b84df492aa66ad669694cdabe6c444baa3169b544539bb1fd70788b6",
+      "bytes": 53599,
+      "canvas": [
+        2480,
+        3508
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "bbox": [
+        0,
+        2737,
+        2480,
+        3508
+      ]
+    },
+    {
+      "path": "JBL_0004s_0000_Rectangle-1-copy-5.png",
+      "sha256": "9e4b57027529a053ea030fbb5e1c9fa16b62982a737a312bf699df830b4653d2",
+      "bytes": 43880,
+      "canvas": [
+        2480,
+        3508
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "bbox": [
+        852,
+        0,
+        923,
+        2737
+      ]
+    },
+    {
+      "path": "JBL_0004s_0001_Rectangle-1-copy-5.png",
+      "sha256": "e6a76991ce4519b47739031ea97c459176e4348a56e2e21767f97dfb44b7a5c1",
+      "bytes": 43879,
+      "canvas": [
+        2480,
+        3508
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "bbox": [
+        781,
+        0,
+        852,
+        2737
+      ]
+    },
+    {
+      "path": "JBL_0004s_0002_Rectangle-1-copy-5.png",
+      "sha256": "2617a2a099d798084d5c40d143d9cb96c992868b8402beb86eebc12ab3b22afc",
+      "bytes": 43880,
+      "canvas": [
+        2480,
+        3508
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "bbox": [
+        710,
+        0,
+        781,
+        2737
+      ]
+    },
+    {
+      "path": "JBL_0004s_0003_Rectangle-1-copy-4.png",
+      "sha256": "4739c377c123892143508acabc5e8eabd2d9c6e484ab0bd7e93700d5b338b938",
+      "bytes": 43882,
+      "canvas": [
+        2480,
+        3508
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "bbox": [
+        639,
+        0,
+        710,
+        2737
+      ]
+    },
+    {
+      "path": "JBL_0004s_0004_Rectangle-1-copy-4.png",
+      "sha256": "cde036b7ea41d5d8d4b6465f6c6e4355b2bb577a67035bea665eac1b67a24145",
+      "bytes": 43879,
+      "canvas": [
+        2480,
+        3508
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "bbox": [
+        568,
+        0,
+        639,
+        2737
+      ]
+    },
+    {
+      "path": "JBL_0004s_0005_Rectangle-1-copy-4.png",
+      "sha256": "ae56aa3d295d38d1aa74e01348912eafb6384978170259d4e0e60b2d8ccf8bd2",
+      "bytes": 43880,
+      "canvas": [
+        2480,
+        3508
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "bbox": [
+        497,
+        0,
+        568,
+        2737
+      ]
+    },
+    {
+      "path": "JBL_0004s_0006_Rectangle-1-copy-4.png",
+      "sha256": "1fa39c12e08ba306c67dc68334c5271526b4649fdcb204e61d7a92b1b9a75d0e",
+      "bytes": 43878,
+      "canvas": [
+        2480,
+        3508
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "bbox": [
+        426,
+        0,
+        497,
+        2737
+      ]
+    },
+    {
+      "path": "JBL_0004s_0007_Rectangle-1-copy-4.png",
+      "sha256": "5acf2692b11575b14c31f7b9ea65340b49559781d9d1be90a2f0fa7e65cd8929",
+      "bytes": 43881,
+      "canvas": [
+        2480,
+        3508
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "bbox": [
+        355,
+        0,
+        426,
+        2737
+      ]
+    },
+    {
+      "path": "JBL_0004s_0008_Rectangle-1-copy-3.png",
+      "sha256": "d47ca35022453a6503dd7486faaf8ef648d1dd70afdd63536d6bdd8f8ee73487",
+      "bytes": 43879,
+      "canvas": [
+        2480,
+        3508
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "bbox": [
+        284,
+        0,
+        355,
+        2737
+      ]
+    },
+    {
+      "path": "JBL_0004s_0009_Rectangle-1-copy-2.png",
+      "sha256": "262afbfb95fec9c1618d7bbd513ea181529f0c9e32836cc11f7e70436bc32df3",
+      "bytes": 43880,
+      "canvas": [
+        2480,
+        3508
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "bbox": [
+        213,
+        0,
+        284,
+        2737
+      ]
+    },
+    {
+      "path": "JBL_0004s_0010_Rectangle-1-copy-2.png",
+      "sha256": "bb11bdcebfdc6bbe7ac5d373cf2f825e797d7e3fa68756f0801ee1c4283074bb",
+      "bytes": 43877,
+      "canvas": [
+        2480,
+        3508
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "bbox": [
+        142,
+        0,
+        213,
+        2737
+      ]
+    },
+    {
+      "path": "JBL_0004s_0011_Rectangle-1-copy.png",
+      "sha256": "92646610ab6b4c1801bc5b7aaf630ce58c63c147cb95259f3af329108eff8d7e",
+      "bytes": 43880,
+      "canvas": [
+        2480,
+        3508
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "bbox": [
+        71,
+        0,
+        142,
+        2737
+      ]
+    },
+    {
+      "path": "JBL_0004s_0012_Rectangle-1.png",
+      "sha256": "e0330ac2f72924340a0f42a69f7b2e74a7383f916c62dc12f79aeff2ff4abf95",
+      "bytes": 43869,
+      "canvas": [
+        2480,
+        3508
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "bbox": [
+        0,
+        0,
+        71,
+        2737
+      ]
+    }
+  ],
+  "recomposition": {
+    "meanAbsoluteDifference255": 3.8917220604057086,
+    "maxAbsoluteDifference255": 175.0,
+    "exactPixelFraction": 0.42587978629492035,
+    "status": "FAIL",
+    "reason": "Normal-alpha composition does not yet match flattened artwork; Photoshop blend/visibility/blur metadata absent. Do not animate or publish these candidate groups before validation."
+  }
+}

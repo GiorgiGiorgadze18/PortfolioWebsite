@@ -5,3 +5,5 @@
 - Prefer source layers; absent those, investigate deterministic mask/compositing after Gate 0. Do not run image generation or spend paid credits in Phase 0.
 - Keep all public case studies unpublished until evidence and asset validation pass. No product feature or flag added during audit.
 - Read-only browser baseline uses local exact tracked production source. Public HTTPS reachability is measured separately. Software-rAF cadence is not real GPU FPS.
+
+- 2026-11-26: Group 32 source PNGs into7 meaningful candidate layers, preserving glass between rear/front headphone portions. Reject candidate recomposition for animation until fidelity resolved. No image generation needed/invoked so far. py7zr used only as temporary extraction tooling, not a site dependency.

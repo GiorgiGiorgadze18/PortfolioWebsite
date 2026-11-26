@@ -9,3 +9,7 @@
 ## Owner responses — 2026-11-26
 
 Gate 0 approved. JBL PNG layers uploaded in docs-casestudy-projects.7z, notes-JBL.md supplied inside; not read because download is blocked. Other layered sources not found by owner. Economical paid editing allowed if needed, no numeric spend limit set, no spend incurred. New source blocked by attachment filesystem; request accessible archive once.
+
+## JBL source clarification — archive read
+
+notes-JBL.md სრულად წაკითხულია; 32 ფენა სწორ ზომასა და რეალურ alpha-ს შეიცავს (ფონი opaque-ია, რაც სწორია). ჩვეულებრივი alpha-აწყობა ორიგინალს ზუსტად არ ემთხვევა. თუ ხელმისაწვდომია, JBL-ის PSD ან Photoshop Layers პანელის სქრინები დაგვეხმარება: ფენების რიგი, ხილვადობა, opacity/fill და blend mode (განსაკუთრებით განათება, ჩრდილი და ანარეკლი). ეს კონტენტი ჯერ არ არის ვალიდირებული ან ანიმირებული. სხვა ფაილები ხელახლა საჭირო არ არის.

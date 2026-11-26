@@ -20,3 +20,10 @@ Evidence paths above are relative to evidence/. Python HTTPS used normal certifi
 ## Phase 1 foundation — 2026-11-26
 
 `node tests/case-study/timeline.test.mjs`: PASS — reverse/direct seek, clone isolation, invalid timeline rejection and spring refresh-rate equivalence. This is math-unit coverage only. Lifecycle, UI, a11y, artwork and showroom integration tests NOT RUN.
+
+## JBL input and engine progress
+
+- PASS: archive path traversal check before temporary extraction; notes read; canvas/alpha/bbox/SHA measured for all32 layers. Source RGBA does not alone prove edge quality.
+- FAIL: normal-alpha recomposition vs original: MAD3.891722/255, max175/255. Evidence: evidence/jbl/validation.json and recomposition.png (visually inspected). No asset animation/publishing. SSIM/edge halo validation NOT RUN.
+- PASS: node tests/case-study/engine.test.mjs — mock surface restoration across10 cycles, interrupted loads, rejection of unvalidated assets, idempotent disposal. This is NOT GPU/resource/browser leak validation.
+- PASS: existing timeline tests. Browser progress integration, real GPU disposal, a11y shell, preview and showroom integration NOT RUN.
