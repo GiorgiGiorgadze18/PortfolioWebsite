@@ -70,10 +70,11 @@ registerScrollMotion({
     visible = rect.top < height && rect.bottom > 0;
     if (!visible) return false;
     // Keep the form available if a visitor scrolls back while editing a field.
-    const scrolled = rect.top < -1 ? -rect.top : 0;
+    // Start as the terminal enters the lower viewport, then finish over a short scroll.
+    const scrolled = height * .85 - rect.top;
     target = form.contains(document.activeElement)
       ? 1
-      : clampProgress(scrolled / Math.max(1, rect.height - stick.offsetHeight));
+      : clampProgress(scrolled / Math.max(1, height * .7));
     progress = lerp(progress, target, .12);
     return progress !== target;
   },
