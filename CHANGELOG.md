@@ -2,6 +2,8 @@
 
 ## 0.18.3 — Earlier Contact terminal typing, 2026-11-26
 
+[PR #27](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/27)
+
 - Start the terminal log while its section enters the lower viewport and complete typing over a shorter scroll distance. Keep the form immediately available.
 
 ## 0.18.2 — Lab selection, 2026-11-26
