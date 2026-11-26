@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.18.3 — Earlier Contact terminal typing, 2026-11-26
+
+- Start the terminal log while its section enters the lower viewport and complete typing over a shorter scroll distance. Keep the form immediately available.
+
 ## 0.18.2 — Lab selection, 2026-11-26
 
 - Remove the Shader Playground and Lighting Studio from the Lab, including their modules and preview styles. Keep the hologram, Motion Physics, Particle Field and Spatial UI.
