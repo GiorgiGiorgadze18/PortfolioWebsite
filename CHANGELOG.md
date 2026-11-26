@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased — Tom Ford composition study, 2026-11-27
+
+- Add five true-alpha planes exported from the owner’s 1524×2784 PSD, preserving layer opacity and the bottle shadow. Keep source artwork and existing public previews unchanged.
+- Add six evidence-backed chapters, bottle-first separation, the approved isometric pose, warm annotation accents, smooth anchored leaders and original-artwork recomposition.
+- Register Tom Ford in the shared review-only Grid and actual showroom paths; fit its source aspect ratio and restore camera, device, focus, scroll and rendering resources on exit. Preserve JBL choreography.
+- Add reproducible export, self-contained preview packaging and browser evidence. See docs/case-study/TOMFORD_REPORT.md for executed checks and remaining hardware/accessibility verification. No production publication or paid generation.
+
 ## 0.18.3 — Earlier Contact terminal typing, 2026-11-26
 
 [PR #27](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/27)

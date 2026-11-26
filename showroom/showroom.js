@@ -1048,10 +1048,10 @@ function setupInteraction(){
 
 
 function installCaseStudySurface(){
- const target=()=>displayItems.get('jbl-artwork').group;
+ let caseProjectId='jbl-artwork';const target=()=>displayItems.get(selected?.id||caseProjectId).group;
  const capture=()=>({position:target().position.toArray(),rotation:[target().rotation.x,target().rotation.y,target().rotation.z],scale:target().scale.toArray(),camera:camera.position.toArray(),cameraRotation:[camera.rotation.x,camera.rotation.y,camera.rotation.z],zoom:camera.zoom,aspect:camera.aspect,fov:camera.fov,cameraOffsets:camera.view?.enabled?[camera.view.offsetX/camera.view.fullWidth,camera.view.offsetY/camera.view.fullHeight]:[0,0]});
  caseSurface=createSurfaceTransition({capture,reduced:motionReduced,apply(pose){const g=target();g.position.fromArray(pose.position);g.rotation.set(...pose.rotation);g.scale.fromArray(pose.scale);camera.position.fromArray(pose.camera);camera.rotation.set(...pose.cameraRotation);camera.zoom=pose.zoom;if(pose.cameraOffsets.some(v=>v!==0))camera.setViewOffset(innerWidth,innerHeight,pose.cameraOffsets[0]*innerWidth,pose.cameraOffsets[1]*innerHeight,innerWidth,innerHeight);else camera.clearViewOffset();camera.aspect=pose.aspect;camera.fov=pose.fov;camera.updateProjectionMatrix();camera.updateMatrixWorld(true);backdropSettlesAt=performance.now()+100;}});
- registerShowroomBridge({get status(){return caseSurface.status;},inspect:caseSurface.inspect,enter(){if(selected?.id!=='jbl-artwork'||state!=='focus'||movingTween)return Promise.resolve(false);return caseSurface.enter();},async loadLayers(){const stage=await loadWebGLLayers({THREE,device:displayItems.get('jbl-artwork'),camera,layer:ACTIVE_LAYER,baseURL:new URL('../case-studies/projects/jbl-artwork/',import.meta.url)});if(graphicsUnavailable){stage.dispose();throw Error('Showroom unavailable');}caseLayers=stage;},
+ registerShowroomBridge({get status(){return caseSurface.status;},inspect:caseSurface.inspect,enter(slug='jbl-artwork'){if(selected?.id!==slug||selected.category!=='graphics'||state!=='focus'||movingTween)return Promise.resolve(false);caseProjectId=slug;return caseSurface.enter();},async loadLayers(){const stage=await loadWebGLLayers({THREE,device:displayItems.get(caseProjectId),camera,layer:ACTIVE_LAYER,baseURL:new URL('../case-studies/projects/'+caseProjectId+'/',import.meta.url)});if(graphicsUnavailable){stage.dispose();throw Error('Showroom unavailable');}caseLayers=stage;},
  setProgress(p,rect){caseLayers?.draw(p,rect);backdropZoom=NaN;},
  get layers(){return caseLayers;},
  resources(){return {textures:renderer.info.memory.textures+focusRenderer.info.memory.textures,geometries:renderer.info.memory.geometries+focusRenderer.info.memory.geometries};},
@@ -1066,8 +1066,8 @@ function render(time){
  if(document.documentElement.dataset.caseStudyActive&&caseLayers&&!caseLayers.dirty&&!resizePending){lastFrame=time;return;}
  if(resizePending){resizePending=false;staticFramePainted=false;resizeScene();}
  // Hold the tablet still behind the phone notice. The CSS sweep runs independently.
- if(staticPreview()&&staticFramePainted){lastFrame=time;return;}
- if(document.hidden||(!stageVisible&&!movingTween&&!shelfTurn)){lastFrame=time;return;}
+ if(staticPreview()&&staticFramePainted&&!caseSurface?.busy){lastFrame=time;return;}
+ if(document.hidden||(!stageVisible&&!movingTween&&!shelfTurn&&!caseSurface?.busy)){lastFrame=time;return;}
  const lightweight=mobilePreviewMedia.matches;
  if(lightweight&&time-lastRendered<1000/60-1)return;lastRendered=time;
  const delta=Math.min(.055,(time-lastFrame)/1000||.016);

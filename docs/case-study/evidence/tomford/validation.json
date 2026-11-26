@@ -1,0 +1,41 @@
+{
+  "metrics": {
+    "meanAbsoluteDifference255": 0.1503806277088927,
+    "maxAbsoluteDifference255": 17.0,
+    "SSIM": 0.9992640880432605,
+    "status": "PASS",
+    "target": "Owner PSD saved composite, not legacy website thumbnail"
+  },
+  "sources": [
+    {
+      "name": "TomFord Bottle.png",
+      "bytes": 6043675,
+      "sha256": "485bb91bf5cca8152f36c6f75812ffd9466eb0467ec3b4fc9cf4f22d613f1f46"
+    },
+    {
+      "name": "Leaf.png",
+      "bytes": 7514812,
+      "sha256": "9b39b044bd27817316d72dc01bf46ac84787b45de5ddf50c8c747873584c2675"
+    },
+    {
+      "name": "Poster5_Exact_Assembled.psd",
+      "bytes": 43794239,
+      "sha256": "e41d4602e75d9441ec76036a7c5af4467b68954121f152ddfedc452374450c3d"
+    },
+    {
+      "name": "Sand.png",
+      "bytes": 9422480,
+      "sha256": "d7ff364e9875362a7e73796e285c3375196a8e63dbad095dfd376cbcfa675f03"
+    },
+    {
+      "name": "notes-TomFord.md",
+      "bytes": 3372,
+      "sha256": "b5498c0378c1aec7829db853b84d397789e3a2906f662d5f3af460b37073441a"
+    },
+    {
+      "name": "Smoke.png",
+      "bytes": 7798212,
+      "sha256": "4ea777ce9556cf01cb558c895f48820e2bccb75e909935d395fa4bb36d0f2be2"
+    }
+  ]
+}

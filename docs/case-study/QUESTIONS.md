@@ -15,3 +15,6 @@ Gate 0 approved. JBL PNG layers uploaded in docs-casestudy-projects.7z, notes-JB
 notes-JBL.md სრულად წაკითხულია; 32 ფენა სწორ ზომასა და რეალურ alpha-ს შეიცავს (ფონი opaque-ია, რაც სწორია). ჩვეულებრივი alpha-აწყობა ორიგინალს ზუსტად არ ემთხვევა. თუ ხელმისაწვდომია, JBL-ის PSD ან Photoshop Layers პანელის სქრინები დაგვეხმარება: ფენების რიგი, ხილვადობა, opacity/fill და blend mode (განსაკუთრებით განათება, ჩრდილი და ანარეკლი). ეს კონტენტი ჯერ არ არის ვალიდირებული ან ანიმირებული. სხვა ფაილები ხელახლა საჭირო არ არის.
 
 PSD received and inspected via Drive. Previous request for Layers screenshots/PSD is resolved; no additional owner source action currently needed.
+
+## Tom Ford sources and authorization — 2026-11-27
+Resolved: owner provided Tom Ford PSD1524×2784, four PNGs and notes-TomFord.md in Drive; all read/downloaded, hashes preserved. No more Tom Ford source information needed. Owner requests finishing it like JBL now, without intermediate questions. Earth Hour will be supplied later. No paid image work needed or performed. Production publication remains a separate decision.

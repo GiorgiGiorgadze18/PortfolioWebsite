@@ -20,3 +20,5 @@ html.scene-mode{color-scheme:normal;background:transparent;scrollbar-color:#3743
 .scene-mode aside{background:rgba(6,10,20,.94);padding:16px;border-radius:12px}
 
 .scene-mode.is-static #static{padding-top:120px}
+
+html[data-case="tomford"] .leader path{stroke:#e0a725;filter:drop-shadow(0 0 4px #e0a72580)}html[data-case="tomford"] .anchor-dot{fill:#f4d09a}html[data-case="tomford"] .anchor-ring{stroke:#e0a725}

@@ -1,0 +1,20 @@
+{
+  "rawLayerExport": {
+    "status": "FAIL",
+    "meanAbsoluteDifference255": 1.5478,
+    "SSIM": 0.99204,
+    "resolution": "Use PSD full-viewport layer.composite to include effects and opacity; corrected metrics in validation.json."
+  },
+  "earlyDesktopFocus": {
+    "status": "FAIL",
+    "actual": "Exit focus was not observed within 30 seconds during concurrent software-rendering checks.",
+    "resolution": "Repeat passed; visibility/static-gating safeguard added, final source retested. Exact initial trigger was not independently reproduced."
+  },
+  "remaining": {
+    "physicalDevices": "NOT RUN",
+    "assistiveTechnology": "NOT RUN",
+    "hardwareFPS": "NOT RUN",
+    "fullContextLoss": "NOT RUN",
+    "tenCycleRealGPUMemory": "NOT RUN"
+  }
+}

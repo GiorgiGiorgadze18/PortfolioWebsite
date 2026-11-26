@@ -1,15 +1,16 @@
+import {layerProgress} from './layer-progress.mjs';
 import {createTimeline} from './timeline.mjs';
 import {observeProgress} from './progress.mjs';
 import {CaseStudyEngine,DisplaySurface} from './engine.mjs';
 const registry=await fetch(new URL('../config.json',import.meta.url)).then(r=>r.json());
-const slug=new URLSearchParams(location.search).get('case')||'jbl-artwork';
+const slug=new URLSearchParams(location.search).get('case')||document.documentElement.dataset.case||'jbl-artwork';
 if(!Object.hasOwn(registry.projects,slug))throw new Error('Unknown case study');
 const projectBase=new URL(`../projects/${slug}/`,import.meta.url);
 const chapters=await fetch(new URL('chapters.json',projectBase)).then(r=>r.json());
 const $=s=>document.querySelector(s),root=document.documentElement,section=$('#presentation'),motion=matchMedia('(prefers-reduced-motion: reduce)');
 const shortViewport=matchMedia('(max-height:500px)');
 let observer,images=[],manifest;
-const {offsets,keyframes,annotationLayers,rotationAxis,perspective,leftLeanPixels,reclineDegrees}=await fetch(new URL('presentation.json',projectBase)).then(r=>r.json());
+const {offsets,keyframes,annotationLayers,rotationAxis,perspective,leftLeanPixels,reclineDegrees,layerWindows}=await fetch(new URL('presentation.json',projectBase)).then(r=>r.json());
 const timeline=createTimeline(keyframes);
 let progress=0,sceneMode=new URLSearchParams(location.search).get('surface')==='showroom'&&parent!==window,sceneAnchors=[];
 if(sceneMode)root.classList.add('scene-mode');
@@ -41,7 +42,7 @@ function render(state){
  board.style.perspective=`${perspective}px`;
  const pose=`translate3d(${-leftLeanPixels*lean*depthScale}px,${state.lower*depthScale}px,0) rotate3d(${rotationAxis.join(',')},${state.tilt}deg)`;
  board.style.transform='none';
- images.forEach((im,i)=>{im.style.setProperty('--layer-shadow',String(state.spread*.24));const [x,y,z]=offsets[i];im.style.transform=`${pose} translate3d(${x*state.spread*depthScale}px,${y*state.spread*depthScale}px,${z*state.spread*depthScale}px)`;});
+ images.forEach((im,i)=>{im.style.setProperty('--layer-shadow',String(state.spread*.24));const [x,y,z]=offsets[i],spread=layerProgress(layerWindows,state,progress,i);im.style.transform=`${pose} translate3d(${x*spread*depthScale}px,${y*spread*depthScale}px,${z*spread*depthScale}px)`;});
  $('.original').style.transform=`${pose} translateZ(3px)`;
  $('.original').style.opacity=state.original;
  drawLeaders(state);
@@ -63,7 +64,7 @@ function setStatic(value){value=value||motion.matches||shortViewport.matches;$('
 for(const c of chapters){const b=document.createElement('button');b.textContent=String(chapters.indexOf(c)+1);b.dataset.id=c.id;b.setAttribute('aria-label',c.title);b.onclick=()=>observer?.seek(c.progress);$('#chapters').append(b);}
 try{
  manifest=await fetch(new URL('manifest.json',projectBase)).then(r=>{if(!r.ok)throw Error('Manifest unavailable');return r.json();});
- if(!manifest.validated)throw Error('Layer validation incomplete');
+ if(!manifest.validated)throw Error('Layer validation incomplete');$('.board').style.aspectRatio=manifest.canvas[0]+'/'+manifest.canvas[1];if(manifest.accent)root.style.setProperty('--accent',manifest.accent);if(manifest.original)$('.original').src=new URL(manifest.original,projectBase).href;
  for(const l of manifest.layers){const im=new Image();im.src=new URL(l.src,projectBase);im.alt='';await im.decode();const plane=document.createElement('div');plane.className='plane';const marker=document.createElement('i');marker.className='anchor';const [x,y,w,h]=[l.bbox[0],l.bbox[1],l.bbox[2]-l.bbox[0],l.bbox[3]-l.bbox[1]];marker.style.left=`${(x+w/2)/manifest.canvas[0]*100}%`;marker.style.top=`${(y+h/2)/manifest.canvas[1]*100}%`;plane.style.backgroundImage=`url("${im.src}")`;plane.append(marker);$('.board').append(plane);images.push(plane);}
  await engine.open(slug);root.classList.add('motion-ready');$('#mode').hidden=false;$('#loading').textContent='Scroll to separate the original layers';setStatic(motion.matches);describe(0);
  $('#mode').onclick=()=>setStatic(!root.classList.contains('is-static')||motion.matches);

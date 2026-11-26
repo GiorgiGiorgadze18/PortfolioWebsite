@@ -6,7 +6,18 @@
     "jbl-artwork": {
       "published": false,
       "type": "GraphicExplodedCaseStudy",
-      "manifest": "projects/jbl-artwork/manifest.json"
+      "manifest": "projects/jbl-artwork/manifest.json",
+      "title": "JBL Premium Audio Campaign",
+      "shortTitle": "JBL",
+      "preview": "jbl-preview.html"
+    },
+    "tomford": {
+      "published": false,
+      "type": "GraphicExplodedCaseStudy",
+      "manifest": "projects/tomford/manifest.json",
+      "title": "Tom Ford Tobacco Vanille",
+      "shortTitle": "Tom Ford",
+      "preview": "tomford-preview.html"
     }
   }
 }

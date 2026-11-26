@@ -86,7 +86,7 @@
   ],
   "layers": [],
   "validationStatus": "NOT RUN",
-  "note": "Original hashes measured; no extracted assets or reconstruction exists; all case studies unpublished",
+  "note": "Top-level baseline inventory fields are historical Phase 0. Project-specific entries and referenced manifests contain current extraction/validation evidence. All case studies remain unpublished.",
   "jblInput": {
     "archive": "docs/case-study/docs-casestudy-projects.7z",
     "sha256": "c260ec7b128622147d24bd22699fd03bf4d028f6b7afc8f3d84817b4e3d0ac8c",
@@ -709,5 +709,116 @@
     }
   },
   "referenceManifest": "case-studies/projects/jbl-artwork/manifest.json",
-  "referenceValidation": "docs/case-study/evidence/jbl/reference-validation.json"
+  "referenceValidation": "docs/case-study/evidence/jbl/reference-validation.json",
+  "tomford": {
+    "source": "Owner Drive folder TomFord, downloaded unchanged; see evidence/tomford/validation.json",
+    "canvas": [
+      1524,
+      2784
+    ],
+    "manifest": "case-studies/projects/tomford/manifest.json",
+    "notes": "evidence/tomford/notes-TomFord.md",
+    "sourceFiles": [
+      {
+        "name": "TomFord Bottle.png",
+        "bytes": 6043675,
+        "sha256": "485bb91bf5cca8152f36c6f75812ffd9466eb0467ec3b4fc9cf4f22d613f1f46"
+      },
+      {
+        "name": "Leaf.png",
+        "bytes": 7514812,
+        "sha256": "9b39b044bd27817316d72dc01bf46ac84787b45de5ddf50c8c747873584c2675"
+      },
+      {
+        "name": "Poster5_Exact_Assembled.psd",
+        "bytes": 43794239,
+        "sha256": "e41d4602e75d9441ec76036a7c5af4467b68954121f152ddfedc452374450c3d"
+      },
+      {
+        "name": "Sand.png",
+        "bytes": 9422480,
+        "sha256": "d7ff364e9875362a7e73796e285c3375196a8e63dbad095dfd376cbcfa675f03"
+      },
+      {
+        "name": "notes-TomFord.md",
+        "bytes": 3372,
+        "sha256": "b5498c0378c1aec7829db853b84d397789e3a2906f662d5f3af460b37073441a"
+      },
+      {
+        "name": "Smoke.png",
+        "bytes": 7798212,
+        "sha256": "4ea777ce9556cf01cb558c895f48820e2bccb75e909935d395fa4bb36d0f2be2"
+      }
+    ],
+    "validation": {
+      "meanAbsoluteDifference255": 0.1503806277088927,
+      "maxAbsoluteDifference255": 17.0,
+      "SSIM": 0.9992640880432605,
+      "status": "PASS",
+      "target": "Owner PSD saved composite, not legacy website thumbnail"
+    },
+    "originalsLocation": "/workspace/portfolio-work/case-study-sources/TomFord",
+    "derivedFiles": [
+      {
+        "path": "case-studies/projects/tomford/assets/masters/bottle.png",
+        "bytes": 623873,
+        "sha256": "e74902636de8b0513d7287dafd8f2c95a94d0a79f86a460f9d9e62f1acdf9677"
+      },
+      {
+        "path": "case-studies/projects/tomford/assets/masters/leaf.png",
+        "bytes": 2958214,
+        "sha256": "4bef930e4e19f98928d122adcd53bc4ff7c574343859732e795f8317e4c37b7f"
+      },
+      {
+        "path": "case-studies/projects/tomford/assets/masters/original.png",
+        "bytes": 7974663,
+        "sha256": "18dcf079b80ea89662c5abe2dfdab52674c683459db3409cd8d769bbff5f8074"
+      },
+      {
+        "path": "case-studies/projects/tomford/assets/masters/sand.png",
+        "bytes": 9247963,
+        "sha256": "ada4697081a21ae7573c1bdbdfbb2b0b7c9a2530a000f89f8a4edb82b639f5af"
+      },
+      {
+        "path": "case-studies/projects/tomford/assets/masters/smoke-back.png",
+        "bytes": 2306225,
+        "sha256": "85a2460c1e42130df437e613c1cf4019964f10b2a33096f6a1faadde1913791d"
+      },
+      {
+        "path": "case-studies/projects/tomford/assets/masters/smoke-front.png",
+        "bytes": 2135966,
+        "sha256": "a3278286d4df616840ebc9ac13d1a590ee6aaaef05dbad827f413c278f20009f"
+      },
+      {
+        "path": "case-studies/projects/tomford/assets/web/bottle.webp",
+        "bytes": 161998,
+        "sha256": "a7f96b095d24d738f5f7751e1f3836ea5df0e3b2b134af0f0a29546b0d81dad9"
+      },
+      {
+        "path": "case-studies/projects/tomford/assets/web/leaf.webp",
+        "bytes": 855662,
+        "sha256": "2733cd28d5eac538d5f62170e630171713f4c4c6c521aed7ab3ef994aa0d6920"
+      },
+      {
+        "path": "case-studies/projects/tomford/assets/web/original.webp",
+        "bytes": 5201574,
+        "sha256": "ff6978490e6f110348225c5ca82d1c7261899197d5b84177615aa90fb1caac1f"
+      },
+      {
+        "path": "case-studies/projects/tomford/assets/web/sand.webp",
+        "bytes": 2253788,
+        "sha256": "160b6617e9b5b17813ed9b4496b8dc733ac63f7fd5316c01b59ec5d14603911f"
+      },
+      {
+        "path": "case-studies/projects/tomford/assets/web/smoke-back.webp",
+        "bytes": 859030,
+        "sha256": "ff8501fc5138be511a7ca5e96538002c71a2d3fe7d75181668dd4538ad9f48cb"
+      },
+      {
+        "path": "case-studies/projects/tomford/assets/web/smoke-front.webp",
+        "bytes": 570870,
+        "sha256": "8061d9f8c3cfa53dbaef81d29a61905af223457442b889fcfc96a59b70898c67"
+      }
+    ]
+  }
 }

@@ -1,0 +1,44 @@
+[
+  {
+    "id": "original",
+    "title": "Warmth, texture and character",
+    "copy": "An independent 2025 composition exploring Tobacco Vanille through warm sand, tobacco tones and atmosphere.",
+    "progress": 0.0,
+    "source": "designerIntent"
+  },
+  {
+    "id": "environment",
+    "title": "A setting built from texture",
+    "copy": "The designer chose sand for its colour relationship with the bottle. The leaf adds a tobacco-inspired material association.",
+    "progress": 0.2,
+    "source": "designerIntent"
+  },
+  {
+    "id": "product",
+    "title": "The bottle leads",
+    "copy": "The fragrance bottle emerges first. Its existing label stays intact; no additional typography was introduced.",
+    "progress": 0.4,
+    "source": "designerIntent"
+  },
+  {
+    "id": "atmosphere",
+    "title": "An impression of aroma",
+    "copy": "Smoke and warm light suggest fragrance dispersed through the air. This is visual storytelling, not a physical scent effect.",
+    "progress": 0.6,
+    "source": "designerIntent"
+  },
+  {
+    "id": "palette",
+    "title": "A warm material palette",
+    "copy": "The owner identifies #A88046, #E0A725, #31251B and #3B261E as the palette linking bottle, tobacco, sand and atmosphere.",
+    "progress": 0.8,
+    "source": "designerIntent"
+  },
+  {
+    "id": "recompose",
+    "title": "Back to the original",
+    "copy": "The layers return to the owner-supplied assembled artwork. Independent portfolio work, not an official brand campaign.",
+    "progress": 1.0,
+    "source": "implementation"
+  }
+]

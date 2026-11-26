@@ -92,6 +92,27 @@
           "path": "docs/case-study/evidence/reference/grid-case-tests.json"
         }
       ]
+    },
+    {
+      "id": "tomford-owner-intent",
+      "claim": "2025 independent fragrance composition: warm sand/leaf/smoke associations, specified four-colour palette, existing bottle label only.",
+      "source": "designerIntent",
+      "status": "concept",
+      "evidence": [
+        {
+          "path": "docs/case-study/evidence/tomford/notes-TomFord.md"
+        }
+      ]
+    },
+    {
+      "id": "tomford-psd-fidelity",
+      "claim": "Five PSD layer composites preserve effects and opacity; mean difference0.1503806277/255, SSIM0.9992640880 against saved original. Exact pixel identity is not claimed.",
+      "status": "verified-dev",
+      "evidence": [
+        {
+          "path": "docs/case-study/evidence/tomford/validation.json"
+        }
+      ]
     }
   ],
   "excludedUnverified": [

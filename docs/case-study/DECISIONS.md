@@ -30,3 +30,10 @@ Leader handoffs crossfade two independently anchored paths across a0.07 progress
 
 ## Live scene / Grid integration
 Owner supplied isometric reference; target orientation equivalent pitch60/yaw22/roll−10 encoded as a single axis-angle. Scene keeps original device model; only poster support visibility temporarily suppressed. Transparent HUD requires normal color-scheme on iframe root. Static/short view pauses rendering. Resource counts distinguish renderer bookkeeping from physical GPU RAM. No actual WebGL Safari/iPhone claim.
+
+## Tom Ford — 2026-11-27
+- Owner Drive folder and notes authorize Tom Ford completion now; Earth Hour deferred. Preserve all sources, use supplied PSD instead of reconstructing hidden pixels or spending generation credits.
+- Export layer.composite with force=True and full viewport so PSD DropShadow and opacity115 survive. Raw-layer export failed fidelity; corrected output passes mean≤1/255 and SSIM≥.995. Retain original saved composite for endpoints.
+- Keep JBL presentation bytes unchanged. A combined refactor was stopped by automatic review for JBL-regression risk; the accepted implementation writes Tom-only JSON and adds optional shared behavior. No blocked mutation was executed.
+- Keep real showroom models; artwork fits original aspect within device screen. Dedicated gold accents are scoped to Tom Ford. Source PSD remains outside public Git delivery; lossless PNG masters and provenance hashes are versioned.
+- User requested no intermediate stops. Complete tests/docs/commit on isolated branch; no production publication or unrelated phases inferred.

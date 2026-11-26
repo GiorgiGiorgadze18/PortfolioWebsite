@@ -27,3 +27,6 @@ See evidence/capabilities.json, inventory.json and browser probe artifacts. Pyth
 - Tom Ford source is 627×1115; no honest upscaling can recover absent detail.
 - New mobile case studies need semantic/static alternatives while existing Try Now retains screenshot + 55% notice policy.
 - Hardware GPU, physical devices, assistive technology and field CWV remain unmeasured.
+
+## Current scope — 2026-11-27
+Owner approved completion of Tom Ford like JBL without intermediate stops. Tom Ford Phase 4 implementation is complete for review; Earth Hour deferred. Earlier missing-source and Gate1 blockers above are historical. New PSD canvas1524×2784 supersedes the old627×1115 thumbnail as case-study fidelity target. No production publication authorized.

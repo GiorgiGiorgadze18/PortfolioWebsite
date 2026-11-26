@@ -14,3 +14,6 @@ Implemented showroom-bridge and surface-transition provide real board/camera ent
 
 ## Live scene / Grid integration
 Implemented live-surface variant: lazy webgl-layers builds six MeshBasicMaterial alpha planes attached to selected display; JSON state controls device quaternion and per-plane local offsets. Existing render loop refreshes only when dirty. Projection view offset centers the visual stage and is restored with FOV/aspect/camera pose. Grid uses isolated CSS3D without initializing WebGL. Shared chapters/progress with validated same-origin bridge; actual projected anchors feed SVG overlay.
+
+## Tom Ford extension — 2026-11-27
+Registry defines project title/shortTitle/preview; entry routes selected project to the same shared shell. Optional layerWindows provides deterministic staggered separation, falling back to existing state.spread for projects without it. Grid and WebGL both use this function. Source canvas ratio controls CSS board and fitted WebGL geometry. Optional original image plane supplies exact owner-composite endpoints and is disposed with its textures/material. Original showroom renderer and lifecycle remain shared. No framework or runtime dependency added.

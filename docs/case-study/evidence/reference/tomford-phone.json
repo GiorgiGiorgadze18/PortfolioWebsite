@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "cycles": 1,
+  "scope": "Chromium software GL actual graphic selection, iframe open/exit, exact real camera/board pose, focus and scroll restoration; no-JS static chapters",
+  "errors": [],
+  "layerState": {
+    "planes": 5,
+    "supportsHidden": true,
+    "progress": 0.3977033708905629,
+    "depths": [
+      0.126,
+      0.17711399569933928,
+      0.1262,
+      0.7248822203545023,
+      0.1264
+    ]
+  },
+  "beforeResources": {
+    "textures": 22,
+    "geometries": 108
+  },
+  "afterResources": {
+    "textures": 22,
+    "geometries": 108
+  },
+  "noJsNote": "The initial phone run used the legacy JBL no-JS fixture. Tom Ford no-JS is separately verified in evidence/tomford/standalone-tests.json and the final project-aware desktop run."
+}

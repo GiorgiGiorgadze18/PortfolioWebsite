@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "command": "node --test tests/case-study/*.test.mjs",
+  "output": "PASS: lifecycle restore, 10 cycles, invalid assets, interrupted load cleanup, idempotent disposal\n\u2714 tests/case-study/engine.test.mjs (319.09441ms)\nPASS exact pose restore, 10 cycles, interrupted enter, dispose and reduced motion\n\u2714 tests/case-study/surface-transition.test.mjs (274.208194ms)\nPASS: pure reverse/direct seek, snapshot isolation, validation, refresh-independent spring\n\u2714 tests/case-study/timeline.test.mjs (202.061895ms)\n\u2139 tests 3\n\u2139 suites 0\n\u2139 pass 3\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 864.835455\n",
+  "scope": "3 test files: pure timeline/spring, mock lifecycle and mocked surface-transition. Ten mocked cycles are not actual GPU cycles."
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "browser": "chromium",
+    "status": "PASS",
+    "scope": "Grid opens standalone CSS3D case and restores grid detail focus",
+    "errors": []
+  },
+  {
+    "browser": "webkit",
+    "status": "PASS",
+    "scope": "Grid opens standalone CSS3D case and restores grid detail focus",
+    "errors": []
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "fileProtocol": "BLOCKED: managed browser administrator policy; local HTTP used instead",
+  "results": [
+    {
+      "browser": "chromium",
+      "status": "PASS",
+      "scope": "self-contained HTML over local HTTP, decoded original, chapter seek, no-JS Tom Ford chapters",
+      "errors": []
+    },
+    {
+      "browser": "webkit",
+      "status": "PASS",
+      "scope": "self-contained HTML over local HTTP, decoded original, chapter seek, no-JS Tom Ford chapters",
+      "errors": []
+    }
+  ]
+}
