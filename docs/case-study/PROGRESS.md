@@ -6,3 +6,6 @@ Browser evidence: evidence/reference/tests.json (Chromium/WebKit1440×900 and390
 Preview: serve repository over HTTP; /case-studies/jbl-preview.html standalone; /projects.html?view=3d&caseStudyPreview=1 review entry on selected JBL. No preview parameter -> no case-study entry.
 Remaining: full engine camera/surface transitions beyond overlay, deeper artwork edge/SSIM verification, performance/real GPU/AT and complete regression. No other projects started. No new owner asset action needed.
 Latest source commit: git log -1 --format=%H -- docs/case-study/PROGRESS.md. Do not merge/deploy incomplete study despite prior publish intent; report actual scope. No PR yet.
+
+## Full-resolution quality checkpoint
+Executed quality_reference.py with isolated scikit-image tooling: RGB SSIM0.9971875017 vs original, target≥0.995 PASS. All six alpha sanity checks PASS (background correctly opaque). Evidence: evidence/jbl/quality-reference.json. Previous SSIM NOT RUN references are historical; halo certification remains NOT RUN. Camera/surface transition work still pending; no owner input needed.

@@ -324,3 +324,7 @@ Chromium phone (390 px, DPR 2), WebKit phone (390 px), and Chromium desktop (128
 - Added six-plane CSS3D reference with native-scroll chapters, replay, original-image endpoints and static/no-JS text. Six planes use PSD-confirmed blend appearance baked at assembly; originals preserved.
 - Added review-only showroom iframe dialog behind caseStudyPreview=1; pauses scene drawing while open. Default entry remains absent, published:false.
 - Chromium/WebKit desktop/phone navigation/reduced-motion tests passed; engine math/lifecycle unit checks passed. Anchored annotations, final camera integration, complete edge/SSIM certification and broad regressions remain unfinished. No merge or deployment.
+
+## JBL image quality checkpoint — 2026-11-26
+
+- Added reproducible full-resolution RGB SSIM and alpha measurements: SSIM0.9971875 (target0.995), six alpha checks PASS. Does not certify halos or final camera integration. No runtime/deployment changes.

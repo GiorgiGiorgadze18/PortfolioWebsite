@@ -1,0 +1,57 @@
+{
+  "fullCanvasRGBSSIM": 0.9971875016789401,
+  "target": 0.995,
+  "ssimStatus": "PASS",
+  "alpha": [
+    {
+      "id": "environment",
+      "minimum": 255,
+      "maximum": 255,
+      "transparentPixels": 0,
+      "partialPixels": 0,
+      "status": "PASS"
+    },
+    {
+      "id": "contact",
+      "minimum": 0,
+      "maximum": 255,
+      "transparentPixels": 7838597,
+      "partialPixels": 715922,
+      "status": "PASS"
+    },
+    {
+      "id": "rear",
+      "minimum": 0,
+      "maximum": 255,
+      "transparentPixels": 8317393,
+      "partialPixels": 70195,
+      "status": "PASS"
+    },
+    {
+      "id": "glass",
+      "minimum": 0,
+      "maximum": 255,
+      "transparentPixels": 7087259,
+      "partialPixels": 1519085,
+      "status": "PASS"
+    },
+    {
+      "id": "hero",
+      "minimum": 0,
+      "maximum": 255,
+      "transparentPixels": 7667327,
+      "partialPixels": 369085,
+      "status": "PASS"
+    },
+    {
+      "id": "identity",
+      "minimum": 0,
+      "maximum": 255,
+      "transparentPixels": 1923877,
+      "partialPixels": 6523606,
+      "status": "PASS"
+    }
+  ],
+  "scope": "All pixels; no reconstructed regions. Alpha sanity is not halo certification. Full-size original vs full-size layered composite.",
+  "haloStatus": "NOT RUN"
+}

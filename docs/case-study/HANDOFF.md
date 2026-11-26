@@ -8,3 +8,6 @@ PSD blocker resolved. See latest PROGRESS and corrected-metrics. Do not request 
 Working prototype now exists at case-studies/jbl-preview.html. Read PROGRESS for exact remaining work. No further source request needed. Review with query caseStudyPreview=1 in Projects; not exposed on default production path.
 
 Current preview chapter has active-layer SVG leader on desktop; compact layouts retain semantic explanation. Real Chromium entry/exit3 cycles and no-JS test passed. Final in-scene surface/camera rig, broader regression and asset edge/SSIM gates still pending.
+
+## Full-resolution quality checkpoint
+Executed quality_reference.py with isolated scikit-image tooling: RGB SSIM0.9971875017 vs original, target≥0.995 PASS. All six alpha sanity checks PASS (background correctly opaque). Evidence: evidence/jbl/quality-reference.json. Previous SSIM NOT RUN references are historical; halo certification remains NOT RUN. Camera/surface transition work still pending; no owner input needed.

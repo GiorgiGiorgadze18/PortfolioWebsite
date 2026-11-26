@@ -39,3 +39,6 @@ PASS: Chromium and WebKit1440×900/390×844 chapter seek, replay, recomposition 
 Entry/exit/no-JS results: see evidence/reference/entry-tests.json if present; otherwise NOT RUN/completion pending. Hardware FPS, GPU texture cleanup, full AT, all previous portfolio regressions NOT RUN.
 
 PASS: actual selected JBL preview open/close three cycles in Chromium SwiftShader; title, focus and scroll restored; no-JS6 chapters. Evidence/reference/entry-tests.json. No actual GPU memory/10-cycle leak claim. Leader positions use DOM anchors on transformed planes; desktop/phone visual evidence recorded.
+
+## Full-resolution quality checkpoint
+Executed quality_reference.py with isolated scikit-image tooling: RGB SSIM0.9971875017 vs original, target≥0.995 PASS. All six alpha sanity checks PASS (background correctly opaque). Evidence: evidence/jbl/quality-reference.json. Previous SSIM NOT RUN references are historical; halo certification remains NOT RUN. Camera/surface transition work still pending; no owner input needed.
