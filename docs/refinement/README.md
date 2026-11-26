@@ -39,7 +39,7 @@ WebGL 2 და ტექსტურის მაქსიმალური ზ
 | Projects Grid | 993,033 ბაიტი / 19 მოთხოვნა | 1,001,958 / 21 |
 | Lab | 268,837 ბაიტი / 20 მოთხოვნა | 288,786 / 24 |
 
-Lab-ის საწყის ჩატვირთვაზე Three.js, shader და lighting სცენის მოთხოვნები ორივე შემთხვევაში 0. ამ ცდაში Lab-ის ახალი shell დაახლოებით 20KB დაუკომპრესირებელ ადგილობრივ ტრაფიკს ამატებს. Lighthouse, hardware FPS და საველე მონაცემები ამ დავალებაში არ გაზომილა.
+Lab-ის საწყის ჩატვირთვაზე Three.js, shader და lighting სცენის მოთხოვნები ორივე შემთხვევაში 0. ამ ცდაში Lab-ის ახალი shell დაახლოებით 20KB დაუკომპრესირებელ ადგილობრივ ტრაფიკს ამატებს. Grid-ის პირველი ჩატვირთვის shift entries-ის ჯამი ერთ Chromium ცდაში 0.074 იყო 390×844-ზე. ეს ერთჯერადი ლოკალური დაკვირვებაა და შედარებად საველე CLS-ს არ წარმოადგენს. ფილტრების ზოლი საწყის HTML-ში ადგილს იკავებს, ხოლო კონტროლები მოდულის ჩართვამდე გამორთულია. Lighthouse, hardware FPS და საველე მონაცემები ამ დავალებაში არ გაზომილა.
 
 [Projects — ადრე](before-projects-390.webp) · [Projects — შემდეგ, Grid](after-chromium-projects-390.webp) · [Lab — ადრე](before-lab-1440.webp) · [Lab — შემდეგ](after-chromium-lab-1440.webp) · [Lighting](after-chromium-lighting-430.webp) · [Shader](after-chromium-shader-430.webp)
 
@@ -57,11 +57,13 @@ Lab-ის საწყის ჩატვირთვაზე Three.js, shader
 | Lab lifecycle | დახურულ სცენაზე renderer და frame scheduling თავისუფლდება | ორივე ძრავში DOM სუფთაა და დახურვის შემდეგ frame count არ იზრდება. Chromium-ში სიმულირებული hidden/resume და რეალურად გამოძახებული WebGL context loss fallback შემოწმდა | PASS |
 | არსებული ჰოლოგრამა და Home motion | tilt, keyboard, reset, reduced motion და timeline lifecycle | Chromium/WebKit, ჰოლოგრამა ექვს ზომაზე თითო ძრავში და Home lifecycle სამ ზომაზე თითო ძრავში | PASS |
 | ხუთი გვერდი ათ ზომაზე თითო ძრავში | 320–2560px-ზე ჰორიზონტალური გადაცდენა არ იყოს | Chromium/WebKit, 100 geometry check. თითოეული hover/focus state-ის ვიზუალური მატრიცა ცალკე არ გამართულა | PASS |
+| შერჩეული ღილაკების ზომა | 44px მინიმუმი, ტექსტი არ იჭრებოდეს და ღილაკები არ გადაეფაროს | 10 ზომა ორივე ძრავში. About-ის scroll row-ის ელემენტები საკუთარი ქარდის საზღვრებში შემოწმდა | PASS |
 | SEO და სტატიკური არქივი | metadata, canonical, JSON-LD, aliases, სატესტო 404 და sitemap | ორივე ძრავში metadata/aliases, Chromium no-JS, ხუთი sitemap URL | PASS |
 | CV, mobile nav, Contact | PDF ხელმისაწვდომია და ფორმა გახსნიდანვე ვალიდირდება | Chromium/WebKit. ცარიელი ფორმა არავალიდურია. რეალური გაგზავნა არ განხორციელებულა | PASS |
 | Tsero mobile | screenshot HUD, 55% overlay და live app მოთხოვნა 0 | Chromium phone emulation, portrait/landscape | PASS |
 | Tsero desktop და MeeTab-ზე გადართვა | checkout, კალათის შენარჩუნება, demo payment, map და სხვა app-ის ცალკე სესია | Chromium-ზე შერჩეული გზა გაიარა, რეალური გადახდა არ ყოფილა | PASS |
-| ორი თაროს სრული რეგრესია | ყველა artwork-ის არჩევა და desktop/mobile გზები | Chromium-ის გაფართოებულ ტესტში Earth Hour control click-ის ლოდინი ამოიწურა. showroom rendering და რეჟიმის გადართვა ცალკე ტესტებში გაიარა | FAIL |
+| ორი თაროს რეგრესიის პირველი ცდა | artwork არჩევა | Earth Hour ღილაკის ლოდინის დრო ამოიწურა | FAIL |
+| ორი თაროს სრული განმეორებითი ტესტი | თაროების გადართვა, artwork არჩევა, desktop demos და mobile წესები | Chromium desktop და phone emulation გაიარა | PASS |
 | ფიზიკური მოწყობილობები, FPS, Lighthouse, full AT და საველე მეტრიკები | რეალურ გარემოში გაზომვა | ამ ეტაპზე ვერ გაიზომა | NOT RUN |
 
 ბრაუზერის ბრძანებები: `tests/refinement_browser.py`, `tests/fallback_browser.py`, `tests/lab_browser.py`, `tests/motion_lifecycle.py`, `tests/seo_browser.py` და `tests/tsero_showroom.py`. Browser geometry და render assertions ეყრდნობა ემულაციას და ლოკალურ software WebGL-ს. პირველ WebKit ცდაში shader-ის still frame განახლება ჩავარდა, ხოლო framebuffer-ის შენარჩუნებით და native input/change event-ების დამუშავებით ხელახალი ტესტი გავიდა. გაშვებების ხანგრძლივობა გარემოს დატვირთვაზე მერყეობდა. FPS-ის შეფასება არ გაკეთებულა.
@@ -70,7 +72,7 @@ Lab-ის საწყის ჩატვირთვაზე Three.js, shader
 
 ექსპერიმენტების კოდი შეიქმნა `js/lab/`-ში, ხოლო საერთო კონტროლების CSS — `css/controls.css`-ში. შეიცვალა ხუთივე პროდუქტის HTML, Lab/Projects CSS, shared tokens და generated Home bundle, `showroom/showroom.js`, არქივის გენერატორი, ტესტები, source manifest და CHANGELOG. სრული ფაილების სტატუსებია [files.json](files.json). ფაილების წაშლა არ მომხდარა. შენარჩუნებულია prior phase-ის [ღია შემოწმებების რეესტრი](../OPEN_VERIFICATION.md).
 
-დრაფტის განხილვა შესაძლებელია. სრული 3D regression-ის ერთ-ერთი click timeout, ფიზიკური მოწყობილობები, სრული accessibility ტესტი და წარმადობის დამატებითი პროფილირება ღიად რჩება. 3D-ის default-ზე არჩევანი ეყრდნობა WebGL 2-სა და ტექსტურის მოცულობას, ამიტომ ეს არ იძლევა გარკვეული FPS-ის გარანტიას. მომხმარებლის გადაწყვეტილება საჭიროა გამოქვეყნებაზე.
+დრაფტის განხილვა შესაძლებელია. ფიზიკური მოწყობილობები, სრული accessibility ტესტი და წარმადობის დამატებითი პროფილირება ღიად რჩება. 3D-ის default-ზე არჩევანი ეყრდნობა WebGL 2-სა და ტექსტურის მოცულობას, ამიტომ ეს არ იძლევა გარკვეული FPS-ის გარანტიას. მომხმარებლის გადაწყვეტილება საჭიროა გამოქვეყნებაზე.
 
 ## Preview და დაბრუნება
 

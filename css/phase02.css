@@ -12,7 +12,8 @@
 html:not([data-project-layout="3d"]) .museum-section,
 .filter-group[hidden] { display: none; }
 .project-view-controls { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-sm); padding-block: var(--sp-md); }
-html:not([data-project-layout]) .project-view-controls { display: none; }
+html:not([data-project-layout]) .project-view-controls,
+html:not([data-project-layout]) .filter-group { display: none; }
 #project-view-status:empty { display: none; }
 #project-view-status { margin: 0; color: var(--muted); }
 .project-segments { display: inline-flex; padding: 4px; gap: 4px; border: 1px solid var(--border); border-radius: var(--radius-pill); }

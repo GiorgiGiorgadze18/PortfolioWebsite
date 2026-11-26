@@ -82,7 +82,6 @@ function setMenu(){
 }
 function buildArchive(){
  const filters = document.querySelector('.filter-group');
- filters.hidden = false;
  for (const summary of projectGrid.querySelectorAll('[data-explore]')) {
   const project = ARCHIVE_PROJECTS.find(entry => entry.id === summary.dataset.explore);
   summary.addEventListener('click', event => {
@@ -92,6 +91,7 @@ function buildArchive(){
   });
  }
  for (const button of filters.querySelectorAll('[data-filter]')) {
+  button.disabled = false;
   button.addEventListener('click', () => {
    for (const peer of filters.querySelectorAll('[data-filter]')) {
     peer.classList.toggle('is-active', peer === button);

@@ -132,7 +132,7 @@
           </svg>
         </div>
       </section>
-      <section class="collection-section container" id="collection" aria-labelledby="collection-title"><div class="section-header"><div><p class="eyebrow lavender">THE ARCHIVE</p><h2 id="collection-title">Project <span class="title-accent">Archive.</span></h2></div><p>Every project has a story.<br>Take a closer look.</p></div><div class="filter-group" hidden role="group" aria-label="Filter projects"><button type="button" class="filter is-active" data-filter="all" aria-pressed="true">ALL WORK <span>06</span></button><button type="button" class="filter" data-filter="uiux" aria-pressed="false">UI / UX <span>02</span></button><button type="button" class="filter" data-filter="graphics" aria-pressed="false">GRAPHICS <span>03</span></button><button type="button" class="filter" data-filter="development" aria-pressed="false">DEVELOPMENT</button><button type="button" class="filter" data-filter="experiments" aria-pressed="false">EXPERIMENTS</button></div><div class="project-grid" id="project-grid" role="list">
+      <section class="collection-section container" id="collection" aria-labelledby="collection-title"><div class="section-header"><div><p class="eyebrow lavender">THE ARCHIVE</p><h2 id="collection-title">Project <span class="title-accent">Archive.</span></h2></div><p>Every project has a story.<br>Take a closer look.</p></div><div class="filter-group" role="group" aria-label="Filter projects"><button type="button" class="filter is-active" disabled data-filter="all" aria-pressed="true">ALL WORK <span>06</span></button><button type="button" class="filter" disabled data-filter="uiux" aria-pressed="false">UI / UX <span>02</span></button><button type="button" class="filter" disabled data-filter="graphics" aria-pressed="false">GRAPHICS <span>03</span></button><button type="button" class="filter" disabled data-filter="development" aria-pressed="false">DEVELOPMENT</button><button type="button" class="filter" disabled data-filter="experiments" aria-pressed="false">EXPERIMENTS</button></div><div class="project-grid" id="project-grid" role="list">
 <!-- PROJECT-CARDS-START -->
 <article class="archive-card" id="project/tsero" role="listitem" data-category="uiux development" style="--active-light:#FF3316">
   <div class="archive-thumb"><img loading="lazy" src="assets/project-tsero-preview.webp" alt="Tsero App original design artwork"></div>
@@ -232,6 +232,7 @@
   import('./showroom/showroom.js?v=0.18.0').catch(() => {
     document.documentElement.dataset.projectLayout = 'grid';
     document.querySelector('.project-segments').hidden = true;
+    document.querySelector('.filter-group').hidden = true;
     document.querySelector('#project-view-status').textContent = 'Interactive controls could not load. Project details are available in the archive.';
     const target = document.getElementById(location.hash.slice(1));
     target?.querySelector('details')?.setAttribute('open', '');
