@@ -8,3 +8,6 @@
 .contact-motion-enabled #terminal-form { opacity: 1; translate: none; }
 .terminal-hint, .terminal-skip { display: none !important; }
 #form-status { min-height: 1.6em; color: var(--clr-cyan); }
+
+.filter span { opacity: 1; }
+.mobile-dialog-close { min-width: 44px; min-height: 44px; }

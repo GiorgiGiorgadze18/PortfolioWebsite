@@ -1,0 +1,22 @@
+{
+  "index1440": {
+    "lcp_ms": 1528,
+    "transfer_bytes": 964073,
+    "axe": []
+  },
+  "projects1440": {
+    "lcp_ms": 672,
+    "transfer_bytes": 2689851,
+    "axe": []
+  },
+  "index390": {
+    "lcp_ms": 796,
+    "transfer_bytes": 963438,
+    "axe": []
+  },
+  "projects390": {
+    "lcp_ms": 356,
+    "transfer_bytes": 2364247,
+    "axe": []
+  }
+}

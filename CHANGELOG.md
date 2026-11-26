@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.17.4 — Phase 05 draft, 2026-11-26
+
+[PR #24](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/24)
+
+- Add dedicated WebP previews, defer the desktop MeeTab preload, fix mobile-menu focus and filter count contrast, and validate wheel bridge payloads.
+- Record comparable local transfer/LCP measurements and scoped accessibility results in docs/phase05. Track every open verification item in docs/OPEN_VERIFICATION.md.
+
 ## 0.17.3 — Phase 04 draft, 2026-11-26
 
 [PR #24](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/24)

@@ -59,6 +59,9 @@ const featuredTitles = {
 };
 for (const project of ARCHIVE_PROJECTS) {
  project.featuredTitle = featuredTitles[project.id] || project.name;
+ if (project.cover.startsWith('project-')) {
+  project.thumbnail = project.cover.replace(/\.(png|jpg)$/, '-preview.webp');
+ }
 }
 PROJECTS.find(project => project.id === 'jbl').featuredArtwork = 'meetab-desktop-home.webp';
 

@@ -8,7 +8,7 @@
  * portfolio-3d-showroom-test-v14.zip. See docs/SHOWROOM.md for integration details.
  */
 
-import {PROJECTS, ARCHIVE_PROJECTS} from '../data/projects.mjs?v=0.17.3';
+import {PROJECTS, ARCHIVE_PROJECTS} from '../data/projects.mjs?v=0.17.4';
 let gridView = new URLSearchParams(location.search).get('view') === 'grid';
 let initialization;
 const projectSide = project => project.category==='graphics'?'graphics':'apps';
@@ -57,8 +57,29 @@ const GALLERY_PIXEL_RATIO=1.4;
 const FOCUS_PIXEL_RATIO=1.65;
 
 function setAccent(hex){frame.style.setProperty('--active-light',hex);halo.style.background=`radial-gradient(ellipse 46% 54% at 48% 48%, ${hex}19, transparent 70%)`;if(THREE&&accentTarget) accentTarget.set(hex);}
-function setMenu(){const toggle=$('#menu-toggle'),menu=$('#mobile-menu');toggle.addEventListener('click',()=>{const open=toggle.getAttribute('aria-expanded')==='true';toggle.setAttribute('aria-expanded',String(!open));menu.hidden=open;});menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.hidden=true;toggle.setAttribute('aria-expanded','false')}));window.addEventListener('scroll',()=>$('#navbar').classList.toggle('is-scrolled',scrollY>16),{passive:true})}
-function archiveCard(p){const article=document.createElement('article');article.className='archive-card';article.setAttribute('role','listitem');article.dataset.category=p.categories.join(' ');article.style.setProperty('--active-light',p.accent);article.innerHTML=`<div class="archive-thumb"><img loading="lazy" src="${assetUrl(p.cover)}" alt="${p.name} original design artwork"></div><div class="archive-info"><span class="archive-kind">${p.categoryLabel.toUpperCase()}</span><h3>${p.name}</h3><p>${p.year} · ${p.device.toUpperCase()} DISPLAY</p><a class="archive-action" href="#project/${p.id}" data-explore="${p.id}">EXPLORE PROJECT &nbsp; ↗</a></div>`;const img=article.querySelector('img');let candidateIndex=0;const candidateUrls=assetFallbacks(p.cover);img.src=candidateUrls[0];img.addEventListener('error',()=>{candidateIndex++;if(candidateIndex<candidateUrls.length){img.src=candidateUrls[candidateIndex];return;}img.hidden=true;const note=document.createElement('span');note.className='archive-image-unavailable';note.textContent='Artwork not loaded · '+p.shortName;article.querySelector('.archive-thumb').append(note)});article.querySelector('a').addEventListener('click',event=>{
+function setMenu(){
+ const toggle=$('#menu-toggle'),menu=$('#mobile-menu');
+ function closeMenu(){
+  if(menu.contains(document.activeElement))toggle.focus();
+  menu.hidden=true;
+  toggle.setAttribute('aria-expanded','false');
+ }
+ toggle.addEventListener('click',()=>{
+  if(!menu.hidden){closeMenu();return;}
+  menu.hidden=false;
+  toggle.setAttribute('aria-expanded','true');
+  menu.querySelector('a')?.focus();
+ });
+ menu.querySelectorAll('a').forEach(link=>link.addEventListener('click',closeMenu));
+ document.addEventListener('keydown',event=>{
+  if(event.key==='Escape'&&!menu.hidden){
+   event.preventDefault();event.stopImmediatePropagation();closeMenu();
+  }
+ });
+ window.addEventListener('resize',()=>{if(innerWidth>768)closeMenu()});
+ window.addEventListener('scroll',()=>$('#navbar').classList.toggle('is-scrolled',scrollY>16),{passive:true});
+}
+function archiveCard(p){const article=document.createElement('article');article.className='archive-card';article.setAttribute('role','listitem');article.dataset.category=p.categories.join(' ');article.style.setProperty('--active-light',p.accent);article.innerHTML=`<div class="archive-thumb"><img loading="lazy" src="${assetUrl(p.thumbnail || p.cover)}" alt="${p.name} original design artwork"></div><div class="archive-info"><span class="archive-kind">${p.categoryLabel.toUpperCase()}</span><h3>${p.name}</h3><p>${p.year} · ${p.device.toUpperCase()} DISPLAY</p><a class="archive-action" href="#project/${p.id}" data-explore="${p.id}">EXPLORE PROJECT &nbsp; ↗</a></div>`;const img=article.querySelector('img');let candidateIndex=0;const candidateUrls=assetFallbacks(p.thumbnail || p.cover);img.src=candidateUrls[0];img.addEventListener('error',()=>{candidateIndex++;if(candidateIndex<candidateUrls.length){img.src=candidateUrls[candidateIndex];return;}img.hidden=true;const note=document.createElement('span');note.className='archive-image-unavailable';note.textContent='Artwork not loaded · '+p.shortName;article.querySelector('.archive-thumb').append(note)});article.querySelector('a').addEventListener('click',event=>{
  event.preventDefault();
  history.pushState(null,'','#project/'+p.id);
  openAccessibleDetail(p);
@@ -853,7 +874,7 @@ window.addEventListener('message',event=>{
   return;
  }
  if(!previewActive||staticPreview()||state!=='focus'||selected!==project)return;
- if(msg.kind==='wheel')zoomEnvironment(msg.delta,msg.mode);
+ if(msg.kind==='wheel'&&Number.isFinite(msg.delta)&&[0,1,2].includes(msg.mode))zoomEnvironment(msg.delta,msg.mode);
  if(msg.kind==='drag'&&Number.isFinite(msg.dx)&&Number.isFinite(msg.dy)){
   focusTiltTarget.y=clamp(focusTiltTarget.y+clamp(msg.dx,-100,100)*.0034,-.26,.26);
   focusTiltTarget.x=clamp(focusTiltTarget.x+clamp(msg.dy,-100,100)*.0029,-.19,.19);
@@ -1169,7 +1190,7 @@ function installKeys(){document.addEventListener('keydown',e=>{if(e.key==='Escap
 function showFallback(detail){shelfSwitch.hidden=true;clearOutline();$('#screen-portal').hidden=true;stageLoading.classList.add('is-done');fallbackEl.hidden=false;labelsEl.hidden=true;if(detail)console.warn('[showroom] fallback:',detail);sceneReady=false;}
 async function initialize(){try{const c=document.createElement('canvas');if(!(c.getContext('webgl2')||c.getContext('webgl'))){showFallback('WebGL not available');return}
  // No framework migration: dynamically load Three.js only on devices capable of the 3D showroom.
- await new Promise((resolve,reject)=>{const script=document.createElement('script');script.src=new URL('./vendor/three.js',import.meta.url).href;script.onload=resolve;script.onerror=()=>reject(new Error('Local Three.js engine did not load'));document.head.append(script)});THREE=window.SHOWROOM_THREE;if(!THREE)throw new Error('Local Three.js engine did not load');makeScene();frame.appendChild($('#try-preview'));ensureDemoFrame(PROJECTS.find(p=>p.demo?.bridge));setupInteraction();stageLoading.classList.add('is-done');window.addEventListener('resize',queueSceneResize,{passive:true});const ro=new ResizeObserver(queueSceneResize);ro.observe(frame);const visibility=new IntersectionObserver(entries=>{stageVisible=entries[entries.length-1].isIntersecting},{rootMargin:'150px'});visibility.observe(frame);
+ await new Promise((resolve,reject)=>{const script=document.createElement('script');script.src=new URL('./vendor/three.js',import.meta.url).href;script.onload=resolve;script.onerror=()=>reject(new Error('Local Three.js engine did not load'));document.head.append(script)});THREE=window.SHOWROOM_THREE;if(!THREE)throw new Error('Local Three.js engine did not load');makeScene();frame.appendChild($('#try-preview'));setupInteraction();stageLoading.classList.add('is-done');window.addEventListener('resize',queueSceneResize,{passive:true});const ro=new ResizeObserver(queueSceneResize);ro.observe(frame);const visibility=new IntersectionObserver(entries=>{stageVisible=entries[entries.length-1].isIntersecting},{rootMargin:'150px'});visibility.observe(frame);
  }catch(error){console.error('[showroom] 3D initialization failed',error);showFallback(error.message)}}
 function setProjectView(useGrid){
  gridView=useGrid;

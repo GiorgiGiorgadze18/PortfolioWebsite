@@ -14,8 +14,8 @@ const result = source.replace(
     const project = catalogue.get(id);
     if (!project) throw new Error('Unknown featured project: ' + id);
     const href = 'projects.html?view=grid#project/' + encodeURIComponent(id);
-    const artwork = escape('assets/' + (project.featuredArtwork || project.cover));
-    const cover = escape('assets/' + project.cover);
+    const artwork = escape('assets/' + (project.featuredArtwork || project.thumbnail || project.cover));
+    const cover = escape('assets/' + (project.thumbnail || project.cover));
     const title = project.featuredTitle.split('\n').map(escape).join('<br>');
     return card.replace(/(<h3 class="card-title">)[\s\S]*?(<\/h3>)/,
       (_, start, end) => start + title + end)
