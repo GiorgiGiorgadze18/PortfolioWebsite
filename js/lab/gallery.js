@@ -1,4 +1,4 @@
-import {experiments} from './registry.js';
+import {experiments} from './registry.js?v=0.18.2';
 import {createRuntime} from './runtime.js';
 
 const gallery = document.querySelector('#experiment-gallery');

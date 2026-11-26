@@ -47,8 +47,6 @@
 .experiment-card-content .experiment-technology { color: var(--clr-cyan); font-size: .82rem; }
 .experiment-card-content button { margin-top: auto; }
 .experiment-preview { min-height: 132px; background-color: #0c1524; }
-.preview-shader { background-image: repeating-radial-gradient(ellipse at 26% 90%, #123951 0%, #128b9a 6%, #122139 11%, #111626 16%); }
-.preview-lighting { background-image: radial-gradient(ellipse 27% 52% at 54% 42%, #a9c5d4, #315168 73%, transparent 74%), radial-gradient(ellipse at 55% 85%, #1e4560, transparent 59%); }
 .preview-physics { background-image: linear-gradient(165deg, transparent 49%, #65e6e9 50%, transparent 51%), repeating-linear-gradient(0deg, transparent 0 22px, #293b55 23px 24px); }
 .preview-particles { background-image: radial-gradient(circle, #8ddeee 1px, transparent 2px), radial-gradient(ellipse, #205069, transparent 70%); background-size: 16px 16px, 100% 100%; }
 .preview-spatial { background-image: linear-gradient(152deg, transparent 22%, #394a67 23% 32%, transparent 33% 42%, #2d7986 43% 52%, transparent 53% 62%, #37556f 63% 73%, transparent 74%); }

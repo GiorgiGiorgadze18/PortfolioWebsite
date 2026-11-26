@@ -91,14 +91,14 @@ with sync_playwright() as playwright:
             callback(time);
           });""")
         page.goto(base + 'lab.html')
-        expect(page.locator('.experiment-card')).to_have_count(5)
+        expect(page.locator('.experiment-card')).to_have_count(3)
         assert not any('/three.js' in url or '/shader.js' in url for url in requests)
         expect(page.locator('#lab-strength')).to_be_visible()
         page.locator('#lab-strength').press('ArrowRight')
         expect(page.locator('#strength-value')).to_have_text('1.1×')
         dialog = page.locator('#experiment-dialog')
         for index, (name, field) in enumerate([
-            ('Shader', 'frequency'), ('Lighting', 'angle'), ('Motion', 'stiffness'),
+            ('Motion', 'stiffness'),
             ('Particle', 'shape'), ('Spatial', 'layout')
         ]):
             button = page.locator('.experiment-card button').nth(index)
@@ -106,12 +106,12 @@ with sync_playwright() as playwright:
             button.tap()
             expect(dialog.locator('form')).to_be_visible(timeout=25000)
             ready_ms = round((time.perf_counter() - started) * 1000)
-            if index in [0, 2, 3]:
+            if index in [0, 1]:
                 dialog.locator('[data-pause]').click()
             visual = dialog.locator('.experiment-stage')
             before = visual.screenshot()
             control = dialog.locator(f'[name="{field}"]')
-            if index < 3:
+            if index == 0:
                 control.press('ArrowRight')
                 assert control.input_value() != control.get_attribute('value')
             else:
@@ -120,16 +120,16 @@ with sync_playwright() as playwright:
             page.wait_for_timeout(350)
             assert visual.screenshot() != before, name
             dialog.locator('[type="reset"]').click()
-            if index < 3:
+            if index == 0:
                 assert control.input_value() == control.get_attribute('value')
             else:
                 assert control.input_value() == control.locator('option').first.get_attribute('value')
-            if index in [0, 3]:
+            if index == 1:
                 page.wait_for_timeout(100)
                 initial = visual.screenshot()
                 visual.tap(position={'x': 40, 'y': 70})
                 assert visual.screenshot() != initial, (name, 'touch')
-            if index == 2:
+            if index == 0:
                 dialog.locator('[data-replay]').click()
                 expect(dialog.locator('[data-pause]')).to_have_attribute('aria-pressed', 'false')
             page.set_viewport_size({'width': 430, 'height': 780})
@@ -142,7 +142,7 @@ with sync_playwright() as playwright:
             page.emulate_media(reduced_motion='reduce')
             button.click()
             expect(dialog.locator('form')).to_be_visible(timeout=25000)
-            if index in [0, 2, 3]:
+            if index in [0, 1]:
                 expect(dialog.locator('[data-pause]')).to_be_hidden()
                 stationary = visual.screenshot()
                 page.wait_for_timeout(170)
@@ -155,16 +155,7 @@ with sync_playwright() as playwright:
         frames = page.evaluate('labFrames')
         page.wait_for_timeout(180)
         assert page.evaluate('labFrames') == frames
-        page.add_init_script("""const context = HTMLCanvasElement.prototype.getContext;
-          HTMLCanvasElement.prototype.getContext = function(type, ...args) {
-            return type.startsWith('webgl') ? null : context.call(this, type, ...args);
-          };""")
-        page.reload()
-        page.locator('.experiment-card button').first.click()
-        expect(dialog.locator('[role="status"]')).to_contain_text('requires WebGL 2')
-        expect(dialog.locator('canvas')).to_have_count(0)
-        dialog.locator('[data-close]').click()
-        result(engine, 'closed stages stop frames, unavailable WebGL presents preview', 'PASS')
+        result(engine, 'closed stages stop frames', 'PASS')
         assert not console_errors, console_errors
         context.close()
 
