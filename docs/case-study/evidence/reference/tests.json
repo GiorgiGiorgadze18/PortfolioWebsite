@@ -1,0 +1,38 @@
+[
+  {
+    "browser": "chromium",
+    "viewport": [
+      1440,
+      900
+    ],
+    "status": "PASS",
+    "errors": []
+  },
+  {
+    "browser": "chromium",
+    "viewport": [
+      390,
+      844
+    ],
+    "status": "PASS",
+    "errors": []
+  },
+  {
+    "browser": "webkit",
+    "viewport": [
+      1440,
+      900
+    ],
+    "status": "PASS",
+    "errors": []
+  },
+  {
+    "browser": "webkit",
+    "viewport": [
+      390,
+      844
+    ],
+    "status": "PASS",
+    "errors": []
+  }
+]

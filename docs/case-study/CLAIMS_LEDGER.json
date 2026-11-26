@@ -59,6 +59,23 @@
         }
       ],
       "note": "Owner-reported design intent and font attribution, not an official JBL affiliation or licensed font-file verification"
+    },
+    {
+      "id": "jbl-preview-copy",
+      "status": "prototype",
+      "source": "designerIntent",
+      "claim": "Preview chapter narrative uses owner palette, skyward premium intent and named fonts; silhouette/limited-angle and Photoshop export behavior are implementation descriptions.",
+      "evidence": [
+        {
+          "path": "docs/case-study/evidence/jbl/notes-JBL.md"
+        },
+        {
+          "path": "case-studies/projects/jbl-artwork/chapters.json"
+        },
+        {
+          "path": "tools/case-study/export_reference.py"
+        }
+      ]
     }
   ],
   "excludedUnverified": [

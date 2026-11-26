@@ -7,3 +7,7 @@
 - Read-only browser baseline uses local exact tracked production source. Public HTTPS reachability is measured separately. Software-rAF cadence is not real GPU FPS.
 
 - 2026-11-26: Group 32 source PNGs into7 meaningful candidate layers, preserving glass between rear/front headphone portions. Reject candidate recomposition for animation until fidelity resolved. No image generation needed/invoked so far. py7zr used only as temporary extraction tooling, not a site dependency.
+
+- Reference rendering uses actual CSS3D planes, not Three.js scene mutation, to isolate the review from the expensive existing renderers. This does not yet satisfy the final in-scene camera choreography.
+- Source Screen/Overlay/Color Dodge looks are baked at assembly; separated surfaces retain that appearance. Original source pixels unchanged. Original full image crossfade at endpoints handles residual glow differences. Manifest validated means mean-fidelity gate only, NOT complete public approval; published stays false.
+- Entry is review-only behind caseStudyPreview=1, uses an iframe dialog with checked same-origin/source close messages. Parent camera/selection remain untouched; render work paused during preview.

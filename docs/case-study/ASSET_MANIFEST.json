@@ -707,5 +707,7 @@
       "status": "FAIL",
       "reason": "Normal-alpha composition does not yet match flattened artwork; Photoshop blend/visibility/blur metadata absent. Do not animate or publish these candidate groups before validation."
     }
-  }
+  },
+  "referenceManifest": "case-studies/projects/jbl-artwork/manifest.json",
+  "referenceValidation": "docs/case-study/evidence/jbl/reference-validation.json"
 }

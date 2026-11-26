@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "cycles": 3,
+  "scope": "Chromium software GL actual graphic selection, iframe open/exit, focus and scroll restoration; no-JS static chapters",
+  "errors": []
+}

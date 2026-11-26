@@ -4,3 +4,7 @@ Archive now present in repository. Extract safely with py7zr (temporary tool at 
 Owner notes at evidence/jbl/notes-JBL.md; claims ledger updated. Engine modules exist but UI/integration remains unfinished. Preserve prior baseline and backup refs. No repeat audit needed.
 
 PSD blocker resolved. See latest PROGRESS and corrected-metrics. Do not request more files: continue blend-aware export and reference implementation. PSD local path /workspace/portfolio-work/case-study-sources/JBL.psd; psd_tools temporarily at /tmp/psd-tools-runtime. Public report stores hash, not signed connector download URL.
+
+Working prototype now exists at case-studies/jbl-preview.html. Read PROGRESS for exact remaining work. No further source request needed. Review with query caseStudyPreview=1 in Projects; not exposed on default production path.
+
+Current preview chapter has active-layer SVG leader on desktop; compact layouts retain semantic explanation. Real Chromium entry/exit3 cycles and no-JS test passed. Final in-scene surface/camera rig, broader regression and asset edge/SSIM gates still pending.

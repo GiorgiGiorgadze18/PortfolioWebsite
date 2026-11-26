@@ -1043,7 +1043,7 @@ function setupInteraction(){
 function render(time){
  if(!sceneReady)return;
  requestAnimationFrame(render);
- if(gridView){lastFrame=time;return;}
+ if(gridView||document.documentElement.dataset.caseStudyActive){lastFrame=time;return;}
  if(resizePending){resizePending=false;staticFramePainted=false;resizeScene();}
  // Hold the tablet still behind the phone notice. The CSS sweep runs independently.
  if(staticPreview()&&staticFramePainted){lastFrame=time;return;}

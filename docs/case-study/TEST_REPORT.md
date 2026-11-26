@@ -31,3 +31,11 @@ Evidence paths above are relative to evidence/. Python HTTPS used normal certifi
 ## PSD investigation
 
 PASS: PSD downloaded via Drive connector, size and SHA recorded; visibility/blend/effects read. PASS: corrected stack mean difference below1/255 (rounded values in evidence/jbl/corrected-metrics.json). FAIL: exact recomposition; local residuals in glow/reflection. NOT RUN: SSIM, halo validation, final7-group rendering and browser integration. Comparison manually viewed: evidence/jbl/blend-comparison.png. No final asset approval inferred.
+
+## Working reference preview
+
+PASS: six-plane reference recomposition mean0.235782/255, target≤1/255; exact identity remains FAIL (max87/255). Endpoint uses original image. Source blend appearance baked; not a new3D model. Full SSIM/halo metrics NOT RUN.
+PASS: Chromium and WebKit1440×900/390×844 chapter seek, replay, recomposition chapter, reduced-motion/static mode, horizontal overflow0, pageerror list empty. Evidence/reference/tests.json and screenshots, manually viewed. Full console/network/security test not implied.
+Entry/exit/no-JS results: see evidence/reference/entry-tests.json if present; otherwise NOT RUN/completion pending. Hardware FPS, GPU texture cleanup, full AT, all previous portfolio regressions NOT RUN.
+
+PASS: actual selected JBL preview open/close three cycles in Chromium SwiftShader; title, focus and scroll restored; no-JS6 chapters. Evidence/reference/entry-tests.json. No actual GPU memory/10-cycle leak claim. Leader positions use DOM anchors on transformed planes; desktop/phone visual evidence recorded.

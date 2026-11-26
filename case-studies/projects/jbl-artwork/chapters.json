@@ -1,0 +1,38 @@
+[
+  {
+    "id": "original",
+    "title": "The finished artwork",
+    "copy": "Blue tones connect the product with the sky, expressing an ambition for premium audio quality.",
+    "progress": 0
+  },
+  {
+    "id": "environment",
+    "title": "A skyward direction",
+    "copy": "A blue gradient establishes the sky-inspired palette. The curtain-like rhythm on the left adds a sense of enclosure.",
+    "progress": 0.2
+  },
+  {
+    "id": "product",
+    "title": "The product comes forward",
+    "copy": "The headphones are the central subject. This limited-angle study retains the original silhouette; it is not a complete 3D model.",
+    "progress": 0.4
+  },
+  {
+    "id": "interface",
+    "title": "Glass, light and sound",
+    "copy": "The glass display combines the audio interface with reflections and shadows created in Photoshop.",
+    "progress": 0.6
+  },
+  {
+    "id": "identity",
+    "title": "Weight and handwriting",
+    "copy": "The owner identifies The Bolt Font for the bold JBL lettering and Amsterdam Handwriting for the handwritten Premium contrast.",
+    "progress": 0.8
+  },
+  {
+    "id": "recompose",
+    "title": "One composition again",
+    "copy": "The individual decisions return to the original artwork. The final image is the untouched portfolio original.",
+    "progress": 1
+  }
+]

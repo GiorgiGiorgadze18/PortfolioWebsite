@@ -1,12 +1,8 @@
 # Progress
-Gate 0 approved; authorized through Gate 1. Gate 1 NOT REACHED.
-Branch: feat/case-study-phase1-engine; audit d109b2f, foundation 92b71b0. Current work commit: git log -1 --format=%H -- docs/case-study/PROGRESS.md.
-User archive merged from main 2c1314d (no production merge/deploy). Attachment blocker resolved through repository upload.
-Read notes-JBL.md completely. 32 PNG layers measured, all 2480×3508. Original archive preserved. Hashes and alpha/bboxes in evidence/jbl/validation.json.
-Phase 1 PARTIAL: pure timeline/spring, renderer-independent lifecycle/DisplaySurface, native-scroll observer. Node tests PASS; progress/browser/UI integration NOT RUN. No public entry points.
-Phase 2 PARTIAL: candidate 7-group export, contact sheet and recomposition. Recomposition FAIL: MAD 3.891722/255; max175/255; exact pixel fraction .42588. Plain alpha stack not yet faithful; no animation permitted with current candidates. All published:false.
-Phase 3 NOT STARTED. Next: resolve blend/visibility/opacity differences or validated conventional correction; finish UI/a11y/integration and JBL reference. Owner source PSD or layer settings would resolve ambiguity. Existing original PNG files are untouched; grouped derived assets are candidates only.
-No generation, spending, merge or deployment. Further graphic projects/apps not started.
-
-## PSD source update
-Drive connector fetched125824180 bytes. Original preserved at /workspace/portfolio-work/case-study-sources/JBL.psd, outside Git. Hash/hierarchy/effects in evidence/jbl/psd-inspection.json. PSD saved merged vs site MAD0.178235749/255. Hidden shadows2/3 excluded; reflection and glass SCREEN; line OVERLAY; Premium COLOR_DODGE; front headphone above HUD; upper atmosphere above product. Corrected PNG stack rounded metrics in corrected-metrics.json, visual comparison inspected. Mean target PASS, exact identity FAIL. Earlier seven-group candidates are NOT upgraded to validated by this full-stack experiment. Need split alpha/blend-aware rendering, endpoint original crossfade, remaining halo/SSIM tests and UI integration. Gate1 not reached, no owner source action needed now.
+Gate0 approved, work through Gate1 authorized. Current branch feat/case-study-phase1-engine.
+Phases1–3 PARTIAL: working review-only JBL preview, six CSS3D planes with native-scroll timeline, chapter navigation/replay/static semantic fallback and flagged showroom dialog. Public manifest remains published:false. Not production-ready; Gate1 not declared complete.
+Asset source: original32 PNGs and owner PSD retained unchanged. export_reference.py bakes Screen/Overlay/Dodge appearance at assembly into normal-alpha planes. Limited-angle2.5D, not3D geometry. Mean recomposition0.235782/255; max87/255. Endpoint always crossfades to untouched original. Alpha/bboxes measured; full halo/SSIM certification NOT RUN.
+Browser evidence: evidence/reference/tests.json (Chromium/WebKit1440×900 and390×844; navigation, reverse, replay, reduced motion). Real Chromium software-GL entry test PASS: actual JBL selection, three dialog return cycles, focus/scroll/selection retained; no-JS six chapters. Active-layer SVG leader added, hidden on compact layouts.
+Preview: serve repository over HTTP; /case-studies/jbl-preview.html standalone; /projects.html?view=3d&caseStudyPreview=1 review entry on selected JBL. No preview parameter -> no case-study entry.
+Remaining: full engine camera/surface transitions beyond overlay, deeper artwork edge/SSIM verification, performance/real GPU/AT and complete regression. No other projects started. No new owner asset action needed.
+Latest source commit: git log -1 --format=%H -- docs/case-study/PROGRESS.md. Do not merge/deploy incomplete study despite prior publish intent; report actual scope. No PR yet.

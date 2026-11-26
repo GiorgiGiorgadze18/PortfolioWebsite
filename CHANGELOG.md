@@ -318,3 +318,9 @@ Chromium phone (390 px, DPR 2), WebKit phone (390 px), and Chromium desktop (128
 
 - Inspected original PSD visibility, blending and effects. Corrected stacking/blending reduces recomposition mean difference below1/255; exact identity still fails locally. Comparison and measured metrics recorded.
 - Source PSD preserved outside Git; no final asset validation, animation, merge or deployment. Gate1 remains pending.
+
+## JBL review preview — 2026-11-26
+
+- Added six-plane CSS3D reference with native-scroll chapters, replay, original-image endpoints and static/no-JS text. Six planes use PSD-confirmed blend appearance baked at assembly; originals preserved.
+- Added review-only showroom iframe dialog behind caseStudyPreview=1; pauses scene drawing while open. Default entry remains absent, published:false.
+- Chromium/WebKit desktop/phone navigation/reduced-motion tests passed; engine math/lifecycle unit checks passed. Anchored annotations, final camera integration, complete edge/SSIM certification and broad regressions remain unfinished. No merge or deployment.

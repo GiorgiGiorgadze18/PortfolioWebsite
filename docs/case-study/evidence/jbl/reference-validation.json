@@ -1,0 +1,7 @@
+{
+  "meanAbsoluteDifference255": 0.2357818074815169,
+  "maxAbsoluteDifference255": 87.0,
+  "meanTargetStatus": "PASS",
+  "endpoint": "Crossfade to untouched original at p=0 and p=1; not exact layered recomposition",
+  "haloStatus": "NOT RUN"
+}
