@@ -18,10 +18,14 @@ with sync_playwright() as p:
    page.screenshot(path=str(out/f'{name}-{width}-reclined.png'))
    page.locator('#chapters button').nth(2).click(force=True);page.wait_for_timeout(1800);expect(page.locator('#chapter-title')).to_have_text('The product comes forward');page.screenshot(path=str(out/f'{name}-{width}-exploded.png'))
    planes=page.locator('.plane').evaluate_all('els=>els.map(el=>({top:el.getBoundingClientRect().top,z:new DOMMatrixReadOnly(getComputedStyle(el).transform).m43}))');assert planes[4]['top']<planes[0]['top']-20,planes
+   assert page.locator('#chapters button[aria-current=true]').evaluate('el=>getComputedStyle(el).backgroundColor')=='rgb(0, 240, 255)'
+   assert page.locator('.anchor-dot').count()==4
+   page.evaluate('()=>{const r=document.querySelector("#presentation").getBoundingClientRect();scrollTo(0,scrollY+r.top+(r.height-innerHeight)*.3)}');page.wait_for_timeout(1800)
+   weights=page.locator('.leader g').evaluate_all('els=>els.map(el=>Number(el.style.opacity))');assert .2<weights[0]<.8 and .2<weights[1]<.8,weights
    assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
    page.locator('#chapters button').last.click(force=True);page.wait_for_timeout(1800);expect(page.locator('#chapter-title')).to_have_text('One composition again')
    page.locator('#replay').click();page.wait_for_timeout(1800);expect(page.locator('#chapter-title')).to_have_text('The finished artwork')
    page.emulate_media(reduced_motion='reduce');expect(page.locator('#static')).to_be_visible();assert page.locator('#static section').count()==6
-   assert not errors,errors;rows.append(dict(browser=name,viewport=[width,height],status='PASS',errors=errors,planes=planes));page.close()
+   assert not errors,errors;rows.append(dict(browser=name,viewport=[width,height],status='PASS',errors=errors,planes=planes,lineCrossfadeWeights=weights));page.close()
   b.close()
 (out/'tests.json').write_text(json.dumps(rows,indent=2)+'\n');server.shutdown();print(rows)

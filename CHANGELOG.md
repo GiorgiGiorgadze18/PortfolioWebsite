@@ -352,3 +352,9 @@ Chromium phone (390 px, DPR 2), WebKit phone (390 px), and Chromium desktop (128
 
 - Replaced independent rotation axes with a single fixed left-lean axis, retaining48° recline and staged lift. Reduced perspective exaggeration1100→2400px and added a subtle leftward translation.
 - Every plane and the original image use the same rigid pose; original artwork unchanged. Updated downloadable preview and Chromium/WebKit desktop/phone evidence. No merge/deployment.
+
+## JBL annotation and step polish — 2026-11-26
+
+- Added glowing source dots/rings and faint glowing leader lines. Layer handoffs crossfade at their real anchors; description endpoint stays stable between headings.
+- Added cancellable text reveals, filled cyan current-step circles and subtle per-layer alpha shadows only during separation. Preserved native scroll, rigid left lean and original artwork.
+- Chromium/WebKit desktop/phone checks cover line crossfade weights, active fill, layer separation, replay, reduced motion and overflow; endpoint/reduced-motion follow-up in annotation-tests.json. Production remains unpublished.

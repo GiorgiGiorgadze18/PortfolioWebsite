@@ -1,0 +1,22 @@
+[
+  {
+    "browser": "chromium",
+    "status": "PASS",
+    "scope": "Stable description-side line port across differently wrapping chapters; reduced-motion cancels text animation",
+    "ports": [
+      "844.71875,315",
+      "844.71875,315",
+      "844.71875,315"
+    ]
+  },
+  {
+    "browser": "webkit",
+    "status": "PASS",
+    "scope": "Stable description-side line port across differently wrapping chapters; reduced-motion cancels text animation",
+    "ports": [
+      "844.71875,315",
+      "844.71875,315",
+      "844.71875,315"
+    ]
+  }
+]

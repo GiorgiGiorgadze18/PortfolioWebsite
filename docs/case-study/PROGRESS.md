@@ -15,3 +15,6 @@ Supersedes70° recline: tilt48°, gentle-6° diagonal roll during recline, uncha
 
 ## Latest owner revision — rigid left lean
 Supersedes separate Euler roll/yaw: fixed rotate3d axis[1,-.28,-.12], angle48°, leftward drift18 design pixels, perspective2400px instead of1100px. Every layer and original share the same rigid pose; no skew/mesh deformation. Upward lift retained with offsets recomputed for45° direction at target pose. Preview /workspace/portfolio-work/JBL-case-study-preview-left-lean.html. Gate1 review remains pending; no production publish.
+
+## Latest owner polish request
+Added source-side filled dot/ring, restrained line glow, scroll-weighted crossfade between anchored leaders (no off-surface endpoint interpolation), stable description port, cancellable280ms text reveals, fully cyan active stage circles, and subtle alpha-aware shadows only while separated. Geometry/rigid-left-lean preserved. Preview: /workspace/portfolio-work/JBL-case-study-preview-glow-transitions.html. Gate1 visual review pending; Tom Ford materials mentioned by owner but not inspected or implemented. No production publish.

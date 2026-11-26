@@ -61,3 +61,6 @@ PASS: Chromium/WebKit desktop1440×900 and phone390×844 for48° recline-before-
 
 ## Rigid left-lean revision
 Chromium/WebKit1440×900 and390×844 PASS: recline before lift, actual projected plane separation, seek/replay/reduced-motion, overflow0, pageerror0. Latest screenshots manually reviewed at the reclined pose; no claim of physical-device validation. Source artwork unchanged. Evidence/reference/tests.json.
+
+## Annotation/step polish
+PASS: Chromium/WebKit desktop1440×900 and phone390×844, source dot count4, fully cyan active step, paired leader fade weights≈.5/.5 at handoff, navigation/replay/reduced motion, overflow0 and pageerror0 (reference/tests.json). PASS: fixed description endpoint across3 chapters and cancellation of text animation on reduced motion in both browsers (annotation-tests.json). WebKit desktop screenshot visually reviewed for anchored dot, glow and subtle layer shadows. Physical hardware/FPS not measured.

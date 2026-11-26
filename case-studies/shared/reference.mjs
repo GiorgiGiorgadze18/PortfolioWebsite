@@ -11,25 +11,51 @@ let observer,images=[],manifest;
 const {offsets,keyframes,annotationLayers,rotationAxis,perspective,leftLeanPixels}=await fetch(new URL('presentation.json',projectBase)).then(r=>r.json());
 const timeline=createTimeline(keyframes);
 let progress=0;
-const ns='http://www.w3.org/2000/svg',svg=document.createElementNS(ns,'svg'),leader=document.createElementNS(ns,'path');svg.classList.add('leader');svg.setAttribute('aria-hidden','true');svg.append(leader);$('.pin').append(svg);
+const ns='http://www.w3.org/2000/svg',svg=document.createElementNS(ns,'svg');svg.classList.add('leader');svg.setAttribute('aria-hidden','true');
+const leaders=annotationLayers.map(()=>{
+ const group=document.createElementNS(ns,'g'),path=document.createElementNS(ns,'path'),ring=document.createElementNS(ns,'circle'),dot=document.createElementNS(ns,'circle');
+ path.setAttribute('pathLength','1');ring.setAttribute('r','9');ring.classList.add('anchor-ring');dot.setAttribute('r','4');dot.classList.add('anchor-dot');group.append(path,ring,dot);svg.append(group);return {group,path,ring,dot};
+});$('.pin').append(svg);
+const smooth=t=>{t=Math.max(0,Math.min(1,t));return t*t*(3-2*t);};
+function drawLeaders(state){
+ const b=$('aside').getBoundingClientRect(),r=$('.pin').getBoundingClientRect();
+ annotationLayers.forEach((active,i)=>{
+  const index=manifest.layers.findIndex(layer=>layer.id===active.layer),marker=images[index]?.querySelector('.anchor'),line=leaders[i];
+  if(!marker)return;
+  const enter=i?smooth((progress-active.from+.035)/.07):1,next=annotationLayers[i+1];
+  const leave=next?1-smooth((progress-next.from+.035)/.07):1,weight=enter*leave;
+  const a=marker.getBoundingClientRect(),x=a.left-r.left,y=a.top-r.top,tx=b.left-r.left-18,ty=r.height*.35;
+  line.path.setAttribute('d',`M${x},${y} L${tx-24},${y} L${tx},${ty}`);
+  for(const circle of [line.ring,line.dot]){circle.setAttribute('cx',x);circle.setAttribute('cy',y);}
+  line.group.style.opacity=String(weight);line.path.style.strokeDashoffset=String(1-enter);
+ });svg.style.opacity=String(state.spread*.85);
+}
+
 function render(state){
  const board=$('.board'),depthScale=board.clientWidth/350;
  const lean=state.tilt/48;
  board.style.perspective=`${perspective}px`;
  const pose=`translate3d(${-leftLeanPixels*lean*depthScale}px,${state.lower*depthScale}px,0) rotate3d(${rotationAxis.join(',')},${state.tilt}deg)`;
  board.style.transform='none';
- images.forEach((im,i)=>{const [x,y,z]=offsets[i];im.style.transform=`${pose} translate3d(${x*state.spread*depthScale}px,${y*state.spread*depthScale}px,${z*state.spread*depthScale}px)`;});
+ images.forEach((im,i)=>{im.style.setProperty('--layer-shadow',String(state.spread*.24));const [x,y,z]=offsets[i];im.style.transform=`${pose} translate3d(${x*state.spread*depthScale}px,${y*state.spread*depthScale}px,${z*state.spread*depthScale}px)`;});
  $('.original').style.transform=`${pose} translateZ(3px)`;
  $('.original').style.opacity=state.original;
- const active=annotationLayers.reduce((a,c)=>progress>=c.from?c:a,annotationLayers[0]);
- const index=manifest.layers.findIndex(layer=>layer.id===active.layer);
- const marker=images[index]?.querySelector('.anchor');
- if(marker){const a=marker.getBoundingClientRect(),b=$('#chapter-title').getBoundingClientRect(),r=$('.pin').getBoundingClientRect();const x=a.left-r.left,y=a.top-r.top,tx=b.left-r.left-18,ty=b.top-r.top+b.height/2;leader.setAttribute('d',`M${x},${y} L${tx-24},${y} L${tx},${ty}`);svg.style.opacity=String(state.spread*.6);}
+ drawLeaders(state);
 
 }
-const engine=new CaseStudyEngine({load:async()=>({validated:manifest.validated,timeline,chapters,surface:new DisplaySurface({snapshot:()=>({}),restore:()=>render(timeline.stateAt(0)),present:render,dispose(){}}),dispose(){observer?.dispose();}})});
-function describe(p){const c=chapters.reduce((a,c)=>p>=c.progress-.06?c:a,chapters[0]);$('#counter').textContent=`0${chapters.indexOf(c)+1} / ${String(chapters.length).padStart(2,'0')}`;$('#chapter-title').textContent=c.title;$('#chapter-copy').textContent=c.copy;$('.source').textContent=c.source==='implementation'?'IMPLEMENTATION NOTE':'DESIGNER INTENT · OWNER NOTES';for(const b of $('#chapters').children)b.setAttribute('aria-current',String(b.dataset.id===c.id));}
-function setStatic(value){section.hidden=value;observer?.dispose();observer=undefined;root.classList.toggle('is-static',value);$('#mode').textContent=value?'Scroll presentation':'Static chapters';if(!value)observer=observeProgress(section,p=>{progress=p;engine.seek(p);describe(p);});}
+const engine=new CaseStudyEngine({load:async()=>({validated:manifest.validated,timeline,chapters,surface:new DisplaySurface({snapshot:()=>({}),restore:()=>render(timeline.stateAt(0)),present:render,dispose(){}}),dispose(){observer?.dispose();textAnimations.forEach(a=>a.cancel());}})});
+let currentChapter=null,textAnimations=[];
+function describe(p){
+ const c=chapters.reduce((a,c)=>p>=c.progress-.06?c:a,chapters[0]);
+ if(c.id===currentChapter)return;
+ const animate=currentChapter!==null&&!motion.matches;currentChapter=c.id;
+ textAnimations.forEach(a=>a.cancel());textAnimations=[];
+ $('#counter').textContent=`0${chapters.indexOf(c)+1} / ${String(chapters.length).padStart(2,'0')}`;$('#chapter-title').textContent=c.title;$('#chapter-copy').textContent=c.copy;
+ $('.source').textContent=c.source==='implementation'?'IMPLEMENTATION NOTE':'DESIGNER INTENT · OWNER NOTES';
+ for(const b of $('#chapters').children)b.setAttribute('aria-current',String(b.dataset.id===c.id));
+ if(animate)for(const node of [$('#counter'),$('#chapter-title'),$('#chapter-copy'),$('.source')])textAnimations.push(node.animate([{opacity:0,transform:'translateY(8px)'},{opacity:1,transform:'translateY(0)'}],{duration:280,easing:'cubic-bezier(.2,.8,.2,1)'}));
+}
+function setStatic(value){textAnimations.forEach(a=>a.cancel());textAnimations=[];section.hidden=value;observer?.dispose();observer=undefined;root.classList.toggle('is-static',value);$('#mode').textContent=value?'Scroll presentation':'Static chapters';if(!value)observer=observeProgress(section,p=>{progress=p;describe(p);engine.seek(p);});}
 for(const c of chapters){const b=document.createElement('button');b.textContent=String(chapters.indexOf(c)+1);b.dataset.id=c.id;b.setAttribute('aria-label',c.title);b.onclick=()=>observer?.seek(c.progress);$('#chapters').append(b);}
 try{
  manifest=await fetch(new URL('manifest.json',projectBase)).then(r=>{if(!r.ok)throw Error('Manifest unavailable');return r.json();});
