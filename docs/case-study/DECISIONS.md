@@ -11,3 +11,8 @@
 - Reference rendering uses actual CSS3D planes, not Three.js scene mutation, to isolate the review from the expensive existing renderers. This does not yet satisfy the final in-scene camera choreography.
 - Source Screen/Overlay/Color Dodge looks are baked at assembly; separated surfaces retain that appearance. Original source pixels unchanged. Original full image crossfade at endpoints handles residual glow differences. Manifest validated means mean-fidelity gate only, NOT complete public approval; published stays false.
 - Entry is review-only behind caseStudyPreview=1, uses an iframe dialog with checked same-origin/source close messages. Parent camera/selection remain untouched; render work paused during preview.
+
+## Gate1 checkpoint
+Physical showroom transitions run inside the original render loop, with a pose snapshot and no accumulated transforms. The isolated CSS3D layer renderer remains the review representation. New project choreography and annotations come from JSON. Gate1 is a reference review, not final release certification.
+
+Standalone delivery is a generated13.97MB HTML with embedded fonts/images/JSON and an esbuild ESM bundle. esbuild used via temporary npx tooling only, no runtime dependency. Rebuild: npx --yes esbuild case-studies/shared/reference.mjs --bundle --format=esm --outfile=/tmp/jbl-reference-bundle.mjs; then python3 tools/case-study/package_preview.py /desired/output.html.

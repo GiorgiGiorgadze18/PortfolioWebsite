@@ -42,3 +42,8 @@ PASS: actual selected JBL preview open/close three cycles in Chromium SwiftShade
 
 ## Full-resolution quality checkpoint
 Executed quality_reference.py with isolated scikit-image tooling: RGB SSIM0.9971875017 vs original, target≥0.995 PASS. All six alpha sanity checks PASS (background correctly opaque). Evidence: evidence/jbl/quality-reference.json. Previous SSIM NOT RUN references are historical; halo certification remains NOT RUN. Camera/surface transition work still pending; no owner input needed.
+
+## Gate1 checkpoint
+Actual exact board/camera pose restoration PASS in Chromium3 cycles (entry-tests.json);10 unit cycles/interruption/reduced motion PASS (surface-transition.txt); existing5-page header/mobile menu Chromium/WebKit and MeeTab wheel/focus PASS (header-regression.log). New reference tests after project-JSON/no-JS changes PASS (tests.json). Full hardware/AT/context-loss/memory suite remains NOT RUN.
+
+Standalone preview validation: HTTP Chromium load/chapter seek PASS; file:// opening BLOCKED by managed-browser administrator policy, not tested on owner device. Save the supplied HTML locally to try it; if local file opening fails, serve it with a simple local HTTP server. Evidence/reference/standalone-test.json.

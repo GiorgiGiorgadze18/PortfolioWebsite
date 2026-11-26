@@ -328,3 +328,9 @@ Chromium phone (390 px, DPR 2), WebKit phone (390 px), and Chromium desktop (128
 ## JBL image quality checkpoint — 2026-11-26
 
 - Added reproducible full-resolution RGB SSIM and alpha measurements: SSIM0.9971875 (target0.995), six alpha checks PASS. Does not certify halos or final camera integration. No runtime/deployment changes.
+
+## JBL Gate1 reference — 2026-11-26
+
+- Added real showroom board/camera entry and exact reversible exit on the existing animation loop; interruptible and reduced-motion aware. Added project JSON choreography and explicit default-disabled registry.
+- Fixed no-JS/failed-init blank pin space. Tests: actual Chromium3-cycle exact camera/board/focus/scroll restoration;10 unit transition cycles; Chromium/WebKit reference desktop/phone; existing header/menu and MeeTab wheel regression. Hardware/AT/full memory QA not claimed.
+- Gate1 review only; no PR, merge or production deployment. See docs/case-study/GATE_1_REPORT.md.

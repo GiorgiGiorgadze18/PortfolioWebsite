@@ -8,3 +8,6 @@ MeeTab is a local single-file HTML demo, sandbox allow-scripts (opaque origin), 
 DisplaySurface wraps screen mesh/dimensions/world matrix and home transforms for both deviceScreen and artworkBoard. A board lifts toward camera; reconstructed background stays on board. Keep IDs jbl-artwork (graphic) and meetab (public slug) distinct from legacy jbl (MeeTab internal ID).
 Shared engine: lifecycle/disposer, pure timeline stateAt(p), camera rig, native-scroll ProgressSource with critically damped spring, layer stage, DOM/SVG annotations, quality manager, semantic A11yShell/Stepper. Lazy per-project data/assets. caseStudies.enabled=false and published=false until tested and approved.
 Adapters are isolated presentation modules in local demo exports, not upstream product changes. Review opaque-origin protocol separately; recorded-frame fallback if secure control cannot be guaranteed. Architecture claims require source proof beyond a demo README.
+
+## Gate1 checkpoint
+Implemented showroom-bridge and surface-transition provide real board/camera entry and exit, driven by existing rAF. State snapshots include position/rotation/scale and camera pose/zoom. Active dialogue pauses parent drawing. The layer stage uses CSS3D, own semantic chapters and spring-smoothed native scroll. Per-project keyframes/offsets/annotation targets live in presentation.json.

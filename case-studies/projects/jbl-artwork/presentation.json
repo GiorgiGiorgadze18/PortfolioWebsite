@@ -1,0 +1,102 @@
+{
+  "offsets": [
+    [
+      -16,
+      0,
+      -40
+    ],
+    [
+      0,
+      45,
+      35
+    ],
+    [
+      22,
+      -10,
+      180
+    ],
+    [
+      0,
+      10,
+      115
+    ],
+    [
+      22,
+      -10,
+      180
+    ],
+    [
+      14,
+      -35,
+      235
+    ]
+  ],
+  "keyframes": [
+    {
+      "p": 0,
+      "state": {
+        "spread": 0,
+        "angle": 0,
+        "original": 1
+      }
+    },
+    {
+      "p": 0.12,
+      "state": {
+        "spread": 0,
+        "angle": 0,
+        "original": 0
+      }
+    },
+    {
+      "p": 0.4,
+      "state": {
+        "spread": 1,
+        "angle": -9,
+        "original": 0
+      }
+    },
+    {
+      "p": 0.75,
+      "state": {
+        "spread": 1,
+        "angle": -9,
+        "original": 0
+      }
+    },
+    {
+      "p": 0.92,
+      "state": {
+        "spread": 0,
+        "angle": 0,
+        "original": 0
+      }
+    },
+    {
+      "p": 1,
+      "state": {
+        "spread": 0,
+        "angle": 0,
+        "original": 1
+      }
+    }
+  ],
+  "annotationLayers": [
+    {
+      "from": 0,
+      "layer": "environment"
+    },
+    {
+      "from": 0.3,
+      "layer": "hero"
+    },
+    {
+      "from": 0.5,
+      "layer": "glass"
+    },
+    {
+      "from": 0.7,
+      "layer": "identity"
+    }
+  ]
+}

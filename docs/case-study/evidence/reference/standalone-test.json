@@ -1,0 +1,6 @@
+{
+  "httpStatus": "PASS",
+  "fileProtocolStatus": "BLOCKED",
+  "reason": "Browser administrator blocks file:// navigation in this environment",
+  "errors": []
+}

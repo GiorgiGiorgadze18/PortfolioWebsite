@@ -1,0 +1,12 @@
+{
+  "caseStudies": {
+    "enabled": false
+  },
+  "projects": {
+    "jbl-artwork": {
+      "published": false,
+      "type": "GraphicExplodedCaseStudy",
+      "manifest": "projects/jbl-artwork/manifest.json"
+    }
+  }
+}

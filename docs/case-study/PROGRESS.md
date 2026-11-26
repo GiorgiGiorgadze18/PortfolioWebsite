@@ -1,11 +1,8 @@
-# Progress
-Gate0 approved, work through Gate1 authorized. Current branch feat/case-study-phase1-engine.
-Phases1–3 PARTIAL: working review-only JBL preview, six CSS3D planes with native-scroll timeline, chapter navigation/replay/static semantic fallback and flagged showroom dialog. Public manifest remains published:false. Not production-ready; Gate1 not declared complete.
-Asset source: original32 PNGs and owner PSD retained unchanged. export_reference.py bakes Screen/Overlay/Dodge appearance at assembly into normal-alpha planes. Limited-angle2.5D, not3D geometry. Mean recomposition0.235782/255; max87/255. Endpoint always crossfades to untouched original. Alpha/bboxes measured; full halo/SSIM certification NOT RUN.
-Browser evidence: evidence/reference/tests.json (Chromium/WebKit1440×900 and390×844; navigation, reverse, replay, reduced motion). Real Chromium software-GL entry test PASS: actual JBL selection, three dialog return cycles, focus/scroll/selection retained; no-JS six chapters. Active-layer SVG leader added, hidden on compact layouts.
-Preview: serve repository over HTTP; /case-studies/jbl-preview.html standalone; /projects.html?view=3d&caseStudyPreview=1 review entry on selected JBL. No preview parameter -> no case-study entry.
-Remaining: full engine camera/surface transitions beyond overlay, deeper artwork edge/SSIM verification, performance/real GPU/AT and complete regression. No other projects started. No new owner asset action needed.
-Latest source commit: git log -1 --format=%H -- docs/case-study/PROGRESS.md. Do not merge/deploy incomplete study despite prior publish intent; report actual scope. No PR yet.
-
-## Full-resolution quality checkpoint
-Executed quality_reference.py with isolated scikit-image tooling: RGB SSIM0.9971875017 vs original, target≥0.995 PASS. All six alpha sanity checks PASS (background correctly opaque). Evidence: evidence/jbl/quality-reference.json. Previous SSIM NOT RUN references are historical; halo certification remains NOT RUN. Camera/surface transition work still pending; no owner input needed.
+# Current state — Gate1 review
+Phase1 minimal engine + Phase2/3 JBL reference ready for owner Gate1 review. Branch feat/case-study-phase1-engine. Stop before other project implementation as required by MASTER §3.
+Current report: GATE_1_REPORT.md. Current commit: git log -1 --format=%H -- docs/case-study/GATE_1_REPORT.md.
+Done: real board/camera enter/exit with exact restore; deterministic6-plane reference/chapter JSON; static/no-JS/reduced-motion alternative; source hashes/SSIM/alpha evidence; actual3-cycle scene return and browser tests.
+Preview: /workspace/portfolio-work/JBL-case-study-preview.html self-contained; or HTTP /case-studies/jbl-preview.html. Parent entry /projects.html?view=3d&caseStudyPreview=1 then select JBL.
+State: feature disabled by default, published:false, no PR/merge/deploy. User earlier requested publish; full release readiness is not claimed by this review reference.
+Remaining QA limits: actual devices/AT/GPU, full context-loss scenario,10 browser-memory cycles, full portfolio/demo business regression and complete halo forensic verification. Original-image endpoint handles small residual differences; max87/255 not exact recomposition.
+Owner action: Gate1 visual review/decision. Other layered sources absent; do not request JBL source again. All original PSD/PNG files retained unchanged.

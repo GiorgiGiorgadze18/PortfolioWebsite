@@ -1,0 +1,1 @@
+PASS exact pose restore, 10 cycles, interrupted enter, dispose and reduced motion

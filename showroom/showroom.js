@@ -1,3 +1,5 @@
+import {registerShowroomBridge} from '../case-studies/shared/showroom-bridge.mjs';
+import {createSurfaceTransition} from '../case-studies/shared/surface-transition.mjs';
 
 /**
  * Real projects and actual artwork paths inspected from:
@@ -30,6 +32,7 @@ const halo=$('#ambient-halo'),shelfSwitch=$('#shelf-switch'),outline=$('#tablet-
 const outlinePaths=outline.querySelectorAll('path');
 let outlinePending=false,outlineRunning=false;
 const focusHost=$('#focus-canvas');
+let caseSurface=null;
 let THREE, renderer, focusRenderer, scene, camera, raycaster, pointer, ambientLight, lightKey, lightAccent, glowSprite;
 let accentTarget, accentCurrent, movingTween, selected=null, hovered=null, cameraTarget, portalPlane;
 let sceneReady=false, state='gallery', queuedSelection=null, lastFrame=0, initialTime=0, lastPointer={x:0,y:0};
@@ -549,7 +552,7 @@ function makeScene(){scene=new THREE.Scene();scene.fog=new THREE.FogExp2('#060A1
  accentTarget=new THREE.Color('#D0BCFF');accentCurrent=accentTarget.clone();scene.environment=buildReflectionEnvironment();scene.environmentIntensity=.18;buildArchitecture();
  glowSprite=new THREE.Sprite(new THREE.SpriteMaterial({map:makeGlowTexture(),color:'#D0BCFF',transparent:true,opacity:0,depthWrite:false,blending:THREE.AdditiveBlending}));glowSprite.scale.set(4.6,3.6,1);glowSprite.position.set(0,.4,-1.65);
  PROJECTS.forEach(p=>{const d=deviceFactory(p),side=shelfSides[projectSide(p)];side.add(d.group);d.contact=addShelfContact(p,side);d.cast=addCastShadow(d,side);displayItems.set(p.id,d)});buildShowroomSpots();scene.traverse(o=>{if(o.isLight)o.layers.enable(ACTIVE_LAYER)});
- raycaster=new THREE.Raycaster();pointer=new THREE.Vector2(10,10);sceneReady=true;initialTime=performance.now();labels();updateShelfControls();
+ raycaster=new THREE.Raycaster();pointer=new THREE.Vector2(10,10);sceneReady=true;installCaseStudySurface();initialTime=performance.now();labels();updateShelfControls();
  shelfSwitch.hidden=false;
  for(const button of shelfSwitch.querySelectorAll('[data-shelf-side]')){
   button.addEventListener('click',()=>{
@@ -675,6 +678,7 @@ function revealShowroom(){
 function openPanel(){backdropSettlesAt=performance.now()+400;frame.classList.add('is-focused');$('#inspector-backdrop').classList.add('is-open');inspector.classList.add('is-open');inspector.setAttribute('aria-hidden','false');inspector.inert=false;resetButton.hidden=false;requestAnimationFrame(()=>{closeButton.focus({preventScroll:true});});updatePreviewButton();sendPreviewMode();}
 function closePanel(){clearOutline();environmentZoomTarget=1;previewActive=false;demoBlend=0;syncDemoWorkspace();$('#try-preview').hidden=true;frame.classList.remove('is-focused');$('#inspector-backdrop').classList.remove('is-open');inspector.classList.remove('is-open');inspector.setAttribute('aria-hidden','true');inspector.inert=true;resetButton.hidden=true;sendPreviewMode();}
 function chooseProject(id){
+ if(caseSurface?.status!==undefined&&caseSurface.status!=='idle')return;
  const project=PROJECTS.find(item=>item.id===id);
  if(!project)return;
  if(!sceneReady){openAccessibleDetail(project);return;}
@@ -720,6 +724,7 @@ function chooseProject(id){
 }
 
 function closeProject(){
+ if(caseSurface&&caseSurface.status!=='idle')return;
  if(state==='gallery'||state==='closing'||!selected)return;
  const project=selected;
  const exhibit=displayItems.get(project.id);
@@ -1040,6 +1045,15 @@ function setupInteraction(){
  front.addEventListener('pointerleave',()=>{if(!dragOrbit){focusTiltTarget.x=0;focusTiltTarget.y=0}});
 }
 
+
+function installCaseStudySurface(){
+ const target=()=>displayItems.get('jbl-artwork').group;
+ const capture=()=>({position:target().position.toArray(),rotation:[target().rotation.x,target().rotation.y,target().rotation.z],scale:target().scale.toArray(),camera:camera.position.toArray(),cameraRotation:[camera.rotation.x,camera.rotation.y,camera.rotation.z],zoom:camera.zoom});
+ caseSurface=createSurfaceTransition({capture,reduced:motionReduced,apply(pose){const g=target();g.position.fromArray(pose.position);g.rotation.set(...pose.rotation);g.scale.fromArray(pose.scale);camera.position.fromArray(pose.camera);camera.rotation.set(...pose.cameraRotation);camera.zoom=pose.zoom;camera.updateProjectionMatrix();camera.updateMatrixWorld(true);backdropSettlesAt=performance.now()+100;}});
+ registerShowroomBridge({get status(){return caseSurface.status;},inspect:caseSurface.inspect,enter(){if(selected?.id!=='jbl-artwork'||state!=='focus'||movingTween)return Promise.resolve(false);return caseSurface.enter();},exit:()=>caseSurface.exit()});
+ addEventListener('pagehide',()=>caseSurface.dispose(),{once:true});
+}
+
 function render(time){
  if(!sceneReady)return;
  requestAnimationFrame(render);
@@ -1133,7 +1147,7 @@ function render(time){
    if(d.hoverAmount>.001)d.group.quaternion.multiply(new THREE.Quaternion().setFromEuler(new THREE.Euler(-d.magnet.y*.045,(-.055+d.magnet.x*.085)*d.hoverAmount,0)));
   });
  }
- if(state==='focus'&&selected){
+ if(state==='focus'&&selected&&(!caseSurface||caseSurface.status==='idle')){
   if(!movingTween&&selectedBaseQuaternion){
    const d=displayItems.get(selected.id);
    focusTilt.x+=(focusTiltTarget.x-focusTilt.x)*Math.min(1,delta*5.6);
@@ -1152,13 +1166,14 @@ function render(time){
  environmentZoom=motionReduced()?environmentZoomTarget:THREE.MathUtils.lerp(environmentZoom,environmentZoomTarget,1-Math.exp(-delta*9));
  camera.zoom=staticPreview()?1:environmentZoom*(1+.055*demoBlend);camera.updateProjectionMatrix();
  camera.updateMatrixWorld(true);
- if(state==='focus'&&selected){
+ if(state==='focus'&&selected&&(!caseSurface||caseSurface.status==='idle')){
   const device=displayItems.get(selected.id);
   const scaleFactor=staticPreview()?1:1+.035*demoBlend;
   const layout=focusLayout(selected,camera,device.group.quaternion,selected.camera.scale*scaleFactor);
   device.group.position.copy(layout.position);
   device.group.scale.setScalar(layout.scale);
  }
+ caseSurface?.tick(time);
  for(const [id,device] of displayItems){
   if(device.cast.mesh.visible)updateCastShadow(device,exhibitSpots.get(id),device.group.parent===scene);
  }
@@ -1186,6 +1201,7 @@ function installKeys(){document.addEventListener('keydown',e=>{if(e.key==='Escap
  });
  resetButton.addEventListener('click',closeProject);}
 function showFallback(detail){
+ caseSurface?.dispose();
  graphicsUnavailable = true;
  sceneReady = false;
  const button = $('button[data-project-view="3d"]');
