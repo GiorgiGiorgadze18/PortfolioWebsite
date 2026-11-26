@@ -27,3 +27,7 @@ Evidence paths above are relative to evidence/. Python HTTPS used normal certifi
 - FAIL: normal-alpha recomposition vs original: MAD3.891722/255, max175/255. Evidence: evidence/jbl/validation.json and recomposition.png (visually inspected). No asset animation/publishing. SSIM/edge halo validation NOT RUN.
 - PASS: node tests/case-study/engine.test.mjs — mock surface restoration across10 cycles, interrupted loads, rejection of unvalidated assets, idempotent disposal. This is NOT GPU/resource/browser leak validation.
 - PASS: existing timeline tests. Browser progress integration, real GPU disposal, a11y shell, preview and showroom integration NOT RUN.
+
+## PSD investigation
+
+PASS: PSD downloaded via Drive connector, size and SHA recorded; visibility/blend/effects read. PASS: corrected stack mean difference below1/255 (rounded values in evidence/jbl/corrected-metrics.json). FAIL: exact recomposition; local residuals in glow/reflection. NOT RUN: SSIM, halo validation, final7-group rendering and browser integration. Comparison manually viewed: evidence/jbl/blend-comparison.png. No final asset approval inferred.

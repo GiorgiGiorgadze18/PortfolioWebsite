@@ -313,3 +313,8 @@ Chromium phone (390 px, DPR 2), WebKit phone (390 px), and Chromium desktop (128
 
 - Read owner notes and measured32 supplied PNGs. Preserve original archive; added candidate grouped assets, hashes, recomposition preview and explicit FAIL metrics; all unpublished and not animated.
 - Added isolated lifecycle/DisplaySurface and native-scroll observer. Node lifecycle and timeline tests pass; browser integration not yet run. No showroom changes, merge or deployment.
+
+## JBL PSD investigation — 2026-11-26
+
+- Inspected original PSD visibility, blending and effects. Corrected stacking/blending reduces recomposition mean difference below1/255; exact identity still fails locally. Comparison and measured metrics recorded.
+- Source PSD preserved outside Git; no final asset validation, animation, merge or deployment. Gate1 remains pending.

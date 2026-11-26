@@ -1,0 +1,9 @@
+{
+  "meanAbsoluteDifference255": 0.21853692136866884,
+  "maxAbsoluteDifference255": 87.0,
+  "previousMeanAbsoluteDifference255": 3.8917220604057086,
+  "scope": "Full canvas RGBA, rounded 8-bit PNG vs site original",
+  "meanTargetStatus": "PASS",
+  "exactRecompositionStatus": "FAIL",
+  "notes": "Mean below 1/255 target; local residuals remain. No SSIM or halo certification. Final presentation must crossfade synchronously to untouched original; current 7-group candidates remain unvalidated and unpublished."
+}

@@ -13,3 +13,5 @@ Gate 0 approved. JBL PNG layers uploaded in docs-casestudy-projects.7z, notes-JB
 ## JBL source clarification — archive read
 
 notes-JBL.md სრულად წაკითხულია; 32 ფენა სწორ ზომასა და რეალურ alpha-ს შეიცავს (ფონი opaque-ია, რაც სწორია). ჩვეულებრივი alpha-აწყობა ორიგინალს ზუსტად არ ემთხვევა. თუ ხელმისაწვდომია, JBL-ის PSD ან Photoshop Layers პანელის სქრინები დაგვეხმარება: ფენების რიგი, ხილვადობა, opacity/fill და blend mode (განსაკუთრებით განათება, ჩრდილი და ანარეკლი). ეს კონტენტი ჯერ არ არის ვალიდირებული ან ანიმირებული. სხვა ფაილები ხელახლა საჭირო არ არის.
+
+PSD received and inspected via Drive. Previous request for Layers screenshots/PSD is resolved; no additional owner source action currently needed.

@@ -1,0 +1,556 @@
+{
+  "bytes": 125824180,
+  "sha256": "42a582119ced1206fdff46aaa93718fc5dfa3386831a34a0d11474d7ff11fc58",
+  "size": [
+    2480,
+    3508
+  ],
+  "layers": [
+    {
+      "name": "\u10d1\u10d4\u10e5\u10d2\u10e0\u10d0\u10e3\u10dc\u10d3\u10d8",
+      "kind": "smartobject",
+      "visible": true,
+      "opacity": 255,
+      "blend": "BlendMode.NORMAL",
+      "bbox": [
+        -56,
+        -722,
+        2536,
+        3598
+      ],
+      "effects": []
+    },
+    {
+      "name": "\u10ee\u10d0\u10d6\u10d4\u10d1\u10d8 \u10d6\u10d4\u10d3\u10d0 \u10db\u10d0\u10e0\u10ea\u10ee\u10d4\u10dc\u10d0",
+      "kind": "group",
+      "visible": true,
+      "opacity": 255,
+      "blend": "BlendMode.PASS_THROUGH",
+      "bbox": [
+        0,
+        0,
+        923,
+        2736
+      ],
+      "effects": []
+    },
+    {
+      "name": "Rectangle 1",
+      "kind": "shape",
+      "visible": true,
+      "opacity": 255,
+      "blend": "BlendMode.NORMAL",
+      "bbox": [
+        0,
+        0,
+        71,
+        2736
+      ],
+      "effects": []
+    },
+    {
+      "name": "Rectangle 1 copy",
+      "kind": "shape",
+      "visible": true,
+      "opacity": 255,
+      "blend": "BlendMode.NORMAL",
+      "bbox": [
+        71,
+        0,
+        142,
+        2736
+      ],
+      "effects": []
+    },
+    {
+      "name": "Rectangle 1 copy 2",
+      "kind": "shape",
+      "visible": true,
+      "opacity": 255,
+      "blend": "BlendMode.NORMAL",
+      "bbox": [
+        142,
+        0,
+        213,
+        2736
+      ],
+      "effects": []
+    },
+    {
+      "name": "Rectangle 1 copy 2",
+      "kind": "shape",
+      "visible": true,
+      "opacity": 255,
+      "blend": "BlendMode.NORMAL",
+      "bbox": [
+        213,
+        0,
+        284,
+        2736
+      ],
+      "effects": []
+    },
+    {
+      "name": "Rectangle 1 copy 3",
+      "kind": "shape",
+      "visible": true,
+      "opacity": 255,
+      "blend": "BlendMode.NORMAL",
+      "bbox": [
+        284,
+        0,
+        355,
+        2736
+      ],
+      "effects": []
+    },
+    {
+      "name": "Rectangle 1 copy 4",
+      "kind": "shape",
+      "visible": true,
+      "opacity": 255,
+      "blend": "BlendMode.NORMAL",
+      "bbox": [
+        355,
+        0,
+        426,
+        2736
+      ],
+      "effects": []
+    },
+    {
+      "name": "Rectangle 1 copy 4",
+      "kind": "shape",
+      "visible": true,
+      "opacity": 255,
+      "blend": "BlendMode.NORMAL",
+      "bbox": [
+        426,
+        0,
+        497,
+        2736
+      ],
+      "effects": []
+    },
+    {
+      "name": "Rectangle 1 copy 4",
+      "kind": "shape",
+      "visible": true,
+      "opacity": 255,
+      "blend": "BlendMode.NORMAL",
+      "bbox": [
+        497,
+        0,
+        568,
+        2736
+      ],
+      "effects": []
+    },
+    {
+      "name": "Rectangle 1 copy 4",
+      "kind": "shape",
+      "visible": true,
+      "opacity": 255,
+      "blend": "BlendMode.NORMAL",
+      "bbox": [
+        568,
+        0,
+        639,
+        2736
+      ],
+      "effects": []
+    },
+    {
+      "name": "Rectangle 1 copy 4",
+      "kind": "shape",
+      "visible": true,
+      "opacity": 255,
+      "blend": "BlendMode.NORMAL",
+      "bbox": [
+        639,
+        0,
+        710,
+        2736
+      ],
+      "effects": []
+    },
+    {
+      "name": "Rectangle 1 copy 5",
+      "kind": "shape",
+      "visible": true,
+      "opacity": 255,
+      "blend": "BlendMode.NORMAL",
+      "bbox": [
+        710,
+        0,
+        781,
+        2736
+      ],
+      "effects": []
+    },
+    {
+      "name": "Rectangle 1 copy 5",
+      "kind": "shape",
+      "visible": true,
+      "opacity": 255,
+      "blend": "BlendMode.NORMAL",
+      "bbox": [
+        781,
+        0,
+        852,
+        2736
+      ],
+      "effects": []
+    },
+    {
+      "name": "Rectangle 1 copy 5",
+      "kind": "shape",
+      "visible": true,
+      "opacity": 255,
+      "blend": "BlendMode.NORMAL",
+      "bbox": [
+        852,
+        0,
+        923,
+        2736
+      ],
+      "effects": []
+    },
+    {
+      "name": "\u10e5\u10d5\u10d4\u10d3\u10d0 \u10dc\u10d0\u10ec\u10d8\u10da\u10d8",
+      "kind": "group",
+      "visible": true,
+      "opacity": 255,
+      "blend": "BlendMode.PASS_THROUGH",
+      "bbox": [
+        0,
+        2737,
+        2480,
+        3508
+      ],
+      "effects": []
+    },
+    {
+      "name": "\u10e5\u10d5\u10d4\u10d3\u10d0 \u10de\u10da\u10d0\u10e2\u10e4\u10dd\u10e0\u10db\u10d0",
+      "kind": "shape",
+      "visible": true,
+      "opacity": 255,
+      "blend": "BlendMode.NORMAL",
+      "bbox": [
+        0,
+        2737,
+        2480,
+        3508
+      ],
+      "effects": []
+    },
+    {
+      "name": "\u10ee\u10d0\u10d6\u10d4\u10d1\u10d8 \u10d0\u10dc\u10d0\u10e0\u10d4\u10d9\u10da\u10d8 \u10db\u10d0\u10e0\u10ea\u10d4\u10ee\u10dc\u10d0",
+      "kind": "pixel",
+      "visible": true,
+      "opacity": 255,
+      "blend": "BlendMode.NORMAL",
+      "bbox": [
+        0,
+        2737,
+        923,
+        3508
+      ],
+      "effects": []
+    },
+    {
+      "name": "\u10e1\u10d0\u10d9\u10d8\u10d3\u10d8 \u10d0\u10dc\u10d0\u10e0\u10d4\u10d9\u10da\u10d8",
+      "kind": "shape",
+      "visible": true,
+      "opacity": 255,
+      "blend": "BlendMode.SCREEN",
+      "bbox": [
+        568,
+        3042,
+        1835,
+        4309
+      ],
+      "effects": [
+        "BevelEmboss"
+      ]
+    },
+    {
+      "name": "\u10e1\u10d0\u10d9\u10d8\u10d3\u10d8\u10e1 \u10e9\u10e0\u10d3\u10d8\u10da\u10d4\u10d1\u10d8",
+      "kind": "group",
+      "visible": true,
+      "opacity": 255,
+      "blend": "BlendMode.PASS_THROUGH",
+      "bbox": [
+        268,
+        2827,
+        2136,
+        3216
+      ],
+      "effects": []
+    },
+    {
+      "name": "\u10e1\u10d0\u10d9\u10d8\u10d3\u10d8\u10e1 \u10e9\u10e0\u10d3\u10d8\u10da\u10d8 2",
+      "kind": "smartobject",
+      "visible": false,
+      "opacity": 255,
+      "blend": "BlendMode.NORMAL",
+      "bbox": [
+        569,
+        2873,
+        1796,
+        3131
+      ],
+      "effects": []
+    },
+    {
+      "name": "\u10e1\u10d0\u10d9\u10d8\u10d3\u10d8\u10e1 \u10e9\u10e0\u10d3\u10d8\u10da\u10d8 3",
+      "kind": "smartobject",
+      "visible": false,
+      "opacity": 255,
+      "blend": "BlendMode.NORMAL",
+      "bbox": [
+        588,
+        2873,
+        1815,
+        3131
+      ],
+      "effects": []
+    },
+    {
+      "name": "\u10e1\u10d0\u10d9\u10d8\u10d3\u10d8\u10e1 \u10e9\u10e0\u10d3\u10d8\u10da\u10d8 1",
+      "kind": "smartobject",
+      "visible": true,
+      "opacity": 255,
+      "blend": "BlendMode.NORMAL",
+      "bbox": [
+        268,
+        2827,
+        2136,
+        3216
+      ],
+      "effects": []
+    },
+    {
+      "name": "JBL + \u10e1\u10d0\u10d9\u10d8\u10d3\u10d8",
+      "kind": "group",
+      "visible": true,
+      "opacity": 255,
+      "blend": "BlendMode.PASS_THROUGH",
+      "bbox": [
+        480,
+        1462,
+        1913,
+        3021
+      ],
+      "effects": []
+    },
+    {
+      "name": "JBL - \u10e3\u10d9\u10d0\u10dc\u10d0",
+      "kind": "pixel",
+      "visible": true,
+      "opacity": 255,
+      "blend": "BlendMode.NORMAL",
+      "bbox": [
+        480,
+        1754,
+        1215,
+        2959
+      ],
+      "effects": []
+    },
+    {
+      "name": "\u10e1\u10d0\u10d9\u10d8\u10d3\u10d8",
+      "kind": "pixel",
+      "visible": true,
+      "opacity": 255,
+      "blend": "BlendMode.SCREEN",
+      "bbox": [
+        567,
+        1754,
+        1835,
+        3021
+      ],
+      "effects": [
+        "BevelEmboss"
+      ]
+    },
+    {
+      "name": "\u10e1\u10d0\u10d9\u10d8\u10d3\u10d8\u10e1 \u10e2\u10d4\u10e5\u10e1\u10e2\u10d4\u10d1\u10d8",
+      "kind": "group",
+      "visible": true,
+      "opacity": 255,
+      "blend": "BlendMode.PASS_THROUGH",
+      "bbox": [
+        517,
+        1773,
+        1741,
+        2952
+      ],
+      "effects": []
+    },
+    {
+      "name": "Music Player Line OVERLAY",
+      "kind": "pixel",
+      "visible": true,
+      "opacity": 255,
+      "blend": "BlendMode.OVERLAY",
+      "bbox": [
+        1202,
+        2897,
+        1741,
+        2914
+      ],
+      "effects": []
+    },
+    {
+      "name": "Music Player HUD PNG",
+      "kind": "pixel",
+      "visible": true,
+      "opacity": 255,
+      "blend": "BlendMode.NORMAL",
+      "bbox": [
+        665,
+        2862,
+        1220,
+        2952
+      ],
+      "effects": [
+        "OuterGlow"
+      ]
+    },
+    {
+      "name": "Audio",
+      "kind": "type",
+      "visible": true,
+      "opacity": 255,
+      "blend": "BlendMode.NORMAL",
+      "bbox": [
+        517,
+        1773,
+        1505,
+        2440
+      ],
+      "effects": [
+        "OuterGlow"
+      ]
+    },
+    {
+      "name": "IMAGINE DRAGONS",
+      "kind": "type",
+      "visible": true,
+      "opacity": 255,
+      "blend": "BlendMode.NORMAL",
+      "bbox": [
+        625,
+        2720,
+        1295,
+        2782
+      ],
+      "effects": [
+        "OuterGlow"
+      ]
+    },
+    {
+      "name": "believer",
+      "kind": "type",
+      "visible": true,
+      "opacity": 255,
+      "blend": "BlendMode.NORMAL",
+      "bbox": [
+        625,
+        2791,
+        793,
+        2822
+      ],
+      "effects": [
+        "OuterGlow"
+      ]
+    },
+    {
+      "name": "JBL \u10ec\u10d8\u10dc\u10d0",
+      "kind": "pixel",
+      "visible": true,
+      "opacity": 255,
+      "blend": "BlendMode.NORMAL",
+      "bbox": [
+        876,
+        1462,
+        1913,
+        2990
+      ],
+      "effects": []
+    },
+    {
+      "name": "\u10d6\u10d4\u10d3\u10d0 \u10db\u10d0\u10e0\u10ef\u10d4\u10d5\u10dc\u10d0 \u10dc\u10d0\u10ec\u10d8\u10da\u10d8",
+      "kind": "group",
+      "visible": true,
+      "opacity": 255,
+      "blend": "BlendMode.PASS_THROUGH",
+      "bbox": [
+        0,
+        0,
+        2480,
+        3311
+      ],
+      "effects": []
+    },
+    {
+      "name": "Layer 1",
+      "kind": "pixel",
+      "visible": true,
+      "opacity": 255,
+      "blend": "BlendMode.NORMAL",
+      "bbox": [
+        726,
+        0,
+        2480,
+        2306
+      ],
+      "effects": []
+    },
+    {
+      "name": "Layer 2",
+      "kind": "pixel",
+      "visible": true,
+      "opacity": 255,
+      "blend": "BlendMode.NORMAL",
+      "bbox": [
+        0,
+        0,
+        2480,
+        3311
+      ],
+      "effects": []
+    },
+    {
+      "name": "JBL ",
+      "kind": "type",
+      "visible": true,
+      "opacity": 255,
+      "blend": "BlendMode.NORMAL",
+      "bbox": [
+        1319,
+        171,
+        2337,
+        637
+      ],
+      "effects": []
+    },
+    {
+      "name": "Premium",
+      "kind": "type",
+      "visible": true,
+      "opacity": 255,
+      "blend": "BlendMode.COLOR_DODGE",
+      "bbox": [
+        1794,
+        536,
+        2336,
+        871
+      ],
+      "effects": [
+        "OuterGlow"
+      ]
+    }
+  ]
+}
