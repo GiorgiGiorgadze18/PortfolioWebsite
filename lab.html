@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Try the holographic interface from Giorgi Giorgadze’s portfolio. Explore CSS 3D depth, pointer interaction and adjustable reflections.">
+  <meta name="description" content="Interactive studies in motion, real-time graphics and spatial interfaces by Giorgi Giorgadze.">
   <meta name="author" content="Giorgi Giorgadze">
   <title>Creative Lab | Giorgi Giorgadze</title>
 
   <!-- Locally hosted Inter + Space Grotesk. -->
   <link rel="stylesheet" href="css/fonts.css?v=0.17.7">
-  <link rel="stylesheet" href="css/tokens.css?v=0.17.3">
+  <link rel="stylesheet" href="css/tokens.css?v=0.18.0">
   <link rel="stylesheet" href="css/index.css?v=0.17.3">
   <link rel="stylesheet" href="css/constellation.css">
   <script defer src="js/constellation.js"></script>
   <link rel="stylesheet" href="css/hologram.css?v=0.17.6">
-  <link rel="stylesheet" href="css/lab.css">
+  <link rel="stylesheet" href="css/lab.css?v=0.18.0">
   <script defer src="js/lab.js"></script>
   <script defer src="js/hologram.js?v=0.17.6"></script>
   <noscript><style>#disciplines [data-animate] { opacity: 1; transform: none; }</style></noscript>
@@ -24,7 +24,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Giorgi Giorgadze">
   <meta property="og:title" content="Creative Lab | Giorgi Giorgadze">
-  <meta property="og:description" content="Try the holographic interface from Giorgi Giorgadze’s portfolio. Explore CSS 3D depth, pointer interaction and adjustable reflections.">
+  <meta property="og:description" content="Interactive studies in motion, real-time graphics and spatial interfaces by Giorgi Giorgadze.">
   <meta property="og:url" content="https://giorgigiorgadze18.github.io/PortfolioWebsite/lab.html">
   <meta property="og:image" content="https://giorgigiorgadze18.github.io/PortfolioWebsite/assets/social-preview.png">
   <meta property="og:image:width" content="1200">
@@ -32,10 +32,11 @@
   <meta property="og:image:alt" content="Giorgi Giorgadze — Digital Designer and Creative Developer">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Creative Lab | Giorgi Giorgadze">
-  <meta name="twitter:description" content="Try the holographic interface from Giorgi Giorgadze’s portfolio. Explore CSS 3D depth, pointer interaction and adjustable reflections.">
+  <meta name="twitter:description" content="Interactive studies in motion, real-time graphics and spatial interfaces by Giorgi Giorgadze.">
   <meta name="twitter:image" content="https://giorgigiorgadze18.github.io/PortfolioWebsite/assets/social-preview.png">
   <meta name="twitter:image:alt" content="Giorgi Giorgadze — Digital Designer and Creative Developer">
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "url": "https://giorgigiorgadze18.github.io/PortfolioWebsite/lab.html", "name": "Creative Lab | Giorgi Giorgadze", "description": "Try the holographic interface from Giorgi Giorgadze’s portfolio. Explore CSS 3D depth, pointer interaction and adjustable reflections.", "mainEntity": {"@type": "CreativeWork", "name": "Holographic interface", "creator": {"@type": "Person", "name": "Giorgi Giorgadze", "url": "https://giorgigiorgadze18.github.io/PortfolioWebsite/"}}}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "url": "https://giorgigiorgadze18.github.io/PortfolioWebsite/lab.html", "name": "Creative Lab | Giorgi Giorgadze", "description": "Interactive studies in motion, real-time graphics and spatial interfaces by Giorgi Giorgadze.", "mainEntity": {"@type": "CreativeWork", "name": "Holographic interface", "creator": {"@type": "Person", "name": "Giorgi Giorgadze", "url": "https://giorgigiorgadze18.github.io/PortfolioWebsite/"}}}</script>
+  <link rel="stylesheet" href="css/controls.css?v=0.18.0">
 </head>
 <body>
 
@@ -78,7 +79,7 @@
     <section class="lab-intro container" aria-labelledby="lab-title">
       <p class="section-label">CREATIVE LAB</p>
       <h1 class="section-title" id="lab-title">Explore the interaction.</h1>
-      <p>An interaction from this portfolio, open for you to try.</p>
+      <p>Interactive studies in motion, real-time graphics and spatial interfaces.</p>
     </section>
     <section class="lab-experiment container" aria-labelledby="experiment-title">
       <div class="lab-description">
@@ -110,7 +111,31 @@
       <p id="lab-fallback" hidden>Static preview. Interactive controls are unavailable in this browser.</p>
       <noscript><p>The static interface is available above. Enable JavaScript to adjust its interaction.</p></noscript>
     </section>
+    <section class="container experiment-library" id="experiment-library" aria-labelledby="studies-title" hidden>
+      <h2 class="section-title" id="studies-title">More experiments</h2>
+      <div id="experiment-gallery" class="experiment-gallery"></div>
+    </section>
+    <dialog id="experiment-dialog" aria-labelledby="active-experiment-title" aria-describedby="experiment-instructions">
+      <div class="experiment-dialog-inner">
+        <header class="experiment-dialog-heading">
+          <h2 id="active-experiment-title"></h2>
+          <button type="button" class="experiment-close" data-close aria-label="Close experiment" autofocus>×</button>
+        </header>
+        <p class="experiment-instructions" id="experiment-instructions"></p>
+        <div class="experiment-stage"></div>
+        <p role="status"></p>
+        <form aria-label="Experiment settings" hidden>
+          <div class="experiment-settings"></div>
+          <div class="lab-actions">
+            <button type="button" class="btn btn--outline" data-pause>Pause</button>
+            <button type="button" class="btn btn--outline" data-replay>Replay</button>
+            <button type="reset" class="btn btn--ghost">Reset</button>
+          </div>
+        </form>
+      </div>
+    </dialog>
   </main>
+  <script type="module" src="js/lab/gallery.js?v=0.18.0"></script>
 
 
   <!-- ═══════════════════════════════════════════════════════════

@@ -2,20 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <script>document.documentElement.dataset.projectLayout = new URLSearchParams(location.search).get("view") === "grid" ? "grid" : "3d";</script>
+  <script>
+    (() => {
+      const view = new URLSearchParams(location.search).get('view');
+      let preference;
+      try { preference = localStorage.getItem('portfolio-project-view'); } catch {}
+      const simple = matchMedia('(prefers-reduced-motion: reduce)').matches || navigator.connection?.saveData;
+      const deepLink = location.hash.startsWith('#project');
+      document.documentElement.dataset.projectLayout =
+        (['grid', '3d'].includes(view) ? view : deepLink || simple ? 'grid' : preference) === 'grid'
+          ? 'grid' : '3d';
+    })();
+  </script>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="Explore MeeTab, Tsero and independent visual design work through a project archive and interactive 3D showroom.">
   <meta name="theme-color" content="#060A14">
   <title>Selected Work | Giorgi Giorgadze</title>
 
   <link rel="stylesheet" href="css/fonts.css?v=0.17.7">
+  <link rel="stylesheet" href="css/tokens.css?v=0.18.0">
   <link rel="stylesheet" href="./showroom/showroom.css?v=0.16.4">
 
 
-<noscript><style>.stage-enter{display:none}.museum-frame .stage-fallback[hidden]{display:flex!important}</style></noscript>
   <link rel="stylesheet" href="css/constellation.css">
   <script defer src="js/constellation.js?v=0.16.4"></script>
-<link rel="stylesheet" href="css/phase02.css?v=0.17.7">
+<link rel="stylesheet" href="css/phase02.css?v=0.18.0">
 
   <link rel="canonical" href="https://giorgigiorgadze18.github.io/PortfolioWebsite/projects.html">
   <link rel="icon" href="https://giorgigiorgadze18.github.io/PortfolioWebsite/assets/icon-code.svg" type="image/svg+xml">
@@ -34,6 +45,7 @@
   <meta name="twitter:image" content="https://giorgigiorgadze18.github.io/PortfolioWebsite/assets/social-preview.png">
   <meta name="twitter:image:alt" content="Giorgi Giorgadze — Digital Designer and Creative Developer">
   <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Person", "@id": "https://giorgigiorgadze18.github.io/PortfolioWebsite/#person", "name": "Giorgi Giorgadze", "url": "https://giorgigiorgadze18.github.io/PortfolioWebsite/", "jobTitle": "Digital Designer & Creative Developer", "sameAs": ["https://github.com/GiorgiGiorgadze18"]}, {"@type": "CollectionPage", "@id": "https://giorgigiorgadze18.github.io/PortfolioWebsite/projects.html#webpage", "url": "https://giorgigiorgadze18.github.io/PortfolioWebsite/projects.html", "mainEntity": {"@id": "https://giorgigiorgadze18.github.io/PortfolioWebsite/projects.html#project-list"}, "name": "Selected Work | Giorgi Giorgadze", "description": "Explore MeeTab, Tsero and independent visual design work through a project archive and interactive 3D showroom.", "about": {"@id": "https://giorgigiorgadze18.github.io/PortfolioWebsite/#person"}}]}</script>
+  <link rel="stylesheet" href="css/controls.css?v=0.18.0">
 </head>
 <body>
   <a class="skip-link" href="#collection">Skip 3D showroom and explore projects</a>
@@ -63,8 +75,11 @@
         </div>
       </section>
       <div class="container project-view-controls" role="group" aria-label="Project view">
-<button type="button" class="filter" data-project-view="3d" aria-pressed="true">3D View</button>
-<button type="button" class="filter" data-project-view="grid" aria-pressed="false">Grid View</button>
+<div class="project-segments">
+<button type="button" data-project-view="3d" aria-pressed="false" disabled><span aria-hidden="true">⬡</span>3D View</button>
+<button type="button" data-project-view="grid" aria-pressed="true" disabled><span aria-hidden="true">▦</span>Grid View</button>
+</div>
+<p id="project-view-status" role="status"></p>
 </div>
 <section class="museum-section" aria-label="Interactive 3D design museum">
         <div class="container museum-heading"><div><p class="eyebrow">EXHIBITION <span class="muted">/ 001</span></p><h2>Interactive <em>Showroom.</em></h2></div><div class="museum-meta"><span class="live-dot"></span> INTERACTIVE SHOWROOM <span class="metadata-divider"></span> 05 WORKS</div></div>
@@ -80,7 +95,6 @@
           <div class="scanlines" aria-hidden="true"></div>
           <div class="device-labels" id="device-labels" aria-label="Choose a project"></div>
           <div class="stage-enter" id="stage-enter" aria-hidden="true"><div class="loader-ring"></div><span>PREPARING EXHIBITION</span></div>
-          <div class="stage-fallback" id="stage-fallback" hidden><span class="fallback-glyph">◈</span><p>Explore the collection below</p><small>Your browser could not start the 3D view. You can still open every project in the collection below.</small><a href="#collection">VIEW ALL PROJECTS ↓</a></div>
           <div class="stage-left-caption" aria-hidden="true"><span>01 / 05</span><span id="stage-caption">INTERACTIVE APPS</span></div>
           <div class="stage-actions"><span class="interaction-hint"><span class="hint-dot"></span> SELECT A PROJECT TO EXPLORE</span><button id="try-preview" class="text-control" type="button" hidden>Try now ↗</button><button id="reset-view" class="text-control" type="button" aria-label="Return to showroom" hidden><span class="gallery-return-icon" aria-hidden="true"></span>BACK TO GALLERY</button></div>
           <div id="inspector-backdrop" class="inspector-backdrop" aria-hidden="true"></div>
@@ -118,16 +132,89 @@
           </svg>
         </div>
       </section>
-      <section class="collection-section container" id="collection" aria-labelledby="collection-title"><div class="section-header"><div><p class="eyebrow lavender">THE ARCHIVE</p><h2 id="collection-title">Project <span class="title-accent">Archive.</span></h2></div><p>Every project has a story.<br>Take a closer look.</p></div><div class="filter-group" role="group" aria-label="Filter projects"><button type="button" class="filter is-active" data-filter="all" aria-pressed="true">ALL WORK <span>06</span></button><button type="button" class="filter" data-filter="uiux" aria-pressed="false">UI / UX <span>02</span></button><button type="button" class="filter" data-filter="graphics" aria-pressed="false">GRAPHICS <span>03</span></button><button type="button" class="filter" data-filter="development" aria-pressed="false">DEVELOPMENT</button><button type="button" class="filter" data-filter="experiments" aria-pressed="false">EXPERIMENTS</button></div><div class="project-grid"  id="project-grid" role="list"></div><noscript><p>Enable JavaScript for the interactive showroom, or view the original artwork:</p><p><a href="assets/project-tsero.jpg">Tsero App</a> · <a href="assets/project-tomford.png">Tom Ford</a> · <a href="assets/meetab-preview.jpg">MeeTab preview</a> · <a href="assets/project-jbl.png">JBL</a> · <a href="assets/project-earthhour.png">Earth Hour</a></p></noscript></section>
+      <section class="collection-section container" id="collection" aria-labelledby="collection-title"><div class="section-header"><div><p class="eyebrow lavender">THE ARCHIVE</p><h2 id="collection-title">Project <span class="title-accent">Archive.</span></h2></div><p>Every project has a story.<br>Take a closer look.</p></div><div class="filter-group" hidden role="group" aria-label="Filter projects"><button type="button" class="filter is-active" data-filter="all" aria-pressed="true">ALL WORK <span>06</span></button><button type="button" class="filter" data-filter="uiux" aria-pressed="false">UI / UX <span>02</span></button><button type="button" class="filter" data-filter="graphics" aria-pressed="false">GRAPHICS <span>03</span></button><button type="button" class="filter" data-filter="development" aria-pressed="false">DEVELOPMENT</button><button type="button" class="filter" data-filter="experiments" aria-pressed="false">EXPERIMENTS</button></div><div class="project-grid" id="project-grid" role="list">
+<!-- PROJECT-CARDS-START -->
+<article class="archive-card" id="project/tsero" role="listitem" data-category="uiux development" style="--active-light:#FF3316">
+  <div class="archive-thumb"><img loading="lazy" src="assets/project-tsero-preview.webp" alt="Tsero App original design artwork"></div>
+  <div class="archive-info">
+    <span class="archive-kind">Mobile App · UI/UX</span>
+    <h3>Tsero App</h3>
+    <p>2026 · PHONE DISPLAY</p>
+    <details class="project-summary" id="project-tsero">
+      <summary class="archive-action" data-explore="tsero" aria-label="About Tsero App">About <span aria-hidden="true">↗</span></summary>
+      <p>The name “Tsero” comes from the Georgian word for stork, symbolizing delivery, movement and speed. The app explores modern, user-centered food ordering with browsing, courier tracking, checkout, payment, and profile settings. Branding, logo, color system, UI/UX and interactive prototyping were designed by Giorgi Giorgadze. This is a personal portfolio concept.</p>
+      <a href="assets/project-tsero.jpg">View original</a>
+    </details>
+  </div>
+</article>
+<article class="archive-card" id="project/tomford" role="listitem" data-category="graphics" style="--active-light:#A88554">
+  <div class="archive-thumb"><img loading="lazy" src="assets/project-tomford-preview.webp" alt="Tom Ford Tobacco Vanille original design artwork"></div>
+  <div class="archive-info">
+    <span class="archive-kind">Product Visual · Graphics</span>
+    <h3>Tom Ford Tobacco Vanille</h3>
+    <p>2025 · POSTER DISPLAY</p>
+    <details class="project-summary" id="project-tomford">
+      <summary class="archive-action" data-explore="tomford" aria-label="About Tom Ford Tobacco Vanille">About <span aria-hidden="true">↗</span></summary>
+      <p>A Photoshop product-visual composition exploring warm tobacco and vanilla tones through lighting, texture and smoke. The artwork emphasizes color harmony and visual depth around the fragrance. This is an independently created design exercise, not an official brand campaign.</p>
+      <a href="assets/project-tomford.png">View original</a>
+    </details>
+  </div>
+</article>
+<article class="archive-card" id="project/meetab" role="listitem" data-category="uiux development" style="--active-light:#FA6E5F">
+  <div class="archive-thumb"><img loading="lazy" src="assets/meetab-preview.jpg" alt="MeeTab original design artwork"></div>
+  <div class="archive-info">
+    <span class="archive-kind">Interactive App · Web Preview</span>
+    <h3>MeeTab</h3>
+    <p>2026 · TABLET DISPLAY</p>
+    <details class="project-summary" id="project-meetab">
+      <summary class="archive-action" data-explore="jbl" aria-label="About MeeTab">About <span aria-hidden="true">↗</span></summary>
+      <p>MeeTab meeting-room app. Explore navigation, calendar and local sample bookings. The portfolio demo uses sample data; account access is disabled.</p>
+      <a href="assets/meetab-preview.jpg">View original</a>
+    </details>
+  </div>
+</article>
+<article class="archive-card" id="project/earthhour" role="listitem" data-category="graphics" style="--active-light:#AD94D9">
+  <div class="archive-thumb"><img loading="lazy" src="assets/project-earthhour-preview.webp" alt="Earth Hour Campaign Poster original design artwork"></div>
+  <div class="archive-info">
+    <span class="archive-kind">Poster Design · Graphics</span>
+    <h3>Earth Hour Campaign Poster</h3>
+    <p>2025 · POSTER DISPLAY</p>
+    <details class="project-summary" id="project-earthhour">
+      <summary class="archive-action" data-explore="earthhour" aria-label="About Earth Hour Campaign Poster">About <span aria-hidden="true">↗</span></summary>
+      <p>A vector campaign poster created in Adobe Illustrator, emphasizing custom shape building, vector path precision and controlled typography. The composition is designed for scalable print and digital presentation. Independent portfolio work.</p>
+      <a href="assets/project-earthhour.png">View original</a>
+    </details>
+  </div>
+</article>
+<article class="archive-card" id="project/jbl-artwork" role="listitem" data-category="graphics" style="--active-light:#0E89E6">
+  <div class="archive-thumb"><img loading="lazy" src="assets/project-jbl-preview.webp" alt="JBL Premium Audio Campaign original design artwork"></div>
+  <div class="archive-info">
+    <span class="archive-kind">Advertising · Graphics</span>
+    <h3>JBL Premium Audio Campaign</h3>
+    <p>2025 · POSTER DISPLAY</p>
+    <details class="project-summary" id="project-jbl-artwork">
+      <summary class="archive-action" data-explore="jbl-artwork" aria-label="About JBL Premium Audio Campaign">About <span aria-hidden="true">↗</span></summary>
+      <p>JBL Premium Audio Campaign — advertising visual by Giorgi Giorgadze. Independent portfolio work.</p>
+      <a href="assets/project-jbl.png">View original</a>
+    </details>
+  </div>
+</article>
+<article class="archive-card" id="project/portfolio" role="listitem" data-category="development experiments" style="--active-light:#00F0FF">
+  <div class="archive-thumb"><img loading="lazy" src="assets/portfolio-preview.webp" alt="Portfolio Website original design artwork"></div>
+  <div class="archive-info">
+    <span class="archive-kind">Creative Development · Independent project</span>
+    <h3>Portfolio Website</h3>
+    <p>2026 · WEB DISPLAY</p>
+    <details class="project-summary" id="project-portfolio">
+      <summary class="archive-action" data-explore="portfolio" aria-label="About Portfolio Website">About <span aria-hidden="true">↗</span></summary>
+      <p>This portfolio combines responsive HTML, CSS and JavaScript with a Three.js showroom, holographic interfaces and isolated application demos. Design and creative development by Giorgi Giorgadze.</p>
+      <a href="index.html">Open portfolio</a>
+    </details>
+  </div>
+</article>
+<!-- PROJECT-CARDS-END -->
+</div></section>
     <!-- PROJECT-SUMMARIES-START -->
-<section class="collection-section container" aria-labelledby="project-descriptions-title"><h2 id="project-descriptions-title">Project details</h2>
-<details class="project-summary" id="project-tsero"><summary>Tsero App</summary><p>Mobile App · UI/UX · 2026</p><p>The name “Tsero” comes from the Georgian word for stork, symbolizing delivery, movement and speed. The app explores modern, user-centered food ordering with browsing, courier tracking, checkout, payment, and profile settings. Branding, logo, color system, UI/UX and interactive prototyping were designed by Giorgi Giorgadze. This is a personal portfolio concept.</p><a href="?view=grid#project/tsero">Explore Tsero App</a></details>
-<details class="project-summary" id="project-tomford"><summary>Tom Ford Tobacco Vanille</summary><p>Product Visual · Graphics · 2025</p><p>A Photoshop product-visual composition exploring warm tobacco and vanilla tones through lighting, texture and smoke. The artwork emphasizes color harmony and visual depth around the fragrance. This is an independently created design exercise, not an official brand campaign.</p><a href="?view=grid#project/tomford">Explore Tom Ford Tobacco Vanille</a></details>
-<details class="project-summary" id="project-meetab"><summary>MeeTab</summary><p>Interactive App · Web Preview · 2026</p><p>MeeTab meeting-room app. Explore navigation, calendar and local sample bookings. The portfolio demo uses sample data; account access is disabled.</p><a href="?view=grid#project/meetab">Explore MeeTab</a></details>
-<details class="project-summary" id="project-earthhour"><summary>Earth Hour Campaign Poster</summary><p>Poster Design · Graphics · 2025</p><p>A vector campaign poster created in Adobe Illustrator, emphasizing custom shape building, vector path precision and controlled typography. The composition is designed for scalable print and digital presentation. Independent portfolio work.</p><a href="?view=grid#project/earthhour">Explore Earth Hour Campaign Poster</a></details>
-<details class="project-summary" id="project-jbl-artwork"><summary>JBL Premium Audio Campaign</summary><p>Advertising · Graphics · 2025</p><p>JBL Premium Audio Campaign — advertising visual by Giorgi Giorgadze. Independent portfolio work.</p><a href="?view=grid#project/jbl-artwork">Explore JBL Premium Audio Campaign</a></details>
-<details class="project-summary" id="project-portfolio"><summary>Portfolio Website</summary><p>Creative Development · Independent project · 2026</p><p>This portfolio combines responsive HTML, CSS and JavaScript with a Three.js showroom, holographic interfaces and isolated application demos. Design and creative development by Giorgi Giorgadze.</p><a href="?view=grid#project/portfolio">Explore Portfolio Website</a></details>
-</section>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","@id":"https://giorgigiorgadze18.github.io/PortfolioWebsite/projects.html#project-list","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"CreativeWork","name":"Tsero App","description":"The name “Tsero” comes from the Georgian word for stork, symbolizing delivery, movement and speed. The app explores modern, user-centered food ordering with browsing, courier tracking, checkout, payment, and profile settings. Branding, logo, color system, UI/UX and interactive prototyping were designed by Giorgi Giorgadze. This is a personal portfolio concept.","url":"https://giorgigiorgadze18.github.io/PortfolioWebsite/projects.html#project/tsero","creator":{"@id":"https://giorgigiorgadze18.github.io/PortfolioWebsite/#person"}}},{"@type":"ListItem","position":2,"item":{"@type":"CreativeWork","name":"Tom Ford Tobacco Vanille","description":"A Photoshop product-visual composition exploring warm tobacco and vanilla tones through lighting, texture and smoke. The artwork emphasizes color harmony and visual depth around the fragrance. This is an independently created design exercise, not an official brand campaign.","url":"https://giorgigiorgadze18.github.io/PortfolioWebsite/projects.html#project/tomford","creator":{"@id":"https://giorgigiorgadze18.github.io/PortfolioWebsite/#person"}}},{"@type":"ListItem","position":3,"item":{"@type":"CreativeWork","name":"MeeTab","description":"MeeTab meeting-room app. Explore navigation, calendar and local sample bookings. The portfolio demo uses sample data; account access is disabled.","url":"https://giorgigiorgadze18.github.io/PortfolioWebsite/projects.html#project/meetab","creator":{"@id":"https://giorgigiorgadze18.github.io/PortfolioWebsite/#person"}}},{"@type":"ListItem","position":4,"item":{"@type":"CreativeWork","name":"Earth Hour Campaign Poster","description":"A vector campaign poster created in Adobe Illustrator, emphasizing custom shape building, vector path precision and controlled typography. The composition is designed for scalable print and digital presentation. Independent portfolio work.","url":"https://giorgigiorgadze18.github.io/PortfolioWebsite/projects.html#project/earthhour","creator":{"@id":"https://giorgigiorgadze18.github.io/PortfolioWebsite/#person"}}},{"@type":"ListItem","position":5,"item":{"@type":"CreativeWork","name":"JBL Premium Audio Campaign","description":"JBL Premium Audio Campaign — advertising visual by Giorgi Giorgadze. Independent portfolio work.","url":"https://giorgigiorgadze18.github.io/PortfolioWebsite/projects.html#project/jbl-artwork","creator":{"@id":"https://giorgigiorgadze18.github.io/PortfolioWebsite/#person"}}},{"@type":"ListItem","position":6,"item":{"@type":"CreativeWork","name":"Portfolio Website","description":"This portfolio combines responsive HTML, CSS and JavaScript with a Three.js showroom, holographic interfaces and isolated application demos. Design and creative development by Giorgi Giorgadze.","url":"https://giorgigiorgadze18.github.io/PortfolioWebsite/projects.html#project/portfolio","creator":{"@id":"https://giorgigiorgadze18.github.io/PortfolioWebsite/#person"}}}]}</script>
 <!-- PROJECT-SUMMARIES-END -->
 </main>
@@ -141,6 +228,15 @@
   </div>
 
 
-<script type="module" src="./showroom/showroom.js?v=0.17.7"></script>
+<script type="module">
+  import('./showroom/showroom.js?v=0.18.0').catch(() => {
+    document.documentElement.dataset.projectLayout = 'grid';
+    document.querySelector('.project-segments').hidden = true;
+    document.querySelector('#project-view-status').textContent = 'Interactive controls could not load. Project details are available in the archive.';
+    const target = document.getElementById(location.hash.slice(1));
+    target?.querySelector('details')?.setAttribute('open', '');
+    target?.scrollIntoView();
+  });
+</script>
 </body>
 </html>

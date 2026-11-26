@@ -9,7 +9,8 @@
  */
 
 import {PROJECTS, ARCHIVE_PROJECTS} from '../data/projects.mjs?v=0.17.5';
-let gridView = new URLSearchParams(location.search).get('view') === 'grid';
+let gridView = document.documentElement.dataset.projectLayout === 'grid';
+let graphicsUnavailable = false;
 let initialization;
 const projectSide = project => project.category==='graphics'?'graphics':'apps';
 let shelfAssembly, shelfSides;
@@ -22,7 +23,7 @@ const assetFallbacks = (filename) => [assetUrl(filename)];
 
 const $=s=>document.querySelector(s);
 const sceneHost=$('#showroom-canvas'), frame=$('#museum-frame'), labelsEl=$('#device-labels');
-const stageLoading=$('#stage-enter'), fallbackEl=$('#stage-fallback');
+const stageLoading=$('#stage-enter');
 const projectGrid=$('#project-grid'), inspector=$('#project-inspector');
 const closeButton=$('#inspector-close'), resetButton=$('#reset-view');
 const halo=$('#ambient-halo'),shelfSwitch=$('#shelf-switch'),outline=$('#tablet-outline');
@@ -79,18 +80,35 @@ function setMenu(){
  window.addEventListener('resize',()=>{if(innerWidth>768)closeMenu()});
  window.addEventListener('scroll',()=>$('#navbar').classList.toggle('is-scrolled',scrollY>16),{passive:true});
 }
-function archiveCard(p){const article=document.createElement('article');article.className='archive-card';article.setAttribute('role','listitem');article.dataset.category=p.categories.join(' ');article.style.setProperty('--active-light',p.accent);article.innerHTML=`<div class="archive-thumb"><img loading="lazy" src="${assetUrl(p.thumbnail || p.cover)}" alt="${p.name} original design artwork"></div><div class="archive-info"><span class="archive-kind">${p.categoryLabel.toUpperCase()}</span><h3>${p.name}</h3><p>${p.year} · ${p.device.toUpperCase()} DISPLAY</p><a class="archive-action" href="#project/${p.slug}" data-explore="${p.id}">EXPLORE PROJECT &nbsp; ↗</a></div>`;const img=article.querySelector('img');let candidateIndex=0;const candidateUrls=assetFallbacks(p.thumbnail || p.cover);img.src=candidateUrls[0];img.addEventListener('error',()=>{candidateIndex++;if(candidateIndex<candidateUrls.length){img.src=candidateUrls[candidateIndex];return;}img.hidden=true;const note=document.createElement('span');note.className='archive-image-unavailable';note.textContent='Artwork not loaded · '+p.shortName;article.querySelector('.archive-thumb').append(note)});article.querySelector('a').addEventListener('click',event=>{
- event.preventDefault();
- history.pushState(null,'','#project/'+p.slug);
- openAccessibleDetail(p);
-});return article;}
-function buildArchive(){ARCHIVE_PROJECTS.forEach(p=>projectGrid.append(archiveCard(p)));document.querySelectorAll('.filter[data-filter]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.filter[data-filter]').forEach(x=>{x.classList.toggle('is-active',x===b);x.setAttribute('aria-pressed',String(x===b))});projectGrid.querySelectorAll('.archive-card').forEach(card=>{card.hidden=b.dataset.filter!=='all'&&!card.dataset.category.split(' ').includes(b.dataset.filter);});}));}
+function buildArchive(){
+ const filters = document.querySelector('.filter-group');
+ filters.hidden = false;
+ for (const summary of projectGrid.querySelectorAll('[data-explore]')) {
+  const project = ARCHIVE_PROJECTS.find(entry => entry.id === summary.dataset.explore);
+  summary.addEventListener('click', event => {
+   event.preventDefault();
+   history.pushState(null, '', '#project/' + project.slug);
+   openAccessibleDetail(project);
+  });
+ }
+ for (const button of filters.querySelectorAll('[data-filter]')) {
+  button.addEventListener('click', () => {
+   for (const peer of filters.querySelectorAll('[data-filter]')) {
+    peer.classList.toggle('is-active', peer === button);
+    peer.setAttribute('aria-pressed', String(peer === button));
+   }
+   for (const card of projectGrid.children) {
+    card.hidden = button.dataset.filter !== 'all' && !card.dataset.category.split(' ').includes(button.dataset.filter);
+   }
+  });
+ }
+}
 let modal;
 function openAccessibleDetail(p){if(!modal){modal=document.createElement('dialog');modal.className='mobile-project-dialog';modal.innerHTML='<div class="mobile-project-inner"><button class="mobile-dialog-close" type="button" aria-label="Close">×</button><p class="mobile-dialog-kicker"></p><h2></h2><div class="mobile-dialog-art"><img alt=""></div><p class="mobile-dialog-description"></p><a class="mobile-dialog-link" target="_blank" rel="noopener noreferrer">VIEW ORIGINAL ARTWORK ↗</a></div>';document.body.append(modal);modal.querySelector('button').addEventListener('click',()=>modal.close());modal.addEventListener('click',e=>{if(e.target===modal)modal.close()});const s=document.createElement('style');s.textContent='.mobile-project-dialog{border:1px solid rgba(208,188,255,.32);border-radius:13px;box-shadow:0 30px 100px rgba(0,0,0,.8);background:#0A0E1A;color:white;max-width:min(660px,calc(100vw - 32px));max-height:90vh;padding:0}.mobile-project-dialog::backdrop{background:rgba(3,5,12,.86);backdrop-filter:blur(10px)}.mobile-project-inner{padding:25px;position:relative}.mobile-dialog-close{position:absolute;right:13px;top:11px;font-size:26px;border:0;background:transparent;color:white}.mobile-dialog-kicker{font-size:10px;color:var(--active-tint);letter-spacing:.18em}.mobile-project-inner h2{font:800 26px Inter,sans-serif;margin:8px 0 20px;line-height:1.2}.mobile-dialog-art{display:flex;justify-content:center;background:#050711;max-height:42vh}.mobile-dialog-art img{max-height:42vh;max-width:100%;object-fit:contain}.mobile-dialog-description{color:rgba(255,255,255,.7);font:400 13px/1.7 Inter,sans-serif}.mobile-dialog-link{display:inline-block;margin-top:9px;padding:11px 16px;border:1px solid var(--active-light);color:var(--active-tint);border-radius:30px;font:700 10px Space Grotesk,sans-serif}';document.head.append(s)}modal.style.setProperty('--active-light',p.accent);modal.querySelector('.mobile-dialog-kicker').textContent=p.categoryLabel.toUpperCase()+' · '+p.year;modal.querySelector('h2').textContent=p.name;const img=modal.querySelector('img');img.src=assetUrl(p.cover);img.alt=p.name+' artwork';modal.querySelector('.mobile-dialog-description').textContent=p.description;modal.querySelector('.mobile-dialog-link').href=p.id==='portfolio'?'index.html':assetUrl(p.cover);modal.querySelector('.mobile-dialog-link').textContent=p.id==='portfolio'?'OPEN PORTFOLIO ↗':'VIEW ORIGINAL ARTWORK ↗';let demoButton=modal.querySelector('[data-open-demo]');
 if(!demoButton){demoButton=document.createElement('button');demoButton.type='button';demoButton.className='mobile-dialog-link';demoButton.dataset.openDemo='';modal.querySelector('.mobile-project-inner').append(demoButton)}
-demoButton.hidden=!p.demo;
+demoButton.hidden=!p.demo || graphicsUnavailable;
 demoButton.textContent='OPEN IN 3D SHOWROOM';
-demoButton.onclick=async()=>{modal.close();setProjectView(false);await initialization;chooseProject(p.id)};
+demoButton.onclick=async()=>{modal.close();setProjectView(false);await initialization;if(!gridView)chooseProject(p.id)};
 if(!modal.open)modal.showModal();}
 
 function roundedShape(w,h,r){const s=new THREE.Shape();const l=-w/2,b=-h/2; r=Math.min(r,w/2,h/2);s.moveTo(l+r,b);s.lineTo(l+w-r,b);s.quadraticCurveTo(l+w,b,l+w,b+r);s.lineTo(l+w,b+h-r);s.quadraticCurveTo(l+w,b+h,l+w-r,b+h);s.lineTo(l+r,b+h);s.quadraticCurveTo(l,b+h,l,b+h-r);s.lineTo(l,b+r);s.quadraticCurveTo(l,b,l+r,b);return s;}
@@ -1046,6 +1064,7 @@ function setupInteraction(){
 function render(time){
  if(!sceneReady)return;
  requestAnimationFrame(render);
+ if(gridView){lastFrame=time;return;}
  if(resizePending){resizePending=false;staticFramePainted=false;resizeScene();}
  // Hold the tablet still behind the phone notice. The CSS sweep runs independently.
  if(staticPreview()&&staticFramePainted){lastFrame=time;return;}
@@ -1187,31 +1206,91 @@ function installKeys(){document.addEventListener('keydown',e=>{if(e.key==='Escap
   closeProject();
  });
  resetButton.addEventListener('click',closeProject);}
-function showFallback(detail){shelfSwitch.hidden=true;clearOutline();$('#screen-portal').hidden=true;stageLoading.classList.add('is-done');fallbackEl.hidden=false;labelsEl.hidden=true;if(detail)console.warn('[showroom] fallback:',detail);sceneReady=false;}
-async function initialize(){try{const c=document.createElement('canvas');if(!(c.getContext('webgl2')||c.getContext('webgl'))){showFallback('WebGL not available');return}
- // No framework migration: dynamically load Three.js only on devices capable of the 3D showroom.
- await new Promise((resolve,reject)=>{const script=document.createElement('script');script.src=new URL('./vendor/three.js',import.meta.url).href;script.onload=resolve;script.onerror=()=>reject(new Error('Local Three.js engine did not load'));document.head.append(script)});THREE=window.SHOWROOM_THREE;if(!THREE)throw new Error('Local Three.js engine did not load');makeScene();frame.appendChild($('#try-preview'));setupInteraction();stageLoading.classList.add('is-done');window.addEventListener('resize',queueSceneResize,{passive:true});const ro=new ResizeObserver(queueSceneResize);ro.observe(frame);const visibility=new IntersectionObserver(entries=>{stageVisible=entries[entries.length-1].isIntersecting},{rootMargin:'150px'});visibility.observe(frame);
- }catch(error){console.error('[showroom] 3D initialization failed',error);showFallback(error.message)}}
-function setProjectView(useGrid){
- gridView=useGrid;
- document.documentElement.dataset.projectLayout=useGrid?'grid':'3d';
- document.querySelector('.museum-section').hidden=useGrid;
- document.querySelectorAll('button[data-project-view]').forEach(button=>{
-  button.setAttribute('aria-pressed',String((button.dataset.projectView==='grid')===useGrid));
+function showFallback(detail){
+ graphicsUnavailable = true;
+ sceneReady = false;
+ const button = $('button[data-project-view="3d"]');
+ const restoreFocus = document.activeElement === button || frame.contains(document.activeElement);
+ button.disabled = true;
+ shelfSwitch.hidden = true;
+ clearOutline();
+ $('#screen-portal').hidden = true;
+ renderer?.dispose();
+ focusRenderer?.dispose();
+ stageLoading.classList.add('is-done');
+ $('#project-view-status').textContent = '3D is unavailable on this device. Browse projects in Grid View.';
+ if(detail) console.warn('[showroom] fallback:', detail);
+ setProjectView(true);
+ if(restoreFocus) $('button[data-project-view="grid"]').focus();
+}
+
+let engineLoad;
+function loadEngine(){
+ return engineLoad ??= new Promise((resolve, reject) => {
+  const script = document.createElement('script');
+  script.src = new URL('./vendor/three.js', import.meta.url).href;
+  script.onload = resolve;
+  script.onerror = () => reject(new Error('Local Three.js engine did not load'));
+  document.head.append(script);
  });
- const url=new URL(location.href);
- url.searchParams.set('view',useGrid?'grid':'3d');
- history.replaceState(null,'',url);
- if(!useGrid&&!initialization)initialization=initialize();
+}
+
+async function initialize(){
+ try {
+  const canvas = document.createElement('canvas');
+  const gl = canvas.getContext('webgl2');
+  const capable = gl && gl.getParameter(gl.MAX_TEXTURE_SIZE) >= 4096;
+  gl?.getExtension('WEBGL_lose_context')?.loseContext();
+  if(!capable) throw new Error('WebGL 2 or required texture capacity unavailable');
+  await loadEngine();
+  if(gridView) return;
+  THREE = window.SHOWROOM_THREE;
+  if(!THREE) throw new Error('Local Three.js engine did not load');
+  makeScene();
+  frame.appendChild($('#try-preview'));
+  setupInteraction();
+  stageLoading.classList.add('is-done');
+  window.addEventListener('resize', queueSceneResize, {passive:true});
+  new ResizeObserver(queueSceneResize).observe(frame);
+  new IntersectionObserver(entries => {
+   stageVisible = entries.at(-1).isIntersecting;
+  }, {rootMargin:'150px'}).observe(frame);
+ } catch(error) {
+  showFallback(error.message);
+ }
+}
+
+function setProjectView(useGrid, explicit = false){
+ if(useGrid && sceneReady) closeProject();
+ gridView = useGrid || graphicsUnavailable;
+ document.documentElement.dataset.projectLayout = gridView ? 'grid' : '3d';
+ document.querySelector('.museum-section').hidden = gridView;
+ for (const button of document.querySelectorAll('button[data-project-view]')) {
+  button.setAttribute('aria-pressed', String((button.dataset.projectView === 'grid') === gridView));
+ }
+ if(explicit && (useGrid || !graphicsUnavailable)){
+  const view = gridView ? 'grid' : '3d';
+  try { localStorage.setItem('portfolio-project-view', view); } catch {}
+  const url = new URL(location.href);
+  url.searchParams.set('view', view);
+  history.replaceState(null, '', url);
+ }
+ if(!gridView && !sceneReady && !initialization){
+  initialization = initialize().finally(() => { initialization = undefined; });
+ }
+ if(!gridView && sceneReady) queueSceneResize();
 }
 function openLinkedProject(){
- const id=location.hash.startsWith('#project/')?location.hash.slice(9):'';
+ const id = location.hash.match(/^#project[/-](.+)$/)?.[1];
  const project=ARCHIVE_PROJECTS.find(p=>p.slug===id||p.id===id);
  if(project)openAccessibleDetail(project);
  else if(modal?.open)modal.close();
 }
 setMenu();buildArchive();installKeys();
-document.querySelectorAll('button[data-project-view]').forEach(button=>button.addEventListener('click',()=>setProjectView(button.dataset.projectView==='grid')));
+for (const button of document.querySelectorAll('button[data-project-view]')) {
+ button.disabled = false;
+ button.addEventListener('click', () => setProjectView(button.dataset.projectView === 'grid', true));
+}
 window.addEventListener('hashchange',openLinkedProject);
 window.addEventListener('popstate',openLinkedProject);
 setProjectView(gridView);

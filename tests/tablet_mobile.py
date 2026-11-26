@@ -75,7 +75,7 @@ def check_phone(browser,base,out,engine):
  page.on('pageerror',lambda e:errors.append(str(e)));page.on('response',lambda r:failed.append([r.status,r.url]) if r.status>=400 else None);page.on('request',lambda r:requests.append(r.url))
  watch_sweep(page)
  page.goto(base+'projects.html',wait_until='networkidle');page.locator('#museum-frame').scroll_into_view_if_needed()
- expect(page.locator('#showroom-canvas canvas')).to_be_visible();expect(page.locator('#stage-fallback')).not_to_be_visible()
+ expect(page.locator('#showroom-canvas canvas')).to_be_visible();expect(page.locator('#project-view-status')).to_be_empty()
  assert not any('meetab-demo.html' in u for u in requests)
  expect(page.locator('.archive-card')).to_have_count(5)
  for target in page.locator('.device-label:visible').all():assert target.bounding_box()['height']>=44
@@ -139,7 +139,7 @@ def check_phone(browser,base,out,engine):
  page.locator('[data-explore="jbl-artwork"]').tap();expect(page.locator('dialog.mobile-project-dialog')).to_be_visible();page.locator('.mobile-dialog-close').tap()
  if engine=='chromium':
   page.locator('#focus-canvas canvas').evaluate("c=>c.getContext('webgl2').getExtension('WEBGL_lose_context').loseContext()")
-  expect(page.locator('#stage-fallback')).to_be_visible()
+  expect(page.locator('#project-view-status')).to_contain_text('3D is unavailable')
   page.locator('[data-explore="tsero"]').tap();expect(page.locator('.mobile-project-dialog')).to_be_visible()
  assert not errors,errors;assert not failed,failed
  assert not [u for u in requests if not u.startswith((base,'data:','blob:'))]
