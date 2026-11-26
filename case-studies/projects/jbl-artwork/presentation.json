@@ -7,27 +7,27 @@
     ],
     [
       0,
-      1.3102,
+      0.4814,
       25
     ],
     [
       0,
-      7.8612,
+      2.8885,
       150
     ],
     [
       0,
-      4.7167,
+      1.7331,
       90
     ],
     [
       0,
-      7.8612,
+      2.8885,
       150
     ],
     [
       0,
-      11.5297,
+      4.2364,
       220
     ]
   ],
@@ -49,11 +49,11 @@
       "ease": "inOutCubic",
       "state": {
         "spread": 0,
-        "angle": -10,
+        "angle": 0,
         "tilt": 48,
         "lower": 30,
         "original": 1,
-        "roll": -6
+        "roll": 0
       }
     },
     {
@@ -61,11 +61,11 @@
       "ease": "inOutCubic",
       "state": {
         "spread": 0,
-        "angle": -10,
+        "angle": 0,
         "tilt": 48,
         "lower": 30,
         "original": 0,
-        "roll": -6
+        "roll": 0
       }
     },
     {
@@ -73,11 +73,11 @@
       "ease": "inOutCubic",
       "state": {
         "spread": 1,
-        "angle": -10,
+        "angle": 0,
         "tilt": 48,
         "lower": 30,
         "original": 0,
-        "roll": -6
+        "roll": 0
       }
     },
     {
@@ -85,11 +85,11 @@
       "ease": "inOutCubic",
       "state": {
         "spread": 1,
-        "angle": -10,
+        "angle": 0,
         "tilt": 48,
         "lower": 30,
         "original": 0,
-        "roll": -6
+        "roll": 0
       }
     },
     {
@@ -97,11 +97,11 @@
       "ease": "inOutCubic",
       "state": {
         "spread": 0,
-        "angle": -10,
+        "angle": 0,
         "tilt": 48,
         "lower": 30,
         "original": 0,
-        "roll": -6
+        "roll": 0
       }
     },
     {
@@ -109,11 +109,11 @@
       "ease": "inOutCubic",
       "state": {
         "spread": 0,
-        "angle": -10,
+        "angle": 0,
         "tilt": 48,
         "lower": 30,
         "original": 1,
-        "roll": -6
+        "roll": 0
       }
     },
     {
@@ -149,5 +149,12 @@
   ],
   "liftAngleDegrees": 45,
   "reclineDegrees": 48,
-  "diagonalDegrees": -6
+  "rotationAxis": [
+    1,
+    -0.28,
+    -0.12
+  ],
+  "perspective": 2400,
+  "leftLeanPixels": 18,
+  "rotationMode": "fixed-axis"
 }

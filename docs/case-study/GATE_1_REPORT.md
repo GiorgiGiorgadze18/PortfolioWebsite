@@ -32,3 +32,6 @@ Reclined revision final check: Chromium/WebKit1440×900 and390×844 PASS for rec
 
 ## Latest owner visual revision — 2026-11-26
 Supersedes70° recline: tilt48°, gentle-6° diagonal roll during recline, unchanged-10° yaw. Initial/end pose upright with zero roll. Layer offsets updated for45° rise before yaw/roll; native scroll sequencing and original endpoints retained. Preview: /workspace/portfolio-work/JBL-case-study-preview-diagonal-48.html. Gate1 review remains pending; no new project implementation or deployment.
+
+## Latest owner revision — rigid left lean
+Supersedes separate Euler roll/yaw: fixed rotate3d axis[1,-.28,-.12], angle48°, leftward drift18 design pixels, perspective2400px instead of1100px. Every layer and original share the same rigid pose; no skew/mesh deformation. Upward lift retained with offsets recomputed for45° direction at target pose. Preview /workspace/portfolio-work/JBL-case-study-preview-left-lean.html. Gate1 review remains pending; no production publish.

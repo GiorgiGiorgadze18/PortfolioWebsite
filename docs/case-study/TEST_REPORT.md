@@ -58,3 +58,6 @@ Reclined revision final check: Chromium/WebKit1440×900 and390×844 PASS for rec
 
 ## Softer diagonal revision
 PASS: Chromium/WebKit desktop1440×900 and phone390×844 for48° recline-before-lift, measured layer separation, chapter seek/replay/reduced-motion, overflow0 and no pageerror. WebKit desktop exploded and phone reclined screenshots manually reviewed. Evidence/reference/tests.json and screenshots reflect this latest revision. No physical-device claim.
+
+## Rigid left-lean revision
+Chromium/WebKit1440×900 and390×844 PASS: recline before lift, actual projected plane separation, seek/replay/reduced-motion, overflow0, pageerror0. Latest screenshots manually reviewed at the reclined pose; no claim of physical-device validation. Source artwork unchanged. Evidence/reference/tests.json.
