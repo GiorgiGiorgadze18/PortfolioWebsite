@@ -10,7 +10,6 @@ const percentage = bar.nextElementSibling;
 const formFrame = terminal.querySelector('#terminal-form');
 const form = formFrame.querySelector('form');
 const submit = form.querySelector('[type="submit"]');
-const skip = terminal.querySelector('.terminal-skip');
 const start = document.querySelector('[data-terminal-start]');
 const hint = pin.querySelector('[data-terminal-hint]');
 const status = document.querySelector('.status-pill span:last-child').textContent.trim();
@@ -38,28 +37,10 @@ function render(p) {
     percentage.textContent = percent + '%';
   }
 
-  const reveal = clampProgress((p - .7) / .18);
-  const easedReveal = reveal * reveal * (3 - 2 * reveal);
-  formFrame.style.setProperty('--terminal-form-opacity', easedReveal);
-  formFrame.style.setProperty('--terminal-form-offset', (1 - easedReveal) * 24 + 'px');
-
-  formFrame.inert = p <= .88;
-
-  submit.classList.toggle('armed', active && p > .92);
+  formFrame.inert = false;
   if (p > .05) hintHidden = true;
   else if (target === 0) hintHidden = false;
   hint.classList.toggle('is-faded', hintHidden);
-}
-
-function goToForm() {
-  target = progress = 1;
-  render(progress);
-  const rect = pin.getBoundingClientRect();
-  const stickRect = stick.getBoundingClientRect();
-  const formOffset = formFrame.getBoundingClientRect().top - stickRect.top;
-  const margin = parseFloat(getComputedStyle(formFrame).scrollMarginTop);
-  const end = window.scrollY + rect.bottom - stickRect.height;
-  window.scrollTo({top: Math.ceil(end + Math.max(0, formOffset - margin)), behavior: 'instant'});
 }
 
 function handleLink(link, navigate) {
@@ -73,22 +54,10 @@ function handleLink(link, navigate) {
 }
 
 handleLink(start, () => pin.scrollIntoView({behavior: active ? 'smooth' : 'instant', block: 'start'}));
-handleLink(skip, goToForm);
-
-skip.addEventListener('keydown', event => {
-  // Unlock before the browser does its native forward Tab from Skip to the fields.
-  if (event.key === 'Tab' && !event.shiftKey && active && progress < 1) goToForm();
-});
-
-form.addEventListener('focusin', () => {
-  if (active && progress < 1) goToForm();
-});
-
 registerScrollMotion({
   enable(enabled) {
     active = enabled && CSS.supports('overflow', 'clip') && 'inert' in formFrame;
     document.documentElement.classList.toggle('contact-motion-enabled', active);
-    skip.hidden = !active;
     visible = false;
     target = 0;
     hintHidden = false;
@@ -112,3 +81,30 @@ registerScrollMotion({
     if (active && visible) render(progress);
   },
 }, pin, stick);
+
+
+// Native validation runs before submit. Keep the original POST as the no-JS fallback.
+const feedback = document.querySelector('#form-status');
+let sending = false;
+form.addEventListener('submit', async event => {
+  event.preventDefault();
+  if (sending) return;
+  sending = true;
+  submit.disabled = true;
+  form.setAttribute('aria-busy', 'true');
+  feedback.textContent = 'Sending your message…';
+  try {
+    const response = await fetch(form.action, {
+      method: 'POST', body: new FormData(form), headers: {Accept: 'application/json'},
+    });
+    if (!response.ok) throw new Error('Submission failed');
+    form.reset();
+    feedback.textContent = 'Your message has been sent. Thank you.';
+  } catch {
+    feedback.textContent = 'Your message could not be sent. Please try again or use the email link above.';
+  } finally {
+    sending = false;
+    submit.disabled = false;
+    form.removeAttribute('aria-busy');
+  }
+});

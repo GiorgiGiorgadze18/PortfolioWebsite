@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.17.1 — Phase 02 draft, 2026-11-26
+
+[PR #24](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/24)
+
+- Add Grid/3D selection, multi-category filtering, direct project links and an archive entry for the portfolio.
+- Make the Contact form immediately available, revise terminal wording and provide sending, success and failure states with duplicate-submit protection.
+- Verification and limits are recorded in docs/phase02. Real contact messages were intercepted locally.
+
 ## 0.17.0 — Phase 01 draft, 2026-11-26
 
 [PR #24](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/24)

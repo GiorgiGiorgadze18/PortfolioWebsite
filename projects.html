@@ -14,6 +14,7 @@
 <noscript><style>.stage-enter{display:none}.museum-frame .stage-fallback[hidden]{display:flex!important}</style></noscript>
   <link rel="stylesheet" href="css/constellation.css">
   <script defer src="js/constellation.js?v=0.16.4"></script>
+<link rel="stylesheet" href="css/phase02.css">
 </head>
 <body>
   <a class="skip-link" href="#collection">Skip 3D showroom and explore projects</a>
@@ -32,12 +33,16 @@
         <div class="hero-gradient" aria-hidden="true"></div>
         <div class="container hero-content">
           <p class="eyebrow lavender">MY WORK <span class="eyebrow-line"></span> SELECTED COLLECTION</p>
-          <h1 id="hero-title">Best <span class="title-accent">Projects</span><span class="headline-period">.</span></h1>
-          <p class="hero-description">A curated selection of graphical experiments and clear identity of earned skills from my stock. Each specimen demonstrates rigorous adherence to systematic design principles.</p>
+          <h1 id="hero-title">Selected <span class="title-accent">Work</span><span class="headline-period">.</span></h1>
+          <p class="hero-description">A selection of digital products, visual identities and interactive experiences — designed with purpose, built with precision.</p>
         </div>
       </section>
-      <section class="museum-section" aria-label="Interactive 3D design museum">
-        <div class="container museum-heading"><div><p class="eyebrow">EXHIBITION <span class="muted">/ 001</span></p><h2>The digital <em>design museum.</em></h2></div><div class="museum-meta"><span class="live-dot"></span> INTERACTIVE SHOWROOM <span class="metadata-divider"></span> 05 WORKS</div></div>
+      <div class="container project-view-controls" role="group" aria-label="Project view">
+<button type="button" class="filter" data-project-view="3d" aria-pressed="true">3D View</button>
+<button type="button" class="filter" data-project-view="grid" aria-pressed="false">Grid View</button>
+</div>
+<section class="museum-section" aria-label="Interactive 3D design museum">
+        <div class="container museum-heading"><div><p class="eyebrow">EXHIBITION <span class="muted">/ 001</span></p><h2>Interactive <em>Showroom.</em></h2></div><div class="museum-meta"><span class="live-dot"></span> INTERACTIVE SHOWROOM <span class="metadata-divider"></span> 05 WORKS</div></div>
         <div class="shelf-switch" id="shelf-switch" role="group" aria-label="Showroom shelves" data-side="apps" hidden>
           <button type="button" data-shelf-side="apps" aria-pressed="true">UI / UX</button>
           <button type="button" data-shelf-side="graphics" aria-pressed="false">Graphic Design</button>
@@ -88,12 +93,12 @@
           </svg>
         </div>
       </section>
-      <section class="collection-section container" id="collection" aria-labelledby="collection-title"><div class="section-header"><div><p class="eyebrow lavender">THE ARCHIVE</p><h2 id="collection-title">Explore the <span class="title-accent">collection.</span></h2></div><p>Every project has a story.<br>Take a closer look.</p></div><div class="filter-group" role="group" aria-label="Filter projects"><button type="button" class="filter is-active" data-filter="all" aria-pressed="true">ALL WORK <span>05</span></button><button type="button" class="filter" data-filter="uiux" aria-pressed="false">UI / UX <span>02</span></button><button type="button" class="filter" data-filter="graphics" aria-pressed="false">GRAPHICS <span>03</span></button></div><div class="project-grid" id="project-grid" role="list"></div><noscript><p>Enable JavaScript for the interactive showroom, or view the original artwork:</p><p><a href="assets/project-tsero.jpg">Tsero App</a> · <a href="assets/project-tomford.png">Tom Ford</a> · <a href="assets/meetab-preview.jpg">MeeTab preview</a> · <a href="assets/project-jbl.png">JBL</a> · <a href="assets/project-earthhour.png">Earth Hour</a></p></noscript></section>
+      <section class="collection-section container" id="collection" aria-labelledby="collection-title"><div class="section-header"><div><p class="eyebrow lavender">THE ARCHIVE</p><h2 id="collection-title">Project <span class="title-accent">Archive.</span></h2></div><p>Every project has a story.<br>Take a closer look.</p></div><div class="filter-group" role="group" aria-label="Filter projects"><button type="button" class="filter is-active" data-filter="all" aria-pressed="true">ALL WORK <span>06</span></button><button type="button" class="filter" data-filter="uiux" aria-pressed="false">UI / UX <span>02</span></button><button type="button" class="filter" data-filter="graphics" aria-pressed="false">GRAPHICS <span>03</span></button><button type="button" class="filter" data-filter="development" aria-pressed="false">DEVELOPMENT</button><button type="button" class="filter" data-filter="experiments" aria-pressed="false">EXPERIMENTS</button></div><div class="project-grid"  id="project-grid" role="list"></div><noscript><p>Enable JavaScript for the interactive showroom, or view the original artwork:</p><p><a href="assets/project-tsero.jpg">Tsero App</a> · <a href="assets/project-tomford.png">Tom Ford</a> · <a href="assets/meetab-preview.jpg">MeeTab preview</a> · <a href="assets/project-jbl.png">JBL</a> · <a href="assets/project-earthhour.png">Earth Hour</a></p></noscript></section>
     </main>
     <footer class="site-footer"><div class="container footer-top"><div><a class="navbar__brand" href="index.html"><span class="brand-name">GG<span class="brand-dot">.</span></span></a><p>Digital Designer &amp; Creative Developer — Tbilisi, Georgia</p></div><div class="footer-links"><a href="index.html">Home</a><a href="projects.html">Projects</a><a href="contact.html">Contact</a><a href="about.html">About</a></div></div><div class="container footer-bottom">© 2026 Giorgi Giorgadze. All rights reserved. <span>INTERACTIVE SHOWROOM · V0.16.4</span></div></footer>
   </div>
 
 
-<script type="module" src="./showroom/showroom.js?v=0.16.4"></script>
+<script type="module" src="./showroom/showroom.js?v=0.17.1"></script>
 </body>
 </html>

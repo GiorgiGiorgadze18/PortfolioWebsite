@@ -14,8 +14,9 @@
   <script defer src="js/constellation.js"></script>
   <link rel="stylesheet" href="css/scroll-hint.css">
   <link rel="stylesheet" href="css/contact-terminal.css?v=0.16.8">
-  <script type="module" src="js/contact-terminal.js?v=0.16.8"></script>
+  <script type="module" src="js/contact-terminal.js?v=0.17.1"></script>
   <noscript><style>.contact-intro [data-animate] { opacity: 1; transform: none; }</style></noscript>
+<link rel="stylesheet" href="css/phase02.css">
 </head>
 <body>
   <header class="navbar" id="navbar">
@@ -99,8 +100,8 @@
 
       </div>
       <a class="scroll-hint" href="#secure-transmission" data-terminal-start
-         data-label="SCROLL DOWN TO ESTABLISH CONNECTION"
-         data-touch-label="SWIPE UP TO ESTABLISH CONNECTION"
+         data-label="SCROLL DOWN TO SEND A MESSAGE"
+         data-touch-label="SWIPE UP TO SEND A MESSAGE"
          aria-label="Scroll to secure transmission">
         <i aria-hidden="true"></i>
       </a>
@@ -113,18 +114,18 @@
           <div class="contact-panel__card terminal-window">
             <div class="terminal-chrome">
               <span class="terminal-window__dots" aria-hidden="true"><i></i><i></i><i></i></span>
-              <span class="terminal-window__file">secure_transmission.exe</span>
+              <span class="terminal-window__file">contact_terminal.exe</span>
               <a class="terminal-skip" href="#terminal-form" hidden>Skip animation · go to the form</a>
             </div>
             <div class="terminal-body" tabindex="-1">
               <div class="terminal-boot">
-                <pre class="terminal-log"><span class="terminal-log__complete">&gt; boot secure_transmission.exe
+                <pre class="terminal-log"><span class="terminal-log__complete">&gt; boot contact_terminal.exe
 &gt; resolving tbilisi.ge ......... OK
-&gt; handshake: giorgi.giorgadzee.16 ... OK
-&gt; encrypting payload ........... OK
+&gt; contact: Giorgi Giorgadze
+&gt; message form ............... READY
 &gt; channel open // AVAILABLE FOR PROJECTS</span><span class="terminal-log__typed" aria-hidden="true"></span></pre>
                 <div class="terminal-progress">
-                  <progress max="100" value="100" aria-label="Connection progress"></progress>
+                  <progress max="100" value="100" aria-label="Terminal animation progress"></progress>
                   <span aria-hidden="true">100%</span>
                 </div>
               </div>
@@ -133,32 +134,34 @@
                 <div class="contact-panel__head">
                   <img src="assets/vector-mail.svg" alt="Mail icon" class="contact-panel__icon">
                   <div>
-                    <p class="contact-panel__tag">SECURE TRANSMISSION.EXE</p>
-                    <h2 class="contact-panel__title" id="terminal-heading">Send your message securely</h2>
+                    <p class="contact-panel__tag">CONTACT TERMINAL</p>
+                    <h2 class="contact-panel__title" id="terminal-heading">Send a message</h2>
                   </div>
                 </div>
 
                 <form class="contact-form" action="https://formspree.io/f/xjgdyjka" method="POST">
                   <div class="contact-form__grid">
                     <label class="contact-form__field">
-                      <span>Initiator Name</span>
-                      <input type="text" name="name" placeholder="Enter designation..." required>
+                      <span>Your name</span>
+                      <input autocomplete="name" type="text" name="name" placeholder="Your name" required>
                     </label>
                     <label class="contact-form__field">
-                      <span>Return Address</span>
-                      <input type="email" name="email" placeholder="email@server.com" required>
+                      <span>Email address</span>
+                      <input autocomplete="email" type="email" name="email" placeholder="you@example.com" required>
                     </label>
                   </div>
 
                   <label class="contact-form__field contact-form__field--full">
-                    <span>Payload / Message</span>
-                    <textarea name="message" rows="7" placeholder="Formulate transmission data..." required></textarea>
+                    <span>Your message</span>
+                    <textarea name="message" rows="7" placeholder="Tell me about your project..." required></textarea>
                   </label>
 
                   <input type="hidden" name="_subject" value="New message from portfolio contact form">
                   <button type="submit" class="btn btn--primary contact-form__submit">
-                    TRANSMIT&nbsp;▸
+                    Send message
                   </button>
+                  <p id="form-status" role="status" aria-live="polite"></p>
+                  <p>Messages are sent through Formspree. Please avoid including sensitive information.</p>
                 </form>
               </div>
             </div>
@@ -166,8 +169,8 @@
         </div>
 
         <div class="scroll-hint terminal-hint" data-terminal-hint aria-hidden="true"
-             data-label="SCROLL DOWN TO ESTABLISH CONNECTION"
-             data-touch-label="SWIPE UP TO ESTABLISH CONNECTION">
+             data-label="SCROLL DOWN TO SEND A MESSAGE"
+             data-touch-label="SWIPE UP TO SEND A MESSAGE">
           <i></i>
         </div>
       </div>

@@ -1,0 +1,56 @@
+[
+  [
+    "chromium",
+    1440,
+    "grid/filter/deep-link/3D switch/form validation/local success/local failure",
+    "PASS"
+  ],
+  [
+    "chromium",
+    390,
+    "grid/filter/deep-link/3D switch/form validation/local success/local failure",
+    "PASS"
+  ],
+  [
+    "chromium",
+    320,
+    "grid/filter/deep-link/3D switch/form validation/local success/local failure",
+    "PASS"
+  ],
+  [
+    "webkit",
+    1440,
+    "grid/filter/deep-link/3D switch/form validation/local success/local failure",
+    "PASS"
+  ],
+  [
+    "webkit",
+    390,
+    "grid/filter/deep-link/3D switch/form validation/local success/local failure",
+    "PASS"
+  ],
+  [
+    "webkit",
+    320,
+    "grid/filter/deep-link/3D switch/form validation/local success/local failure",
+    "PASS"
+  ],
+  [
+    "chromium",
+    "desktop",
+    "archive to Tsero 3D focus; close; duplicate submit held at local interceptor",
+    "PASS"
+  ],
+  [
+    "webkit",
+    "desktop",
+    "archive to Tsero 3D focus; close; duplicate submit held at local interceptor",
+    "PASS"
+  ],
+  [
+    "chromium",
+    "desktop/mobile",
+    "repository fallback_browser.py: no-WebGL detail and no-JS artwork",
+    "PASS"
+  ]
+]
