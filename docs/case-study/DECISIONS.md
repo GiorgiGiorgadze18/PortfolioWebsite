@@ -21,3 +21,5 @@ Owner requested near-horizontal poster and45° upward layer rise. At70° X rotat
 
 ## Owner-requested recline revision
 Poster reclines70° before any separation; layer offsets yield45° upward rise before the slight yaw. CSS3D pose is applied to each plane directly with perspective on the board, avoiding nested image composition. Layers paint as individually decoded alpha backgrounds. Original start/end image and static/reduced-motion chapters preserved. Updated browser screenshots require visual review in addition to matrix checks; matrix checks alone do not certify actual compositing.
+
+Owner found70° too flat; revised to48° with-6° screen-diagonal roll. Render pose now separates Z roll from Y yaw and X recline, applied consistently to all layers and original image. localY=localZ*tan3° retains45° rise before the slight yaw/roll.

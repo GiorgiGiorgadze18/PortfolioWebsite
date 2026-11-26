@@ -157,7 +157,7 @@
   "sitemap.xml": "e519093ef3bee63e6f95815ad21f2396c478561f90fa77792df10523ccb0588e",
   "tools/build_styles.py": "bb89d1dc92c8504fca56d312eb322ca867db365785f1feebf72295e17ef04fba",
   "case-studies/jbl-preview.html": "3de751b93336df93477395dbcd7e1c1ed83a2ad9f3dbf9c56442866b676e00d5",
-  "case-studies/shared/reference.mjs": "d047b781c06949c564bcc7d60d3b88a0fcb4e31363e45e321d3c073bdd9cc79b",
+  "case-studies/shared/reference.mjs": "8e584d443c16fd934eaf80595f2bb9a88c794ca7068a5cbb9d446a226bf7ed68",
   "case-studies/shared/engine.mjs": "8930d90c2fa98f929f09f6644b3043e2296589cb61d077304120b2ff40d1bb1f",
   "case-studies/shared/entry.mjs": "7e52dbab59cd219fd3a705f0b79155a1471ef171d68a7113613423b50b9378a5",
   "case-studies/shared/timeline.mjs": "e9cf70651ecdd5672845a1829b6a89a8469362c599a66469d367fced4256fcfc",
@@ -182,5 +182,5 @@
   "case-studies/config.json": "a01e6f0b260386388862adff3aecfbd3b742888a46f9117a047612149b1f0108",
   "case-studies/shared/showroom-bridge.mjs": "1b28b1e0734f977f38a55360c55f6113bb1ed91d87d9526b8ac0a08fe18fdd35",
   "case-studies/shared/surface-transition.mjs": "f6a7355f6b89863cabfd3baf489ed3947694a97cb853f4cd4b15d2a42e6c400a",
-  "case-studies/projects/jbl-artwork/presentation.json": "85aaf4574547fad9201cb79bc29be413a23c10e60434b2ff47b32df496f322b9"
+  "case-studies/projects/jbl-artwork/presentation.json": "c63f0c5b3795c4e55dc353a9a8955bc5f8de620a92de6da1a1337ed860a8a5e3"
 }

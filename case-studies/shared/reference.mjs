@@ -14,7 +14,7 @@ let progress=0;
 const ns='http://www.w3.org/2000/svg',svg=document.createElementNS(ns,'svg'),leader=document.createElementNS(ns,'path');svg.classList.add('leader');svg.setAttribute('aria-hidden','true');svg.append(leader);$('.pin').append(svg);
 function render(state){
  const board=$('.board'),depthScale=board.clientWidth/350;
- const pose=`translateY(${state.lower*depthScale}px) rotateY(${state.angle}deg) rotateX(${state.tilt}deg)`;
+ const pose=`translateY(${state.lower*depthScale}px) rotateZ(${state.roll}deg) rotateY(${state.angle}deg) rotateX(${state.tilt}deg)`;
  board.style.transform='none';
  images.forEach((im,i)=>{const [x,y,z]=offsets[i];im.style.transform=`${pose} translate3d(${x*state.spread*depthScale}px,${y*state.spread*depthScale}px,${z*state.spread*depthScale}px)`;});
  $('.original').style.transform=`${pose} translateZ(3px)`;

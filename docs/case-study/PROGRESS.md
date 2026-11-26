@@ -9,3 +9,6 @@ Owner action: Gate1 visual review/decision. Other layered sources absent; do not
 
 ## Gate1 visual revision requested by owner
 70° poster recline occurs before layer lift;45° upward trajectory encoded in presentation.json. Reverse assembles before standing. Layer travel scales with rendered board width. Review artifact: /workspace/portfolio-work/JBL-case-study-preview-reclined.html. This revises the JBL reference only; no approval for other projects inferred.
+
+## Latest owner visual revision — 2026-11-26
+Supersedes70° recline: tilt48°, gentle-6° diagonal roll during recline, unchanged-10° yaw. Initial/end pose upright with zero roll. Layer offsets updated for45° rise before yaw/roll; native scroll sequencing and original endpoints retained. Preview: /workspace/portfolio-work/JBL-case-study-preview-diagonal-48.html. Gate1 review remains pending; no new project implementation or deployment.

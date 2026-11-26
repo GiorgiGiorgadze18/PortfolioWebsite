@@ -342,3 +342,8 @@ Chromium phone (390 px, DPR 2), WebKit phone (390 px), and Chromium desktop (128
 - Browser validation recorded in docs/case-study/evidence/reference/tests.json; working preview revised separately. Public feature remains unpublished.
 
 - Cross-browser follow-up in the same revision: avoid nested3D image composition, apply complete pose per plane with perspective on their common board; keep native-scroll and original endpoints.
+
+## JBL softer diagonal recline — 2026-11-26
+
+- Reduced review-poster recline70°→48° and added a subtle-6° diagonal roll on laying down. Reverse motion returns to upright without roll; staged layer lift remains.
+- Updated project choreography and renderer pose, with a separately named downloadable preview. Browser checks/evidence: docs/case-study/evidence/reference/tests.json. Production remains unpublished.

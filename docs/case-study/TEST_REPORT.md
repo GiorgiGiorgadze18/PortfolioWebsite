@@ -55,3 +55,6 @@ reference_browser.py now checks the poster has reclined before the hero layer ha
 Poster reclines70° before any separation; layer offsets yield45° upward rise before the slight yaw. CSS3D pose is applied to each plane directly with perspective on the board, avoiding nested image composition. Layers paint as individually decoded alpha backgrounds. Original start/end image and static/reduced-motion chapters preserved. Updated browser screenshots require visual review in addition to matrix checks; matrix checks alone do not certify actual compositing.
 
 Reclined revision final check: Chromium/WebKit1440×900 and390×844 PASS for recline-before-lift sequencing, measured plane separation, chapter seek/replay/reduced-motion and overflow. Final WebKit desktop/mobile screenshots manually inspected and now visibly separated; earlier flattened screenshots were replaced after direct-per-plane projection correction. No physical Safari/iPhone claim.
+
+## Softer diagonal revision
+PASS: Chromium/WebKit desktop1440×900 and phone390×844 for48° recline-before-lift, measured layer separation, chapter seek/replay/reduced-motion, overflow0 and no pageerror. WebKit desktop exploded and phone reclined screenshots manually reviewed. Evidence/reference/tests.json and screenshots reflect this latest revision. No physical-device claim.
