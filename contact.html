@@ -35,9 +35,11 @@
   <meta name="twitter:image:alt" content="Giorgi Giorgadze — Digital Designer and Creative Developer">
   <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Person", "@id": "https://giorgigiorgadze18.github.io/PortfolioWebsite/#person", "name": "Giorgi Giorgadze", "url": "https://giorgigiorgadze18.github.io/PortfolioWebsite/", "jobTitle": "Digital Designer & Creative Developer", "sameAs": ["https://github.com/GiorgiGiorgadze18"]}, {"@type": "WebPage", "@id": "https://giorgigiorgadze18.github.io/PortfolioWebsite/contact.html#webpage", "url": "https://giorgigiorgadze18.github.io/PortfolioWebsite/contact.html", "name": "Contact Giorgi Giorgadze | Design & Creative Development", "description": "Discuss a digital product, visual design project or interactive web experience with Giorgi Giorgadze.", "about": {"@id": "https://giorgigiorgadze18.github.io/PortfolioWebsite/#person"}}]}</script>
   <link rel="stylesheet" href="css/controls.css?v=0.18.0">
+  <link rel="stylesheet" href="css/navigation.css?v=0.18.1">
+  <script defer src="js/navigation.js?v=0.18.1"></script>
 </head>
 <body>
-  <header class="navbar" id="navbar">
+    <header class="navbar" id="navbar">
     <nav class="navbar__inner container">
       <a href="index.html" class="navbar__brand" aria-label="GG - Giorgi Giorgadze home">
         <img src="assets/icon-code.svg" alt="" class="brand-icon" aria-hidden="true">
@@ -57,6 +59,7 @@
     </nav>
   </header>
 
+  <!-- Mobile menu overlay -->
   <div class="mobile-menu" id="mobile-menu" aria-hidden="true" inert>
     <ul class="mobile-menu__links" role="list">
         <li><a href="index.html" class="nav-link">HOME</a></li>
@@ -64,11 +67,11 @@
         <li><a href="lab.html" class="nav-link">LAB</a></li>
         <li><a href="about.html" class="nav-link">ABOUT</a></li>
         <li><a href="contact.html" class="nav-link is-active" aria-current="page">CONTACT</a></li>
-        <li><a href="contact.html" class="nav-link">CONNECT</a></li>
+        <li><a href="contact.html" class="nav-link is-active" aria-current="page">CONNECT</a></li>
       </ul>
   </div>
 
-  <main>
+<main>
     <div class="contact-intro">
     <section class="projects-page-hero" aria-label="Contact">
       <div class="parallax-bg" id="parallax-bg" aria-hidden="true"></div>
@@ -221,6 +224,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js?v=0.17.4"></script>
+  <script src="js/main.js?v=0.18.1"></script>
 </body>
 </html>

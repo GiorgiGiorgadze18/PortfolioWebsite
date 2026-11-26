@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.18.1 — Header and device-focus fixes, 2026-11-26
+
+- Share the Home header markup, styling and mobile navigation behavior across all five pages.
+- Consume wheel input over the showroom while a device opens, remove the second page realignment, shorten focus animation to 550ms and preload MeeTab after focus completes.
+- Targeted browser results are recorded in docs/header-focus.
+
 ## 0.18.0 — Portfolio refinement draft, 2026-11-26
 
 [PR #25](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/25)

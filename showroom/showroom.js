@@ -58,28 +58,6 @@ const GALLERY_PIXEL_RATIO=1.4;
 const FOCUS_PIXEL_RATIO=1.65;
 
 function setAccent(hex){frame.style.setProperty('--active-light',hex);halo.style.background=`radial-gradient(ellipse 46% 54% at 48% 48%, ${hex}19, transparent 70%)`;if(THREE&&accentTarget) accentTarget.set(hex);}
-function setMenu(){
- const toggle=$('#menu-toggle'),menu=$('#mobile-menu');
- function closeMenu(){
-  if(menu.contains(document.activeElement))toggle.focus();
-  menu.hidden=true;
-  toggle.setAttribute('aria-expanded','false');
- }
- toggle.addEventListener('click',()=>{
-  if(!menu.hidden){closeMenu();return;}
-  menu.hidden=false;
-  toggle.setAttribute('aria-expanded','true');
-  menu.querySelector('a')?.focus();
- });
- menu.querySelectorAll('a').forEach(link=>link.addEventListener('click',closeMenu));
- document.addEventListener('keydown',event=>{
-  if(event.key==='Escape'&&!menu.hidden){
-   event.preventDefault();event.stopImmediatePropagation();closeMenu();
-  }
- });
- window.addEventListener('resize',()=>{if(innerWidth>768)closeMenu()});
- window.addEventListener('scroll',()=>$('#navbar').classList.toggle('is-scrolled',scrollY>16),{passive:true});
-}
 function buildArchive(){
  const filters = document.querySelector('.filter-group');
  for (const summary of projectGrid.querySelectorAll('[data-explore]')) {
@@ -694,7 +672,7 @@ function revealShowroom(){
  window.scrollBy({top:rect.top-targetTop,behavior:'auto'});
  root.style.scrollBehavior=previous;
 }
-function openPanel(){backdropSettlesAt=performance.now()+400;frame.classList.add('is-focused');$('#inspector-backdrop').classList.add('is-open');inspector.classList.add('is-open');inspector.setAttribute('aria-hidden','false');inspector.inert=false;resetButton.hidden=false;requestAnimationFrame(()=>{closeButton.focus({preventScroll:true});revealShowroom();});updatePreviewButton();sendPreviewMode();}
+function openPanel(){backdropSettlesAt=performance.now()+400;frame.classList.add('is-focused');$('#inspector-backdrop').classList.add('is-open');inspector.classList.add('is-open');inspector.setAttribute('aria-hidden','false');inspector.inert=false;resetButton.hidden=false;requestAnimationFrame(()=>{closeButton.focus({preventScroll:true});});updatePreviewButton();sendPreviewMode();}
 function closePanel(){clearOutline();environmentZoomTarget=1;previewActive=false;demoBlend=0;syncDemoWorkspace();$('#try-preview').hidden=true;frame.classList.remove('is-focused');$('#inspector-backdrop').classList.remove('is-open');inspector.classList.remove('is-open');inspector.setAttribute('aria-hidden','true');inspector.inert=true;resetButton.hidden=true;sendPreviewMode();}
 function chooseProject(id){
  const project=PROJECTS.find(item=>item.id===id);
@@ -712,7 +690,6 @@ function chooseProject(id){
  environmentZoom=environmentZoomTarget=1;
  camera.zoom=1;
  camera.updateProjectionMatrix();
- if(project.demo?.bridge)ensureDemoFrame(project);
  revealShowroom();
  hovered=keyboardHovered=pointerHovered=null;
  pointerInGallery=false;
@@ -734,10 +711,11 @@ function chooseProject(id){
  focusTiltTarget.x=focusTiltTarget.y=0;
  const targetPosition=new THREE.Vector3(...project.camera.position);
  const layout=focusDestination(project,targetPosition,quaternion);
- runTween(id,layout.position,quaternion,layout.scale,targetPosition,900,()=>{
+ runTween(id,layout.position,quaternion,layout.scale,targetPosition,550,()=>{
   state='focus';
   selectedBaseQuaternion=quaternion.clone();
   openPanel();
+  if(project.demo?.bridge)ensureDemoFrame(project);
  });
 }
 
@@ -880,6 +858,7 @@ function zoomEnvironment(delta,mode=0){
  environmentZoomTarget=clamp(environmentZoomTarget*Math.exp(-clamp(units,-160,160)*.0018),.75,1.65);
 }
 window.addEventListener('wheel',event=>{
+ if(state==='opening' && frame.contains(event.target) && !event.ctrlKey){event.preventDefault();event.stopPropagation();return;}
  if(state!=='focus'||staticPreview()||event.ctrlKey||!frame.contains(event.target)||inspector.contains(event.target))return;
  event.preventDefault();event.stopPropagation();zoomEnvironment(event.deltaY,event.deltaMode);
 },{capture:true,passive:false});
@@ -1286,7 +1265,7 @@ function openLinkedProject(){
  if(project)openAccessibleDetail(project);
  else if(modal?.open)modal.close();
 }
-setMenu();buildArchive();installKeys();
+buildArchive();installKeys();
 for (const button of document.querySelectorAll('button[data-project-view]')) {
  button.disabled = false;
  button.addEventListener('click', () => setProjectView(button.dataset.projectView === 'grid', true));

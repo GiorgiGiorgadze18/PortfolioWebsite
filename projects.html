@@ -46,26 +46,45 @@
   <meta name="twitter:image:alt" content="Giorgi Giorgadze — Digital Designer and Creative Developer">
   <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Person", "@id": "https://giorgigiorgadze18.github.io/PortfolioWebsite/#person", "name": "Giorgi Giorgadze", "url": "https://giorgigiorgadze18.github.io/PortfolioWebsite/", "jobTitle": "Digital Designer & Creative Developer", "sameAs": ["https://github.com/GiorgiGiorgadze18"]}, {"@type": "CollectionPage", "@id": "https://giorgigiorgadze18.github.io/PortfolioWebsite/projects.html#webpage", "url": "https://giorgigiorgadze18.github.io/PortfolioWebsite/projects.html", "mainEntity": {"@id": "https://giorgigiorgadze18.github.io/PortfolioWebsite/projects.html#project-list"}, "name": "Selected Work | Giorgi Giorgadze", "description": "Explore MeeTab, Tsero and independent visual design work through a project archive and interactive 3D showroom.", "about": {"@id": "https://giorgigiorgadze18.github.io/PortfolioWebsite/#person"}}]}</script>
   <link rel="stylesheet" href="css/controls.css?v=0.18.0">
+  <link rel="stylesheet" href="css/navigation.css?v=0.18.1">
+  <script defer src="js/navigation.js?v=0.18.1"></script>
 </head>
 <body>
   <a class="skip-link" href="#collection">Skip 3D showroom and explore projects</a>
   <div id="site-root">
-    <header class="navbar" id="navbar">
-      <nav class="navbar__inner container" aria-label="Main navigation">
-        <a class="navbar__brand" href="index.html" aria-label="Giorgi Giorgadze home"><svg class="brand-glyph" width="20" height="12" viewBox="0 0 20 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 12L0 6L6 0L7.425 1.425L2.825 6.025L7.4 10.6L6 12ZM14 12L12.575 10.575L17.175 5.975L12.6 1.4L14 0L20 6L14 12Z" fill="#00F0FF"/></svg><span class="brand-name">GG<span class="brand-dot">.</span></span></a>
-        <ul class="navbar__links">
-        <li><a href="index.html">HOME</a></li>
-        <li><a href="projects.html" class="is-active" aria-current="page">PROJECTS</a></li>
-        <li><a href="lab.html">LAB</a></li>
-        <li><a href="about.html">ABOUT</a></li>
-        <li><a href="contact.html">CONTACT</a></li>
+      <header class="navbar" id="navbar">
+    <nav class="navbar__inner container">
+      <a href="index.html" class="navbar__brand" aria-label="GG - Giorgi Giorgadze home">
+        <img src="assets/icon-code.svg" alt="" class="brand-icon" aria-hidden="true">
+        <span class="brand-name">GG<span class="brand-dot">.</span></span>
+      </a>
+      <ul class="navbar__links" role="list">
+        <li><a href="index.html" class="nav-link">HOME</a></li>
+        <li><a href="projects.html" class="nav-link is-active" aria-current="page">PROJECTS</a></li>
+        <li><a href="lab.html" class="nav-link">LAB</a></li>
+        <li><a href="about.html" class="nav-link">ABOUT</a></li>
+        <li><a href="contact.html" class="nav-link">CONTACT</a></li>
       </ul>
-        <a class="nav-cta" href="contact.html">CONNECT</a>
-        <button id="menu-toggle" class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
-      </nav>
-      <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation" hidden><a href="index.html">HOME</a><a href="projects.html" class="is-active" aria-current="page">PROJECTS</a><a href="lab.html">LAB</a><a href="about.html">ABOUT</a><a href="contact.html">CONTACT</a></nav>
-    </header>
-    <main id="top">
+      <a href="contact.html" class="btn btn--outline navbar__cta">CONNECT</a>
+      <button class="navbar__hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Mobile menu overlay -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true" inert>
+    <ul class="mobile-menu__links" role="list">
+        <li><a href="index.html" class="nav-link">HOME</a></li>
+        <li><a href="projects.html" class="nav-link is-active" aria-current="page">PROJECTS</a></li>
+        <li><a href="lab.html" class="nav-link">LAB</a></li>
+        <li><a href="about.html" class="nav-link">ABOUT</a></li>
+        <li><a href="contact.html" class="nav-link">CONTACT</a></li>
+        <li><a href="contact.html" class="nav-link">CONNECT</a></li>
+      </ul>
+  </div>
+
+<main id="top">
       <section class="projects-hero" aria-labelledby="hero-title">
         <div class="hero-gradient" aria-hidden="true"></div>
         <div class="container hero-content">
@@ -229,7 +248,7 @@
 
 
 <script type="module">
-  import('./showroom/showroom.js?v=0.18.0').catch(() => {
+  import('./showroom/showroom.js?v=0.18.1').catch(() => {
     document.documentElement.dataset.projectLayout = 'grid';
     document.querySelector('.project-segments').hidden = true;
     document.querySelector('.filter-group').hidden = true;
