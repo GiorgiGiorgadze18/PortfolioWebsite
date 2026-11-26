@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.17.3 — Phase 04 draft, 2026-11-26
+
+[PR #24](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/24)
+
+- Share identical active-page design tokens and move the project catalogue to a dedicated ES module. Add static Home metadata synchronization and direct project links.
+- Remove the unused legacy project overlay initializer after checking its markup consumers.
+- Computed-style comparisons, catalogue equivalence and browser checks are recorded in docs/phase04.
+
 ## 0.17.2 — Phase 03 draft, 2026-11-26
 
 [PR #24](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/24)

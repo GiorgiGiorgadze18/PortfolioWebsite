@@ -1,0 +1,68 @@
+/* Shared portfolio tokens. Page-specific responsive overrides stay in their page stylesheets. */
+:root {
+  /* ── Brand Colors ── */
+  --clr-white:   #FFFFFF;
+  --clr-cyan:    #00F0FF;   /* Primary accent — always glows on active/border states */
+  --clr-purple:  #571BC1;   /* Secondary accent */
+  --clr-pink:    #D0BCFF;   /* Projects page accent */
+
+  /* ── Backgrounds ── */
+  --clr-bg-deep:    #060A14;                  /* Deepest layer */
+  --clr-bg:         #0A0E1A;                  /* Base page background */
+  --clr-bg-card:    rgba(12, 19, 36, 0.40);  /* Card fill — per spec */
+
+  /* ── Text ── */
+  --clr-text:       #FFFFFF;
+  --clr-text-muted: rgba(255, 255, 255, 0.52);
+  --clr-text-dim:   rgba(255, 255, 255, 0.28);
+
+  /* ── Borders ── */
+  --clr-border:       rgba(0, 240, 255, 0.11);
+  --clr-border-hover: rgba(0, 240, 255, 0.42);
+
+  /* ── Glow Effects ──
+     Rule: wherever #00F0FF appears on active/border elements,
+     apply the matching glow shadow. ── */
+  --glow-xs:   0 0  6px rgba(0, 240, 255, 0.35);
+  --glow-sm:   0 0 12px rgba(0, 240, 255, 0.40), 0 0 24px rgba(0, 240, 255, 0.18);
+  --glow-md:   0 0 18px rgba(0, 240, 255, 0.50), 0 0 40px rgba(0, 240, 255, 0.25), 0 0 70px rgba(0, 240, 255, 0.10);
+  --glow-text: 0 0 10px rgba(0, 240, 255, 0.70), 0 0 22px rgba(0, 240, 255, 0.40);
+  --glow-purple: 0 0 20px rgba(87, 27, 193, 0.50), 0 0 40px rgba(87, 27, 193, 0.25);
+
+  /* ── Typography ──
+     Space Grotesk: Bold 700 @ 24px (dark elements) | Medium 500 @ 24px (light)
+     Inter:   ExtraBold 800 @ 48px (main headings)
+     Inter:   Regular   400 @ 20px (text blocks)
+     Inter:   Light     300 @ 15px (dates on Projects page)
+  ── */
+  --ff-heading: 'Inter', sans-serif;
+  --ff-body:    'Space Grotesk', sans-serif;
+
+  --fs-hero:    clamp(36px, 4.5vw, 48px);
+  --fs-section: clamp(28px, 3.5vw, 48px);
+  --fs-card:    24px;
+  --fs-body:    20px;
+  --fs-sm:      15px;
+
+  /* ── Spacing ── */
+  --sp-xs:  8px;
+  --sp-sm:  16px;
+  --sp-md:  24px;
+  --sp-lg:  48px;
+  --sp-xl:  80px;
+  --sp-2xl: 128px;
+
+  /* ── Layout ── */
+  --container-max:  1200px;
+  --container-px:   clamp(20px, 5vw, 56px);
+  --nav-h:          72px;
+  --radius:         18px;
+  --radius-sm:      10px;
+  --radius-pill:    100px;
+
+  /* ── Transitions ── */
+  --t-fast:   0.18s ease;
+  --t-base:   0.30s ease;
+  --t-slow:   0.60s cubic-bezier(0.4, 0, 0.2, 1);
+  --t-spring: 0.50s cubic-bezier(0.34, 1.56, 0.64, 1);
+}

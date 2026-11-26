@@ -11,7 +11,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/index.css?v=0.16.10">
+  <link rel="stylesheet" href="css/tokens.css?v=0.17.3">
+  <link rel="stylesheet" href="css/index.css?v=0.17.3">
   <link rel="stylesheet" href="css/constellation.css">
   <link rel="stylesheet" href="css/experience-scroll.css">
   <script defer src="js/constellation.js"></script>
@@ -164,7 +165,7 @@
         <div class="projects-preview-grid">
 
           <!-- Tsero App -->
-          <article class="project-card" data-animate data-delay="1">
+          <article class="project-card" data-project="tsero" data-animate data-delay="1">
             <div class="card-info">
               <!-- Image clipped to 220px (same as text container height) -->
               <div class="card-info__bg"
@@ -181,10 +182,10 @@
                 <!-- Space Grotesk Bold 700 @ 24px per spec -->
                 <h3 class="card-title">Tsero App</h3>
                 <div class="card-actions">
-                  <a href="projects.html" class="card-btn card-btn--primary">
+                  <a href="projects.html?view=grid#project/tsero" class="card-btn card-btn--primary">
                     <img src="assets/icon-eye.svg" alt="" aria-hidden="true">View
                   </a>
-                  <a href="projects.html" class="card-btn">Details</a>
+                  <a href="projects.html?view=grid#project/tsero" class="card-btn">Details</a>
                 </div>
               </div>
             </div>
@@ -195,7 +196,7 @@
             </div>
           </article>
 
-          <article class="project-card" data-animate data-delay="2">
+          <article class="project-card" data-project="jbl" data-animate data-delay="2">
             <div class="card-info">
               <div class="card-info__bg"
                    style="background-image:url('assets/meetab-preview.jpg')"
@@ -208,7 +209,7 @@
                 </div>
                 <h3 class="card-title">MeeTab</h3>
                 <div class="card-actions">
-                  <a href="projects.html#museum-frame" class="card-btn card-btn--primary">
+                  <a href="projects.html?view=grid#project/jbl" class="card-btn card-btn--primary">
                     <img src="assets/icon-eye.svg" alt="" aria-hidden="true">View
                   </a>
                 </div>
@@ -220,7 +221,7 @@
           </article>
 
           <!-- Tom Ford -->
-          <article class="project-card" data-animate data-delay="2">
+          <article class="project-card" data-project="tomford" data-animate data-delay="2">
             <div class="card-info">
               <div class="card-info__bg"
                    style="background-image:url('assets/project-tomford.png')"
@@ -233,10 +234,10 @@
                 </div>
                 <h3 class="card-title">Tom Ford<br>Tobacco Vanille</h3>
                 <div class="card-actions">
-                  <a href="projects.html" class="card-btn card-btn--primary">
+                  <a href="projects.html?view=grid#project/tomford" class="card-btn card-btn--primary">
                     <img src="assets/icon-eye.svg" alt="" aria-hidden="true">View
                   </a>
-                  <a href="projects.html" class="card-btn">Details</a>
+                  <a href="projects.html?view=grid#project/tomford" class="card-btn">Details</a>
                 </div>
               </div>
             </div>
@@ -247,7 +248,7 @@
           </article>
 
           <!-- JBL -->
-          <article class="project-card" data-animate data-delay="3">
+          <article class="project-card" data-project="jbl-artwork" data-animate data-delay="3">
             <div class="card-info">
               <div class="card-info__bg"
                    style="background-image:url('assets/project-jbl.png')"
@@ -260,10 +261,10 @@
                 </div>
                 <h3 class="card-title">JBL Premium Audio</h3>
                 <div class="card-actions">
-                  <a href="projects.html" class="card-btn card-btn--primary">
+                  <a href="projects.html?view=grid#project/jbl-artwork" class="card-btn card-btn--primary">
                     <img src="assets/icon-eye.svg" alt="" aria-hidden="true">View
                   </a>
-                  <a href="projects.html" class="card-btn">Details</a>
+                  <a href="projects.html?view=grid#project/jbl-artwork" class="card-btn">Details</a>
                 </div>
               </div>
             </div>
@@ -274,7 +275,7 @@
           </article>
 
           <!-- Earth Hour -->
-          <article class="project-card" data-animate data-delay="4">
+          <article class="project-card" data-project="earthhour" data-animate data-delay="4">
             <div class="card-info">
               <div class="card-info__bg"
                    style="background-image:url('assets/project-earthhour.png')"
@@ -287,10 +288,10 @@
                 </div>
                 <h3 class="card-title">Earth Hour<br>Poster</h3>
                 <div class="card-actions">
-                  <a href="projects.html" class="card-btn card-btn--primary">
+                  <a href="projects.html?view=grid#project/earthhour" class="card-btn card-btn--primary">
                     <img src="assets/icon-eye.svg" alt="" aria-hidden="true">View
                   </a>
-                  <a href="projects.html" class="card-btn">Details</a>
+                  <a href="projects.html?view=grid#project/earthhour" class="card-btn">Details</a>
                 </div>
               </div>
             </div>
@@ -476,6 +477,6 @@
   </footer>
 
   <script type="module" src="js/experience-scroll.js?v=0.17.2"></script>
-  <script src="js/main.js?v=0.17.2"></script>
+  <script src="js/main.js?v=0.17.3"></script>
 </body>
 </html>

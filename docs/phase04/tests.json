@@ -1,0 +1,26 @@
+[
+  [
+    "chromium",
+    1440,
+    "Home links, catalogue, filters, 3D initialization",
+    "PASS"
+  ],
+  [
+    "chromium",
+    390,
+    "Home links, catalogue, filters, 3D initialization",
+    "PASS"
+  ],
+  [
+    "webkit",
+    1440,
+    "Home links, catalogue, filters, 3D initialization",
+    "PASS"
+  ],
+  [
+    "webkit",
+    390,
+    "Home links, catalogue, filters, 3D initialization",
+    "PASS"
+  ]
+]
