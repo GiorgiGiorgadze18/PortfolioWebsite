@@ -9,7 +9,7 @@
   let lastTime;
 
   function schedule() {
-    if (!frame && moving.size && !reduced.matches) frame = requestAnimationFrame(update);
+    if (!frame && moving.size && !reduced.matches && !document.hidden) frame = requestAnimationFrame(update);
   }
 
   function paint(card, state) {
@@ -21,6 +21,7 @@
 
   function update(time) {
     frame = 0;
+    if (document.hidden || reduced.matches) return;
     const elapsed = Math.min(40, time - (lastTime ?? time - 16.7));
     const damping = 1 - Math.exp(-elapsed / 95);
 
@@ -41,7 +42,7 @@
   }
 
   function point(card, state, x, y) {
-    if (!state.visible || reduced.matches) return;
+    if (!state.visible || reduced.matches || document.hidden) return;
     state.targetX = clamp(x);
     state.targetY = clamp(y);
     if (!card.classList.contains('is-tilting')) {
@@ -110,17 +111,24 @@
   }
 
   function syncMotion() {
-    if (reduced.matches) {
+    if (reduced.matches || document.hidden) {
       cancelAnimationFrame(frame);
       frame = 0;
       lastTime = undefined;
     }
     for (const [card, state] of cards) {
       card.classList.toggle('can-float', !reduced.matches);
-      if (reduced.matches) reset(card, state, true);
+      card.classList.toggle('is-motion-paused', document.hidden);
+      if (reduced.matches || document.hidden) reset(card, state, true);
     }
   }
 
+  document.addEventListener('visibilitychange', syncMotion);
+  window.addEventListener('blur', () => {
+    for (const [card, state] of cards) {
+      if (card.classList.contains('is-tilting')) reset(card, state);
+    }
+  });
   reduced.addEventListener('change', syncMotion);
   syncMotion();
 })();

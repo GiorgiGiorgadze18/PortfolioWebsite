@@ -1,4 +1,4 @@
-import {clampProgress, registerScrollMotion} from './scroll-motion.js';
+import {clampProgress, registerScrollMotion} from './scroll-motion.js?v=0.17.2';
 
 const pin = document.querySelector('#secure-transmission');
 const terminal = pin.querySelector('.terminal-window');

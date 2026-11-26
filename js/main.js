@@ -75,18 +75,29 @@ $$('.nav-link', mobileMenu ?? document).forEach(l => l.addEventListener('click',
 
 const parallaxEl  = $('#parallax-bg');
 const heroSection = $('#hero');
+const motionPreference = matchMedia('(prefers-reduced-motion: reduce)');
 let   mx = 0, my = 0; // mouse offsets
 
 function applyParallax() {
   if (!parallaxEl) return;
+  if (motionPreference.matches) {
+    parallaxEl.style.transform = '';
+    return;
+  }
   const sy = window.scrollY * 0.40;
   parallaxEl.style.transform = `translate(${mx}px, ${sy + my}px)`;
 }
+
+motionPreference.addEventListener('change', () => {
+  mx = my = 0;
+  applyParallax();
+});
 
 if (parallaxEl) {
   window.addEventListener('scroll', applyParallax, { passive: true });
 
   heroSection?.addEventListener('mousemove', (e) => {
+    if (motionPreference.matches) return;
     const { left, top, width, height } = heroSection.getBoundingClientRect();
     const amp = 10;
     mx = ((e.clientX - left - width  / 2) / (width  / 2)) * amp;
@@ -216,7 +227,17 @@ if (window.matchMedia('(pointer: fine)').matches) {
   document.body.appendChild(glow);
 
   let glowActive = false;
+  function syncGlow() {
+    glow.hidden = motionPreference.matches || document.hidden;
+    glow.style.transform = 'translate(-50%,-50%) scale(0)';
+    glowActive = false;
+  }
+  motionPreference.addEventListener('change', syncGlow);
+  document.addEventListener('visibilitychange', syncGlow);
+  window.addEventListener('blur', syncGlow);
+  syncGlow();
   document.addEventListener('mousemove', (e) => {
+    if (motionPreference.matches || document.hidden) return;
     glow.style.left = `${e.clientX}px`;
     glow.style.top  = `${e.clientY}px`;
     if (!glowActive) {
@@ -250,7 +271,7 @@ $$('a[href^="#"]').forEach((link) => {
     e.preventDefault();
     const navH  = navbar?.offsetHeight ?? 72;
     const top   = target.getBoundingClientRect().top + window.scrollY - navH - 16;
-    window.scrollTo({ top, behavior: 'smooth' });
+    window.scrollTo({ top, behavior: motionPreference.matches ? 'instant' : 'smooth' });
   });
 });
 
@@ -266,7 +287,7 @@ $$('a[href^="#"]').forEach((link) => {
   viewLink.addEventListener('click', (e) => {
     // After opening the asset in a new tab, smoothly bring the card into view
     setTimeout(() => {
-      firstCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      firstCard.scrollIntoView({ behavior: motionPreference.matches ? 'instant' : 'smooth', block: 'center' });
     }, 120);
   });
 })();

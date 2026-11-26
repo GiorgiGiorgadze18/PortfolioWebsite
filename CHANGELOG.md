@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.17.2 — Phase 03 draft, 2026-11-26
+
+[PR #24](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/24)
+
+- Suspend holographic motion when hidden and reset pointer tilt on focus loss. Respect live reduced-motion changes in parallax, cursor glow and shared anchor navigation.
+- Cancel pending shared scroll frames when hidden. Preserve the existing Experience interpolation after measurements confirmed its settled behavior.
+- Lifecycle tests and limits are recorded in docs/phase03.
+
 ## 0.17.1 — Phase 02 draft, 2026-11-26
 
 [PR #24](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/24)

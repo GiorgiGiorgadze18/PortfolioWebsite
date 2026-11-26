@@ -1,0 +1,86 @@
+[
+  {
+    "engine": "chromium",
+    "viewport": [
+      1440,
+      900
+    ],
+    "settled_timeline_frames_in_500ms": 0,
+    "reverse": "PASS",
+    "pointer_return": "PASS",
+    "hidden_simulation": "PASS",
+    "offscreen": "PASS",
+    "reduced_toggle": "PASS",
+    "contact_unblocked": "PASS"
+  },
+  {
+    "engine": "chromium",
+    "viewport": [
+      390,
+      844
+    ],
+    "settled_timeline_frames_in_500ms": 0,
+    "reverse": "PASS",
+    "pointer_return": "PASS",
+    "hidden_simulation": "PASS",
+    "offscreen": "PASS",
+    "reduced_toggle": "PASS",
+    "contact_unblocked": "PASS"
+  },
+  {
+    "engine": "chromium",
+    "viewport": [
+      844,
+      390
+    ],
+    "settled_timeline_frames_in_500ms": 0,
+    "reverse": "PASS",
+    "pointer_return": "PASS",
+    "hidden_simulation": "PASS",
+    "offscreen": "PASS",
+    "reduced_toggle": "PASS",
+    "contact_unblocked": "PASS"
+  },
+  {
+    "engine": "webkit",
+    "viewport": [
+      1440,
+      900
+    ],
+    "settled_timeline_frames_in_500ms": 1,
+    "reverse": "PASS",
+    "pointer_return": "PASS",
+    "hidden_simulation": "PASS",
+    "offscreen": "PASS",
+    "reduced_toggle": "PASS",
+    "contact_unblocked": "PASS"
+  },
+  {
+    "engine": "webkit",
+    "viewport": [
+      390,
+      844
+    ],
+    "settled_timeline_frames_in_500ms": 0,
+    "reverse": "PASS",
+    "pointer_return": "PASS",
+    "hidden_simulation": "PASS",
+    "offscreen": "PASS",
+    "reduced_toggle": "PASS",
+    "contact_unblocked": "PASS"
+  },
+  {
+    "engine": "webkit",
+    "viewport": [
+      844,
+      390
+    ],
+    "settled_timeline_frames_in_500ms": 0,
+    "reverse": "PASS",
+    "pointer_return": "PASS",
+    "hidden_simulation": "PASS",
+    "offscreen": "PASS",
+    "reduced_toggle": "PASS",
+    "contact_unblocked": "PASS"
+  }
+]

@@ -1,4 +1,4 @@
-import {clampProgress, registerScrollMotion} from './scroll-motion.js';
+import {clampProgress, registerScrollMotion} from './scroll-motion.js?v=0.17.2';
 
 const section = document.querySelector('#experience');
 const timeline = section?.querySelector('.timeline');

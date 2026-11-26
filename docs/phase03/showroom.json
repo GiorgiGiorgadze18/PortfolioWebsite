@@ -1,0 +1,6 @@
+{
+  "browser": "Chromium software WebGL",
+  "reduced_shelf_forward_reverse": "PASS",
+  "motion_reenabled": "PASS",
+  "parallax_reduced": "PASS"
+}
