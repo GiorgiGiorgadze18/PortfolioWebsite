@@ -9,3 +9,13 @@
 ბრაუზერის შედეგები final-tests.log-შია. ტესტი tests/header_focus.py-ში ინახება. ფოკუსის ტესტში demo document იზოლირებულია, რათა შემოწმდეს ზუსტად wheel/zoom/scroll-ის ქცევა. მოწმდება ხუთივე გვერდის header ზომა/შრიფტი, მობილური menu გახსნა/Escape და Chromium-ში პლანშეტის არჩევის შემდეგ სწრაფი wheel input. ეს არის viewport ემულაცია. ფიზიკური მოწყობილობების შემოწმება არ შესრულებულა.
 
 Rollback შესაძლებელია ამ ცვლილებების commit-ის git revert-ით. გამოქვეყნება მფლობელის შემდგომ თანხმობას ელოდება.
+
+| ტესტი | შედეგი |
+|---|---|
+| Chromium ხუთივე header-ის ზომა და შრიფტი | PASS |
+| WebKit ხუთივე header-ის ზომა და შრიფტი | PASS |
+| ორივე ბრაუზერში მობილური მენიუ და Escape | PASS |
+| Chromium პლანშეტის გახსნისას მყისიერი wheel, scrollY უცვლელია | PASS |
+| ფიზიკური iPhone/Android და hardware FPS | NOT RUN |
+
+ტესტირების ბრძანება `PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS=1 python3 tests/header_focus.py`. წყაროს manifest განახლებულია. ცვლილებები [PR #26](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/26)-შია.
