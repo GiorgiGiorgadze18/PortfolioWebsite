@@ -14,4 +14,4 @@ Apply this pattern to every app added to the Projects showroom. On touch-first d
 
 ## Case Study System
 
-Read `docs/case-study/MASTER.md` before case-study work. Resume from `PROGRESS.md` and `HANDOFF.md`; use PLAN, ARCHITECTURE, DECISIONS, TEST_REPORT, ASSET_MANIFEST, CLAIMS_LEDGER and QUESTIONS in that directory. Respect review gates; Gate 0 is pending after the baseline audit. No implementation, merge or deployment before the relevant approval.
+Read `docs/case-study/MASTER.md` before case-study work. Resume from `PROGRESS.md` and `HANDOFF.md`; use PLAN, ARCHITECTURE, DECISIONS, TEST_REPORT, ASSET_MANIFEST, CLAIMS_LEDGER and QUESTIONS in that directory. Respect review gates; Gate 0 approved on 2026-11-26; proceed through Gate 1, then stop. No implementation, merge or deployment before the relevant approval.

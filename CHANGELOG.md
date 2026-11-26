@@ -303,3 +303,8 @@ Chromium phone (390 px, DPR 2), WebKit phone (390 px), and Chromium desktop (128
 - Added planning/state documents, original-asset hashes, capability probes and four-viewport software-WebGL baseline evidence under `docs/case-study/`.
 - Recorded live Grid inspection, source-ID compatibility risks, missing layered assets and test limitations. No site behavior changed. Gate 0 pending; no implementation, PR, merge or deployment.
 - Validation: `node tools/sync-projects.mjs --check`, `git diff --check`; browser coverage and actual measurements are in `docs/case-study/TEST_REPORT.md`.
+
+## Case Study engine foundation — 2026-11-26
+
+- Gate 0 approved; added isolated pure timeline and exact critically damped spring, not yet connected to production UI.
+- Node tests cover reverse seeks, immutable sampling, invalid data and refresh-rate equivalence. Uploaded JBL archive inspection blocked by attachment downloader read-only filesystem. Phase 1 partial, Gate 1 not reached; no merge/deployment.

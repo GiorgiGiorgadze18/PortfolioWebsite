@@ -1,11 +1,8 @@
 # Progress
-Phase: 0 — baseline audit complete; see TEST_REPORT.md for exact coverage and limitations.
-Gate: 0 pending. Phase 1 NOT STARTED.
-Branch: `feat/case-study-phase0-audit`.
-Baseline commit: `7cd45c57d3177f015efccf42c9c1933b613dd46c`.
-Audit commit: use `git log -1 --format=%H -- docs/case-study/PROGRESS.md` (self-containing commit hash cannot be embedded).
-Done: master read; clean-tree check; isolated branch; current source and prior docs reviewed; inventory, hashes, capability probes, baseline evidence, plan and state files.
-Pending: owner Gate 0 decision; all implementation phases.
-Blocked/limited: layered sources absent; hardware GPU/physical-device metrics unavailable; paid image generation not authorized.
-Owner actions: review QUESTIONS.md once; approve Gate 0 or adjust scope.
-No merge, deployment, new case-study runtime, asset extraction or app changes performed.
+Gate 0 approved by owner on 2026-11-26; authorized through Gate 1.
+Branch: `feat/case-study-phase1-engine`; based on audit commit d109b2f5496625fc1c89149bda7fec854ca7667f.
+Phase 1 PARTIALLY COMPLETED: pure numeric keyframe timeline and exact critically damped spring; tested with Node. No showroom integration yet. Gate 1 NOT REACHED.
+Phases 2–3 pending: uploaded docs-casestudy-projects.7z cannot be retrieved: download_file reports `cannot create attachment directory: Read-only file system (os error 30)`. notes-JBL.md has NOT been read. No assets extracted, no claim about their quality.
+Owner confirms JBL PNG layers exist; other layered sources still missing. Owner allows economical paid image processing if needed; no numeric cap, no expenditure or generation performed.
+Next: obtain readable archive, inspect notes as owner-intent evidence, validate assets; continue engine lifecycle/DisplaySurface/a11y and JBL reference, then Gate 1. Do not merge/deploy.
+Owner action needed: make archive accessible via repository/shared workspace, or restore attachment-download write access.

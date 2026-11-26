@@ -16,3 +16,7 @@
 | Full console messages, keyboard/AT, demo scenarios, cleanup | Complete coverage | Not executed in Phase 0 | NOT RUN | Existing limitations in docs/OPEN_VERIFICATION.md |
 
 Evidence paths above are relative to evidence/. Python HTTPS used normal certificate validation; live browser used ignore_https_errors. No real app operations or form submissions performed. Phase 1 tests are NOT RUN. Full source inventory is not a proof of product/backend capabilities.
+
+## Phase 1 foundation — 2026-11-26
+
+`node tests/case-study/timeline.test.mjs`: PASS — reverse/direct seek, clone isolation, invalid timeline rejection and spring refresh-rate equivalence. This is math-unit coverage only. Lifecycle, UI, a11y, artwork and showroom integration tests NOT RUN.

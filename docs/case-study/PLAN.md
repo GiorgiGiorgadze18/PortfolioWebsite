@@ -1,3 +1,5 @@
+> Update 2026-11-26: Gate 0 approved; Phase 1 started, Gate 1 pending. See PROGRESS.md for current attachment blocker. Earlier pending-Gate-0 wording below is historical.
+
 # Case Study plan — Gate 0
 Baseline: `7cd45c57d3177f015efccf42c9c1933b613dd46c`. Branch: `feat/case-study-phase0-audit`.
 Only Phase 0 is authorized. Phase 1 awaits explicit Gate 0 approval.

@@ -5,3 +5,7 @@
 4. ადასტურებ Gate 0-ს ამ გეგმით და JBL-ის არსებული დაფიდან წარმოდგენით? შემდეგი ნებადართული მოცულობა იქნება Phase 1–3, Gate 1-მდე; ტექნიკური საბაზისო სამუშაო იწყება მხოლოდ შენი თანხმობის შემდეგ.
 
 არ არის მოთხოვნილი საიდუმლო მონაცემები. კითხვები წყაროებსა და სამომავლო გადაწყვეტილებებზეა; Phase 0 მათ პასუხებს არ საჭიროებს.
+
+## Owner responses — 2026-11-26
+
+Gate 0 approved. JBL PNG layers uploaded in docs-casestudy-projects.7z, notes-JBL.md supplied inside; not read because download is blocked. Other layered sources not found by owner. Economical paid editing allowed if needed, no numeric spend limit set, no spend incurred. New source blocked by attachment filesystem; request accessible archive once.
