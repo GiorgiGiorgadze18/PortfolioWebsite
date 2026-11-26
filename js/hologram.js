@@ -13,8 +13,9 @@
   }
 
   function paint(card, state) {
-    card.style.setProperty('--holo-rx', `${-state.y * 10}deg`);
-    card.style.setProperty('--holo-ry', `${state.x * 14}deg`);
+    const strength = Number(card.dataset.holoStrength ?? 1);
+    card.style.setProperty('--holo-rx', `${-state.y * 10 * strength}deg`);
+    card.style.setProperty('--holo-ry', `${state.x * 14 * strength}deg`);
     card.style.setProperty('--holo-light-x', `${30 + state.x * 28}%`);
     card.style.setProperty('--holo-light-y', `${state.y * 32}%`);
   }
@@ -42,7 +43,7 @@
   }
 
   function point(card, state, x, y) {
-    if (!state.visible || reduced.matches || document.hidden) return;
+    if (!state.visible || reduced.matches || document.hidden || card.hasAttribute('data-motion-paused')) return;
     state.targetX = clamp(x);
     state.targetY = clamp(y);
     if (!card.classList.contains('is-tilting')) {
@@ -78,13 +79,14 @@
     }
   });
 
-  for (const card of document.querySelectorAll('#disciplines .discipline-card')) {
+  for (const card of document.querySelectorAll('#disciplines .discipline-card, [data-hologram] .discipline-card')) {
     const state = {x: 0, y: 0, targetX: 0, targetY: 0, visible: false, drag: undefined};
     cards.set(card, state);
     observer.observe(card);
+    card.addEventListener('hologram-reset', () => reset(card, state, true));
 
     card.addEventListener('pointerdown', event => {
-      if (!event.isPrimary || event.pointerType === 'mouse' || reduced.matches) return;
+      if (!event.isPrimary || event.pointerType === 'mouse' || reduced.matches || card.hasAttribute('data-motion-paused')) return;
       state.drag = {id: event.pointerId, x: event.clientX, y: event.clientY};
       card.setPointerCapture(event.pointerId);
     });

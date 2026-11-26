@@ -1,0 +1,12 @@
+[
+  [
+    "chromium",
+    "reflection after transition under hover; simulated missing capability fallback",
+    "PASS"
+  ],
+  [
+    "webkit",
+    "reflection after transition under hover; simulated missing capability fallback",
+    "PASS"
+  ]
+]

@@ -39,11 +39,17 @@
     <header class="navbar" id="navbar">
       <nav class="navbar__inner container" aria-label="Main navigation">
         <a class="navbar__brand" href="index.html" aria-label="Giorgi Giorgadze home"><svg class="brand-glyph" width="20" height="12" viewBox="0 0 20 12" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 12L0 6L6 0L7.425 1.425L2.825 6.025L7.4 10.6L6 12ZM14 12L12.575 10.575L17.175 5.975L12.6 1.4L14 0L20 6L14 12Z" fill="#00F0FF"/></svg><span class="brand-name">GG<span class="brand-dot">.</span></span></a>
-        <ul class="navbar__links"><li><a href="index.html">HOME</a></li><li><a href="projects.html" class="is-active" aria-current="page">PROJECTS</a></li><li><a href="contact.html">CONTACT</a></li><li><a href="about.html">ABOUT</a></li></ul>
+        <ul class="navbar__links">
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="projects.html" class="is-active" aria-current="page">PROJECTS</a></li>
+        <li><a href="lab.html">LAB</a></li>
+        <li><a href="about.html">ABOUT</a></li>
+        <li><a href="contact.html">CONTACT</a></li>
+      </ul>
         <a class="nav-cta" href="contact.html">CONNECT</a>
         <button id="menu-toggle" class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
       </nav>
-      <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation" hidden><a href="index.html">HOME</a><a href="projects.html" aria-current="page">PROJECTS</a><a href="contact.html">CONTACT</a><a href="about.html">ABOUT</a></nav>
+      <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation" hidden><a href="index.html">HOME</a><a href="projects.html" class="is-active" aria-current="page">PROJECTS</a><a href="lab.html">LAB</a><a href="about.html">ABOUT</a><a href="contact.html">CONTACT</a></nav>
     </header>
     <main id="top">
       <section class="projects-hero" aria-labelledby="hero-title">
@@ -123,7 +129,13 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"ItemList","@id":"https://giorgigiorgadze18.github.io/PortfolioWebsite/projects.html#project-list","itemListElement":[{"@type":"ListItem","position":1,"item":{"@type":"CreativeWork","name":"Tsero App","description":"The name “Tsero” comes from the Georgian word for stork, symbolizing delivery, movement and speed. The app explores modern, user-centered food ordering with browsing, courier tracking, checkout, payment, and profile settings. Branding, logo, color system, UI/UX and interactive prototyping were designed by Giorgi Giorgadze. This is a personal portfolio concept.","url":"https://giorgigiorgadze18.github.io/PortfolioWebsite/projects.html#project/tsero","creator":{"@id":"https://giorgigiorgadze18.github.io/PortfolioWebsite/#person"}}},{"@type":"ListItem","position":2,"item":{"@type":"CreativeWork","name":"Tom Ford Tobacco Vanille","description":"A Photoshop product-visual composition exploring warm tobacco and vanilla tones through lighting, texture and smoke. The artwork emphasizes color harmony and visual depth around the fragrance. This is an independently created design exercise, not an official brand campaign.","url":"https://giorgigiorgadze18.github.io/PortfolioWebsite/projects.html#project/tomford","creator":{"@id":"https://giorgigiorgadze18.github.io/PortfolioWebsite/#person"}}},{"@type":"ListItem","position":3,"item":{"@type":"CreativeWork","name":"MeeTab","description":"MeeTab meeting-room app. Explore navigation, calendar and local sample bookings. The portfolio demo uses sample data; account access is disabled.","url":"https://giorgigiorgadze18.github.io/PortfolioWebsite/projects.html#project/meetab","creator":{"@id":"https://giorgigiorgadze18.github.io/PortfolioWebsite/#person"}}},{"@type":"ListItem","position":4,"item":{"@type":"CreativeWork","name":"Earth Hour Campaign Poster","description":"A vector campaign poster created in Adobe Illustrator, emphasizing custom shape building, vector path precision and controlled typography. The composition is designed for scalable print and digital presentation. Independent portfolio work.","url":"https://giorgigiorgadze18.github.io/PortfolioWebsite/projects.html#project/earthhour","creator":{"@id":"https://giorgigiorgadze18.github.io/PortfolioWebsite/#person"}}},{"@type":"ListItem","position":5,"item":{"@type":"CreativeWork","name":"JBL Premium Audio Campaign","description":"JBL Premium Audio Campaign — advertising visual by Giorgi Giorgadze. Independent portfolio work.","url":"https://giorgigiorgadze18.github.io/PortfolioWebsite/projects.html#project/jbl-artwork","creator":{"@id":"https://giorgigiorgadze18.github.io/PortfolioWebsite/#person"}}},{"@type":"ListItem","position":6,"item":{"@type":"CreativeWork","name":"Portfolio Website","description":"This portfolio combines responsive HTML, CSS and JavaScript with a Three.js showroom, holographic interfaces and isolated application demos. Design and creative development by Giorgi Giorgadze.","url":"https://giorgigiorgadze18.github.io/PortfolioWebsite/projects.html#project/portfolio","creator":{"@id":"https://giorgigiorgadze18.github.io/PortfolioWebsite/#person"}}}]}</script>
 <!-- PROJECT-SUMMARIES-END -->
 </main>
-    <footer class="site-footer"><div class="container footer-top"><div><a class="navbar__brand" href="index.html"><span class="brand-name">GG<span class="brand-dot">.</span></span></a><p>Digital Designer &amp; Creative Developer — Tbilisi, Georgia</p></div><div class="footer-links"><a href="index.html">Home</a><a href="projects.html">Projects</a><a href="contact.html">Contact</a><a href="about.html">About</a></div></div><div class="container footer-bottom">© 2026 Giorgi Giorgadze. All rights reserved. <span>INTERACTIVE SHOWROOM · V0.16.4</span></div></footer>
+    <footer class="site-footer"><div class="container footer-top"><div><a class="navbar__brand" href="index.html"><span class="brand-name">GG<span class="brand-dot">.</span></span></a><p>Digital Designer &amp; Creative Developer — Tbilisi, Georgia</p></div><div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="projects.html" aria-current="page">Projects</a>
+        <a href="lab.html">Lab</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div></div><div class="container footer-bottom">© 2026 Giorgi Giorgadze. All rights reserved. <span>INTERACTIVE SHOWROOM · V0.16.4</span></div></footer>
   </div>
 
 

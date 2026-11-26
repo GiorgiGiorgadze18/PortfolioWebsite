@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Try the holographic interface from Giorgi Giorgadze’s portfolio. Explore CSS 3D depth, pointer interaction and adjustable reflections.">
+  <meta name="author" content="Giorgi Giorgadze">
+  <title>Creative Lab | Giorgi Giorgadze</title>
+
+  <!-- Google Fonts: Inter + Space Grotesk (per spec) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css?v=0.17.3">
+  <link rel="stylesheet" href="css/index.css?v=0.17.3">
+  <link rel="stylesheet" href="css/constellation.css">
+  <script defer src="js/constellation.js"></script>
+  <link rel="stylesheet" href="css/hologram.css?v=0.17.6">
+  <link rel="stylesheet" href="css/lab.css">
+  <script defer src="js/lab.js"></script>
+  <script defer src="js/hologram.js?v=0.17.6"></script>
+  <noscript><style>#disciplines [data-animate] { opacity: 1; transform: none; }</style></noscript>
+
+  <link rel="canonical" href="https://giorgigiorgadze18.github.io/PortfolioWebsite/lab.html">
+  <link rel="icon" href="https://giorgigiorgadze18.github.io/PortfolioWebsite/assets/icon-code.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Giorgi Giorgadze">
+  <meta property="og:title" content="Creative Lab | Giorgi Giorgadze">
+  <meta property="og:description" content="Try the holographic interface from Giorgi Giorgadze’s portfolio. Explore CSS 3D depth, pointer interaction and adjustable reflections.">
+  <meta property="og:url" content="https://giorgigiorgadze18.github.io/PortfolioWebsite/lab.html">
+  <meta property="og:image" content="https://giorgigiorgadze18.github.io/PortfolioWebsite/assets/social-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Giorgi Giorgadze — Digital Designer and Creative Developer">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Creative Lab | Giorgi Giorgadze">
+  <meta name="twitter:description" content="Try the holographic interface from Giorgi Giorgadze’s portfolio. Explore CSS 3D depth, pointer interaction and adjustable reflections.">
+  <meta name="twitter:image" content="https://giorgigiorgadze18.github.io/PortfolioWebsite/assets/social-preview.png">
+  <meta name="twitter:image:alt" content="Giorgi Giorgadze — Digital Designer and Creative Developer">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebPage", "url": "https://giorgigiorgadze18.github.io/PortfolioWebsite/lab.html", "name": "Creative Lab | Giorgi Giorgadze", "description": "Try the holographic interface from Giorgi Giorgadze’s portfolio. Explore CSS 3D depth, pointer interaction and adjustable reflections.", "mainEntity": {"@type": "CreativeWork", "name": "Holographic interface", "creator": {"@type": "Person", "name": "Giorgi Giorgadze", "url": "https://giorgigiorgadze18.github.io/PortfolioWebsite/"}}}</script>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       NAVIGATION
+  ═══════════════════════════════════════════════════════════ -->
+  <header class="navbar" id="navbar">
+    <nav class="navbar__inner container">
+      <a href="index.html" class="navbar__brand" aria-label="Giorgi Giorgadze Home">
+        <img src="assets/icon-code.svg" alt="" class="brand-icon" aria-hidden="true">
+        <span class="brand-name">GG<span class="brand-dot">.</span></span>
+      </a>
+      <ul class="navbar__links" role="list">
+        <li><a href="index.html" class="nav-link">HOME</a></li>
+        <li><a href="projects.html" class="nav-link">PROJECTS</a></li>
+        <li><a href="lab.html" class="nav-link is-active" aria-current="page">LAB</a></li>
+        <li><a href="about.html" class="nav-link">ABOUT</a></li>
+        <li><a href="contact.html" class="nav-link">CONTACT</a></li>
+      </ul>
+      <a href="contact.html" class="btn btn--outline navbar__cta">CONNECT</a>
+      <button class="navbar__hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Mobile menu overlay -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true" inert>
+    <ul class="mobile-menu__links" role="list">
+        <li><a href="index.html" class="nav-link">HOME</a></li>
+        <li><a href="projects.html" class="nav-link">PROJECTS</a></li>
+        <li><a href="lab.html" class="nav-link is-active" aria-current="page">LAB</a></li>
+        <li><a href="about.html" class="nav-link">ABOUT</a></li>
+        <li><a href="contact.html" class="nav-link">CONTACT</a></li>
+        <li><a href="contact.html" class="nav-link">CONNECT</a></li>
+      </ul>
+  </div>
+
+  <main id="lab">
+    <section class="lab-intro container" aria-labelledby="lab-title">
+      <p class="section-label">CREATIVE LAB</p>
+      <h1 class="section-title" id="lab-title">Explore the interaction.</h1>
+      <p>An interaction from this portfolio, open for you to try.</p>
+    </section>
+    <section class="lab-experiment container" aria-labelledby="experiment-title">
+      <div class="lab-description">
+        <h2 id="experiment-title">Holographic interface</h2>
+        <p>A glass interface with layered depth, moving reflections and damped rotation. This is the interaction used in the portfolio’s discipline cards.</p>
+        <p>Move your pointer over the card or drag it horizontally on a touch screen. The controls also work with a keyboard.</p>
+        <a href="index.html#disciplines">See it in the portfolio</a>
+      </div>
+      <div class="lab-stage" data-hologram>
+        <article class="discipline-card" aria-labelledby="sample-title">
+          <div class="discipline-card__surface">
+            <div class="discipline-card__header">
+              <div class="discipline-card__icon" aria-hidden="true"><img src="assets/vector-diamond.svg" alt=""></div>
+              <h3 class="discipline-card__title" id="sample-title">SPATIAL<br>INTERFACE</h3>
+            </div>
+            <ul class="discipline-card__list"><li>Layered content</li><li>Pointer and touch rotation</li><li>Soft reflections</li></ul>
+            <div class="discipline-card__tools"><span class="tool-tag">CSS 3D</span><span class="tool-tag">JavaScript</span></div>
+          </div>
+        </article>
+      </div>
+      <form class="lab-controls" aria-label="Hologram settings" hidden>
+        <label for="lab-strength">Tilt strength <output for="lab-strength" id="strength-value">1×</output></label>
+        <input id="lab-strength" type="range" min="0" max="1.5" step=".1" value="1">
+        <label for="lab-reflection">Reflection <output for="lab-reflection" id="reflection-value">0.35</output></label>
+        <input id="lab-reflection" type="range" min="0" max="1" step=".05" value=".35">
+        <div class="lab-actions"><button type="button" class="btn btn--outline" id="lab-pause" aria-pressed="false">Pause card motion</button><button type="reset" class="btn btn--ghost">Reset</button></div>
+        <p id="lab-motion-status" role="status" aria-live="polite"></p>
+      </form>
+      <p id="lab-fallback" hidden>Static preview. Interactive controls are unavailable in this browser.</p>
+      <noscript><p>The static interface is available above. Enable JavaScript to adjust its interaction.</p></noscript>
+    </section>
+  </main>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <a href="index.html" class="navbar__brand">
+          <span class="brand-name">GG<span class="brand-dot">.</span></span>
+        </a>
+        <p>Digital Designer &amp; Creative Developer — Tbilisi, Georgia</p>
+      </div>
+      <nav class="footer__nav" aria-label="Footer navigation">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="lab.html" aria-current="page">Lab</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="footer__contact">
+        <a href="mailto:giorgi.giorgadzee.16@gmail.com">giorgi.giorgadzee.16@gmail.com</a>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <p>&copy; 2026 Giorgi Giorgadze. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js?v=0.17.4"></script>
+</body>
+</html>

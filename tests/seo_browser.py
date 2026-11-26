@@ -8,7 +8,7 @@ import json, xml.etree.ElementTree as ET
 from playwright.sync_api import sync_playwright
 
 root=Path(__file__).resolve().parents[1]
-out=root/'docs/phase06'
+out=root/'docs/phase07'
 production='https://giorgigiorgadze18.github.io/PortfolioWebsite/'
 class Handler(SimpleHTTPRequestHandler):
     def __init__(self,*args,**kwargs):super().__init__(*args,directory=str(root),**kwargs)
@@ -35,7 +35,7 @@ try:
             browser=engine.launch(executable_path=path)
             page=browser.new_page(viewport={'width':390,'height':844},ignore_https_errors=True)
             titles=[]
-            for name in ['index','projects','about','contact']:
+            for name in ['index','projects','about','contact','lab']:
                 response=page.goto(base+name+'.html'+('?view=grid' if name=='projects' else ''),wait_until='domcontentloaded')
                 assert response.status==200
                 expected=production+('' if name=='index' else name+'.html')
@@ -57,11 +57,14 @@ try:
                         assert len(data['itemListElement'])==6
                         assert all(item['item']['@type']=='CreativeWork' for item in data['itemListElement'])
                         assert len({item['item']['url'] for item in data['itemListElement']})==6
+                    elif data.get('@type')=='WebPage':
+                        assert data['mainEntity']['@type']=='CreativeWork'
+                        assert data['name']=='Creative Lab | Giorgi Giorgadze'
                     else:
                         person=next(n for n in data['@graph'] if n['@type']=='Person')
                         assert person['name']=='Giorgi Giorgadze'
                 rows.append([engine.name,name,'metadata/schema JSON/local production-path asset resolution','PASS'])
-            assert len(set(titles))==4
+            assert len(set(titles))==5
             for slug in ['meetab','jbl']:
                 page.goto(base+'projects.html?view=grid#project/'+slug,wait_until='domcontentloaded')
                 page.wait_for_selector('dialog[open]')
@@ -89,10 +92,10 @@ try:
         rows.append(['Chromium','six semantic project records without JS','PASS'])
     tree=ET.fromstring((root/'sitemap.xml').read_text())
     urls=[e.text for e in tree.findall('{*}url/{*}loc')]
-    assert len(urls)==4 and len(set(urls))==4
+    assert len(urls)==5 and len(set(urls))==5
     assert all(url.startswith(production) and '#' not in url for url in urls)
     for url in urls:assert urlopen(base+url[len(production):]).status==200
-    rows.append(['XML/local server','four sitemap URLs','PASS'])
-    (out/'tests.json').write_text(json.dumps(rows,indent=2)+'\n')
+    rows.append(['XML/local server','five sitemap URLs','PASS'])
+    (out/'seo-tests.json').write_text(json.dumps(rows,indent=2)+'\n')
     print(rows)
 finally:server.shutdown()

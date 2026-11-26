@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.17.6 — Phase 07 draft, 2026-11-26
+
+[PR #24](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/24)
+
+- Add a Creative Lab using the existing holographic engine with tilt strength, reflection, pause/resume and reset controls. Support native keyboard ranges, reduced motion and static fallback.
+- Add consistent Lab navigation and a fifth sitemap entry. Browser, shared-engine and accessibility checks are recorded in docs/phase07.
+
 ## 0.17.5 — Phase 06 draft, 2026-11-26
 
 [PR #24](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/24)
