@@ -46,7 +46,9 @@ Header-ის accessible name შეიცავს ხილულ GG-ს დ�
 | LinkedIn/Behance სრული ვალიდაცია | პროფესიული პროფილის გახსნა | 999 /403 service restriction | BLOCKED |
 | რეალური Formspree inbox | წერილის მიღება | რეალური მოთხოვნა არ გაგზავნილა | NOT RUN |
 
-გამოყენებული ბრძანებები: `python3 tests/final_qa.py`; `python3 tests/run_lighthouse.py <installed-lighthouse/cli/index.js>` და `--home-only`; `python3 tests/tsero_showroom.py http://127.0.0.1:8054/ --engine chromium --mode desktop` და `--mode phone`; `python3 tests/demo_touch.py http://127.0.0.1:8054/ --engine chromium`; `node tools/sync-projects.mjs --check`; `node --input-type=module --check < showroom/showroom.js`; `git -c core.whitespace=cr-at-eol diff --check`. WebKit იყენებს `/workspace/portfolio-work/webkit-launch.sh`; გარემოს software rendering ფიზიკურ GPU ტესტს არ უდრის.
+OFL license copies-ის წყაროში არსებული trailing spaces უცვლელად შენარჩუნებულია; whitespace შემოწმება ამ verbatim ლიცენზიებს გამორიცხავს.
+
+გამოყენებული ბრძანებები: `python3 tests/final_qa.py`; `python3 tests/run_lighthouse.py <installed-lighthouse/cli/index.js>` და `--home-only`; `python3 tests/tsero_showroom.py http://127.0.0.1:8054/ --engine chromium --mode desktop` და `--mode phone`; `python3 tests/demo_touch.py http://127.0.0.1:8054/ --engine chromium`; `node tools/sync-projects.mjs --check`; `node --input-type=module --check < showroom/showroom.js`; `git -c core.whitespace=cr-at-eol diff --check HEAD^ HEAD -- . ':!assets/fonts/*OFL.txt'`. WebKit იყენებს `/workspace/portfolio-work/webkit-launch.sh`; გარემოს software rendering ფიზიკურ GPU ტესტს არ უდრის.
 
 ფორმის პასუხები intercept-ით შემოწმდა; ქსელში რეალური წერილი არ გასულა. Tsero/MeeTab შესრულდა ლოკალურ bundled demo-ში, არა რეალურ შეკვეთაზე/გადახდაზე. `tests/final_qa.py` pageerror-ს ამოწმებს; ეს ყველა შესაძლო console warning-ის სრულ აუდიტს არ ნიშნავს.
 
