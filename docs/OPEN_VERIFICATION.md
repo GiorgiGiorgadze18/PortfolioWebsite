@@ -1,6 +1,6 @@
 # ღია შემოწმებების რეესტრი
 
-განახლებულია 2026-11-26, ფაზა 05. ეს ფაილი ინარჩუნებს წინა ფაზების FAIL, NOT RUN და BLOCKED პუნქტებს. მხოლოდ შესრულებული შესაბამისი ტესტის მტკიცებულება ხურავს ჩანაწერს.
+განახლებულია 2026-11-26, ფაზა 06. ეს ფაილი ინარჩუნებს წინა ფაზების FAIL, NOT RUN და BLOCKED პუნქტებს. მხოლოდ შესრულებული შესაბამისი ტესტის მტკიცებულება ხურავს ჩანაწერს.
 
 | ID | საკითხი | სტატუსი | ბოლო მტკიცებულება / დარჩენილი სამუშაო |
 |---|---|---|---|
@@ -25,7 +25,10 @@
 | S03 | ყველა postMessage გზა, storage და iframe უფლებები | ნაწილობრივი | MeeTab source check და wheel მონაცემის დაცვა; Tsero-ს permissions/CSP მიმოხილულია, ფორმალური penetration test არ ჩატარებულა |
 | S04 | TLS და ბრაუზერის ნამდვილი სერტიფიკატების ჯაჭვი | NOT RUN დამოუკიდებლად | ბრაუზერის ტესტები ignore_https_errors-ს იყენებს |
 | B01 | Firefox და Edge | NOT RUN | მიმდინარე ბრაუზერის მატრიცა Chromium/WebKit |
-| SEO01 | metadata/schema/sitemap/social image/404 | შემდეგი ფაზა | ფაზა 06 |
+| SEO01 | metadata/schema/sitemap/social image/404 | PASS ლოკალურ პირობებში | phase06/tests.json და report; წარმოებაზე გამოქვეყნების შემდეგ ხელახლა შესამოწმებელია |
+| SEO02 | origin-root robots პოლიტიკა | BLOCKED ამ repo-ს ფარგლებში | host /robots.txt არის 404, პროექტის ქვეკატალოგის robots crawl-ს ვერ მართავს |
+| SEO03 | live Google/social crawler და Pages-ის ნამდვილი 404 | NOT RUN | დრაფტის გამოქვეყნების შემდეგ |
+| SEO04 | გარე schema / Rich Results validator და Search Console | NOT RUN | ადგილობრივი JSON და content შემოწმება ამას არ ცვლის |
 | F01 | ხელმისაწვდომი WebGL fallback და no-JS artwork | PASS წინა ფაზაში | phase04/tests და არსებული fallback_browser.py |
 | ARCH01 | CSS/JS ნაწილობრივი ქსელური ჩავარდნა | NOT RUN სრულად | საერთო ES module ჩავარდნის გამძლეობა ცალკე შესამოწმებელია |
 

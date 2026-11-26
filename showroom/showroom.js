@@ -8,7 +8,7 @@
  * portfolio-3d-showroom-test-v14.zip. See docs/SHOWROOM.md for integration details.
  */
 
-import {PROJECTS, ARCHIVE_PROJECTS} from '../data/projects.mjs?v=0.17.4';
+import {PROJECTS, ARCHIVE_PROJECTS} from '../data/projects.mjs?v=0.17.5';
 let gridView = new URLSearchParams(location.search).get('view') === 'grid';
 let initialization;
 const projectSide = project => project.category==='graphics'?'graphics':'apps';
@@ -79,9 +79,9 @@ function setMenu(){
  window.addEventListener('resize',()=>{if(innerWidth>768)closeMenu()});
  window.addEventListener('scroll',()=>$('#navbar').classList.toggle('is-scrolled',scrollY>16),{passive:true});
 }
-function archiveCard(p){const article=document.createElement('article');article.className='archive-card';article.setAttribute('role','listitem');article.dataset.category=p.categories.join(' ');article.style.setProperty('--active-light',p.accent);article.innerHTML=`<div class="archive-thumb"><img loading="lazy" src="${assetUrl(p.thumbnail || p.cover)}" alt="${p.name} original design artwork"></div><div class="archive-info"><span class="archive-kind">${p.categoryLabel.toUpperCase()}</span><h3>${p.name}</h3><p>${p.year} · ${p.device.toUpperCase()} DISPLAY</p><a class="archive-action" href="#project/${p.id}" data-explore="${p.id}">EXPLORE PROJECT &nbsp; ↗</a></div>`;const img=article.querySelector('img');let candidateIndex=0;const candidateUrls=assetFallbacks(p.thumbnail || p.cover);img.src=candidateUrls[0];img.addEventListener('error',()=>{candidateIndex++;if(candidateIndex<candidateUrls.length){img.src=candidateUrls[candidateIndex];return;}img.hidden=true;const note=document.createElement('span');note.className='archive-image-unavailable';note.textContent='Artwork not loaded · '+p.shortName;article.querySelector('.archive-thumb').append(note)});article.querySelector('a').addEventListener('click',event=>{
+function archiveCard(p){const article=document.createElement('article');article.className='archive-card';article.setAttribute('role','listitem');article.dataset.category=p.categories.join(' ');article.style.setProperty('--active-light',p.accent);article.innerHTML=`<div class="archive-thumb"><img loading="lazy" src="${assetUrl(p.thumbnail || p.cover)}" alt="${p.name} original design artwork"></div><div class="archive-info"><span class="archive-kind">${p.categoryLabel.toUpperCase()}</span><h3>${p.name}</h3><p>${p.year} · ${p.device.toUpperCase()} DISPLAY</p><a class="archive-action" href="#project/${p.slug}" data-explore="${p.id}">EXPLORE PROJECT &nbsp; ↗</a></div>`;const img=article.querySelector('img');let candidateIndex=0;const candidateUrls=assetFallbacks(p.thumbnail || p.cover);img.src=candidateUrls[0];img.addEventListener('error',()=>{candidateIndex++;if(candidateIndex<candidateUrls.length){img.src=candidateUrls[candidateIndex];return;}img.hidden=true;const note=document.createElement('span');note.className='archive-image-unavailable';note.textContent='Artwork not loaded · '+p.shortName;article.querySelector('.archive-thumb').append(note)});article.querySelector('a').addEventListener('click',event=>{
  event.preventDefault();
- history.pushState(null,'','#project/'+p.id);
+ history.pushState(null,'','#project/'+p.slug);
  openAccessibleDetail(p);
 });return article;}
 function buildArchive(){ARCHIVE_PROJECTS.forEach(p=>projectGrid.append(archiveCard(p)));document.querySelectorAll('.filter[data-filter]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.filter[data-filter]').forEach(x=>{x.classList.toggle('is-active',x===b);x.setAttribute('aria-pressed',String(x===b))});projectGrid.querySelectorAll('.archive-card').forEach(card=>{card.hidden=b.dataset.filter!=='all'&&!card.dataset.category.split(' ').includes(b.dataset.filter);});}));}
@@ -1205,7 +1205,7 @@ function setProjectView(useGrid){
 }
 function openLinkedProject(){
  const id=location.hash.startsWith('#project/')?location.hash.slice(9):'';
- const project=ARCHIVE_PROJECTS.find(p=>p.id===id);
+ const project=ARCHIVE_PROJECTS.find(p=>p.slug===id||p.id===id);
  if(project)openAccessibleDetail(project);
  else if(modal?.open)modal.close();
 }

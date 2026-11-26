@@ -59,6 +59,7 @@ const featuredTitles = {
 };
 for (const project of ARCHIVE_PROJECTS) {
  project.featuredTitle = featuredTitles[project.id] || project.name;
+ project.slug = project.id === 'jbl' ? 'meetab' : project.id;
  if (project.cover.startsWith('project-')) {
   project.thumbnail = project.cover.replace(/\.(png|jpg)$/, '-preview.webp');
  }

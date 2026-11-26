@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.17.5 — Phase 06 draft, 2026-11-26
+
+[PR #24](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/24)
+
+- Add canonical/social metadata, catalogue-backed structured data and semantic project descriptions, a four-page sitemap, and a custom 404 with base-path-safe recovery links.
+- Create a 1200×630 social preview using the existing portrait and theme. Local browser verification and hosting limits are recorded in docs/phase06 and the open-check registry.
+
 ## 0.17.4 — Phase 05 draft, 2026-11-26
 
 [PR #24](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/24)
