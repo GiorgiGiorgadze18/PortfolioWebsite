@@ -1,0 +1,33 @@
+{
+  "python": "3.12.14",
+  "packages": {
+    "PIL": true,
+    "numpy": true,
+    "cv2": false,
+    "skimage": false,
+    "onnxruntime": false,
+    "torch": false,
+    "rembg": false,
+    "playwright": true
+  },
+  "node": "v24.22.1",
+  "npm": "11.9.0",
+  "gpu_device_present": false,
+  "api_env_presence": {
+    "OPENAI_API_KEY": false,
+    "HF_TOKEN": false,
+    "REPLICATE_API_TOKEN": false
+  },
+  "network": {
+    "https://giorgigiorgadze18.github.io/PortfolioWebsite/projects.html": {
+      "status": 200,
+      "bytes": 22707
+    },
+    "https://github.com/GiorgiGiorgadze18/PortfolioWebsite": {
+      "status": 200,
+      "bytes": 228297
+    }
+  },
+  "image_tool": "image_gen__imagegen available; no invocation, no spend authorized",
+  "physical_devices": "unavailable"
+}

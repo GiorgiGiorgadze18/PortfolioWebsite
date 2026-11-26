@@ -297,3 +297,9 @@ Chromium phone (390 px, DPR 2), WebKit phone (390 px), and Chromium desktop (128
 - Preserved the original source ZIP, original JBL artwork, old-site source/history backup, and restore instructions.
 - Stabilized the Try now control during camera transitions and recorded browser/deployment evidence.
 - [PR #1](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/1) · [PR #2](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/2)
+
+## Case Study Phase 0 audit — 2026-11-26
+
+- Added planning/state documents, original-asset hashes, capability probes and four-viewport software-WebGL baseline evidence under `docs/case-study/`.
+- Recorded live Grid inspection, source-ID compatibility risks, missing layered assets and test limitations. No site behavior changed. Gate 0 pending; no implementation, PR, merge or deployment.
+- Validation: `node tools/sync-projects.mjs --check`, `git diff --check`; browser coverage and actual measurements are in `docs/case-study/TEST_REPORT.md`.

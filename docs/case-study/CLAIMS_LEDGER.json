@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "7cd45c57d3177f015efccf42c9c1933b613dd46c",
+  "published": false,
+  "claims": [
+    {
+      "id": "tsero-demo",
+      "claim": "Tsero is a browser prototype; sign-in, payment and courier status are simulated.",
+      "evidence": [
+        {
+          "path": "showroom/tsero/README.md",
+          "commit": "7cd45c57d3177f015efccf42c9c1933b613dd46c"
+        }
+      ],
+      "status": "prototype"
+    },
+    {
+      "id": "meetab-demo",
+      "claim": "MeeTab has a local portfolio demo; upstream provenance is recorded.",
+      "evidence": [
+        {
+          "path": "showroom/SOURCE.json",
+          "commit": "7cd45c57d3177f015efccf42c9c1933b613dd46c"
+        }
+      ],
+      "status": "prototype"
+    },
+    {
+      "id": "graphics-jbl",
+      "claim": "JBL artwork source is present at 2480x3508.",
+      "evidence": [
+        {
+          "path": "docs/case-study/evidence/inventory.json",
+          "commit": "7cd45c57d3177f015efccf42c9c1933b613dd46c"
+        }
+      ],
+      "status": "verified-dev"
+    },
+    {
+      "id": "three",
+      "claim": "The portfolio vendors Three.js revision 180.",
+      "evidence": [
+        {
+          "path": "showroom/vendor/three.js:10",
+          "commit": "7cd45c57d3177f015efccf42c9c1933b613dd46c"
+        }
+      ],
+      "status": "verified-dev"
+    }
+  ],
+  "excludedUnverified": [
+    "Business outcomes",
+    "Production API/database/calendar topology",
+    "Outlook/Office 365/Exchange completion",
+    "Owner design rationale"
+  ]
+}

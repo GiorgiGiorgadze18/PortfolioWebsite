@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "7cd45c57d3177f015efccf42c9c1933b613dd46c",
+  "assets": [
+    {
+      "path": "assets/meetab-desktop-home.webp",
+      "bytes": 167488,
+      "width": 2560,
+      "height": 1600,
+      "mode": "RGB",
+      "sha256": "011b515dab7f20edc4fb5fe52b4117688db33566872bf6116d407b7c11641a25",
+      "kind": "preview"
+    },
+    {
+      "path": "assets/meetab-preview.jpg",
+      "bytes": 77824,
+      "width": 1280,
+      "height": 800,
+      "mode": "RGB",
+      "sha256": "4076267b3ee4619983ed101b334d78ae187d009777f6f0d1549c98fa1272cf48",
+      "kind": "preview"
+    },
+    {
+      "path": "assets/project-earthhour-preview.webp",
+      "bytes": 110288,
+      "width": 1131,
+      "height": 1600,
+      "mode": "RGB",
+      "sha256": "df42d1fcee43619ee2b556db0216034f601be4581055b8f099b948a9615a4cf9",
+      "kind": "preview"
+    },
+    {
+      "path": "assets/project-earthhour.png",
+      "bytes": 294084,
+      "width": 1797,
+      "height": 2542,
+      "mode": "RGB",
+      "sha256": "8a0ccf80fb26dabb55293dec39ff3cd83d38d0097b9e8a178393bc1eaa6cbf66",
+      "kind": "flattened-source"
+    },
+    {
+      "path": "assets/project-jbl-preview.webp",
+      "bytes": 79954,
+      "width": 1131,
+      "height": 1600,
+      "mode": "RGB",
+      "sha256": "42b070dc70b66a83756d5f85fe9bd0c817caa1fa6882e7176d62af44ae3b74a6",
+      "kind": "preview"
+    },
+    {
+      "path": "assets/project-jbl.png",
+      "bytes": 3158993,
+      "width": 2480,
+      "height": 3508,
+      "mode": "RGBA",
+      "sha256": "cfeb691e958a7b5facad135d48bb8ed9ed1a39d83e3aedc5c434d922bd3d5ddd",
+      "kind": "flattened-source"
+    },
+    {
+      "path": "assets/project-tomford-preview.webp",
+      "bytes": 172324,
+      "width": 627,
+      "height": 1115,
+      "mode": "RGB",
+      "sha256": "b6555e7f779dfe2d9b3cf8810ed34a617dc1995ec74f5c8959e7c29c745db5bd",
+      "kind": "preview"
+    },
+    {
+      "path": "assets/project-tomford.png",
+      "bytes": 1269691,
+      "width": 627,
+      "height": 1115,
+      "mode": "RGBA",
+      "sha256": "dfae5c879088e3ad86f51413a456aec2e226d60ca6af43c4d150a43ede5640ce",
+      "kind": "flattened-source"
+    },
+    {
+      "path": "assets/tsero-desktop-home.webp",
+      "bytes": 232202,
+      "width": 750,
+      "height": 1622,
+      "mode": "RGB",
+      "sha256": "309634ba63a341c81b00621b3c37e1b0390c04eb7d9e73566cad02b11f741c0e",
+      "kind": "preview"
+    }
+  ],
+  "layers": [],
+  "validationStatus": "NOT RUN",
+  "note": "Original hashes measured; no extracted assets or reconstruction exists; all case studies unpublished"
+}
