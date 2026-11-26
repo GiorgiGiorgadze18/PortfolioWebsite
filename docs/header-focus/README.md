@@ -19,3 +19,5 @@ Rollback შესაძლებელია ამ ცვლილებებ
 | ფიზიკური iPhone/Android და hardware FPS | NOT RUN |
 
 ტესტირების ბრძანება `PLAYWRIGHT_SKIP_VALIDATE_HOST_REQUIREMENTS=1 python3 tests/header_focus.py`. წყაროს manifest განახლებულია. ცვლილებები [PR #26](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/26)-შია.
+
+მფლობელის დამატებითი მოთხოვნით ამოღებულია Lab-ის Shader Playground და Lighting Studio, მათი მოდულები და preview წესები. Chromium/WebKit-ში შემოწმდა დარჩენილი Motion Physics, Particle Field და Spatial UI-ის გახსნა, ასევე არსებული ჰოლოგრამის ხილვადობა. შედეგი PASS ორივე ძრავში. მფლობელმა ამ ცვლილებებთან ერთად merge და გამოქვეყნება დაამტკიცა.
