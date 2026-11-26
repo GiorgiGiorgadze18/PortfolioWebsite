@@ -50,6 +50,8 @@ Lab-ს აქვს canonical, social metadata და WebPage/CreativeWork JSON
 
 tests.json შეიცავს ძირითადი მატრიცის შედეგებს, interaction-a11y.json — pointer/touch და axe-ს, fallback-reflection.json — დამატებით შემოწმებებს, seo-tests.json — ხუთგვერდიან SEO-ს, navigation.json — მენიუს რიგს. სქრინები lab-1440.png და lab-390.png წარმოადგენს მიმდინარე სრული გვერდის კადრებს. axe-ში გამოყენებული იყო /tmp/portfolio00-axe.js, ვერსია 4.10.3.
 
+ერთფაილიანი PortfolioWebsite-Lab-preview.html შეიქმნა ჩამოსატვირთად, მისივე CSS/JS/SVG ასლებით. Chromium-ში HTTP-ით Pause/Reset შემოწმდა. ამ მართვად ბრაუზერში file:// მისამართი ადმინისტრატორის პოლიტიკით დაბლოკილია; ეს შედეგი preview.json-შია და HTTP ტესტის PASS-ით არ იხურება. ჩვეულებრივი პროექტის preview კვლავ python3 -m http.server 8052 და /lab.html მისამართით მუშაობს.
+
 ## Before / After
 
 | საზომი | მანამდე | შემდეგ |

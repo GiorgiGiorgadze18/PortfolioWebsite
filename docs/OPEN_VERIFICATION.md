@@ -31,6 +31,7 @@
 | SEO04 | გარე schema / Rich Results validator და Search Console | NOT RUN | ადგილობრივი JSON და content შემოწმება ამას არ ცვლის |
 | F01 | ხელმისაწვდომი WebGL fallback და no-JS artwork | PASS წინა ფაზაში | phase04/tests და არსებული fallback_browser.py |
 | LAB01 | Lab კონტროლები, no-JS და shared Home regression | PASS შერჩეულ პირობებში | phase07/tests.json და დამატებითი არტეფაქტები |
+| LAB03 | ერთფაილიანი preview-ს file:// გახსნა მართვად ბრაუზერში | BLOCKED | ადმინისტრატორის პოლიტიკა; HTTP controls PASS — phase07/preview.json |
 | LAB02 | Lab რეალური მოწყობილობები, ყველა AT და ძველი browser fallback | NOT RUN | capability simulation ამ ჩანაწერს არ ხურავს |
 | CONTENT01 | Neon Drift-ის ავტორობა და გამოსაქვეყნებელი მასალა | NOT RUN / მასალა დაუდასტურებელია | დაკავშირებულ repository search-ში Neon არ მოიძებნა. პროექტის არარსებობა არ დასტურდება |
 | ARCH01 | CSS/JS ნაწილობრივი ქსელური ჩავარდნა | NOT RUN სრულად | საერთო ES module ჩავარდნის გამძლეობა ცალკე შესამოწმებელია |
