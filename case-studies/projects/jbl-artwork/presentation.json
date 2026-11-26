@@ -2,32 +2,32 @@
   "offsets": [
     [
       0,
-      0.0,
+      0,
       0
     ],
     [
       0,
-      0.4814,
+      0,
       25
     ],
     [
       0,
-      2.8885,
+      0,
       150
     ],
     [
       0,
-      1.7331,
+      0,
       90
     ],
     [
       0,
-      2.8885,
+      0,
       150
     ],
     [
       0,
-      4.2364,
+      0,
       220
     ]
   ],
@@ -50,7 +50,7 @@
       "state": {
         "spread": 0,
         "angle": 0,
-        "tilt": 48,
+        "tilt": 66.0224000536173,
         "lower": 30,
         "original": 1,
         "roll": 0
@@ -62,7 +62,7 @@
       "state": {
         "spread": 0,
         "angle": 0,
-        "tilt": 48,
+        "tilt": 66.0224000536173,
         "lower": 30,
         "original": 0,
         "roll": 0
@@ -74,7 +74,7 @@
       "state": {
         "spread": 1,
         "angle": 0,
-        "tilt": 48,
+        "tilt": 66.0224000536173,
         "lower": 30,
         "original": 0,
         "roll": 0
@@ -86,7 +86,7 @@
       "state": {
         "spread": 1,
         "angle": 0,
-        "tilt": 48,
+        "tilt": 66.0224000536173,
         "lower": 30,
         "original": 0,
         "roll": 0
@@ -98,7 +98,7 @@
       "state": {
         "spread": 0,
         "angle": 0,
-        "tilt": 48,
+        "tilt": 66.0224000536173,
         "lower": 30,
         "original": 0,
         "roll": 0
@@ -110,7 +110,7 @@
       "state": {
         "spread": 0,
         "angle": 0,
-        "tilt": 48,
+        "tilt": 66.0224000536173,
         "lower": 30,
         "original": 1,
         "roll": 0
@@ -147,14 +147,20 @@
       "layer": "identity"
     }
   ],
-  "liftAngleDegrees": 45,
-  "reclineDegrees": 48,
+  "reclineDegrees": 66.0224000536173,
   "rotationAxis": [
-    1,
-    -0.28,
-    -0.12
+    0.92390831,
+    0.22363939,
+    -0.31044945
   ],
   "perspective": 2400,
-  "leftLeanPixels": 18,
-  "rotationMode": "fixed-axis"
+  "leftLeanPixels": 0,
+  "rotationMode": "fixed-axis",
+  "referenceOrientation": {
+    "pitch": 60,
+    "yaw": 22,
+    "roll": -10,
+    "source": "Owner reference image, 2026-11-26"
+  },
+  "liftMode": "surface-normal"
 }

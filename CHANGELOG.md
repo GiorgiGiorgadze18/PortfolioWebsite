@@ -358,3 +358,9 @@ Chromium phone (390 px, DPR 2), WebKit phone (390 px), and Chromium desktop (128
 - Added glowing source dots/rings and faint glowing leader lines. Layer handoffs crossfade at their real anchors; description endpoint stays stable between headings.
 - Added cancellable text reveals, filled cyan current-step circles and subtle per-layer alpha shadows only during separation. Preserved native scroll, rigid left lean and original artwork.
 - Chromium/WebKit desktop/phone checks cover line crossfade weights, active fill, layer separation, replay, reduced motion and overflow; endpoint/reduced-motion follow-up in annotation-tests.json. Production remains unpublished.
+
+## JBL real-screen layers and Grid variant — 2026-11-26
+
+- Added six lazy-loaded Three.js planes attached to the selected JBL display, shared scroll/timeline state and real projected annotation anchors. Device and poster use owner-reference isometric orientation.
+- Grid About opens the independent CSS3D case; live scene preserves/returns camera projection, FOV/aspect/device pose and disposes new GPU resources. Poster support is hidden/restored only for presentation. HUD transparency, mobile actions and short-height static fallback handled.
+- Tests/evidence/limits: docs/case-study/JBL_SCENE_REPORT.md. Chromium software-GL scene checks and Chromium/WebKit Grid/reference checks executed; physical GPU/Safari/context-loss matrix not claimed. No production merge/deployment.

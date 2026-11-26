@@ -27,3 +27,6 @@ Owner found70° too flat; revised to48° with-6° screen-diagonal roll. Render p
 Owner perceived bending in the multi-axis motion. Use a single constant rotation axis with eased angle and gentler perspective rather than independently interpolated Euler angles. This changes perceived projection/motion, not the source artwork. Same pose applies to all planes and original.
 
 Leader handoffs crossfade two independently anchored paths across a0.07 progress band, using smoothstep driven by existing spring-smoothed scroll. This keeps source dots attached to real layers while avoiding teleports. Caption-side port stays at a fixed viewport-relative position to avoid jumps from heading reflow. Text micro-transitions use cancellable WAAPI, skipped/cancelled for reduced motion. Shadows are modest CSS alpha drop shadows, not a claim of physical lighting.
+
+## Live scene / Grid integration
+Owner supplied isometric reference; target orientation equivalent pitch60/yaw22/roll−10 encoded as a single axis-angle. Scene keeps original device model; only poster support visibility temporarily suppressed. Transparent HUD requires normal color-scheme on iframe root. Static/short view pauses rendering. Resource counts distinguish renderer bookkeeping from physical GPU RAM. No actual WebGL Safari/iPhone claim.

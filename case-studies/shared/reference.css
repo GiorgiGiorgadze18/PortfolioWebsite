@@ -12,3 +12,11 @@
 .anchor-ring{fill:none;stroke:#80edff;stroke-width:1;opacity:.45}
 .plane{filter:drop-shadow(0 9px 11px rgb(0 0 0 / var(--layer-shadow,0)))}
 @media(prefers-reduced-motion:reduce){#chapters button{transition:none}}
+
+.scene-mode body,.scene-mode .pin{background:transparent}.scene-mode .intro{display:none}.scene-mode header{position:fixed;inset:0 0 auto;z-index:10}.scene-mode .board{visibility:hidden}.scene-mode #static,.scene-mode footer{background:#080d18}.scene-mode.is-static body{background:#080d18}
+
+html.scene-mode{color-scheme:normal;background:transparent;scrollbar-color:#374357 #080d18}
+
+.scene-mode aside{background:rgba(6,10,20,.94);padding:16px;border-radius:12px}
+
+.scene-mode.is-static #static{padding-top:120px}

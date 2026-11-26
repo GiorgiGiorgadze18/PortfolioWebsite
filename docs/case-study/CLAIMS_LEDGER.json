@@ -76,6 +76,22 @@
           "path": "tools/case-study/export_reference.py"
         }
       ]
+    },
+    {
+      "id": "jbl-live-scene",
+      "status": "verified-dev",
+      "claim": "JBL review presents original graphic layers on the existing procedural display using Three.js; Grid uses CSS3D with shared project data.",
+      "evidence": [
+        {
+          "path": "case-studies/shared/webgl-layers.mjs"
+        },
+        {
+          "path": "docs/case-study/evidence/reference/entry-visual-tests.json"
+        },
+        {
+          "path": "docs/case-study/evidence/reference/grid-case-tests.json"
+        }
+      ]
     }
   ],
   "excludedUnverified": [

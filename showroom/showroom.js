@@ -1,3 +1,4 @@
+import {loadWebGLLayers} from '../case-studies/shared/webgl-layers.mjs';
 import {registerShowroomBridge} from '../case-studies/shared/showroom-bridge.mjs';
 import {createSurfaceTransition} from '../case-studies/shared/surface-transition.mjs';
 
@@ -32,7 +33,7 @@ const halo=$('#ambient-halo'),shelfSwitch=$('#shelf-switch'),outline=$('#tablet-
 const outlinePaths=outline.querySelectorAll('path');
 let outlinePending=false,outlineRunning=false;
 const focusHost=$('#focus-canvas');
-let caseSurface=null;
+let caseSurface=null,caseLayers=null;
 let THREE, renderer, focusRenderer, scene, camera, raycaster, pointer, ambientLight, lightKey, lightAccent, glowSprite;
 let accentTarget, accentCurrent, movingTween, selected=null, hovered=null, cameraTarget, portalPlane;
 let sceneReady=false, state='gallery', queuedSelection=null, lastFrame=0, initialTime=0, lastPointer={x:0,y:0};
@@ -203,8 +204,8 @@ function deviceFactory(p){const group=new THREE.Group();const colorMat=metal();l
   const stand=new THREE.Mesh(new THREE.BoxGeometry(1.4,.09,.4),surfaceMaterial({map:grainTexture('walnut'),color:'#A78F7C',metalness:.06,roughness:.55,clearcoat:.12}));stand.position.set(0,-h/2-.1,-.16);stand.rotation.x=.15;stand.castShadow=true;group.add(stand);
  }
  if(p.device==='poster'){
-  const foot=new THREE.Mesh(new THREE.BoxGeometry(.88,.07,.5),surfaceMaterial({map:grainTexture('walnut'),color:'#A78F7C',metalness:.05,roughness:.58,clearcoat:.12}));foot.position.set(0,-h/2-.09,-.1);foot.castShadow=true;group.add(foot);
-  const spine=new THREE.Mesh(new THREE.BoxGeometry(.06,1.2,.09),material('#8F7B63',.78,.33));spine.position.set(0,-.65,-.08);group.add(spine);
+  const foot=new THREE.Mesh(new THREE.BoxGeometry(.88,.07,.5),surfaceMaterial({map:grainTexture('walnut'),color:'#A78F7C',metalness:.05,roughness:.58,clearcoat:.12}));foot.position.set(0,-h/2-.09,-.1);foot.castShadow=true;foot.userData.caseStudySupport=true;group.add(foot);
+  const spine=new THREE.Mesh(new THREE.BoxGeometry(.06,1.2,.09),material('#8F7B63',.78,.33));spine.position.set(0,-.65,-.08);spine.userData.caseStudySupport=true;group.add(spine);
  }
  group.position.set(...p.scene.position);group.rotation.set(...p.scene.rotation);group.scale.setScalar(p.scene.scale);addProjectHit(group,p);
  group.traverse(obj=>{if(obj.isMesh&&obj.material?.color){obj.material.userData.baseColor=obj.material.color.clone();}});
@@ -1048,16 +1049,21 @@ function setupInteraction(){
 
 function installCaseStudySurface(){
  const target=()=>displayItems.get('jbl-artwork').group;
- const capture=()=>({position:target().position.toArray(),rotation:[target().rotation.x,target().rotation.y,target().rotation.z],scale:target().scale.toArray(),camera:camera.position.toArray(),cameraRotation:[camera.rotation.x,camera.rotation.y,camera.rotation.z],zoom:camera.zoom});
- caseSurface=createSurfaceTransition({capture,reduced:motionReduced,apply(pose){const g=target();g.position.fromArray(pose.position);g.rotation.set(...pose.rotation);g.scale.fromArray(pose.scale);camera.position.fromArray(pose.camera);camera.rotation.set(...pose.cameraRotation);camera.zoom=pose.zoom;camera.updateProjectionMatrix();camera.updateMatrixWorld(true);backdropSettlesAt=performance.now()+100;}});
- registerShowroomBridge({get status(){return caseSurface.status;},inspect:caseSurface.inspect,enter(){if(selected?.id!=='jbl-artwork'||state!=='focus'||movingTween)return Promise.resolve(false);return caseSurface.enter();},exit:()=>caseSurface.exit()});
+ const capture=()=>({position:target().position.toArray(),rotation:[target().rotation.x,target().rotation.y,target().rotation.z],scale:target().scale.toArray(),camera:camera.position.toArray(),cameraRotation:[camera.rotation.x,camera.rotation.y,camera.rotation.z],zoom:camera.zoom,aspect:camera.aspect,fov:camera.fov,cameraOffsets:camera.view?.enabled?[camera.view.offsetX/camera.view.fullWidth,camera.view.offsetY/camera.view.fullHeight]:[0,0]});
+ caseSurface=createSurfaceTransition({capture,reduced:motionReduced,apply(pose){const g=target();g.position.fromArray(pose.position);g.rotation.set(...pose.rotation);g.scale.fromArray(pose.scale);camera.position.fromArray(pose.camera);camera.rotation.set(...pose.cameraRotation);camera.zoom=pose.zoom;if(pose.cameraOffsets.some(v=>v!==0))camera.setViewOffset(innerWidth,innerHeight,pose.cameraOffsets[0]*innerWidth,pose.cameraOffsets[1]*innerHeight,innerWidth,innerHeight);else camera.clearViewOffset();camera.aspect=pose.aspect;camera.fov=pose.fov;camera.updateProjectionMatrix();camera.updateMatrixWorld(true);backdropSettlesAt=performance.now()+100;}});
+ registerShowroomBridge({get status(){return caseSurface.status;},inspect:caseSurface.inspect,enter(){if(selected?.id!=='jbl-artwork'||state!=='focus'||movingTween)return Promise.resolve(false);return caseSurface.enter();},async loadLayers(){const stage=await loadWebGLLayers({THREE,device:displayItems.get('jbl-artwork'),camera,layer:ACTIVE_LAYER,baseURL:new URL('../case-studies/projects/jbl-artwork/',import.meta.url)});if(graphicsUnavailable){stage.dispose();throw Error('Showroom unavailable');}caseLayers=stage;},
+ setProgress(p,rect){caseLayers?.draw(p,rect);backdropZoom=NaN;},
+ get layers(){return caseLayers;},
+ resources(){return {textures:renderer.info.memory.textures+focusRenderer.info.memory.textures,geometries:renderer.info.memory.geometries+focusRenderer.info.memory.geometries};},
+ exit(){caseLayers?.dispose();caseLayers=null;return caseSurface.exit().then(result=>{queueSceneResize();return result;});}});
  addEventListener('pagehide',()=>caseSurface.dispose(),{once:true});
 }
 
 function render(time){
  if(!sceneReady)return;
  requestAnimationFrame(render);
- if(gridView||document.documentElement.dataset.caseStudyActive){lastFrame=time;return;}
+ if(gridView||document.documentElement.dataset.caseStudyPaused||(document.documentElement.dataset.caseStudyActive&&!caseLayers)){lastFrame=time;return;}
+ if(document.documentElement.dataset.caseStudyActive&&caseLayers&&!caseLayers.dirty&&!resizePending){lastFrame=time;return;}
  if(resizePending){resizePending=false;staticFramePainted=false;resizeScene();}
  // Hold the tablet still behind the phone notice. The CSS sweep runs independently.
  if(staticPreview()&&staticFramePainted){lastFrame=time;return;}
@@ -1174,10 +1180,12 @@ function render(time){
   device.group.scale.setScalar(layout.scale);
  }
  caseSurface?.tick(time);
+ caseLayers?.refresh();
  for(const [id,device] of displayItems){
   if(device.cast.mesh.visible)updateCastShadow(device,exhibitSpots.get(id),device.group.parent===scene);
  }
  scene.updateMatrixWorld(true);
+ if(caseLayers)window.dispatchEvent(new CustomEvent('case-study:anchors',{detail:caseLayers.anchors()}));
  renderLabels(time);
  positionScreenPortal();
  if(glowSprite)glowSprite.material.opacity=0;
@@ -1201,6 +1209,8 @@ function installKeys(){document.addEventListener('keydown',e=>{if(e.key==='Escap
  });
  resetButton.addEventListener('click',closeProject);}
 function showFallback(detail){
+ caseLayers?.dispose();caseLayers=null;
+ window.dispatchEvent(new Event('case-study:fallback'));
  caseSurface?.dispose();
  graphicsUnavailable = true;
  sceneReady = false;

@@ -64,3 +64,8 @@ Chromium/WebKit1440×900 and390×844 PASS: recline before lift, actual projected
 
 ## Annotation/step polish
 PASS: Chromium/WebKit desktop1440×900 and phone390×844, source dot count4, fully cyan active step, paired leader fade weights≈.5/.5 at handoff, navigation/replay/reduced motion, overflow0 and pageerror0 (reference/tests.json). PASS: fixed description endpoint across3 chapters and cancellation of text animation on reduced motion in both browsers (annotation-tests.json). WebKit desktop screenshot visually reviewed for anchored dot, glow and subtle layer shadows. Physical hardware/FPS not measured.
+
+## Live scene / Grid integration
+Live scene results and exact conditions are in JBL_SCENE_REPORT.md and reference/*tests.json. Earlier tests failed because exact class expected did not include scene-mode (test corrected), then screenshot exposed an opaque iframe root (runtime corrected). Current visual gate includes actual blue artwork pixels, layer depths, restoration and renderer counts. Three-cycle logical test predates the visual check; do not treat it as visual certification.
+
+Final live-scene visual checks: entry-visual-tests.json1280×720 and entry-phone-tests.json390×844 PASS,6 actual meshes, source support hidden during story, visible blue artwork pixel gate, pose/focus/scroll restored, renderer texture/geometry counts unchanged after disposal. Context-loss full scenario NOT RUN; no physical GPU/FPS claim.

@@ -1,20 +1,8 @@
-# Current state — Gate1 review
-Phase1 minimal engine + Phase2/3 JBL reference ready for owner Gate1 review. Branch feat/case-study-phase1-engine. Stop before other project implementation as required by MASTER §3.
-Current report: GATE_1_REPORT.md. Current commit: git log -1 --format=%H -- docs/case-study/GATE_1_REPORT.md.
-Done: real board/camera enter/exit with exact restore; deterministic6-plane reference/chapter JSON; static/no-JS/reduced-motion alternative; source hashes/SSIM/alpha evidence; actual3-cycle scene return and browser tests.
-Preview: /workspace/portfolio-work/JBL-case-study-preview.html self-contained; or HTTP /case-studies/jbl-preview.html. Parent entry /projects.html?view=3d&caseStudyPreview=1 then select JBL.
-State: feature disabled by default, published:false, no PR/merge/deploy. User earlier requested publish; full release readiness is not claimed by this review reference.
-Remaining QA limits: actual devices/AT/GPU, full context-loss scenario,10 browser-memory cycles, full portfolio/demo business regression and complete halo forensic verification. Original-image endpoint handles small residual differences; max87/255 not exact recomposition.
-Owner action: Gate1 visual review/decision. Other layered sources absent; do not request JBL source again. All original PSD/PNG files retained unchanged.
-
-## Gate1 visual revision requested by owner
-70° poster recline occurs before layer lift;45° upward trajectory encoded in presentation.json. Reverse assembles before standing. Layer travel scales with rendered board width. Review artifact: /workspace/portfolio-work/JBL-case-study-preview-reclined.html. This revises the JBL reference only; no approval for other projects inferred.
-
-## Latest owner visual revision — 2026-11-26
-Supersedes70° recline: tilt48°, gentle-6° diagonal roll during recline, unchanged-10° yaw. Initial/end pose upright with zero roll. Layer offsets updated for45° rise before yaw/roll; native scroll sequencing and original endpoints retained. Preview: /workspace/portfolio-work/JBL-case-study-preview-diagonal-48.html. Gate1 review remains pending; no new project implementation or deployment.
-
-## Latest owner revision — rigid left lean
-Supersedes separate Euler roll/yaw: fixed rotate3d axis[1,-.28,-.12], angle48°, leftward drift18 design pixels, perspective2400px instead of1100px. Every layer and original share the same rigid pose; no skew/mesh deformation. Upward lift retained with offsets recomputed for45° direction at target pose. Preview /workspace/portfolio-work/JBL-case-study-preview-left-lean.html. Gate1 review remains pending; no production publish.
-
-## Latest owner polish request
-Added source-side filled dot/ring, restrained line glow, scroll-weighted crossfade between anchored leaders (no off-surface endpoint interpolation), stable description port, cancellable280ms text reveals, fully cyan active stage circles, and subtle alpha-aware shadows only while separated. Geometry/rigid-left-lean preserved. Preview: /workspace/portfolio-work/JBL-case-study-preview-glow-transitions.html. Gate1 visual review pending; Tom Ford materials mentioned by owner but not inspected or implemented. No production publish.
+# Current state — JBL live scene + Grid review
+Owner authorized real display-surface extraction plus unchanged independent Grid view and supplied an isometric reference image. Implemented on feat/case-study-phase1-engine. No production merge/deploy; published:false/default review flag only.
+Current report JBL_SCENE_REPORT.md; current SHA: git log -1 --format=%H -- docs/case-study/JBL_SCENE_REPORT.md.
+Scene path: projects.html?view=3d&caseStudyPreview=1 → Graphic Design → JBL → case preview. Grid path: projects.html?view=grid&caseStudyPreview=1 → JBL About → case preview.
+Real six Three.js planes, real projected anchors, shared JSON timeline, full camera/device restoration, resource disposal, source stand hidden/restored during presentation. No original art/app repositories modified.
+Evidence: reference/entry-tests.json (older three cycles), entry-visual-tests.json and entry-phone-tests.json (current visible-artwork checks), grid-case-tests.json, tests.json, annotation-tests.json; use actual recorded results, not historical status prose.
+Standalone Grid review file /workspace/portfolio-work/JBL-case-study-preview-reference-angle.html; actual scene screenshots in evidence/reference/actual-webgl-*.png.
+Remaining: owner Gate1 visual review; complete context-loss/AT/physical-device/10-cycle GPU-memory and broad demo regression in final QA. Tom Ford mentioned ready but not inspected or started. No new JBL source needed.

@@ -11,3 +11,6 @@ Adapters are isolated presentation modules in local demo exports, not upstream p
 
 ## Gate1 checkpoint
 Implemented showroom-bridge and surface-transition provide real board/camera entry and exit, driven by existing rAF. State snapshots include position/rotation/scale and camera pose/zoom. Active dialogue pauses parent drawing. The layer stage uses CSS3D, own semantic chapters and spring-smoothed native scroll. Per-project keyframes/offsets/annotation targets live in presentation.json.
+
+## Live scene / Grid integration
+Implemented live-surface variant: lazy webgl-layers builds six MeshBasicMaterial alpha planes attached to selected display; JSON state controls device quaternion and per-plane local offsets. Existing render loop refreshes only when dirty. Projection view offset centers the visual stage and is restored with FOV/aspect/camera pose. Grid uses isolated CSS3D without initializing WebGL. Shared chapters/progress with validated same-origin bridge; actual projected anchors feed SVG overlay.

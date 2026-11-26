@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "cycles": 1,
+  "scope": "Chromium software GL actual graphic selection, iframe open/exit, exact real camera/board pose, focus and scroll restoration; no-JS static chapters",
+  "errors": [],
+  "layerState": {
+    "planes": 6,
+    "supportsHidden": true,
+    "progress": 0.39679770927670555,
+    "depths": [
+      0.126,
+      0.22986700148183836,
+      0.7488020088910302,
+      0.4998612053346182,
+      0.7490020088910302,
+      1.0396496130401778
+    ]
+  },
+  "beforeResources": {
+    "textures": 24,
+    "geometries": 113
+  },
+  "afterResources": {
+    "textures": 24,
+    "geometries": 113
+  }
+}
