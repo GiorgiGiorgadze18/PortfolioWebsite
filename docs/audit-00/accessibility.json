@@ -1,0 +1,33 @@
+{
+  "index": [
+    {
+      "id": "aria-hidden-focus",
+      "impact": "serious",
+      "nodes": 1,
+      "example": [
+        "#mobile-menu"
+      ]
+    }
+  ],
+  "about": [],
+  "contact": [
+    {
+      "id": "aria-hidden-focus",
+      "impact": "serious",
+      "nodes": 1,
+      "example": [
+        "#mobile-menu"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "id": "color-contrast",
+      "impact": "serious",
+      "nodes": 1,
+      "example": [
+        "button[data-filter=\"all\"] > span"
+      ]
+    }
+  ]
+}
