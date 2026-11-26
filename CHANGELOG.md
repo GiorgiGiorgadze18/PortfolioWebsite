@@ -334,3 +334,11 @@ Chromium phone (390 px, DPR 2), WebKit phone (390 px), and Chromium desktop (128
 - Added real showroom board/camera entry and exact reversible exit on the existing animation loop; interruptible and reduced-motion aware. Added project JSON choreography and explicit default-disabled registry.
 - Fixed no-JS/failed-init blank pin space. Tests: actual Chromium3-cycle exact camera/board/focus/scroll restoration;10 unit transition cycles; Chromium/WebKit reference desktop/phone; existing header/menu and MeeTab wheel regression. Hardware/AT/full memory QA not claimed.
 - Gate1 review only; no PR, merge or production deployment. See docs/case-study/GATE_1_REPORT.md.
+
+## JBL reclined composition revision — 2026-11-26
+
+- Updated the review choreography per owner direction: intact poster reclines70° before any layer separation, then layers rise along a45° upward trajectory. On reverse, layers assemble before the poster stands upright.
+- Added independent tilt/lower keyframes, surface-relative zero-offset background and width-scaled layer travel; headphone pieces stay aligned. Originals, copy and showroom entry/exit unchanged.
+- Browser validation recorded in docs/case-study/evidence/reference/tests.json; working preview revised separately. Public feature remains unpublished.
+
+- Cross-browser follow-up in the same revision: avoid nested3D image composition, apply complete pose per plane with perspective on their common board; keep native-scroll and original endpoints.

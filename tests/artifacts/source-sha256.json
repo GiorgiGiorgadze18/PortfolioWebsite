@@ -156,13 +156,13 @@
   "showroom/vendor/three.js": "0b1b516385448a3da0bbcd1af53c489981346484fb07c8906553b37de0b50d94",
   "sitemap.xml": "e519093ef3bee63e6f95815ad21f2396c478561f90fa77792df10523ccb0588e",
   "tools/build_styles.py": "bb89d1dc92c8504fca56d312eb322ca867db365785f1feebf72295e17ef04fba",
-  "case-studies/jbl-preview.html": "e0a3293eb3c80695ff6111414c307d3f483d0577059eee0bf474c1e5e29db5a3",
-  "case-studies/shared/reference.mjs": "4154b3d16964ef2aa93d93dfc10b87c16a17e59aff5d503a9949897ad76b259c",
+  "case-studies/jbl-preview.html": "3de751b93336df93477395dbcd7e1c1ed83a2ad9f3dbf9c56442866b676e00d5",
+  "case-studies/shared/reference.mjs": "d047b781c06949c564bcc7d60d3b88a0fcb4e31363e45e321d3c073bdd9cc79b",
   "case-studies/shared/engine.mjs": "8930d90c2fa98f929f09f6644b3043e2296589cb61d077304120b2ff40d1bb1f",
   "case-studies/shared/entry.mjs": "7e52dbab59cd219fd3a705f0b79155a1471ef171d68a7113613423b50b9378a5",
   "case-studies/shared/timeline.mjs": "e9cf70651ecdd5672845a1829b6a89a8469362c599a66469d367fced4256fcfc",
   "case-studies/shared/progress.mjs": "d3a42f0c3b230bbc242b62a7216ca0d705786a89116e3ad8827bc111e5b7a3eb",
-  "case-studies/shared/reference.css": "64cc37354051dcdba935bf035e5b0dd5638a7d2873e1fb6aaceb29ac1cacee79",
+  "case-studies/shared/reference.css": "211c077913f300523b589f55f2daf6cf3747672648d034e91e5902c244f6df31",
   "case-studies/projects/jbl-artwork/chapters.json": "02f4db38afbe5a32a44ae641b9a1af023f6e9c03e442f7462bd1a335d7d84f0d",
   "case-studies/projects/jbl-artwork/manifest.json": "92bedbb2206db60f9daf6713248621a243ba2ae50731b9e4984b84d74e94347b",
   "case-studies/projects/jbl-artwork/assets/web/rear.webp": "389b8ec6fd009d12e3ce79ce173fb1e7d75f0882ca8ad6c11cfd5b55ff6f2236",
@@ -182,5 +182,5 @@
   "case-studies/config.json": "a01e6f0b260386388862adff3aecfbd3b742888a46f9117a047612149b1f0108",
   "case-studies/shared/showroom-bridge.mjs": "1b28b1e0734f977f38a55360c55f6113bb1ed91d87d9526b8ac0a08fe18fdd35",
   "case-studies/shared/surface-transition.mjs": "f6a7355f6b89863cabfd3baf489ed3947694a97cb853f4cd4b15d2a42e6c400a",
-  "case-studies/projects/jbl-artwork/presentation.json": "cbde37f30611d0c349957ed0292d95cda55585461f13ab45563902bb1c73475c"
+  "case-studies/projects/jbl-artwork/presentation.json": "85aaf4574547fad9201cb79bc29be413a23c10e60434b2ff47b32df496f322b9"
 }

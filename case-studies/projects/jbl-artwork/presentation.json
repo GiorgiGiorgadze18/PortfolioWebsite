@@ -1,82 +1,122 @@
 {
   "offsets": [
     [
-      -16,
       0,
-      -40
-    ],
-    [
-      0,
-      45,
-      35
-    ],
-    [
-      22,
-      -10,
-      180
+      0.0,
+      0
     ],
     [
       0,
-      10,
-      115
+      11.6577,
+      25
     ],
     [
-      22,
-      -10,
-      180
+      0,
+      69.9461,
+      150
     ],
     [
-      14,
-      -35,
-      235
+      0,
+      41.9677,
+      90
+    ],
+    [
+      0,
+      69.9461,
+      150
+    ],
+    [
+      0,
+      102.5877,
+      220
     ]
   ],
   "keyframes": [
     {
       "p": 0,
+      "ease": "inOutCubic",
       "state": {
         "spread": 0,
         "angle": 0,
+        "tilt": 0,
+        "lower": 0,
         "original": 1
       }
     },
     {
-      "p": 0.12,
+      "p": 0.18,
+      "ease": "inOutCubic",
       "state": {
         "spread": 0,
-        "angle": 0,
+        "angle": -10,
+        "tilt": 70,
+        "lower": 30,
+        "original": 1
+      }
+    },
+    {
+      "p": 0.23,
+      "ease": "inOutCubic",
+      "state": {
+        "spread": 0,
+        "angle": -10,
+        "tilt": 70,
+        "lower": 30,
         "original": 0
       }
     },
     {
-      "p": 0.4,
+      "p": 0.42,
+      "ease": "inOutCubic",
       "state": {
         "spread": 1,
-        "angle": -9,
+        "angle": -10,
+        "tilt": 70,
+        "lower": 30,
         "original": 0
       }
     },
     {
       "p": 0.75,
+      "ease": "inOutCubic",
       "state": {
         "spread": 1,
-        "angle": -9,
+        "angle": -10,
+        "tilt": 70,
+        "lower": 30,
         "original": 0
       }
     },
     {
-      "p": 0.92,
+      "p": 0.9,
+      "ease": "inOutCubic",
       "state": {
         "spread": 0,
-        "angle": 0,
+        "angle": -10,
+        "tilt": 70,
+        "lower": 30,
         "original": 0
+      }
+    },
+    {
+      "p": 0.94,
+      "ease": "inOutCubic",
+      "state": {
+        "spread": 0,
+        "angle": -10,
+        "tilt": 70,
+        "lower": 30,
+        "original": 1
       }
     },
     {
       "p": 1,
+      "ease": "inOutCubic",
       "state": {
         "spread": 0,
         "angle": 0,
+        "tilt": 0,
+        "lower": 0,
         "original": 1
       }
     }
@@ -98,5 +138,7 @@
       "from": 0.7,
       "layer": "identity"
     }
-  ]
+  ],
+  "liftAngleDegrees": 45,
+  "reclineDegrees": 70
 }

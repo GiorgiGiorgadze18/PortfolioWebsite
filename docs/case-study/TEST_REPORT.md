@@ -47,3 +47,11 @@ Executed quality_reference.py with isolated scikit-image tooling: RGB SSIM0.9971
 Actual exact board/camera pose restoration PASS in Chromium3 cycles (entry-tests.json);10 unit cycles/interruption/reduced motion PASS (surface-transition.txt); existing5-page header/mobile menu Chromium/WebKit and MeeTab wheel/focus PASS (header-regression.log). New reference tests after project-JSON/no-JS changes PASS (tests.json). Full hardware/AT/context-loss/memory suite remains NOT RUN.
 
 Standalone preview validation: HTTP Chromium load/chapter seek PASS; file:// opening BLOCKED by managed-browser administrator policy, not tested on owner device. Save the supplied HTML locally to try it; if local file opening fails, serve it with a simple local HTTP server. Evidence/reference/standalone-test.json.
+
+## Reclined reference revision
+reference_browser.py now checks the poster has reclined before the hero layer has any Z lift, records actual plane depths, and checks chapter seek/replay/return/reduced-motion/overflow/page errors. Current run results in evidence/reference/tests.json; screenshots include reclined and exploded states. This does not rerun unchanged showroom entry transitions or constitute physical device testing.
+
+## Owner-requested recline revision
+Poster reclines70° before any separation; layer offsets yield45° upward rise before the slight yaw. CSS3D pose is applied to each plane directly with perspective on the board, avoiding nested image composition. Layers paint as individually decoded alpha backgrounds. Original start/end image and static/reduced-motion chapters preserved. Updated browser screenshots require visual review in addition to matrix checks; matrix checks alone do not certify actual compositing.
+
+Reclined revision final check: Chromium/WebKit1440×900 and390×844 PASS for recline-before-lift sequencing, measured plane separation, chapter seek/replay/reduced-motion and overflow. Final WebKit desktop/mobile screenshots manually inspected and now visibly separated; earlier flattened screenshots were replaced after direct-per-plane projection correction. No physical Safari/iPhone claim.

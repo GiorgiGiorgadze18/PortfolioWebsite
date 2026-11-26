@@ -24,3 +24,8 @@
 ტესტის პირობები: headless Chromium/WebKit; desktop1440×900, phone390×844 ემულაცია; parent integration1280×720 SwiftShader; DPR1. standalone ფაილი შეიცავს მხოლოდ საჭირო წარმოებულ გამოსახულებებს/შრიფტებს/სკრიპტს, PSD-ს ან საიდუმლო მონაცემებს არა.
 
 Standalone preview validation: HTTP Chromium load/chapter seek PASS; file:// opening BLOCKED by managed-browser administrator policy, not tested on owner device. Save the supplied HTML locally to try it; if local file opening fails, serve it with a simple local HTTP server. Evidence/reference/standalone-test.json.
+
+## Owner-requested recline revision
+Poster reclines70° before any separation; layer offsets yield45° upward rise before the slight yaw. CSS3D pose is applied to each plane directly with perspective on the board, avoiding nested image composition. Layers paint as individually decoded alpha backgrounds. Original start/end image and static/reduced-motion chapters preserved. Updated browser screenshots require visual review in addition to matrix checks; matrix checks alone do not certify actual compositing.
+
+Reclined revision final check: Chromium/WebKit1440×900 and390×844 PASS for recline-before-lift sequencing, measured plane separation, chapter seek/replay/reduced-motion and overflow. Final WebKit desktop/mobile screenshots manually inspected and now visibly separated; earlier flattened screenshots were replaced after direct-per-plane projection correction. No physical Safari/iPhone claim.

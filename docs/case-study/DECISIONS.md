@@ -16,3 +16,8 @@
 Physical showroom transitions run inside the original render loop, with a pose snapshot and no accumulated transforms. The isolated CSS3D layer renderer remains the review representation. New project choreography and annotations come from JSON. Gate1 is a reference review, not final release certification.
 
 Standalone delivery is a generated13.97MB HTML with embedded fonts/images/JSON and an esbuild ESM bundle. esbuild used via temporary npx tooling only, no runtime dependency. Rebuild: npx --yes esbuild case-studies/shared/reference.mjs --bundle --format=esm --outfile=/tmp/jbl-reference-bundle.mjs; then python3 tools/case-study/package_preview.py /desired/output.html.
+
+Owner requested near-horizontal poster and45° upward layer rise. At70° X rotation, localY=localZ*tan25° produces equal-magnitude up/depth components before the small yaw. This is real CSS perspective projection of flat layers, not reconstructed volume. Project JSON separates recline from spread to ensure ordering.
+
+## Owner-requested recline revision
+Poster reclines70° before any separation; layer offsets yield45° upward rise before the slight yaw. CSS3D pose is applied to each plane directly with perspective on the board, avoiding nested image composition. Layers paint as individually decoded alpha backgrounds. Original start/end image and static/reduced-motion chapters preserved. Updated browser screenshots require visual review in addition to matrix checks; matrix checks alone do not certify actual compositing.
