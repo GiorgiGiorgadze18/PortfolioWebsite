@@ -1,0 +1,42 @@
+[
+  {
+    "original": "assets/project-tsero.jpg",
+    "bytes": 1152151,
+    "preview": "assets/project-tsero-preview.webp",
+    "preview_bytes": 231348,
+    "dimensions": [
+      1024,
+      1536
+    ]
+  },
+  {
+    "original": "assets/project-jbl.png",
+    "bytes": 3158993,
+    "preview": "assets/project-jbl-preview.webp",
+    "preview_bytes": 79954,
+    "dimensions": [
+      1131,
+      1600
+    ]
+  },
+  {
+    "original": "assets/project-tomford.png",
+    "bytes": 1269691,
+    "preview": "assets/project-tomford-preview.webp",
+    "preview_bytes": 172324,
+    "dimensions": [
+      627,
+      1115
+    ]
+  },
+  {
+    "original": "assets/project-earthhour.png",
+    "bytes": 294084,
+    "preview": "assets/project-earthhour-preview.webp",
+    "preview_bytes": 110288,
+    "dimensions": [
+      1131,
+      1600
+    ]
+  }
+]

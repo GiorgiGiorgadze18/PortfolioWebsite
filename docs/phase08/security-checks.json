@@ -1,0 +1,8 @@
+{
+  "database": "OSV",
+  "package": "npm:three",
+  "version": "0.180.0",
+  "vulnerability_ids": [],
+  "scope": "declared vendor revision only; embedded modifications and other code are outside this query",
+  "standard_python_tls_http_status": 200
+}

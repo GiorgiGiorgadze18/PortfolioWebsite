@@ -1,0 +1,80 @@
+[
+  [
+    "chromium",
+    "index",
+    "metadata/schema JSON/local production-path asset resolution",
+    "PASS"
+  ],
+  [
+    "chromium",
+    "projects",
+    "metadata/schema JSON/local production-path asset resolution",
+    "PASS"
+  ],
+  [
+    "chromium",
+    "about",
+    "metadata/schema JSON/local production-path asset resolution",
+    "PASS"
+  ],
+  [
+    "chromium",
+    "contact",
+    "metadata/schema JSON/local production-path asset resolution",
+    "PASS"
+  ],
+  [
+    "chromium",
+    "MeeTab public slug and legacy ID alias",
+    "PASS"
+  ],
+  [
+    "chromium",
+    "nested 404, noindex and recovery links",
+    "PASS"
+  ],
+  [
+    "webkit",
+    "index",
+    "metadata/schema JSON/local production-path asset resolution",
+    "PASS"
+  ],
+  [
+    "webkit",
+    "projects",
+    "metadata/schema JSON/local production-path asset resolution",
+    "PASS"
+  ],
+  [
+    "webkit",
+    "about",
+    "metadata/schema JSON/local production-path asset resolution",
+    "PASS"
+  ],
+  [
+    "webkit",
+    "contact",
+    "metadata/schema JSON/local production-path asset resolution",
+    "PASS"
+  ],
+  [
+    "webkit",
+    "MeeTab public slug and legacy ID alias",
+    "PASS"
+  ],
+  [
+    "webkit",
+    "nested 404, noindex and recovery links",
+    "PASS"
+  ],
+  [
+    "Chromium",
+    "six semantic project records without JS",
+    "PASS"
+  ],
+  [
+    "XML/local server",
+    "four sitemap URLs",
+    "PASS"
+  ]
+]

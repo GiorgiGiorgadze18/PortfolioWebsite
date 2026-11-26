@@ -1,0 +1,32 @@
+.lab-intro { padding-block: calc(var(--nav-h) + 60px) 36px; }
+.lab-intro > p:last-child { margin-top: 20px; color: #c1d8e4; }
+.lab-experiment { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 36px; padding-bottom: 96px; align-items: center; }
+.lab-description h2 { font-size: clamp(24px,3vw,36px); line-height: 1.2; }
+.lab-description p { margin-block: 18px; color: #c1d8e4; max-width: 55ch; }
+.lab-description a { color: var(--clr-cyan); text-underline-offset: 4px; }
+.lab-stage { padding: 28px; min-width: 0; }
+.lab-stage .discipline-card .discipline-card__surface::after { opacity: var(--lab-reflection,.35); }
+.lab-stage .discipline-card[data-motion-paused] .discipline-card__surface { animation-play-state: paused; }
+.lab-controls { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 16px 30px; max-width: 720px; }
+.lab-controls[hidden] { display: none; }
+.lab-controls label { display: flex; justify-content: space-between; gap: 16px; }
+.lab-controls input { width: 100%; min-width: 0; min-height: 44px; accent-color: var(--clr-cyan); }
+.lab-controls input:first-of-type { grid-column: 1; grid-row: 2; }
+.lab-controls input:last-of-type { grid-column: 2; grid-row: 2; }
+.lab-controls output { color: var(--clr-cyan); }
+.lab-actions, #lab-motion-status { grid-column: 1 / -1; }
+.lab-actions { display: flex; flex-wrap: wrap; gap: 16px; }
+#lab-motion-status { color: #c1d8e4; min-height: 1.7em; }
+.lab-controls :focus-visible { outline: 2px solid var(--clr-cyan); outline-offset: 5px; }
+@media(max-width:768px) {
+ .lab-experiment { grid-template-columns: minmax(0,1fr); gap: 20px; }
+ .lab-stage { padding: 20px 10px; }
+ .lab-controls { grid-template-columns: minmax(0,1fr); }
+ .lab-controls input:first-of-type, .lab-controls input:last-of-type { grid-column: auto; grid-row: auto; }
+ .lab-controls label:nth-of-type(2) { grid-row: 3; }
+}
+@supports not (transform-style: preserve-3d) {
+ .lab-stage .discipline-card__surface { background: #101d2a; border: 1px solid #9ee7ee60; border-radius: var(--radius); }
+ .lab-stage .discipline-card__surface::before,
+ .lab-stage .discipline-card__surface::after { display: none; }
+}

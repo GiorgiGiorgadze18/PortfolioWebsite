@@ -3,32 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Contact Giorgi Giorgadze — UI/UX and Graphic Designer based in Tbilisi, Georgia.">
+  <meta name="description" content="Discuss a digital product, visual design project or interactive web experience with Giorgi Giorgadze.">
   <meta name="author" content="Giorgi Giorgadze">
-  <title>Contact — Giorgi Giorgadze</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/contact.css">
+  <title>Contact Giorgi Giorgadze | Design &amp; Creative Development</title>
+  <link rel="stylesheet" href="css/fonts.css?v=0.17.7">
+  <link rel="stylesheet" href="css/tokens.css?v=0.17.3">
+  <link rel="stylesheet" href="css/contact.css?v=0.17.3">
   <link rel="stylesheet" href="css/constellation.css">
   <script defer src="js/constellation.js"></script>
   <link rel="stylesheet" href="css/scroll-hint.css">
   <link rel="stylesheet" href="css/contact-terminal.css?v=0.16.8">
-  <script type="module" src="js/contact-terminal.js?v=0.16.8"></script>
+  <script type="module" src="js/contact-terminal.js?v=0.17.2"></script>
   <noscript><style>.contact-intro [data-animate] { opacity: 1; transform: none; }</style></noscript>
+<link rel="stylesheet" href="css/phase02.css?v=0.17.7">
+
+  <link rel="canonical" href="https://giorgigiorgadze18.github.io/PortfolioWebsite/contact.html">
+  <link rel="icon" href="https://giorgigiorgadze18.github.io/PortfolioWebsite/assets/icon-code.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Giorgi Giorgadze">
+  <meta property="og:title" content="Contact Giorgi Giorgadze | Design &amp; Creative Development">
+  <meta property="og:description" content="Discuss a digital product, visual design project or interactive web experience with Giorgi Giorgadze.">
+  <meta property="og:url" content="https://giorgigiorgadze18.github.io/PortfolioWebsite/contact.html">
+  <meta property="og:image" content="https://giorgigiorgadze18.github.io/PortfolioWebsite/assets/social-preview.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Giorgi Giorgadze — Digital Designer and Creative Developer">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Contact Giorgi Giorgadze | Design &amp; Creative Development">
+  <meta name="twitter:description" content="Discuss a digital product, visual design project or interactive web experience with Giorgi Giorgadze.">
+  <meta name="twitter:image" content="https://giorgigiorgadze18.github.io/PortfolioWebsite/assets/social-preview.png">
+  <meta name="twitter:image:alt" content="Giorgi Giorgadze — Digital Designer and Creative Developer">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Person", "@id": "https://giorgigiorgadze18.github.io/PortfolioWebsite/#person", "name": "Giorgi Giorgadze", "url": "https://giorgigiorgadze18.github.io/PortfolioWebsite/", "jobTitle": "Digital Designer & Creative Developer", "sameAs": ["https://github.com/GiorgiGiorgadze18"]}, {"@type": "WebPage", "@id": "https://giorgigiorgadze18.github.io/PortfolioWebsite/contact.html#webpage", "url": "https://giorgigiorgadze18.github.io/PortfolioWebsite/contact.html", "name": "Contact Giorgi Giorgadze | Design & Creative Development", "description": "Discuss a digital product, visual design project or interactive web experience with Giorgi Giorgadze.", "about": {"@id": "https://giorgigiorgadze18.github.io/PortfolioWebsite/#person"}}]}</script>
 </head>
 <body>
   <header class="navbar" id="navbar">
     <nav class="navbar__inner container">
-      <a href="index.html" class="navbar__brand" aria-label="Home">
+      <a href="index.html" class="navbar__brand" aria-label="GG - Giorgi Giorgadze home">
         <img src="assets/icon-code.svg" alt="" class="brand-icon" aria-hidden="true">
         <span class="brand-name">GG<span class="brand-dot">.</span></span>
       </a>
       <ul class="navbar__links" role="list">
         <li><a href="index.html" class="nav-link">HOME</a></li>
         <li><a href="projects.html" class="nav-link">PROJECTS</a></li>
-        <li><a href="contact.html" class="nav-link is-active">CONTACT</a></li>
+        <li><a href="lab.html" class="nav-link">LAB</a></li>
         <li><a href="about.html" class="nav-link">ABOUT</a></li>
+        <li><a href="contact.html" class="nav-link is-active" aria-current="page">CONTACT</a></li>
       </ul>
       <a href="contact.html" class="btn btn--outline navbar__cta">CONNECT</a>
       <button class="navbar__hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
@@ -37,14 +56,15 @@
     </nav>
   </header>
 
-  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true" inert>
     <ul class="mobile-menu__links" role="list">
-      <li><a href="index.html" class="nav-link">HOME</a></li>
-      <li><a href="projects.html" class="nav-link">PROJECTS</a></li>
-      <li><a href="contact.html" class="nav-link is-active">CONTACT</a></li>
-      <li><a href="about.html" class="nav-link">ABOUT</a></li>
-      <li><a href="contact.html" class="nav-link">CONNECT</a></li>
-    </ul>
+        <li><a href="index.html" class="nav-link">HOME</a></li>
+        <li><a href="projects.html" class="nav-link">PROJECTS</a></li>
+        <li><a href="lab.html" class="nav-link">LAB</a></li>
+        <li><a href="about.html" class="nav-link">ABOUT</a></li>
+        <li><a href="contact.html" class="nav-link is-active" aria-current="page">CONTACT</a></li>
+        <li><a href="contact.html" class="nav-link">CONNECT</a></li>
+      </ul>
   </div>
 
   <main>
@@ -58,7 +78,7 @@
         </h1>
         <p class="hero__bio" data-animate data-delay="2" style="margin-top:20px; max-width:560px;">
           Reach out for design collaborations, freelance projects, or any creative inquiry.
-          I’m available to discuss UI/UX, branding, and visual storytelling work.
+          I’m available to discuss product design, visual design and interactive web development.
         </p>
       </div>
     </section>
@@ -99,8 +119,8 @@
 
       </div>
       <a class="scroll-hint" href="#secure-transmission" data-terminal-start
-         data-label="SCROLL DOWN TO ESTABLISH CONNECTION"
-         data-touch-label="SWIPE UP TO ESTABLISH CONNECTION"
+         data-label="SCROLL DOWN TO SEND A MESSAGE"
+         data-touch-label="SWIPE UP TO SEND A MESSAGE"
          aria-label="Scroll to secure transmission">
         <i aria-hidden="true"></i>
       </a>
@@ -113,18 +133,18 @@
           <div class="contact-panel__card terminal-window">
             <div class="terminal-chrome">
               <span class="terminal-window__dots" aria-hidden="true"><i></i><i></i><i></i></span>
-              <span class="terminal-window__file">secure_transmission.exe</span>
+              <span class="terminal-window__file">contact_terminal.exe</span>
               <a class="terminal-skip" href="#terminal-form" hidden>Skip animation · go to the form</a>
             </div>
             <div class="terminal-body" tabindex="-1">
               <div class="terminal-boot">
-                <pre class="terminal-log"><span class="terminal-log__complete">&gt; boot secure_transmission.exe
+                <pre class="terminal-log"><span class="terminal-log__complete">&gt; boot contact_terminal.exe
 &gt; resolving tbilisi.ge ......... OK
-&gt; handshake: giorgi.giorgadzee.16 ... OK
-&gt; encrypting payload ........... OK
+&gt; contact: Giorgi Giorgadze
+&gt; message form ............... READY
 &gt; channel open // AVAILABLE FOR PROJECTS</span><span class="terminal-log__typed" aria-hidden="true"></span></pre>
                 <div class="terminal-progress">
-                  <progress max="100" value="100" aria-label="Connection progress"></progress>
+                  <progress max="100" value="100" aria-label="Terminal animation progress"></progress>
                   <span aria-hidden="true">100%</span>
                 </div>
               </div>
@@ -133,32 +153,34 @@
                 <div class="contact-panel__head">
                   <img src="assets/vector-mail.svg" alt="Mail icon" class="contact-panel__icon">
                   <div>
-                    <p class="contact-panel__tag">SECURE TRANSMISSION.EXE</p>
-                    <h2 class="contact-panel__title" id="terminal-heading">Send your message securely</h2>
+                    <p class="contact-panel__tag">CONTACT TERMINAL</p>
+                    <h2 class="contact-panel__title" id="terminal-heading">Send a message</h2>
                   </div>
                 </div>
 
                 <form class="contact-form" action="https://formspree.io/f/xjgdyjka" method="POST">
                   <div class="contact-form__grid">
                     <label class="contact-form__field">
-                      <span>Initiator Name</span>
-                      <input type="text" name="name" placeholder="Enter designation..." required>
+                      <span>Your name</span>
+                      <input autocomplete="name" type="text" name="name" placeholder="Your name" required>
                     </label>
                     <label class="contact-form__field">
-                      <span>Return Address</span>
-                      <input type="email" name="email" placeholder="email@server.com" required>
+                      <span>Email address</span>
+                      <input autocomplete="email" type="email" name="email" placeholder="you@example.com" required>
                     </label>
                   </div>
 
                   <label class="contact-form__field contact-form__field--full">
-                    <span>Payload / Message</span>
-                    <textarea name="message" rows="7" placeholder="Formulate transmission data..." required></textarea>
+                    <span>Your message</span>
+                    <textarea name="message" rows="7" placeholder="Tell me about your project..." required></textarea>
                   </label>
 
                   <input type="hidden" name="_subject" value="New message from portfolio contact form">
                   <button type="submit" class="btn btn--primary contact-form__submit">
-                    TRANSMIT&nbsp;▸
+                    Send message
                   </button>
+                  <p id="form-status" role="status" aria-live="polite"></p>
+                  <p>Messages are sent through Formspree. Please avoid including sensitive information.</p>
                 </form>
               </div>
             </div>
@@ -166,8 +188,8 @@
         </div>
 
         <div class="scroll-hint terminal-hint" data-terminal-hint aria-hidden="true"
-             data-label="SCROLL DOWN TO ESTABLISH CONNECTION"
-             data-touch-label="SWIPE UP TO ESTABLISH CONNECTION">
+             data-label="SCROLL DOWN TO SEND A MESSAGE"
+             data-touch-label="SWIPE UP TO SEND A MESSAGE">
           <i></i>
         </div>
       </div>
@@ -180,13 +202,14 @@
         <a href="index.html" class="navbar__brand">
           <span class="brand-name">GG<span class="brand-dot">.</span></span>
         </a>
-        <p>Graphics &amp; UI/UX Designer — Tbilisi, Georgia</p>
+        <p>Digital Designer &amp; Creative Developer — Tbilisi, Georgia</p>
       </div>
       <nav class="footer__nav" aria-label="Footer navigation">
         <a href="index.html">Home</a>
         <a href="projects.html">Projects</a>
-        <a href="contact.html">Contact</a>
+        <a href="lab.html">Lab</a>
         <a href="about.html">About</a>
+        <a href="contact.html" aria-current="page">Contact</a>
       </nav>
       <div class="footer__contact">
         <a href="mailto:giorgi.giorgadzee.16@gmail.com">giorgi.giorgadzee.16@gmail.com</a>
@@ -197,6 +220,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=0.17.4"></script>
 </body>
 </html>

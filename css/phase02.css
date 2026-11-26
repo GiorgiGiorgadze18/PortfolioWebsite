@@ -1,0 +1,20 @@
+.project-view-controls { display: flex; flex-wrap: wrap; gap: 12px; padding-block: 20px; }
+.project-view-controls button { min-height: 44px; }
+.project-view-controls [aria-pressed="true"] { border-color: var(--clr-cyan, #00f0ff); }
+.museum-section[hidden] { display: none; }
+.mobile-dialog-link { cursor: pointer; }
+.contact-motion-enabled #secure-transmission::after { display: none; }
+.contact-motion-enabled .stick { position: relative; min-height: 0; padding-block: 24px; }
+.contact-motion-enabled #terminal-form { opacity: 1; translate: none; }
+.terminal-hint, .terminal-skip { display: none !important; }
+#form-status { min-height: 1.6em; color: var(--clr-cyan); }
+
+.filter span { opacity: 1; }
+.mobile-dialog-close { min-width: 44px; min-height: 44px; }
+.project-summary { padding-block: 18px; border-bottom: 1px solid var(--border); }
+.project-summary summary { cursor: pointer; font-weight: 600; min-height: 44px; }
+.project-summary p { max-width: 72ch; color: #c1d8e4; }
+.project-summary a { display: inline-block; padding-block: 12px; text-decoration: underline; }
+.project-summary summary:focus-visible { outline: 2px solid var(--cyan); outline-offset: 4px; }
+
+html[data-project-layout="grid"] .museum-section { display: none; }

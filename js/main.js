@@ -36,6 +36,8 @@ function toggleMenu() {
   const isOpen = hamburger.classList.toggle('is-open');
   mobileMenu.classList.toggle('is-open', isOpen);
   mobileMenu.setAttribute('aria-hidden', String(!isOpen));
+  mobileMenu.inert = !isOpen;
+  if (isOpen) mobileMenu.querySelector('a')?.focus();
   hamburger.setAttribute('aria-expanded', String(isOpen));
   document.body.style.overflow = isOpen ? 'hidden' : '';
 }
@@ -44,11 +46,27 @@ function closeMenu() {
   if (!hamburger || !mobileMenu) return;
   hamburger.classList.remove('is-open');
   mobileMenu.classList.remove('is-open');
+  if (mobileMenu.contains(document.activeElement)) hamburger.focus();
+  mobileMenu.inert = true;
   mobileMenu.setAttribute('aria-hidden', 'true');
   hamburger.setAttribute('aria-expanded', 'false');
   document.body.style.overflow = '';
 }
 
+if (mobileMenu) mobileMenu.inert = !mobileMenu.classList.contains('is-open');
+window.addEventListener('resize', () => {
+  if (innerWidth > 768) closeMenu();
+});
+document.addEventListener('keydown', event => {
+  if (event.key !== 'Tab' || !mobileMenu?.classList.contains('is-open')) return;
+  const controls = [hamburger, ...mobileMenu.querySelectorAll('a')];
+  const first = controls[0], last = controls.at(-1);
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault(); last.focus();
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault(); first.focus();
+  }
+});
 window.addEventListener('scroll', onScroll, { passive: true });
 hamburger?.addEventListener('click', toggleMenu);
 mobileMenu?.addEventListener('click', (e) => { if (e.target === mobileMenu) closeMenu(); });
@@ -75,18 +93,29 @@ $$('.nav-link', mobileMenu ?? document).forEach(l => l.addEventListener('click',
 
 const parallaxEl  = $('#parallax-bg');
 const heroSection = $('#hero');
+const motionPreference = matchMedia('(prefers-reduced-motion: reduce)');
 let   mx = 0, my = 0; // mouse offsets
 
 function applyParallax() {
   if (!parallaxEl) return;
+  if (motionPreference.matches) {
+    parallaxEl.style.transform = '';
+    return;
+  }
   const sy = window.scrollY * 0.40;
   parallaxEl.style.transform = `translate(${mx}px, ${sy + my}px)`;
 }
+
+motionPreference.addEventListener('change', () => {
+  mx = my = 0;
+  applyParallax();
+});
 
 if (parallaxEl) {
   window.addEventListener('scroll', applyParallax, { passive: true });
 
   heroSection?.addEventListener('mousemove', (e) => {
+    if (motionPreference.matches) return;
     const { left, top, width, height } = heroSection.getBoundingClientRect();
     const amp = 10;
     mx = ((e.clientX - left - width  / 2) / (width  / 2)) * amp;
@@ -216,7 +245,17 @@ if (window.matchMedia('(pointer: fine)').matches) {
   document.body.appendChild(glow);
 
   let glowActive = false;
+  function syncGlow() {
+    glow.hidden = motionPreference.matches || document.hidden;
+    glow.style.transform = 'translate(-50%,-50%) scale(0)';
+    glowActive = false;
+  }
+  motionPreference.addEventListener('change', syncGlow);
+  document.addEventListener('visibilitychange', syncGlow);
+  window.addEventListener('blur', syncGlow);
+  syncGlow();
   document.addEventListener('mousemove', (e) => {
+    if (motionPreference.matches || document.hidden) return;
     glow.style.left = `${e.clientX}px`;
     glow.style.top  = `${e.clientY}px`;
     if (!glowActive) {
@@ -250,7 +289,7 @@ $$('a[href^="#"]').forEach((link) => {
     e.preventDefault();
     const navH  = navbar?.offsetHeight ?? 72;
     const top   = target.getBoundingClientRect().top + window.scrollY - navH - 16;
-    window.scrollTo({ top, behavior: 'smooth' });
+    window.scrollTo({ top, behavior: motionPreference.matches ? 'instant' : 'smooth' });
   });
 });
 
@@ -266,74 +305,7 @@ $$('a[href^="#"]').forEach((link) => {
   viewLink.addEventListener('click', (e) => {
     // After opening the asset in a new tab, smoothly bring the card into view
     setTimeout(() => {
-      firstCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      firstCard.scrollIntoView({ behavior: motionPreference.matches ? 'instant' : 'smooth', block: 'center' });
     }, 120);
-  });
-})();
-
-/* ── Projects page: details overlay for each project */
-(function setupProjectDetailsOverlay() {
-  const overlay = $('#projectOverlay');
-  if (!overlay) return;
-
-  const titleEl = $('.project-overlay__title', overlay);
-  const roleEl = $('.project-overlay__role', overlay);
-  const descriptionEl = $('.project-overlay__description', overlay);
-  const closeButton = $('.project-overlay__close', overlay);
-
-  const projectData = {
-    tsero: {
-      title: 'Tsero App',
-      role: 'Mobile App · UI/UX',
-      description: 'The name “Tsero” comes from the Georgian word (stork), symbolizing delivery, movement and speed.\n\nMy goal with this project was to create a modern, clean and user-centered experience with simple navigation, smooth flows and a minimal visual style.\n\nThe app includes:\n• Food browsing & ordering\n• Live delivery tracking\n• Checkout & payment flow\n• User profile / settings system\n• Full UI/UX design & prototyping\n\nEverything in this project was created entirely by me: branding, logo design, color system, UI, UX, concept and full prototyping.\n\nAt the moment, this is a personal concept / portfolio project, though I’m planning to improve and redesign some sections in the future.',
-    },
-    tomford: {
-      title: 'Tom Ford Tobacco Vanille',
-      role: 'Product Visual · Graphics',
-      description: 'This composition explores warm tobacco and vanilla tones, using light, texture, and smoke effects to create a rich, atmospheric mood centered on the fragrance. Careful attention was given to color harmony and visual depth to achieve a cohesive aesthetic. Every element of this artwork was created entirely by me in Photoshop.',
-    },
-    jbl: {
-      title: 'JBL Premium Audio Campaign',
-      role: 'Advertising · Graphics',
-      description: 'This composition presents a clean, modern audio aesthetic through cool blue tones, soft cloud textures, and glass layering that create depth around the headphones. Typography, lighting, and reflections were carefully balanced to convey a premium, polished feel. Every element of this artwork was created entirely by me in Photoshop.',
-    },
-    earthhour: {
-      title: 'Earth Hour Campaign Poster',
-      role: 'Poster Design · Graphics',
-      description: 'A vector-based campaign poster designed entirely in Adobe Illustrator. This project showcases my technical precision with vector pathing, custom shape building, and typography manipulation. The artwork features a clean, scalable design suitable for both print and digital media.',
-    },
-  };
-
-  function closeProjectOverlay() {
-    overlay.classList.remove('is-open');
-    overlay.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-  }
-
-  function openProjectOverlay(key) {
-    const project = projectData[key] || {
-      title: 'Project details',
-      role: '',
-      description: 'Details for this project are coming soon.',
-    };
-
-    titleEl.textContent = project.title;
-    roleEl.textContent = project.role;
-    descriptionEl.textContent = project.description;
-    overlay.classList.add('is-open');
-    overlay.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-  }
-
-  closeButton?.addEventListener('click', closeProjectOverlay);
-  overlay.addEventListener('click', (event) => {
-    if (event.target === overlay) closeProjectOverlay();
-  });
-
-  $$('button.card-btn-details', document).forEach((button) => {
-    button.addEventListener('click', () => {
-      const projectKey = button.getAttribute('data-project');
-      openProjectOverlay(projectKey);
-    });
   });
 })();

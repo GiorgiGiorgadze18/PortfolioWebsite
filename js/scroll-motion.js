@@ -48,6 +48,8 @@ window.addEventListener('scroll', schedule, {passive: true});
 window.addEventListener('resize', schedule, {passive: true});
 window.addEventListener('pageshow', schedule);
 document.addEventListener('visibilitychange', () => {
+  cancelAnimationFrame(frameId);
+  frameId = 0;
   previousTime = null;
   schedule();
 });

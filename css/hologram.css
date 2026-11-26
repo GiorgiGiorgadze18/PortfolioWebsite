@@ -88,7 +88,8 @@
   animation: discipline-float var(--holo-duration) ease-in-out var(--holo-delay, 0s) infinite alternate;
 }
 
-.discipline-card.can-float:not(.is-in-view) .discipline-card__surface { animation-play-state: paused; }
+.discipline-card.can-float:not(.is-in-view) .discipline-card__surface,
+.discipline-card.is-motion-paused .discipline-card__surface { animation-play-state: paused; }
 
 @keyframes discipline-float { to { translate: 0 var(--holo-float); } }
 
@@ -108,4 +109,8 @@
   .discipline-card__surface > :is(.discipline-card__header, .discipline-card__list, .discipline-card__desc, .discipline-card__tools) {
     transform: none;
   }
+}
+
+@media (min-width: 769px) {
+  #disciplines .disciplines__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }

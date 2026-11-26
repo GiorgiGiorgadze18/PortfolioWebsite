@@ -1,5 +1,65 @@
 # Changelog
 
+## 0.17.7 — Phase 08 draft, 2026-11-26
+
+[PR #24](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/24)
+
+- Prevent the Grid view's initial showroom layout shift; locally host existing licensed fonts, bundle Home styles in source order, and prioritize the correctly sized portrait.
+- Correct certificate preview backgrounds and source-backed certificate labels/dates; align brand accessible names with visible text.
+- Record 110 Chromium/WebKit geometry checks, intercepted form states, local app demo flows and repeated Lighthouse measurements. Home performance varies 76/97/99; open limits remain in docs/OPEN_VERIFICATION.md. No production deployment.
+
+## 0.17.6 — Phase 07 draft, 2026-11-26
+
+[PR #24](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/24)
+
+- Add a Creative Lab using the existing holographic engine with tilt strength, reflection, pause/resume and reset controls. Support native keyboard ranges, reduced motion and static fallback.
+- Add consistent Lab navigation and a fifth sitemap entry. Browser, shared-engine and accessibility checks are recorded in docs/phase07.
+
+## 0.17.5 — Phase 06 draft, 2026-11-26
+
+[PR #24](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/24)
+
+- Add canonical/social metadata, catalogue-backed structured data and semantic project descriptions, a four-page sitemap, and a custom 404 with base-path-safe recovery links.
+- Create a 1200×630 social preview using the existing portrait and theme. Local browser verification and hosting limits are recorded in docs/phase06 and the open-check registry.
+
+## 0.17.4 — Phase 05 draft, 2026-11-26
+
+[PR #24](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/24)
+
+- Add dedicated WebP previews, defer the desktop MeeTab preload, fix mobile-menu focus and filter count contrast, and validate wheel bridge payloads.
+- Record comparable local transfer/LCP measurements and scoped accessibility results in docs/phase05. Track every open verification item in docs/OPEN_VERIFICATION.md.
+
+## 0.17.3 — Phase 04 draft, 2026-11-26
+
+[PR #24](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/24)
+
+- Share identical active-page design tokens and move the project catalogue to a dedicated ES module. Add static Home metadata synchronization and direct project links.
+- Remove the unused legacy project overlay initializer after checking its markup consumers.
+- Computed-style comparisons, catalogue equivalence and browser checks are recorded in docs/phase04.
+
+## 0.17.2 — Phase 03 draft, 2026-11-26
+
+[PR #24](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/24)
+
+- Suspend holographic motion when hidden and reset pointer tilt on focus loss. Respect live reduced-motion changes in parallax, cursor glow and shared anchor navigation.
+- Cancel pending shared scroll frames when hidden. Preserve the existing Experience interpolation after measurements confirmed its settled behavior.
+- Lifecycle tests and limits are recorded in docs/phase03.
+
+## 0.17.1 — Phase 02 draft, 2026-11-26
+
+[PR #24](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/24)
+
+- Add Grid/3D selection, multi-category filtering, direct project links and an archive entry for the portfolio.
+- Make the Contact form immediately available, revise terminal wording and provide sending, success and failure states with duplicate-submit protection.
+- Verification and limits are recorded in docs/phase02. Real contact messages were intercepted locally.
+
+## 0.17.0 — Phase 01 draft, 2026-11-26
+
+[PR #24](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/24)
+
+- Update professional identity and About copy, prioritize featured work, and consolidate disciplines into four holographic cards. Add a source-backed technology summary and contact CTA.
+- CV alignment remains pending factual review. Browser verification and limits are recorded in docs/phase01/README.md.
+
 ## 0.16.10 — 2026-11-23
 
 [PR #23](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/23)

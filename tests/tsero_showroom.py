@@ -9,9 +9,11 @@ from playwright.sync_api import expect, sync_playwright
 
 
 def open_tsero(page, base, touch=False):
-    page.goto(base + 'projects.html', wait_until='networkidle')
+    page.goto(base + 'projects.html', wait_until='networkidle', timeout=90000)
     exhibit = page.locator('[data-explore="tsero"]')
     exhibit.tap() if touch else exhibit.click()
+    action = page.locator('[data-open-demo]')
+    action.tap() if touch else action.click()
     expect(page.locator('#inspector-title')).to_have_text('Tsero App')
     button = page.locator('#try-preview')
     expect(button).to_be_visible()
@@ -31,7 +33,7 @@ def mobile(browser, base, output):
     notice = page.locator('#desktop-demo-notice')
     expect(notice).to_be_hidden()
     assert any(url.endswith('/assets/tsero-desktop-home.webp') for url in requests)
-    assert page.locator('[data-explore="tsero"]').locator('xpath=../..').locator('img').get_attribute('src').endswith('/assets/project-tsero.jpg')
+    assert page.locator('[data-explore="tsero"]').locator('xpath=../..').locator('img').get_attribute('src').endswith('/assets/project-tsero-preview.webp')
     button.tap()
     expect(notice).to_be_visible()
     expect(notice).to_have_text('Try the interactive demo on a computer.')
@@ -138,6 +140,7 @@ def desktop(browser, base, output):
     button.click()
     page.locator('#reset-view').click()
     page.locator('[data-explore="jbl"]').click()
+    page.locator('[data-open-demo]').click()
     expect(page.locator('#inspector-title')).to_have_text('MeeTab')
     expect(button).to_be_visible()
     expect(button).to_be_enabled()

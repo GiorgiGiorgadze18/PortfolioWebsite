@@ -1,0 +1,12 @@
+[
+  [
+    "chromium",
+    "required validation, duplicate prevention, retained failure and success",
+    "PASS"
+  ],
+  [
+    "webkit",
+    "required validation, duplicate prevention, retained failure and success",
+    "PASS"
+  ]
+]

@@ -1,0 +1,26 @@
+[
+  [
+    "chromium",
+    1440,
+    "pointer/touch where supported and scoped axe",
+    "PASS"
+  ],
+  [
+    "chromium",
+    390,
+    "pointer/touch where supported and scoped axe",
+    "PASS"
+  ],
+  [
+    "webkit",
+    1440,
+    "pointer/touch where supported and scoped axe",
+    "PASS"
+  ],
+  [
+    "webkit",
+    390,
+    "pointer/touch where supported and scoped axe",
+    "PASS"
+  ]
+]

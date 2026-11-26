@@ -1,0 +1,2275 @@
+[
+  {
+    "page": "index",
+    "run": 1,
+    "version": "13.6.0",
+    "status": "PASS",
+    "scores": {
+      "performance": 0.76,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    },
+    "metrics": {
+      "largest-contentful-paint": 1058.8995,
+      "cumulative-layout-shift": 0,
+      "total-blocking-time": 1216.8253750000001,
+      "speed-index": 2361.659778726924
+    },
+    "settings": {
+      "formFactor": "mobile",
+      "throttlingMethod": "simulate",
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "requestLatencyMs": 562.5,
+        "downloadThroughputKbps": 1474.5600000000002,
+        "uploadThroughputKbps": 675,
+        "cpuSlowdownMultiplier": 4
+      },
+      "screenEmulation": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      }
+    },
+    "diagnostics": {
+      "layout-shifts": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "node",
+            "valueType": "node",
+            "subItemsHeading": {
+              "key": "extra"
+            },
+            "label": "Element"
+          },
+          {
+            "key": "score",
+            "valueType": "numeric",
+            "subItemsHeading": {
+              "key": "cause",
+              "valueType": "text"
+            },
+            "granularity": 0.001,
+            "label": "Layout shift score"
+          }
+        ],
+        "items": []
+      },
+      "cls-culprits-insight": {
+        "type": "list",
+        "items": []
+      },
+      "lcp-breakdown-insight": {
+        "type": "list",
+        "items": [
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "label",
+                "valueType": "text",
+                "label": "Subpart"
+              },
+              {
+                "key": "duration",
+                "valueType": "ms",
+                "label": "Duration"
+              }
+            ],
+            "items": [
+              {
+                "subpart": "timeToFirstByte",
+                "label": "Time to first byte",
+                "duration": 9.08
+              },
+              {
+                "subpart": "elementRenderDelay",
+                "label": "Element render delay",
+                "duration": 613.671
+              }
+            ]
+          },
+          {
+            "type": "node",
+            "lhId": "page-0-SPAN",
+            "path": "1,HTML,1,BODY,2,HEADER,0,NAV,0,A,1,SPAN",
+            "selector": "header#navbar > nav.navbar__inner > a.navbar__brand > span.brand-name",
+            "boundingRect": {
+              "top": 18,
+              "bottom": 53,
+              "left": 50,
+              "right": 88,
+              "width": 38,
+              "height": 35
+            },
+            "snippet": "<span class=\"brand-name\">",
+            "nodeLabel": "GG."
+          }
+        ]
+      },
+      "lcp-discovery-insight": null,
+      "render-blocking-insight": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "url",
+            "valueType": "url",
+            "label": "URL"
+          },
+          {
+            "key": "totalBytes",
+            "valueType": "bytes",
+            "label": "Transfer Size"
+          },
+          {
+            "key": "wastedMs",
+            "valueType": "timespanMs",
+            "label": "Duration"
+          }
+        ],
+        "items": [
+          {
+            "url": "http://127.0.0.1:8054/css/home-bundle.css?v=0.17.7",
+            "totalBytes": 48599,
+            "wastedMs": 304
+          }
+        ]
+      }
+    },
+    "warnings": [],
+    "runtimeError": null,
+    "failed_audits": [
+      {
+        "id": "speed-index",
+        "title": "Speed Index",
+        "score": 0.98
+      },
+      {
+        "id": "total-blocking-time",
+        "title": "Total Blocking Time",
+        "score": 0.2
+      },
+      {
+        "id": "max-potential-fid",
+        "title": "Max Potential First Input Delay",
+        "score": 0.26
+      },
+      {
+        "id": "interactive",
+        "title": "Time to Interactive",
+        "score": 0.95
+      },
+      {
+        "id": "mainthread-work-breakdown",
+        "title": "Minimize main-thread work",
+        "score": 0
+      },
+      {
+        "id": "unsized-images",
+        "title": "Image elements do not have explicit `width` and `height`",
+        "score": 0.5
+      },
+      {
+        "id": "unminified-css",
+        "title": "Minify CSS",
+        "score": 0.5
+      },
+      {
+        "id": "unminified-javascript",
+        "title": "Minify JavaScript",
+        "score": 0.5
+      },
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "score": 0.5
+      },
+      {
+        "id": "cache-insight",
+        "title": "Use efficient cache lifetimes",
+        "score": 0
+      },
+      {
+        "id": "document-latency-insight",
+        "title": "Document request latency",
+        "score": 0.5
+      },
+      {
+        "id": "forced-reflow-insight",
+        "title": "Forced reflow",
+        "score": 0
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0.5
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests",
+        "score": 0
+      }
+    ]
+  },
+  {
+    "page": "index",
+    "run": 2,
+    "version": "13.6.0",
+    "status": "PASS",
+    "scores": {
+      "performance": 0.97,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    },
+    "metrics": {
+      "largest-contentful-paint": 1060.9127,
+      "cumulative-layout-shift": 0,
+      "total-blocking-time": 189.00000000000023,
+      "speed-index": 1648.80150635554
+    },
+    "settings": {
+      "formFactor": "mobile",
+      "throttlingMethod": "simulate",
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "requestLatencyMs": 562.5,
+        "downloadThroughputKbps": 1474.5600000000002,
+        "uploadThroughputKbps": 675,
+        "cpuSlowdownMultiplier": 4
+      },
+      "screenEmulation": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      }
+    },
+    "diagnostics": {
+      "layout-shifts": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "node",
+            "valueType": "node",
+            "subItemsHeading": {
+              "key": "extra"
+            },
+            "label": "Element"
+          },
+          {
+            "key": "score",
+            "valueType": "numeric",
+            "subItemsHeading": {
+              "key": "cause",
+              "valueType": "text"
+            },
+            "granularity": 0.001,
+            "label": "Layout shift score"
+          }
+        ],
+        "items": []
+      },
+      "cls-culprits-insight": {
+        "type": "list",
+        "items": []
+      },
+      "lcp-breakdown-insight": {
+        "type": "list",
+        "items": [
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "label",
+                "valueType": "text",
+                "label": "Subpart"
+              },
+              {
+                "key": "duration",
+                "valueType": "ms",
+                "label": "Duration"
+              }
+            ],
+            "items": [
+              {
+                "subpart": "timeToFirstByte",
+                "label": "Time to first byte",
+                "duration": 8.463
+              },
+              {
+                "subpart": "elementRenderDelay",
+                "label": "Element render delay",
+                "duration": 300.406
+              }
+            ]
+          },
+          {
+            "type": "node",
+            "lhId": "page-0-SPAN",
+            "path": "1,HTML,1,BODY,2,HEADER,0,NAV,0,A,1,SPAN",
+            "selector": "header#navbar > nav.navbar__inner > a.navbar__brand > span.brand-name",
+            "boundingRect": {
+              "top": 18,
+              "bottom": 53,
+              "left": 50,
+              "right": 88,
+              "width": 38,
+              "height": 35
+            },
+            "snippet": "<span class=\"brand-name\">",
+            "nodeLabel": "GG."
+          }
+        ]
+      },
+      "lcp-discovery-insight": null,
+      "render-blocking-insight": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "url",
+            "valueType": "url",
+            "label": "URL"
+          },
+          {
+            "key": "totalBytes",
+            "valueType": "bytes",
+            "label": "Transfer Size"
+          },
+          {
+            "key": "wastedMs",
+            "valueType": "timespanMs",
+            "label": "Duration"
+          }
+        ],
+        "items": [
+          {
+            "url": "http://127.0.0.1:8054/css/home-bundle.css?v=0.17.7",
+            "totalBytes": 48599,
+            "wastedMs": 305
+          }
+        ]
+      }
+    },
+    "warnings": [],
+    "runtimeError": null,
+    "failed_audits": [
+      {
+        "id": "total-blocking-time",
+        "title": "Total Blocking Time",
+        "score": 0.91
+      },
+      {
+        "id": "max-potential-fid",
+        "title": "Max Potential First Input Delay",
+        "score": 0.78
+      },
+      {
+        "id": "interactive",
+        "title": "Time to Interactive",
+        "score": 0.99
+      },
+      {
+        "id": "mainthread-work-breakdown",
+        "title": "Minimize main-thread work",
+        "score": 0
+      },
+      {
+        "id": "unsized-images",
+        "title": "Image elements do not have explicit `width` and `height`",
+        "score": 0.5
+      },
+      {
+        "id": "unminified-css",
+        "title": "Minify CSS",
+        "score": 0.5
+      },
+      {
+        "id": "unminified-javascript",
+        "title": "Minify JavaScript",
+        "score": 0.5
+      },
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "score": 0.5
+      },
+      {
+        "id": "cache-insight",
+        "title": "Use efficient cache lifetimes",
+        "score": 0
+      },
+      {
+        "id": "document-latency-insight",
+        "title": "Document request latency",
+        "score": 0.5
+      },
+      {
+        "id": "forced-reflow-insight",
+        "title": "Forced reflow",
+        "score": 0
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0.5
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests",
+        "score": 0
+      }
+    ]
+  },
+  {
+    "page": "projects",
+    "run": 1,
+    "version": "13.6.0",
+    "status": "PASS",
+    "scores": {
+      "performance": 0.99,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    },
+    "metrics": {
+      "largest-contentful-paint": 1754.4279,
+      "cumulative-layout-shift": 0.002722960719122214,
+      "total-blocking-time": 56,
+      "speed-index": 1754.4279
+    },
+    "settings": {
+      "formFactor": "mobile",
+      "throttlingMethod": "simulate",
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "requestLatencyMs": 562.5,
+        "downloadThroughputKbps": 1474.5600000000002,
+        "uploadThroughputKbps": 675,
+        "cpuSlowdownMultiplier": 4
+      },
+      "screenEmulation": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      }
+    },
+    "diagnostics": {
+      "layout-shifts": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "node",
+            "valueType": "node",
+            "subItemsHeading": {
+              "key": "extra"
+            },
+            "label": "Element"
+          },
+          {
+            "key": "score",
+            "valueType": "numeric",
+            "subItemsHeading": {
+              "key": "cause",
+              "valueType": "text"
+            },
+            "granularity": 0.001,
+            "label": "Layout shift score"
+          }
+        ],
+        "items": [
+          {
+            "node": {
+              "type": "node",
+              "lhId": "page-1-SPAN",
+              "path": "1,HTML,1,BODY,2,DIV,1,MAIN,0,SECTION,1,DIV,1,H1,2,SPAN",
+              "selector": "section.projects-hero > div.container > h1#hero-title > span.headline-period",
+              "boundingRect": {
+                "top": 161,
+                "bottom": 213,
+                "left": 305,
+                "right": 318,
+                "width": 13,
+                "height": 52
+              },
+              "snippet": "<span class=\"headline-period\">",
+              "nodeLabel": "."
+            },
+            "score": 0.002722960719122214,
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "extra": {
+                    "type": "url",
+                    "value": "http://127.0.0.1:8054/assets/fonts/space-grotesk-400.woff2"
+                  },
+                  "cause": "Web font loaded"
+                },
+                {
+                  "extra": {
+                    "type": "url",
+                    "value": "http://127.0.0.1:8054/assets/fonts/inter-800.woff2"
+                  },
+                  "cause": "Web font loaded"
+                },
+                {
+                  "extra": {
+                    "type": "url",
+                    "value": "http://127.0.0.1:8054/assets/fonts/space-grotesk-600.woff2"
+                  },
+                  "cause": "Web font loaded"
+                },
+                {
+                  "extra": {
+                    "type": "url",
+                    "value": "http://127.0.0.1:8054/assets/fonts/inter-400.woff2"
+                  },
+                  "cause": "Web font loaded"
+                },
+                {
+                  "extra": {
+                    "type": "url",
+                    "value": "http://127.0.0.1:8054/assets/fonts/space-grotesk-700.woff2"
+                  },
+                  "cause": "Web font loaded"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "cls-culprits-insight": {
+        "type": "list",
+        "items": [
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "node",
+                "valueType": "node",
+                "subItemsHeading": {
+                  "key": "extra"
+                },
+                "label": "Element"
+              },
+              {
+                "key": "score",
+                "valueType": "numeric",
+                "subItemsHeading": {
+                  "key": "cause",
+                  "valueType": "text"
+                },
+                "granularity": 0.001,
+                "label": "Layout shift score"
+              }
+            ],
+            "items": [
+              {
+                "node": {
+                  "type": "text",
+                  "value": "Total"
+                },
+                "score": 0.002722960719122214
+              },
+              {
+                "node": {
+                  "type": "node",
+                  "lhId": "page-1-SPAN",
+                  "path": "1,HTML,1,BODY,2,DIV,1,MAIN,0,SECTION,1,DIV,1,H1,2,SPAN",
+                  "selector": "section.projects-hero > div.container > h1#hero-title > span.headline-period",
+                  "boundingRect": {
+                    "top": 161,
+                    "bottom": 213,
+                    "left": 305,
+                    "right": 318,
+                    "width": 13,
+                    "height": 52
+                  },
+                  "snippet": "<span class=\"headline-period\">",
+                  "nodeLabel": "."
+                },
+                "score": 0.002722960719122214,
+                "subItems": {
+                  "type": "subitems",
+                  "items": [
+                    {
+                      "extra": {
+                        "type": "url",
+                        "value": "http://127.0.0.1:8054/assets/fonts/space-grotesk-400.woff2"
+                      },
+                      "cause": "Web font"
+                    },
+                    {
+                      "extra": {
+                        "type": "url",
+                        "value": "http://127.0.0.1:8054/assets/fonts/inter-800.woff2"
+                      },
+                      "cause": "Web font"
+                    },
+                    {
+                      "extra": {
+                        "type": "url",
+                        "value": "http://127.0.0.1:8054/assets/fonts/space-grotesk-600.woff2"
+                      },
+                      "cause": "Web font"
+                    },
+                    {
+                      "extra": {
+                        "type": "url",
+                        "value": "http://127.0.0.1:8054/assets/fonts/inter-400.woff2"
+                      },
+                      "cause": "Web font"
+                    },
+                    {
+                      "extra": {
+                        "type": "url",
+                        "value": "http://127.0.0.1:8054/assets/fonts/space-grotesk-700.woff2"
+                      },
+                      "cause": "Web font"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "lcp-breakdown-insight": {
+        "type": "list",
+        "items": [
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "label",
+                "valueType": "text",
+                "label": "Subpart"
+              },
+              {
+                "key": "duration",
+                "valueType": "ms",
+                "label": "Duration"
+              }
+            ],
+            "items": [
+              {
+                "subpart": "timeToFirstByte",
+                "label": "Time to first byte",
+                "duration": 7.54
+              },
+              {
+                "subpart": "elementRenderDelay",
+                "label": "Element render delay",
+                "duration": 194.036
+              }
+            ]
+          },
+          {
+            "type": "node",
+            "lhId": "page-0-H1",
+            "path": "1,HTML,1,BODY,2,DIV,1,MAIN,0,SECTION,1,DIV,1,H1",
+            "selector": "main#top > section.projects-hero > div.container > h1#hero-title",
+            "boundingRect": {
+              "top": 164,
+              "bottom": 211,
+              "left": 22,
+              "right": 390,
+              "width": 368,
+              "height": 47
+            },
+            "snippet": "<h1 id=\"hero-title\">",
+            "nodeLabel": "Selected Work."
+          }
+        ]
+      },
+      "lcp-discovery-insight": null,
+      "render-blocking-insight": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "url",
+            "valueType": "url",
+            "label": "URL"
+          },
+          {
+            "key": "totalBytes",
+            "valueType": "bytes",
+            "label": "Transfer Size"
+          },
+          {
+            "key": "wastedMs",
+            "valueType": "timespanMs",
+            "label": "Duration"
+          }
+        ],
+        "items": [
+          {
+            "url": "http://127.0.0.1:8054/css/constellation.css",
+            "totalBytes": 797,
+            "wastedMs": 305
+          },
+          {
+            "url": "http://127.0.0.1:8054/css/phase02.css?v=0.17.7",
+            "totalBytes": 1428,
+            "wastedMs": 305
+          },
+          {
+            "url": "http://127.0.0.1:8054/showroom/showroom.css?v=0.16.4",
+            "totalBytes": 30746,
+            "wastedMs": 755
+          },
+          {
+            "url": "http://127.0.0.1:8054/css/fonts.css?v=0.17.7",
+            "totalBytes": 1879,
+            "wastedMs": 155
+          }
+        ]
+      }
+    },
+    "warnings": [],
+    "runtimeError": null,
+    "failed_audits": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.91
+      },
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "score": 0.99
+      },
+      {
+        "id": "max-potential-fid",
+        "title": "Max Potential First Input Delay",
+        "score": 0.95
+      },
+      {
+        "id": "interactive",
+        "title": "Time to Interactive",
+        "score": 0.98
+      },
+      {
+        "id": "label-content-name-mismatch",
+        "title": "Elements with visible text labels do not have matching accessible names.",
+        "score": 0
+      },
+      {
+        "id": "unminified-javascript",
+        "title": "Minify JavaScript",
+        "score": 0.5
+      },
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "score": 0.5
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0
+      },
+      {
+        "id": "cache-insight",
+        "title": "Use efficient cache lifetimes",
+        "score": 0
+      },
+      {
+        "id": "document-latency-insight",
+        "title": "Document request latency",
+        "score": 0.5
+      },
+      {
+        "id": "forced-reflow-insight",
+        "title": "Forced reflow",
+        "score": 0
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0.5
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests",
+        "score": 0
+      }
+    ]
+  },
+  {
+    "page": "projects",
+    "run": 2,
+    "version": "13.6.0",
+    "status": "PASS",
+    "scores": {
+      "performance": 0.98,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    },
+    "metrics": {
+      "largest-contentful-paint": 1926.429,
+      "cumulative-layout-shift": 0.002722960719122214,
+      "total-blocking-time": 81.5,
+      "speed-index": 1926.429
+    },
+    "settings": {
+      "formFactor": "mobile",
+      "throttlingMethod": "simulate",
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "requestLatencyMs": 562.5,
+        "downloadThroughputKbps": 1474.5600000000002,
+        "uploadThroughputKbps": 675,
+        "cpuSlowdownMultiplier": 4
+      },
+      "screenEmulation": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      }
+    },
+    "diagnostics": {
+      "layout-shifts": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "node",
+            "valueType": "node",
+            "subItemsHeading": {
+              "key": "extra"
+            },
+            "label": "Element"
+          },
+          {
+            "key": "score",
+            "valueType": "numeric",
+            "subItemsHeading": {
+              "key": "cause",
+              "valueType": "text"
+            },
+            "granularity": 0.001,
+            "label": "Layout shift score"
+          }
+        ],
+        "items": [
+          {
+            "node": {
+              "type": "node",
+              "lhId": "page-1-SPAN",
+              "path": "1,HTML,1,BODY,2,DIV,1,MAIN,0,SECTION,1,DIV,1,H1,2,SPAN",
+              "selector": "section.projects-hero > div.container > h1#hero-title > span.headline-period",
+              "boundingRect": {
+                "top": 161,
+                "bottom": 213,
+                "left": 305,
+                "right": 318,
+                "width": 13,
+                "height": 52
+              },
+              "snippet": "<span class=\"headline-period\">",
+              "nodeLabel": "."
+            },
+            "score": 0.002722960719122214,
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "extra": {
+                    "type": "url",
+                    "value": "http://127.0.0.1:8054/assets/fonts/space-grotesk-400.woff2"
+                  },
+                  "cause": "Web font loaded"
+                },
+                {
+                  "extra": {
+                    "type": "url",
+                    "value": "http://127.0.0.1:8054/assets/fonts/inter-800.woff2"
+                  },
+                  "cause": "Web font loaded"
+                },
+                {
+                  "extra": {
+                    "type": "url",
+                    "value": "http://127.0.0.1:8054/assets/fonts/space-grotesk-600.woff2"
+                  },
+                  "cause": "Web font loaded"
+                },
+                {
+                  "extra": {
+                    "type": "url",
+                    "value": "http://127.0.0.1:8054/assets/fonts/inter-400.woff2"
+                  },
+                  "cause": "Web font loaded"
+                },
+                {
+                  "extra": {
+                    "type": "url",
+                    "value": "http://127.0.0.1:8054/assets/fonts/space-grotesk-700.woff2"
+                  },
+                  "cause": "Web font loaded"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "cls-culprits-insight": {
+        "type": "list",
+        "items": [
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "node",
+                "valueType": "node",
+                "subItemsHeading": {
+                  "key": "extra"
+                },
+                "label": "Element"
+              },
+              {
+                "key": "score",
+                "valueType": "numeric",
+                "subItemsHeading": {
+                  "key": "cause",
+                  "valueType": "text"
+                },
+                "granularity": 0.001,
+                "label": "Layout shift score"
+              }
+            ],
+            "items": [
+              {
+                "node": {
+                  "type": "text",
+                  "value": "Total"
+                },
+                "score": 0.002722960719122214
+              },
+              {
+                "node": {
+                  "type": "node",
+                  "lhId": "page-1-SPAN",
+                  "path": "1,HTML,1,BODY,2,DIV,1,MAIN,0,SECTION,1,DIV,1,H1,2,SPAN",
+                  "selector": "section.projects-hero > div.container > h1#hero-title > span.headline-period",
+                  "boundingRect": {
+                    "top": 161,
+                    "bottom": 213,
+                    "left": 305,
+                    "right": 318,
+                    "width": 13,
+                    "height": 52
+                  },
+                  "snippet": "<span class=\"headline-period\">",
+                  "nodeLabel": "."
+                },
+                "score": 0.002722960719122214,
+                "subItems": {
+                  "type": "subitems",
+                  "items": [
+                    {
+                      "extra": {
+                        "type": "url",
+                        "value": "http://127.0.0.1:8054/assets/fonts/space-grotesk-400.woff2"
+                      },
+                      "cause": "Web font"
+                    },
+                    {
+                      "extra": {
+                        "type": "url",
+                        "value": "http://127.0.0.1:8054/assets/fonts/inter-800.woff2"
+                      },
+                      "cause": "Web font"
+                    },
+                    {
+                      "extra": {
+                        "type": "url",
+                        "value": "http://127.0.0.1:8054/assets/fonts/space-grotesk-600.woff2"
+                      },
+                      "cause": "Web font"
+                    },
+                    {
+                      "extra": {
+                        "type": "url",
+                        "value": "http://127.0.0.1:8054/assets/fonts/inter-400.woff2"
+                      },
+                      "cause": "Web font"
+                    },
+                    {
+                      "extra": {
+                        "type": "url",
+                        "value": "http://127.0.0.1:8054/assets/fonts/space-grotesk-700.woff2"
+                      },
+                      "cause": "Web font"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "lcp-breakdown-insight": {
+        "type": "list",
+        "items": [
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "label",
+                "valueType": "text",
+                "label": "Subpart"
+              },
+              {
+                "key": "duration",
+                "valueType": "ms",
+                "label": "Duration"
+              }
+            ],
+            "items": [
+              {
+                "subpart": "timeToFirstByte",
+                "label": "Time to first byte",
+                "duration": 6.91
+              },
+              {
+                "subpart": "elementRenderDelay",
+                "label": "Element render delay",
+                "duration": 252.745
+              }
+            ]
+          },
+          {
+            "type": "node",
+            "lhId": "page-0-H1",
+            "path": "1,HTML,1,BODY,2,DIV,1,MAIN,0,SECTION,1,DIV,1,H1",
+            "selector": "main#top > section.projects-hero > div.container > h1#hero-title",
+            "boundingRect": {
+              "top": 164,
+              "bottom": 211,
+              "left": 22,
+              "right": 390,
+              "width": 368,
+              "height": 47
+            },
+            "snippet": "<h1 id=\"hero-title\">",
+            "nodeLabel": "Selected Work."
+          }
+        ]
+      },
+      "lcp-discovery-insight": null,
+      "render-blocking-insight": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "url",
+            "valueType": "url",
+            "label": "URL"
+          },
+          {
+            "key": "totalBytes",
+            "valueType": "bytes",
+            "label": "Transfer Size"
+          },
+          {
+            "key": "wastedMs",
+            "valueType": "timespanMs",
+            "label": "Duration"
+          }
+        ],
+        "items": [
+          {
+            "url": "http://127.0.0.1:8054/css/phase02.css?v=0.17.7",
+            "totalBytes": 1428,
+            "wastedMs": 308
+          },
+          {
+            "url": "http://127.0.0.1:8054/showroom/showroom.css?v=0.16.4",
+            "totalBytes": 30746,
+            "wastedMs": 758
+          },
+          {
+            "url": "http://127.0.0.1:8054/css/constellation.css",
+            "totalBytes": 797,
+            "wastedMs": 308
+          },
+          {
+            "url": "http://127.0.0.1:8054/css/fonts.css?v=0.17.7",
+            "totalBytes": 1879,
+            "wastedMs": 158
+          }
+        ]
+      }
+    },
+    "warnings": [],
+    "runtimeError": null,
+    "failed_audits": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.86
+      },
+      {
+        "id": "largest-contentful-paint",
+        "title": "Largest Contentful Paint",
+        "score": 0.98
+      },
+      {
+        "id": "total-blocking-time",
+        "title": "Total Blocking Time",
+        "score": 0.99
+      },
+      {
+        "id": "max-potential-fid",
+        "title": "Max Potential First Input Delay",
+        "score": 0.9
+      },
+      {
+        "id": "interactive",
+        "title": "Time to Interactive",
+        "score": 0.98
+      },
+      {
+        "id": "label-content-name-mismatch",
+        "title": "Elements with visible text labels do not have matching accessible names.",
+        "score": 0
+      },
+      {
+        "id": "unminified-javascript",
+        "title": "Minify JavaScript",
+        "score": 0.5
+      },
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "score": 0
+      },
+      {
+        "id": "unused-javascript",
+        "title": "Reduce unused JavaScript",
+        "score": 0
+      },
+      {
+        "id": "cache-insight",
+        "title": "Use efficient cache lifetimes",
+        "score": 0
+      },
+      {
+        "id": "document-latency-insight",
+        "title": "Document request latency",
+        "score": 0.5
+      },
+      {
+        "id": "forced-reflow-insight",
+        "title": "Forced reflow",
+        "score": 0
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0.5
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests",
+        "score": 0
+      }
+    ]
+  },
+  {
+    "page": "about",
+    "run": 1,
+    "version": "13.6.0",
+    "status": "PASS",
+    "scores": {
+      "performance": 0.99,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    },
+    "metrics": {
+      "largest-contentful-paint": 1506.9564,
+      "cumulative-layout-shift": 0.0320663730255164,
+      "total-blocking-time": 78.5,
+      "speed-index": 1672.2809304934199
+    },
+    "settings": {
+      "formFactor": "mobile",
+      "throttlingMethod": "simulate",
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "requestLatencyMs": 562.5,
+        "downloadThroughputKbps": 1474.5600000000002,
+        "uploadThroughputKbps": 675,
+        "cpuSlowdownMultiplier": 4
+      },
+      "screenEmulation": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      }
+    },
+    "diagnostics": {
+      "layout-shifts": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "node",
+            "valueType": "node",
+            "subItemsHeading": {
+              "key": "extra"
+            },
+            "label": "Element"
+          },
+          {
+            "key": "score",
+            "valueType": "numeric",
+            "subItemsHeading": {
+              "key": "cause",
+              "valueType": "text"
+            },
+            "granularity": 0.001,
+            "label": "Layout shift score"
+          }
+        ],
+        "items": [
+          {
+            "node": {
+              "type": "node",
+              "lhId": "page-1-DIV",
+              "path": "1,HTML,1,BODY,3,MAIN,0,SECTION,0,DIV",
+              "selector": "body > main > section.projects-page-hero > div#parallax-bg",
+              "boundingRect": {
+                "top": -317,
+                "bottom": 1901,
+                "left": -82,
+                "right": 494,
+                "width": 577,
+                "height": 2218
+              },
+              "snippet": "<div class=\"parallax-bg\" id=\"parallax-bg\" aria-hidden=\"true\">",
+              "nodeLabel": "body > main > section.projects-page-hero > div#parallax-bg"
+            },
+            "score": 0.0320663730255164,
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "extra": {
+                    "type": "url",
+                    "value": "http://127.0.0.1:8054/assets/fonts/inter-800.woff2"
+                  },
+                  "cause": "Web font loaded"
+                },
+                {
+                  "extra": {
+                    "type": "url",
+                    "value": "http://127.0.0.1:8054/assets/fonts/space-grotesk-600.woff2"
+                  },
+                  "cause": "Web font loaded"
+                },
+                {
+                  "extra": {
+                    "type": "url",
+                    "value": "http://127.0.0.1:8054/assets/fonts/inter-400.woff2"
+                  },
+                  "cause": "Web font loaded"
+                },
+                {
+                  "extra": {
+                    "type": "url",
+                    "value": "http://127.0.0.1:8054/assets/fonts/space-grotesk-500.woff2"
+                  },
+                  "cause": "Web font loaded"
+                },
+                {
+                  "extra": {
+                    "type": "url",
+                    "value": "http://127.0.0.1:8054/assets/fonts/inter-300.woff2"
+                  },
+                  "cause": "Web font loaded"
+                },
+                {
+                  "extra": {
+                    "type": "url",
+                    "value": "http://127.0.0.1:8054/assets/fonts/space-grotesk-700.woff2"
+                  },
+                  "cause": "Web font loaded"
+                },
+                {
+                  "extra": {
+                    "type": "url",
+                    "value": "http://127.0.0.1:8054/assets/fonts/space-grotesk-400.woff2"
+                  },
+                  "cause": "Web font loaded"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "cls-culprits-insight": {
+        "type": "list",
+        "items": [
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "node",
+                "valueType": "node",
+                "subItemsHeading": {
+                  "key": "extra"
+                },
+                "label": "Element"
+              },
+              {
+                "key": "score",
+                "valueType": "numeric",
+                "subItemsHeading": {
+                  "key": "cause",
+                  "valueType": "text"
+                },
+                "granularity": 0.001,
+                "label": "Layout shift score"
+              }
+            ],
+            "items": [
+              {
+                "node": {
+                  "type": "text",
+                  "value": "Total"
+                },
+                "score": 0.0320663730255164
+              },
+              {
+                "node": {
+                  "type": "node",
+                  "lhId": "page-1-DIV",
+                  "path": "1,HTML,1,BODY,3,MAIN,0,SECTION,0,DIV",
+                  "selector": "body > main > section.projects-page-hero > div#parallax-bg",
+                  "boundingRect": {
+                    "top": -317,
+                    "bottom": 1901,
+                    "left": -82,
+                    "right": 494,
+                    "width": 577,
+                    "height": 2218
+                  },
+                  "snippet": "<div class=\"parallax-bg\" id=\"parallax-bg\" aria-hidden=\"true\">",
+                  "nodeLabel": "body > main > section.projects-page-hero > div#parallax-bg"
+                },
+                "score": 0.0320663730255164,
+                "subItems": {
+                  "type": "subitems",
+                  "items": [
+                    {
+                      "extra": {
+                        "type": "url",
+                        "value": "http://127.0.0.1:8054/assets/fonts/inter-800.woff2"
+                      },
+                      "cause": "Web font"
+                    },
+                    {
+                      "extra": {
+                        "type": "url",
+                        "value": "http://127.0.0.1:8054/assets/fonts/space-grotesk-600.woff2"
+                      },
+                      "cause": "Web font"
+                    },
+                    {
+                      "extra": {
+                        "type": "url",
+                        "value": "http://127.0.0.1:8054/assets/fonts/inter-400.woff2"
+                      },
+                      "cause": "Web font"
+                    },
+                    {
+                      "extra": {
+                        "type": "url",
+                        "value": "http://127.0.0.1:8054/assets/fonts/space-grotesk-500.woff2"
+                      },
+                      "cause": "Web font"
+                    },
+                    {
+                      "extra": {
+                        "type": "url",
+                        "value": "http://127.0.0.1:8054/assets/fonts/inter-300.woff2"
+                      },
+                      "cause": "Web font"
+                    },
+                    {
+                      "extra": {
+                        "type": "url",
+                        "value": "http://127.0.0.1:8054/assets/fonts/space-grotesk-700.woff2"
+                      },
+                      "cause": "Web font"
+                    },
+                    {
+                      "extra": {
+                        "type": "url",
+                        "value": "http://127.0.0.1:8054/assets/fonts/space-grotesk-400.woff2"
+                      },
+                      "cause": "Web font"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "lcp-breakdown-insight": {
+        "type": "list",
+        "items": [
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "label",
+                "valueType": "text",
+                "label": "Subpart"
+              },
+              {
+                "key": "duration",
+                "valueType": "ms",
+                "label": "Duration"
+              }
+            ],
+            "items": [
+              {
+                "subpart": "timeToFirstByte",
+                "label": "Time to first byte",
+                "duration": 7.423
+              },
+              {
+                "subpart": "elementRenderDelay",
+                "label": "Element render delay",
+                "duration": 225.215
+              }
+            ]
+          },
+          {
+            "type": "node",
+            "lhId": "page-0-P",
+            "path": "1,HTML,1,BODY,3,MAIN,0,SECTION,1,DIV,2,DIV,0,DIV,4,P",
+            "selector": "div.container > div.about-layout > div.about-content > p.hero__bio",
+            "boundingRect": {
+              "top": 765,
+              "bottom": 897,
+              "left": 18,
+              "right": 394,
+              "width": 376,
+              "height": 132
+            },
+            "snippet": "<p class=\"hero__bio\">",
+            "nodeLabel": "Ilia State University \u2014 Bachelor of Sciences and Arts Faculty, 2022\u20132026. Desig\u2026"
+          }
+        ]
+      },
+      "lcp-discovery-insight": null,
+      "render-blocking-insight": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "url",
+            "valueType": "url",
+            "label": "URL"
+          },
+          {
+            "key": "totalBytes",
+            "valueType": "bytes",
+            "label": "Transfer Size"
+          },
+          {
+            "key": "wastedMs",
+            "valueType": "timespanMs",
+            "label": "Duration"
+          }
+        ],
+        "items": [
+          {
+            "url": "http://127.0.0.1:8054/css/about.css?v=0.17.3",
+            "totalBytes": 39194,
+            "wastedMs": 753
+          },
+          {
+            "url": "http://127.0.0.1:8054/css/constellation.css",
+            "totalBytes": 797,
+            "wastedMs": 303
+          },
+          {
+            "url": "http://127.0.0.1:8054/css/fonts.css?v=0.17.7",
+            "totalBytes": 1879,
+            "wastedMs": 153
+          },
+          {
+            "url": "http://127.0.0.1:8054/css/tokens.css?v=0.17.3",
+            "totalBytes": 2690,
+            "wastedMs": 303
+          }
+        ]
+      }
+    },
+    "warnings": [],
+    "runtimeError": null,
+    "failed_audits": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.96
+      },
+      {
+        "id": "total-blocking-time",
+        "title": "Total Blocking Time",
+        "score": 0.99
+      },
+      {
+        "id": "max-potential-fid",
+        "title": "Max Potential First Input Delay",
+        "score": 0.96
+      },
+      {
+        "id": "interactive",
+        "title": "Time to Interactive",
+        "score": 0.99
+      },
+      {
+        "id": "unminified-css",
+        "title": "Minify CSS",
+        "score": 0
+      },
+      {
+        "id": "unminified-javascript",
+        "title": "Minify JavaScript",
+        "score": 0
+      },
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "score": 0
+      },
+      {
+        "id": "cache-insight",
+        "title": "Use efficient cache lifetimes",
+        "score": 0
+      },
+      {
+        "id": "document-latency-insight",
+        "title": "Document request latency",
+        "score": 0.5
+      },
+      {
+        "id": "forced-reflow-insight",
+        "title": "Forced reflow",
+        "score": 0
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0.5
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests",
+        "score": 0
+      }
+    ]
+  },
+  {
+    "page": "contact",
+    "run": 1,
+    "version": "13.6.0",
+    "status": "PASS",
+    "scores": {
+      "performance": 0.99,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    },
+    "metrics": {
+      "largest-contentful-paint": 1510.7112000000002,
+      "cumulative-layout-shift": 0,
+      "total-blocking-time": 68,
+      "speed-index": 1745.7711810890228
+    },
+    "settings": {
+      "formFactor": "mobile",
+      "throttlingMethod": "simulate",
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "requestLatencyMs": 562.5,
+        "downloadThroughputKbps": 1474.5600000000002,
+        "uploadThroughputKbps": 675,
+        "cpuSlowdownMultiplier": 4
+      },
+      "screenEmulation": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      }
+    },
+    "diagnostics": {
+      "layout-shifts": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "node",
+            "valueType": "node",
+            "subItemsHeading": {
+              "key": "extra"
+            },
+            "label": "Element"
+          },
+          {
+            "key": "score",
+            "valueType": "numeric",
+            "subItemsHeading": {
+              "key": "cause",
+              "valueType": "text"
+            },
+            "granularity": 0.001,
+            "label": "Layout shift score"
+          }
+        ],
+        "items": []
+      },
+      "cls-culprits-insight": {
+        "type": "list",
+        "items": []
+      },
+      "lcp-breakdown-insight": {
+        "type": "list",
+        "items": [
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "label",
+                "valueType": "text",
+                "label": "Subpart"
+              },
+              {
+                "key": "duration",
+                "valueType": "ms",
+                "label": "Duration"
+              }
+            ],
+            "items": [
+              {
+                "subpart": "timeToFirstByte",
+                "label": "Time to first byte",
+                "duration": 6.336
+              },
+              {
+                "subpart": "elementRenderDelay",
+                "label": "Element render delay",
+                "duration": 301.841
+              }
+            ]
+          },
+          {
+            "type": "node",
+            "lhId": "page-0-SPAN",
+            "path": "1,HTML,1,BODY,1,HEADER,0,NAV,0,A,1,SPAN",
+            "selector": "header#navbar > nav.navbar__inner > a.navbar__brand > span.brand-name",
+            "boundingRect": {
+              "top": 18,
+              "bottom": 53,
+              "left": 50,
+              "right": 88,
+              "width": 38,
+              "height": 35
+            },
+            "snippet": "<span class=\"brand-name\">",
+            "nodeLabel": "GG."
+          }
+        ]
+      },
+      "lcp-discovery-insight": null,
+      "render-blocking-insight": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "url",
+            "valueType": "url",
+            "label": "URL"
+          },
+          {
+            "key": "totalBytes",
+            "valueType": "bytes",
+            "label": "Transfer Size"
+          },
+          {
+            "key": "wastedMs",
+            "valueType": "timespanMs",
+            "label": "Duration"
+          }
+        ],
+        "items": [
+          {
+            "url": "http://127.0.0.1:8054/css/contact-terminal.css?v=0.16.8",
+            "totalBytes": 5490,
+            "wastedMs": 455
+          },
+          {
+            "url": "http://127.0.0.1:8054/css/phase02.css?v=0.17.7",
+            "totalBytes": 1428,
+            "wastedMs": 155
+          },
+          {
+            "url": "http://127.0.0.1:8054/css/constellation.css",
+            "totalBytes": 797,
+            "wastedMs": 305
+          },
+          {
+            "url": "http://127.0.0.1:8054/css/contact.css?v=0.17.3",
+            "totalBytes": 43203,
+            "wastedMs": 905
+          },
+          {
+            "url": "http://127.0.0.1:8054/css/scroll-hint.css",
+            "totalBytes": 1675,
+            "wastedMs": 305
+          },
+          {
+            "url": "http://127.0.0.1:8054/css/tokens.css?v=0.17.3",
+            "totalBytes": 2690,
+            "wastedMs": 305
+          },
+          {
+            "url": "http://127.0.0.1:8054/css/fonts.css?v=0.17.7",
+            "totalBytes": 1879,
+            "wastedMs": 155
+          }
+        ]
+      }
+    },
+    "warnings": [],
+    "runtimeError": null,
+    "failed_audits": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.96
+      },
+      {
+        "id": "total-blocking-time",
+        "title": "Total Blocking Time",
+        "score": 0.99
+      },
+      {
+        "id": "max-potential-fid",
+        "title": "Max Potential First Input Delay",
+        "score": 0.96
+      },
+      {
+        "id": "interactive",
+        "title": "Time to Interactive",
+        "score": 0.96
+      },
+      {
+        "id": "mainthread-work-breakdown",
+        "title": "Minimize main-thread work",
+        "score": 0
+      },
+      {
+        "id": "unminified-css",
+        "title": "Minify CSS",
+        "score": 0
+      },
+      {
+        "id": "unminified-javascript",
+        "title": "Minify JavaScript",
+        "score": 0.5
+      },
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "score": 0
+      },
+      {
+        "id": "cache-insight",
+        "title": "Use efficient cache lifetimes",
+        "score": 0
+      },
+      {
+        "id": "document-latency-insight",
+        "title": "Document request latency",
+        "score": 0.5
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests",
+        "score": 0
+      }
+    ]
+  },
+  {
+    "page": "lab",
+    "run": 1,
+    "version": "13.6.0",
+    "status": "PASS",
+    "scores": {
+      "performance": 0.99,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    },
+    "metrics": {
+      "largest-contentful-paint": 1507.6027,
+      "cumulative-layout-shift": 0.04342793531651531,
+      "total-blocking-time": 44.49999999999977,
+      "speed-index": 1507.6027
+    },
+    "settings": {
+      "formFactor": "mobile",
+      "throttlingMethod": "simulate",
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "requestLatencyMs": 562.5,
+        "downloadThroughputKbps": 1474.5600000000002,
+        "uploadThroughputKbps": 675,
+        "cpuSlowdownMultiplier": 4
+      },
+      "screenEmulation": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      }
+    },
+    "diagnostics": {
+      "layout-shifts": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "node",
+            "valueType": "node",
+            "subItemsHeading": {
+              "key": "extra"
+            },
+            "label": "Element"
+          },
+          {
+            "key": "score",
+            "valueType": "numeric",
+            "subItemsHeading": {
+              "key": "cause",
+              "valueType": "text"
+            },
+            "granularity": 0.001,
+            "label": "Layout shift score"
+          }
+        ],
+        "items": [
+          {
+            "node": {
+              "type": "node",
+              "lhId": "page-1-SECTION",
+              "path": "1,HTML,1,BODY,5,MAIN,1,SECTION",
+              "selector": "body > main#lab > section.lab-experiment",
+              "boundingRect": {
+                "top": 294,
+                "bottom": 1352,
+                "left": 0,
+                "right": 412,
+                "width": 412,
+                "height": 1058
+              },
+              "snippet": "<section class=\"lab-experiment container\" aria-labelledby=\"experiment-title\">",
+              "nodeLabel": "Holographic interface\n\nA glass interface with layered depth, moving reflections\u2026"
+            },
+            "score": 0.04342793531651531,
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "extra": {
+                    "type": "url",
+                    "value": "http://127.0.0.1:8054/assets/fonts/space-grotesk-400.woff2"
+                  },
+                  "cause": "Web font loaded"
+                },
+                {
+                  "extra": {
+                    "type": "url",
+                    "value": "http://127.0.0.1:8054/assets/fonts/inter-800.woff2"
+                  },
+                  "cause": "Web font loaded"
+                },
+                {
+                  "extra": {
+                    "type": "url",
+                    "value": "http://127.0.0.1:8054/assets/fonts/space-grotesk-600.woff2"
+                  },
+                  "cause": "Web font loaded"
+                },
+                {
+                  "extra": {
+                    "type": "url",
+                    "value": "http://127.0.0.1:8054/assets/fonts/space-grotesk-700.woff2"
+                  },
+                  "cause": "Web font loaded"
+                },
+                {
+                  "extra": {
+                    "type": "url",
+                    "value": "http://127.0.0.1:8054/assets/fonts/inter-300.woff2"
+                  },
+                  "cause": "Web font loaded"
+                },
+                {
+                  "extra": {
+                    "type": "url",
+                    "value": "http://127.0.0.1:8054/assets/fonts/space-grotesk-500.woff2"
+                  },
+                  "cause": "Web font loaded"
+                },
+                {
+                  "extra": {
+                    "type": "url",
+                    "value": "http://127.0.0.1:8054/assets/fonts/inter-400.woff2"
+                  },
+                  "cause": "Web font loaded"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "cls-culprits-insight": {
+        "type": "list",
+        "items": [
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "node",
+                "valueType": "node",
+                "subItemsHeading": {
+                  "key": "extra"
+                },
+                "label": "Element"
+              },
+              {
+                "key": "score",
+                "valueType": "numeric",
+                "subItemsHeading": {
+                  "key": "cause",
+                  "valueType": "text"
+                },
+                "granularity": 0.001,
+                "label": "Layout shift score"
+              }
+            ],
+            "items": [
+              {
+                "node": {
+                  "type": "text",
+                  "value": "Total"
+                },
+                "score": 0.04342793531651531
+              },
+              {
+                "node": {
+                  "type": "node",
+                  "lhId": "page-1-SECTION",
+                  "path": "1,HTML,1,BODY,5,MAIN,1,SECTION",
+                  "selector": "body > main#lab > section.lab-experiment",
+                  "boundingRect": {
+                    "top": 294,
+                    "bottom": 1352,
+                    "left": 0,
+                    "right": 412,
+                    "width": 412,
+                    "height": 1058
+                  },
+                  "snippet": "<section class=\"lab-experiment container\" aria-labelledby=\"experiment-title\">",
+                  "nodeLabel": "Holographic interface\n\nA glass interface with layered depth, moving reflections\u2026"
+                },
+                "score": 0.04342793531651531,
+                "subItems": {
+                  "type": "subitems",
+                  "items": [
+                    {
+                      "extra": {
+                        "type": "url",
+                        "value": "http://127.0.0.1:8054/assets/fonts/space-grotesk-400.woff2"
+                      },
+                      "cause": "Web font"
+                    },
+                    {
+                      "extra": {
+                        "type": "url",
+                        "value": "http://127.0.0.1:8054/assets/fonts/inter-800.woff2"
+                      },
+                      "cause": "Web font"
+                    },
+                    {
+                      "extra": {
+                        "type": "url",
+                        "value": "http://127.0.0.1:8054/assets/fonts/space-grotesk-600.woff2"
+                      },
+                      "cause": "Web font"
+                    },
+                    {
+                      "extra": {
+                        "type": "url",
+                        "value": "http://127.0.0.1:8054/assets/fonts/space-grotesk-700.woff2"
+                      },
+                      "cause": "Web font"
+                    },
+                    {
+                      "extra": {
+                        "type": "url",
+                        "value": "http://127.0.0.1:8054/assets/fonts/inter-300.woff2"
+                      },
+                      "cause": "Web font"
+                    },
+                    {
+                      "extra": {
+                        "type": "url",
+                        "value": "http://127.0.0.1:8054/assets/fonts/space-grotesk-500.woff2"
+                      },
+                      "cause": "Web font"
+                    },
+                    {
+                      "extra": {
+                        "type": "url",
+                        "value": "http://127.0.0.1:8054/assets/fonts/inter-400.woff2"
+                      },
+                      "cause": "Web font"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "lcp-breakdown-insight": {
+        "type": "list",
+        "items": [
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "label",
+                "valueType": "text",
+                "label": "Subpart"
+              },
+              {
+                "key": "duration",
+                "valueType": "ms",
+                "label": "Duration"
+              }
+            ],
+            "items": [
+              {
+                "subpart": "timeToFirstByte",
+                "label": "Time to first byte",
+                "duration": 6.549
+              },
+              {
+                "subpart": "elementRenderDelay",
+                "label": "Element render delay",
+                "duration": 230.44
+              }
+            ]
+          },
+          {
+            "type": "node",
+            "lhId": "page-0-P",
+            "path": "1,HTML,1,BODY,5,MAIN,1,SECTION,0,DIV,2,P",
+            "selector": "main#lab > section.lab-experiment > div.lab-description > p",
+            "boundingRect": {
+              "top": 465,
+              "bottom": 544,
+              "left": 18,
+              "right": 394,
+              "width": 376,
+              "height": 79
+            },
+            "snippet": "<p>",
+            "nodeLabel": "Move your pointer over the card or drag it horizontally on a touch screen. The \u2026"
+          }
+        ]
+      },
+      "lcp-discovery-insight": null,
+      "render-blocking-insight": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "url",
+            "valueType": "url",
+            "label": "URL"
+          },
+          {
+            "key": "totalBytes",
+            "valueType": "bytes",
+            "label": "Transfer Size"
+          },
+          {
+            "key": "wastedMs",
+            "valueType": "timespanMs",
+            "label": "Duration"
+          }
+        ],
+        "items": [
+          {
+            "url": "http://127.0.0.1:8054/css/hologram.css?v=0.17.6",
+            "totalBytes": 4086,
+            "wastedMs": 304
+          },
+          {
+            "url": "http://127.0.0.1:8054/css/lab.css",
+            "totalBytes": 2378,
+            "wastedMs": 304
+          },
+          {
+            "url": "http://127.0.0.1:8054/css/index.css?v=0.17.3",
+            "totalBytes": 36914,
+            "wastedMs": 904
+          },
+          {
+            "url": "http://127.0.0.1:8054/css/tokens.css?v=0.17.3",
+            "totalBytes": 2690,
+            "wastedMs": 304
+          },
+          {
+            "url": "http://127.0.0.1:8054/css/constellation.css",
+            "totalBytes": 797,
+            "wastedMs": 304
+          },
+          {
+            "url": "http://127.0.0.1:8054/css/fonts.css?v=0.17.7",
+            "totalBytes": 1879,
+            "wastedMs": 154
+          }
+        ]
+      }
+    },
+    "warnings": [],
+    "runtimeError": null,
+    "failed_audits": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.96
+      },
+      {
+        "id": "max-potential-fid",
+        "title": "Max Potential First Input Delay",
+        "score": 0.94
+      },
+      {
+        "id": "cumulative-layout-shift",
+        "title": "Cumulative Layout Shift",
+        "score": 0.99
+      },
+      {
+        "id": "interactive",
+        "title": "Time to Interactive",
+        "score": 0.98
+      },
+      {
+        "id": "mainthread-work-breakdown",
+        "title": "Minimize main-thread work",
+        "score": 0
+      },
+      {
+        "id": "unminified-css",
+        "title": "Minify CSS",
+        "score": 0
+      },
+      {
+        "id": "unminified-javascript",
+        "title": "Minify JavaScript",
+        "score": 0.5
+      },
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "score": 0
+      },
+      {
+        "id": "cache-insight",
+        "title": "Use efficient cache lifetimes",
+        "score": 0
+      },
+      {
+        "id": "document-latency-insight",
+        "title": "Document request latency",
+        "score": 0.5
+      },
+      {
+        "id": "forced-reflow-insight",
+        "title": "Forced reflow",
+        "score": 0
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests",
+        "score": 0
+      }
+    ]
+  }
+]

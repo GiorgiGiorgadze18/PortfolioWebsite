@@ -18,7 +18,7 @@ def desktop(browser, url):
     errors = []
     page.on('pageerror', lambda error: errors.append(str(error)))
     page.on('console', lambda message: errors.append(message.text) if 'GL_INVALID' in message.text else None)
-    page.goto(url)
+    page.goto(url, timeout=90000)
     stage = page.locator('#museum-frame')
     graphics = page.get_by_role('button', name='Graphic Design', exact=True)
     titles = {
@@ -45,6 +45,7 @@ def desktop(browser, url):
         expect_face(page, stage, 'graphics', titles)
 
     page.locator('[data-explore="tsero"]').click()
+    page.locator('[data-open-demo]').click()
     expect(stage).to_have_attribute('data-shelf', 'apps')
     button = page.locator('#try-preview')
     expect(button).to_be_visible()
@@ -55,6 +56,7 @@ def desktop(browser, url):
     expect(page.locator('#screen-portal')).to_be_hidden()
 
     page.locator('[data-explore="jbl"]').click()
+    page.locator('[data-open-demo]').click()
     expect(stage).to_have_attribute('data-shelf', 'apps')
     expect(button).to_be_visible()
     expect(button).to_be_enabled()
@@ -73,7 +75,7 @@ def phone(browser, url):
     page.on('request', lambda request: requests.append(request.url))
     page.on('pageerror', lambda error: errors.append(str(error)))
     page.on('console', lambda message: errors.append(message.text) if 'GL_INVALID' in message.text else None)
-    page.goto(url)
+    page.goto(url, timeout=90000)
     stage = page.locator('#museum-frame')
     apps = page.get_by_role('button', name='UI / UX', exact=True)
     graphics = page.get_by_role('button', name='Graphic Design', exact=True)

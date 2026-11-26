@@ -1,0 +1,62 @@
+{
+  "index1440": {
+    "lcp_ms": 1380,
+    "transfer_bytes": 6244265,
+    "axe": [
+      {
+        "id": "aria-hidden-focus",
+        "nodes": 1,
+        "targets": [
+          [
+            "#mobile-menu"
+          ]
+        ]
+      }
+    ]
+  },
+  "projects1440": {
+    "lcp_ms": 556,
+    "transfer_bytes": 7970554,
+    "axe": [
+      {
+        "id": "color-contrast",
+        "nodes": 1,
+        "targets": [
+          [
+            "button[data-filter=\"all\"] > span"
+          ]
+        ]
+      }
+    ]
+  },
+  "index390": {
+    "lcp_ms": 1136,
+    "transfer_bytes": 6243630,
+    "axe": [
+      {
+        "id": "aria-hidden-focus",
+        "nodes": 1,
+        "targets": [
+          [
+            "#mobile-menu"
+          ]
+        ]
+      }
+    ]
+  },
+  "projects390": {
+    "lcp_ms": 368,
+    "transfer_bytes": 7644950,
+    "axe": [
+      {
+        "id": "color-contrast",
+        "nodes": 1,
+        "targets": [
+          [
+            "button[data-filter=\"all\"] > span"
+          ]
+        ]
+      }
+    ]
+  }
+}

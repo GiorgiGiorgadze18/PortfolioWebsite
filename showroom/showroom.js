@@ -8,49 +8,9 @@
  * portfolio-3d-showroom-test-v14.zip. See docs/SHOWROOM.md for integration details.
  */
 
-const PROJECTS = [
-  {
-    id:'tsero',name:'Tsero App',shortName:'TSERO',category:'uiux',categoryLabel:'Mobile App · UI/UX',year:'2026',device:'phone',cover:'project-tsero.jpg',screenArtwork:'tsero-desktop-home.webp',screenshots:['project-tsero.jpg'],accent:'#FF3316',
-    demo:{
-      src:'./tsero/index.html?start=home&v=0.15.2',width:375,height:811,
-      description:'Tsero is live inside the phone. Browse restaurants and place a sample order.',
-      guide:'Scroll inside the phone to browse',
-      note:'Demo only · Sign-in, payment and delivery are simulated',
-    },
-    description:'The name “Tsero” comes from the Georgian word for stork, symbolizing delivery, movement and speed. The app explores modern, user-centered food ordering with browsing, courier tracking, checkout, payment, and profile settings. Branding, logo, color system, UI/UX and interactive prototyping were designed by Giorgi Giorgadze. This is a personal portfolio concept.',
-    scene:{position:[-1.75,-.2,1.2],rotation:[-.06,.12,-.02],scale:1},camera:{position:[0,.28,9.6],focusZ:3.55,scale:1.34}
-  },
-  {
-    id:'tomford',name:'Tom Ford Tobacco Vanille',shortName:'TOBACCO VANILLE',artAspect:627/1115,category:'graphics',categoryLabel:'Product Visual · Graphics',year:'2025',device:'poster',cover:'project-tomford.png',screenshots:['project-tomford.png'],accent:'#A88554',
-    description:'A Photoshop product-visual composition exploring warm tobacco and vanilla tones through lighting, texture and smoke. The artwork emphasizes color harmony and visual depth around the fragrance. This is an independently created design exercise, not an official brand campaign.',
-    scene:{position:[-2.65,-.21,1.23],rotation:[-.045,.08,0],scale:1},camera:{position:[0,.3,9.5],focusZ:3.2,scale:1.18}
-  },
-  {
-    id:'jbl',name:'MeeTab',shortName:'MEETAB',category:'uiux',categoryLabel:'Interactive App · Web Preview',year:'2026',device:'tablet',cover:"meetab-preview.jpg",screenArtwork:"meetab-desktop-home.webp",screenshots:['project-jbl.png'],accent:'#FA6E5F',
-    demo:{
-      src:'./meetab-demo.html?v=0.14.5',width:1280,height:800,bridge:true,
-      description:'MeeTab is live inside the tablet. Try a booking — your progress stays here.',
-      guide:'Scroll to zoom the scene',
-      note:'Sample data only · Account access is disabled',
-    },
-    description:'MeeTab meeting-room app. Explore navigation, calendar and local sample bookings. The portfolio demo uses sample data; account access is disabled.',
-    scene:{position:[1.65,-.535,1.18],rotation:[-.045,-.08,.01],scale:1.12},camera:{position:[0,.3,9.6],focusZ:3.35,scale:1.35}
-  },
-  {
-    id:'earthhour',name:'Earth Hour Campaign Poster',shortName:'EARTH HOUR',artAspect:1797/2542,category:'graphics',categoryLabel:'Poster Design · Graphics',year:'2025',device:'poster',cover:'project-earthhour.png',screenshots:['project-earthhour.png'],accent:'#AD94D9',
-    description:'A vector campaign poster created in Adobe Illustrator, emphasizing custom shape building, vector path precision and controlled typography. The composition is designed for scalable print and digital presentation. Independent portfolio work.',
-    scene:{position:[0,-.21,1.23],rotation:[-.045,0,0],scale:1},camera:{position:[0,.3,9.5],focusZ:3.38,scale:1.33}
-  }
-];
-PROJECTS.push({
- id:'jbl-artwork',name:'JBL Premium Audio Campaign',shortName:'JBL',category:'graphics',
- categoryLabel:'Advertising · Graphics',year:'2025',device:'poster',artAspect:2480/3508,
- cover:'project-jbl.png',accent:'#0E89E6',
- description:'JBL Premium Audio Campaign — advertising visual by Giorgi Giorgadze. Independent portfolio work.',
- scene:{position:[2.65,-.21,1.23],rotation:[-.045,-.08,0],scale:1},
- camera:{position:[0,.3,9.5],focusZ:3.38,scale:1.33},
-});
-const ARCHIVE_PROJECTS = PROJECTS;
+import {PROJECTS, ARCHIVE_PROJECTS} from '../data/projects.mjs?v=0.17.5';
+let gridView = new URLSearchParams(location.search).get('view') === 'grid';
+let initialization;
 const projectSide = project => project.category==='graphics'?'graphics':'apps';
 let shelfAssembly, shelfSides;
 let gallerySide='apps', shelfTurn=null, queuedSide=null;
@@ -97,11 +57,41 @@ const GALLERY_PIXEL_RATIO=1.4;
 const FOCUS_PIXEL_RATIO=1.65;
 
 function setAccent(hex){frame.style.setProperty('--active-light',hex);halo.style.background=`radial-gradient(ellipse 46% 54% at 48% 48%, ${hex}19, transparent 70%)`;if(THREE&&accentTarget) accentTarget.set(hex);}
-function setMenu(){const toggle=$('#menu-toggle'),menu=$('#mobile-menu');toggle.addEventListener('click',()=>{const open=toggle.getAttribute('aria-expanded')==='true';toggle.setAttribute('aria-expanded',String(!open));menu.hidden=open;});menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{menu.hidden=true;toggle.setAttribute('aria-expanded','false')}));window.addEventListener('scroll',()=>$('#navbar').classList.toggle('is-scrolled',scrollY>16),{passive:true})}
-function archiveCard(p){const article=document.createElement('article');article.className='archive-card';article.setAttribute('role','listitem');article.dataset.category=p.category;article.style.setProperty('--active-light',p.accent);article.innerHTML=`<div class="archive-thumb"><img loading="lazy" src="${assetUrl(p.cover)}" alt="${p.name} original design artwork"></div><div class="archive-info"><span class="archive-kind">${p.categoryLabel.toUpperCase()}</span><h3>${p.name}</h3><p>${p.year} · ${p.device.toUpperCase()} DISPLAY</p><button type="button" class="archive-action" data-explore="${p.id}">EXPLORE PROJECT &nbsp; ↗</button></div>`;const img=article.querySelector('img');let candidateIndex=0;const candidateUrls=assetFallbacks(p.cover);img.src=candidateUrls[0];img.addEventListener('error',()=>{candidateIndex++;if(candidateIndex<candidateUrls.length){img.src=candidateUrls[candidateIndex];return;}img.hidden=true;const note=document.createElement('span');note.className='archive-image-unavailable';note.textContent='Artwork not loaded · '+p.shortName;article.querySelector('.archive-thumb').append(note)});article.querySelector('button').addEventListener('click',()=>{if(p.id==='jbl-artwork')openAccessibleDetail(p);else chooseProject(p.id);});return article;}
-function buildArchive(){ARCHIVE_PROJECTS.forEach(p=>projectGrid.append(archiveCard(p)));document.querySelectorAll('.filter').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.filter').forEach(x=>{x.classList.toggle('is-active',x===b);x.setAttribute('aria-pressed',String(x===b))});projectGrid.querySelectorAll('.archive-card').forEach(card=>{card.hidden=b.dataset.filter!=='all'&&card.dataset.category!==b.dataset.filter;});}));}
+function setMenu(){
+ const toggle=$('#menu-toggle'),menu=$('#mobile-menu');
+ function closeMenu(){
+  if(menu.contains(document.activeElement))toggle.focus();
+  menu.hidden=true;
+  toggle.setAttribute('aria-expanded','false');
+ }
+ toggle.addEventListener('click',()=>{
+  if(!menu.hidden){closeMenu();return;}
+  menu.hidden=false;
+  toggle.setAttribute('aria-expanded','true');
+  menu.querySelector('a')?.focus();
+ });
+ menu.querySelectorAll('a').forEach(link=>link.addEventListener('click',closeMenu));
+ document.addEventListener('keydown',event=>{
+  if(event.key==='Escape'&&!menu.hidden){
+   event.preventDefault();event.stopImmediatePropagation();closeMenu();
+  }
+ });
+ window.addEventListener('resize',()=>{if(innerWidth>768)closeMenu()});
+ window.addEventListener('scroll',()=>$('#navbar').classList.toggle('is-scrolled',scrollY>16),{passive:true});
+}
+function archiveCard(p){const article=document.createElement('article');article.className='archive-card';article.setAttribute('role','listitem');article.dataset.category=p.categories.join(' ');article.style.setProperty('--active-light',p.accent);article.innerHTML=`<div class="archive-thumb"><img loading="lazy" src="${assetUrl(p.thumbnail || p.cover)}" alt="${p.name} original design artwork"></div><div class="archive-info"><span class="archive-kind">${p.categoryLabel.toUpperCase()}</span><h3>${p.name}</h3><p>${p.year} · ${p.device.toUpperCase()} DISPLAY</p><a class="archive-action" href="#project/${p.slug}" data-explore="${p.id}">EXPLORE PROJECT &nbsp; ↗</a></div>`;const img=article.querySelector('img');let candidateIndex=0;const candidateUrls=assetFallbacks(p.thumbnail || p.cover);img.src=candidateUrls[0];img.addEventListener('error',()=>{candidateIndex++;if(candidateIndex<candidateUrls.length){img.src=candidateUrls[candidateIndex];return;}img.hidden=true;const note=document.createElement('span');note.className='archive-image-unavailable';note.textContent='Artwork not loaded · '+p.shortName;article.querySelector('.archive-thumb').append(note)});article.querySelector('a').addEventListener('click',event=>{
+ event.preventDefault();
+ history.pushState(null,'','#project/'+p.slug);
+ openAccessibleDetail(p);
+});return article;}
+function buildArchive(){ARCHIVE_PROJECTS.forEach(p=>projectGrid.append(archiveCard(p)));document.querySelectorAll('.filter[data-filter]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.filter[data-filter]').forEach(x=>{x.classList.toggle('is-active',x===b);x.setAttribute('aria-pressed',String(x===b))});projectGrid.querySelectorAll('.archive-card').forEach(card=>{card.hidden=b.dataset.filter!=='all'&&!card.dataset.category.split(' ').includes(b.dataset.filter);});}));}
 let modal;
-function openAccessibleDetail(p){if(!modal){modal=document.createElement('dialog');modal.className='mobile-project-dialog';modal.innerHTML='<div class="mobile-project-inner"><button class="mobile-dialog-close" type="button" aria-label="Close">×</button><p class="mobile-dialog-kicker"></p><h2></h2><div class="mobile-dialog-art"><img alt=""></div><p class="mobile-dialog-description"></p><a class="mobile-dialog-link" target="_blank" rel="noopener noreferrer">VIEW ORIGINAL ARTWORK ↗</a></div>';document.body.append(modal);modal.querySelector('button').addEventListener('click',()=>modal.close());modal.addEventListener('click',e=>{if(e.target===modal)modal.close()});const s=document.createElement('style');s.textContent='.mobile-project-dialog{border:1px solid rgba(208,188,255,.32);border-radius:13px;box-shadow:0 30px 100px rgba(0,0,0,.8);background:#0A0E1A;color:white;max-width:min(660px,calc(100vw - 32px));max-height:90vh;padding:0}.mobile-project-dialog::backdrop{background:rgba(3,5,12,.86);backdrop-filter:blur(10px)}.mobile-project-inner{padding:25px;position:relative}.mobile-dialog-close{position:absolute;right:13px;top:11px;font-size:26px;border:0;background:transparent;color:white}.mobile-dialog-kicker{font-size:10px;color:var(--active-tint);letter-spacing:.18em}.mobile-project-inner h2{font:800 26px Inter,sans-serif;margin:8px 0 20px;line-height:1.2}.mobile-dialog-art{display:flex;justify-content:center;background:#050711;max-height:42vh}.mobile-dialog-art img{max-height:42vh;max-width:100%;object-fit:contain}.mobile-dialog-description{color:rgba(255,255,255,.7);font:400 13px/1.7 Inter,sans-serif}.mobile-dialog-link{display:inline-block;margin-top:9px;padding:11px 16px;border:1px solid var(--active-light);color:var(--active-tint);border-radius:30px;font:700 10px Space Grotesk,sans-serif}';document.head.append(s)}modal.style.setProperty('--active-light',p.accent);modal.querySelector('.mobile-dialog-kicker').textContent=p.categoryLabel.toUpperCase()+' · '+p.year;modal.querySelector('h2').textContent=p.name;const img=modal.querySelector('img');img.src=assetUrl(p.cover);img.alt=p.name+' artwork';modal.querySelector('.mobile-dialog-description').textContent=p.description;modal.querySelector('.mobile-dialog-link').href=assetUrl(p.cover);if(!modal.open)modal.showModal();}
+function openAccessibleDetail(p){if(!modal){modal=document.createElement('dialog');modal.className='mobile-project-dialog';modal.innerHTML='<div class="mobile-project-inner"><button class="mobile-dialog-close" type="button" aria-label="Close">×</button><p class="mobile-dialog-kicker"></p><h2></h2><div class="mobile-dialog-art"><img alt=""></div><p class="mobile-dialog-description"></p><a class="mobile-dialog-link" target="_blank" rel="noopener noreferrer">VIEW ORIGINAL ARTWORK ↗</a></div>';document.body.append(modal);modal.querySelector('button').addEventListener('click',()=>modal.close());modal.addEventListener('click',e=>{if(e.target===modal)modal.close()});const s=document.createElement('style');s.textContent='.mobile-project-dialog{border:1px solid rgba(208,188,255,.32);border-radius:13px;box-shadow:0 30px 100px rgba(0,0,0,.8);background:#0A0E1A;color:white;max-width:min(660px,calc(100vw - 32px));max-height:90vh;padding:0}.mobile-project-dialog::backdrop{background:rgba(3,5,12,.86);backdrop-filter:blur(10px)}.mobile-project-inner{padding:25px;position:relative}.mobile-dialog-close{position:absolute;right:13px;top:11px;font-size:26px;border:0;background:transparent;color:white}.mobile-dialog-kicker{font-size:10px;color:var(--active-tint);letter-spacing:.18em}.mobile-project-inner h2{font:800 26px Inter,sans-serif;margin:8px 0 20px;line-height:1.2}.mobile-dialog-art{display:flex;justify-content:center;background:#050711;max-height:42vh}.mobile-dialog-art img{max-height:42vh;max-width:100%;object-fit:contain}.mobile-dialog-description{color:rgba(255,255,255,.7);font:400 13px/1.7 Inter,sans-serif}.mobile-dialog-link{display:inline-block;margin-top:9px;padding:11px 16px;border:1px solid var(--active-light);color:var(--active-tint);border-radius:30px;font:700 10px Space Grotesk,sans-serif}';document.head.append(s)}modal.style.setProperty('--active-light',p.accent);modal.querySelector('.mobile-dialog-kicker').textContent=p.categoryLabel.toUpperCase()+' · '+p.year;modal.querySelector('h2').textContent=p.name;const img=modal.querySelector('img');img.src=assetUrl(p.cover);img.alt=p.name+' artwork';modal.querySelector('.mobile-dialog-description').textContent=p.description;modal.querySelector('.mobile-dialog-link').href=p.id==='portfolio'?'index.html':assetUrl(p.cover);modal.querySelector('.mobile-dialog-link').textContent=p.id==='portfolio'?'OPEN PORTFOLIO ↗':'VIEW ORIGINAL ARTWORK ↗';let demoButton=modal.querySelector('[data-open-demo]');
+if(!demoButton){demoButton=document.createElement('button');demoButton.type='button';demoButton.className='mobile-dialog-link';demoButton.dataset.openDemo='';modal.querySelector('.mobile-project-inner').append(demoButton)}
+demoButton.hidden=!p.demo;
+demoButton.textContent='OPEN IN 3D SHOWROOM';
+demoButton.onclick=async()=>{modal.close();setProjectView(false);await initialization;chooseProject(p.id)};
+if(!modal.open)modal.showModal();}
 
 function roundedShape(w,h,r){const s=new THREE.Shape();const l=-w/2,b=-h/2; r=Math.min(r,w/2,h/2);s.moveTo(l+r,b);s.lineTo(l+w-r,b);s.quadraticCurveTo(l+w,b,l+w,b+r);s.lineTo(l+w,b+h-r);s.quadraticCurveTo(l+w,b+h,l+w-r,b+h);s.lineTo(l+r,b+h);s.quadraticCurveTo(l,b+h,l,b+h-r);s.lineTo(l,b+r);s.quadraticCurveTo(l,b,l+r,b);return s;}
 function clamp(v,min,max){return Math.min(max,Math.max(min,v))}
@@ -884,7 +874,7 @@ window.addEventListener('message',event=>{
   return;
  }
  if(!previewActive||staticPreview()||state!=='focus'||selected!==project)return;
- if(msg.kind==='wheel')zoomEnvironment(msg.delta,msg.mode);
+ if(msg.kind==='wheel'&&Number.isFinite(msg.delta)&&[0,1,2].includes(msg.mode))zoomEnvironment(msg.delta,msg.mode);
  if(msg.kind==='drag'&&Number.isFinite(msg.dx)&&Number.isFinite(msg.dy)){
   focusTiltTarget.y=clamp(focusTiltTarget.y+clamp(msg.dx,-100,100)*.0034,-.26,.26);
   focusTiltTarget.x=clamp(focusTiltTarget.x+clamp(msg.dy,-100,100)*.0029,-.19,.19);
@@ -1200,7 +1190,30 @@ function installKeys(){document.addEventListener('keydown',e=>{if(e.key==='Escap
 function showFallback(detail){shelfSwitch.hidden=true;clearOutline();$('#screen-portal').hidden=true;stageLoading.classList.add('is-done');fallbackEl.hidden=false;labelsEl.hidden=true;if(detail)console.warn('[showroom] fallback:',detail);sceneReady=false;}
 async function initialize(){try{const c=document.createElement('canvas');if(!(c.getContext('webgl2')||c.getContext('webgl'))){showFallback('WebGL not available');return}
  // No framework migration: dynamically load Three.js only on devices capable of the 3D showroom.
- await new Promise((resolve,reject)=>{const script=document.createElement('script');script.src=new URL('./vendor/three.js',import.meta.url).href;script.onload=resolve;script.onerror=()=>reject(new Error('Local Three.js engine did not load'));document.head.append(script)});THREE=window.SHOWROOM_THREE;if(!THREE)throw new Error('Local Three.js engine did not load');makeScene();frame.appendChild($('#try-preview'));ensureDemoFrame(PROJECTS.find(p=>p.demo?.bridge));setupInteraction();stageLoading.classList.add('is-done');window.addEventListener('resize',queueSceneResize,{passive:true});const ro=new ResizeObserver(queueSceneResize);ro.observe(frame);const visibility=new IntersectionObserver(entries=>{stageVisible=entries[entries.length-1].isIntersecting},{rootMargin:'150px'});visibility.observe(frame);
+ await new Promise((resolve,reject)=>{const script=document.createElement('script');script.src=new URL('./vendor/three.js',import.meta.url).href;script.onload=resolve;script.onerror=()=>reject(new Error('Local Three.js engine did not load'));document.head.append(script)});THREE=window.SHOWROOM_THREE;if(!THREE)throw new Error('Local Three.js engine did not load');makeScene();frame.appendChild($('#try-preview'));setupInteraction();stageLoading.classList.add('is-done');window.addEventListener('resize',queueSceneResize,{passive:true});const ro=new ResizeObserver(queueSceneResize);ro.observe(frame);const visibility=new IntersectionObserver(entries=>{stageVisible=entries[entries.length-1].isIntersecting},{rootMargin:'150px'});visibility.observe(frame);
  }catch(error){console.error('[showroom] 3D initialization failed',error);showFallback(error.message)}}
-setMenu();buildArchive();installKeys();initialize();
+function setProjectView(useGrid){
+ gridView=useGrid;
+ document.documentElement.dataset.projectLayout=useGrid?'grid':'3d';
+ document.querySelector('.museum-section').hidden=useGrid;
+ document.querySelectorAll('button[data-project-view]').forEach(button=>{
+  button.setAttribute('aria-pressed',String((button.dataset.projectView==='grid')===useGrid));
+ });
+ const url=new URL(location.href);
+ url.searchParams.set('view',useGrid?'grid':'3d');
+ history.replaceState(null,'',url);
+ if(!useGrid&&!initialization)initialization=initialize();
+}
+function openLinkedProject(){
+ const id=location.hash.startsWith('#project/')?location.hash.slice(9):'';
+ const project=ARCHIVE_PROJECTS.find(p=>p.slug===id||p.id===id);
+ if(project)openAccessibleDetail(project);
+ else if(modal?.open)modal.close();
+}
+setMenu();buildArchive();installKeys();
+document.querySelectorAll('button[data-project-view]').forEach(button=>button.addEventListener('click',()=>setProjectView(button.dataset.projectView==='grid')));
+window.addEventListener('hashchange',openLinkedProject);
+window.addEventListener('popstate',openLinkedProject);
+setProjectView(gridView);
+openLinkedProject();
 

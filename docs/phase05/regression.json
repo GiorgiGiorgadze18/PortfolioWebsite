@@ -1,0 +1,15 @@
+{
+  "test": "tests/two_sided_showroom.py",
+  "browser": "Chromium software WebGL",
+  "desktop_showroom_and_demo_entry": "PASS",
+  "phone_portrait_landscape_and_desktop_notices": "PASS",
+  "phone_live_app_requests": 0,
+  "attempts": [
+    "Initial 30-second navigation timeout",
+    "Retry found pre-Phase-02 archive-navigation expectation",
+    "Updated test to follow details \u2192 Open in 3D, retained all demo/mobile assertions; final run passed"
+  ],
+  "navigation_timeout_ms": 90000,
+  "full_application_business_flows": "NOT RUN",
+  "physical_devices": false
+}
