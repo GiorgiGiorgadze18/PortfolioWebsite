@@ -31,7 +31,7 @@ with sync_playwright() as p:
    assert card.locator('.discipline-card__surface').evaluate('e=>getComputedStyle(e).animationPlayState')=='paused'
    page.evaluate("Object.defineProperty(document,'hidden',{configurable:true,get:()=>true});document.dispatchEvent(new Event('visibilitychange'));Object.defineProperty(document,'hidden',{configurable:true,get:()=>false});document.dispatchEvent(new Event('visibilitychange'))")
    assert card.locator('.discipline-card__surface').evaluate('e=>getComputedStyle(e).animationPlayState')=='paused'
-   page.locator('[type=reset]').click()
+   page.locator('.lab-controls [type=reset]').click()
    page.wait_for_function("document.querySelector('#lab-strength').value==='1'")
    assert pause.get_attribute('aria-pressed')=='false'
    assert page.locator('#reflection-value').inner_text()=='0.35'

@@ -75,7 +75,7 @@ def phone(browser, url):
     page.on('request', lambda request: requests.append(request.url))
     page.on('pageerror', lambda error: errors.append(str(error)))
     page.on('console', lambda message: errors.append(message.text) if 'GL_INVALID' in message.text else None)
-    page.goto(url, timeout=90000)
+    page.goto(url + "?view=3d", timeout=90000)
     stage = page.locator('#museum-frame')
     apps = page.get_by_role('button', name='UI / UX', exact=True)
     graphics = page.get_by_role('button', name='Graphic Design', exact=True)

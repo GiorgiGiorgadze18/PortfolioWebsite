@@ -30,3 +30,73 @@
  .lab-stage .discipline-card__surface::before,
  .lab-stage .discipline-card__surface::after { display: none; }
 }
+
+.experiment-library { padding-bottom: var(--sp-xl); }
+.experiment-gallery {
+ display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 285px), 1fr));
+ gap: var(--sp-md); margin-top: var(--sp-md);
+}
+.experiment-card {
+ display: flex; flex-direction: column; min-width: 0;
+ border: 1px solid var(--clr-border); border-radius: var(--radius); overflow: hidden;
+ background: var(--clr-bg);
+}
+.experiment-card-content { display: flex; flex: 1; flex-direction: column; align-items: flex-start; gap: 12px; padding: var(--sp-md); }
+.experiment-card-content h3 { font-size: 1.25rem; line-height: 1.25; }
+.experiment-card-content > p, .experiment-instructions { color: #c1d8e4; }
+.experiment-card-content .experiment-technology { color: var(--clr-cyan); font-size: .82rem; }
+.experiment-card-content button { margin-top: auto; }
+.experiment-preview { min-height: 132px; background-color: #0c1524; }
+.preview-shader { background-image: repeating-radial-gradient(ellipse at 26% 90%, #123951 0%, #128b9a 6%, #122139 11%, #111626 16%); }
+.preview-lighting { background-image: radial-gradient(ellipse 27% 52% at 54% 42%, #a9c5d4, #315168 73%, transparent 74%), radial-gradient(ellipse at 55% 85%, #1e4560, transparent 59%); }
+.preview-physics { background-image: linear-gradient(165deg, transparent 49%, #65e6e9 50%, transparent 51%), repeating-linear-gradient(0deg, transparent 0 22px, #293b55 23px 24px); }
+.preview-particles { background-image: radial-gradient(circle, #8ddeee 1px, transparent 2px), radial-gradient(ellipse, #205069, transparent 70%); background-size: 16px 16px, 100% 100%; }
+.preview-spatial { background-image: linear-gradient(152deg, transparent 22%, #394a67 23% 32%, transparent 33% 42%, #2d7986 43% 52%, transparent 53% 62%, #37556f 63% 73%, transparent 74%); }
+
+#experiment-dialog {
+ position: fixed; inset: 0; margin: auto; width: min(820px, calc(100% - 24px)); max-height: calc(100dvh - 24px);
+ color: var(--clr-text); background: var(--clr-bg); border: 1px solid #38546a;
+ border-radius: var(--radius); padding: 0;
+}
+#experiment-dialog::backdrop { background: #030611d9; }
+body:has(#experiment-dialog[open]) { overflow: hidden; }
+.experiment-dialog-inner { --dialog-pad: clamp(12px, 4vw, 32px); padding: 0 var(--dialog-pad) var(--dialog-pad); }
+.experiment-dialog-heading { position: sticky; top: 0; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-block: 10px; background: var(--clr-bg); }
+.experiment-dialog-inner h2 { font-size: clamp(1.15rem, 4vw, 1.75rem); }
+.experiment-instructions { margin-block: 8px 16px; }
+.experiment-close {
+ flex: 0 0 44px; width: 44px; height: 44px;
+ border: 1px solid var(--clr-border-hover); border-radius: 50%; color: var(--clr-white); font-size: 24px;
+}
+.experiment-stage { position: relative; overflow: hidden; height: clamp(190px, 39vh, 370px); background-color: #09101e; border-radius: var(--radius-sm); }
+.experiment-canvas { display: block; width: 100%; height: 100%; touch-action: pan-y; }
+.experiment-dialog-inner [role="status"]:not(:empty) { margin-block: var(--sp-xs); color: #c1d8e4; }
+.experiment-settings { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 148px), 1fr)); gap: var(--sp-xs) var(--sp-sm); margin-block: var(--sp-sm); }
+.experiment-settings label { display: grid; grid-template-columns: minmax(0, 1fr) 2.5rem; align-items: center; gap: 4px 8px; font-size: .9rem; }
+.experiment-settings input, .experiment-settings select { grid-row: 2; min-height: 44px; width: 100%; accent-color: var(--clr-cyan); }
+.experiment-settings select { grid-column: 1 / -1; padding-inline: var(--sp-xs); color: var(--clr-text); background: var(--clr-bg-deep); border: 1px solid #51647b; border-radius: 8px; }
+.experiment-settings output { grid-row: 2; color: var(--clr-cyan); text-align: end; }
+.experiment-dialog-inner .lab-actions { gap: var(--sp-xs); }
+#experiment-dialog [hidden] { display: none; }
+
+.spatial-viewport { display: grid; place-items: center; width: 100%; height: 100%; }
+.spatial-group {
+ width: min(58%, 260px); display: grid; gap: 4px; transform-style: preserve-3d;
+ transform: rotateX(16deg) rotateY(var(--view-angle, -17deg));
+ transition: transform var(--t-base);
+}
+.spatial-layer {
+ --layer: 0;
+ display: flex; min-height: 44px; flex-direction: column; justify-content: center; gap: 2px;
+ padding: 6px 12px; border: 1px solid #597791; border-radius: 8px;
+ background: #1b3347; font-size: clamp(.7rem, 2vw, .9rem);
+ transform: translate3d(calc(var(--layer) * var(--spread, 0) * 14px),
+   calc(var(--layer) * var(--spread, 0) * 9px), calc(var(--layer) * var(--depth, 1px)));
+ transition: transform var(--t-base);
+}
+.spatial-layer:nth-child(1) { --layer: -1; background: #222b45; }
+.spatial-layer:nth-child(3) { --layer: 1; background: #193d46; }
+.spatial-layer span { color: #c1d8e4; }
+@media (prefers-reduced-motion: reduce) {
+ .spatial-group, .spatial-layer { transition: none; }
+}

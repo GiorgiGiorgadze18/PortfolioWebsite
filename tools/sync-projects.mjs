@@ -39,7 +39,19 @@ if (process.argv.includes('--check')) {
 // Keep complete project descriptions in server-delivered semantic HTML.
 const projectsPath = fileURLToPath(new URL('../projects.html', import.meta.url));
 const projectsSource = readFileSync(projectsPath, 'utf8');
-const summaries = ARCHIVE_PROJECTS.map(project => `<details class="project-summary" id="project-${escape(project.slug)}"><summary>${escape(project.name)}</summary><p>${escape(project.categoryLabel)} · ${escape(project.year)}</p><p>${escape(project.description)}</p><a href="?view=grid#project/${encodeURIComponent(project.slug)}">Explore ${escape(project.name)}</a></details>`).join('\n');
+const cards = ARCHIVE_PROJECTS.map(project => `<article class="archive-card" id="project/${escape(project.slug)}" role="listitem" data-category="${escape(project.categories.join(' '))}" style="--active-light:${escape(project.accent)}">
+  <div class="archive-thumb"><img loading="lazy" src="assets/${escape(project.thumbnail || project.cover)}" alt="${escape(project.name)} original design artwork"></div>
+  <div class="archive-info">
+    <span class="archive-kind">${escape(project.categoryLabel)}</span>
+    <h3>${escape(project.name)}</h3>
+    <p>${escape(project.year)} · ${escape(project.device.toUpperCase())} DISPLAY</p>
+    <details class="project-summary" id="project-${escape(project.slug)}">
+      <summary class="archive-action" data-explore="${escape(project.id)}" aria-label="About ${escape(project.name)}">About <span aria-hidden="true">↗</span></summary>
+      <p>${escape(project.description)}</p>
+      <a href="${project.id === 'portfolio' ? 'index.html' : 'assets/' + escape(project.cover)}">${project.id === 'portfolio' ? 'Open portfolio' : 'View original'}</a>
+    </details>
+  </div>
+</article>`).join('\n');
 const production = 'https://giorgigiorgadze18.github.io/PortfolioWebsite/';
 const itemList = {
   '@context': 'https://schema.org', '@type': 'ItemList',
@@ -53,8 +65,11 @@ const itemList = {
   })),
 };
 const structured = JSON.stringify(itemList).replaceAll('<', '\\u003c');
-const block = '<!-- PROJECT-SUMMARIES-START -->\n<section class="collection-section container" aria-labelledby="project-descriptions-title"><h2 id="project-descriptions-title">Project details</h2>\n' + summaries + '\n</section>\n<script type="application/ld+json">' + structured + '</script>\n<!-- PROJECT-SUMMARIES-END -->';
-const projectsResult = projectsSource.replace(/<!-- PROJECT-SUMMARIES-START -->[\s\S]*?<!-- PROJECT-SUMMARIES-END -->/, block);
+const block = '<!-- PROJECT-SUMMARIES-START -->\n<script type="application/ld+json">' + structured + '</script>\n<!-- PROJECT-SUMMARIES-END -->';
+const projectsResult = projectsSource
+  .replace(/<!-- PROJECT-CARDS-START -->[\s\S]*?<!-- PROJECT-CARDS-END -->/, () =>
+    '<!-- PROJECT-CARDS-START -->\n' + cards + '\n<!-- PROJECT-CARDS-END -->')
+  .replace(/<!-- PROJECT-SUMMARIES-START -->[\s\S]*?<!-- PROJECT-SUMMARIES-END -->/, () => block);
 if (!projectsSource.includes('<!-- PROJECT-SUMMARIES-START -->')) throw new Error('Project summary boundary missing');
 if (process.argv.includes('--check')) {
   if (projectsResult !== projectsSource) throw new Error('Project descriptions are stale. Run node tools/sync-projects.mjs');

@@ -1,0 +1,44 @@
+[
+  {
+    "version": "baseline",
+    "page": "index.html",
+    "requests": 27,
+    "bytes": 1168938,
+    "rendererRequests": 0
+  },
+  {
+    "version": "baseline",
+    "page": "projects.html?view=grid",
+    "requests": 19,
+    "bytes": 993033,
+    "rendererRequests": 0
+  },
+  {
+    "version": "baseline",
+    "page": "lab.html",
+    "requests": 20,
+    "bytes": 268837,
+    "rendererRequests": 0
+  },
+  {
+    "version": "refinement",
+    "page": "index.html",
+    "requests": 28,
+    "bytes": 1169545,
+    "rendererRequests": 0
+  },
+  {
+    "version": "refinement",
+    "page": "projects.html?view=grid",
+    "requests": 21,
+    "bytes": 1001958,
+    "rendererRequests": 0
+  },
+  {
+    "version": "refinement",
+    "page": "lab.html",
+    "requests": 24,
+    "bytes": 288786,
+    "rendererRequests": 0
+  }
+]

@@ -1,0 +1,8 @@
+["chromium", "reduced motion, WebGL failure, no automatic preference, module failure details", "PASS"]
+["chromium", "Shader", "render, control changes visual, reset, resize, re-open, disposal, reduced motion", "PASS", 12727]
+["chromium", "Lighting", "render, control changes visual, reset, resize, re-open, disposal, reduced motion", "PASS", 5782]
+["chromium", "Motion", "render, control changes visual, reset, resize, re-open, disposal, reduced motion", "PASS", 2726]
+["chromium", "Particle", "render, control changes visual, reset, resize, re-open, disposal, reduced motion", "PASS", 2409]
+["chromium", "Spatial", "render, control changes visual, reset, resize, re-open, disposal, reduced motion", "PASS", 681]
+["chromium", "closed stages stop frames, unavailable WebGL presents preview", "PASS"]
+["chromium", "five pages \u00d7 ten viewport widths, no horizontal page overflow", "PASS"]

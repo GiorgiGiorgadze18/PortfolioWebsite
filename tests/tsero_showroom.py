@@ -33,7 +33,7 @@ def mobile(browser, base, output):
     notice = page.locator('#desktop-demo-notice')
     expect(notice).to_be_hidden()
     assert any(url.endswith('/assets/tsero-desktop-home.webp') for url in requests)
-    assert page.locator('[data-explore="tsero"]').locator('xpath=../..').locator('img').get_attribute('src').endswith('/assets/project-tsero-preview.webp')
+    assert page.locator('.archive-card').filter(has=page.locator('[data-explore="tsero"]')).locator('img').evaluate('img => img.src').endswith('/assets/project-tsero-preview.webp')
     button.tap()
     expect(notice).to_be_visible()
     expect(notice).to_have_text('Try the interactive demo on a computer.')

@@ -1,0 +1,25 @@
+/* Shared control dimensions without changing the established CTA hierarchy. */
+.btn, .card-btn, .navbar__hamburger, .contact-form__submit {
+  min-block-size: var(--control-height, 44px);
+}
+.btn, .card-btn {
+  justify-content: center;
+  gap: var(--sp-xs, 8px);
+}
+.navbar__hamburger { min-inline-size: var(--control-height, 44px); }
+:where(a, button, summary, input, select, textarea):focus-visible {
+  outline: 2px solid var(--clr-cyan, #00f0ff);
+  outline-offset: 3px;
+}
+button:disabled { cursor: default; opacity: .6; }
+/* The existing card reveal is also available by keyboard and on touch screens. */
+.project-card:focus-within .card-actions {
+  opacity: 1;
+  transform: none;
+}
+@media (hover: none), (pointer: coarse) {
+  .project-card .card-actions {
+    opacity: 1;
+    transform: none;
+  }
+}
