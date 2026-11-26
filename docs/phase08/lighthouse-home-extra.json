@@ -1,0 +1,500 @@
+[
+  {
+    "page": "index",
+    "run": 3,
+    "version": "13.6.0",
+    "status": "PASS",
+    "scores": {
+      "performance": 0.99,
+      "accessibility": 1,
+      "best-practices": 1,
+      "seo": 1
+    },
+    "metrics": {
+      "largest-contentful-paint": 1205.5439,
+      "cumulative-layout-shift": 0,
+      "total-blocking-time": 107,
+      "speed-index": 1648.152111558583
+    },
+    "settings": {
+      "formFactor": "mobile",
+      "throttlingMethod": "simulate",
+      "throttling": {
+        "rttMs": 150,
+        "throughputKbps": 1638.4,
+        "requestLatencyMs": 562.5,
+        "downloadThroughputKbps": 1474.5600000000002,
+        "uploadThroughputKbps": 675,
+        "cpuSlowdownMultiplier": 4
+      },
+      "screenEmulation": {
+        "mobile": true,
+        "width": 412,
+        "height": 823,
+        "deviceScaleFactor": 1.75,
+        "disabled": false
+      }
+    },
+    "diagnostics": {
+      "mainthread-work-breakdown": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "groupLabel",
+            "valueType": "text",
+            "label": "Category"
+          },
+          {
+            "key": "duration",
+            "valueType": "ms",
+            "granularity": 1,
+            "label": "Time Spent"
+          }
+        ],
+        "items": [
+          {
+            "group": "other",
+            "groupLabel": "Other",
+            "duration": 2010.9399999999916
+          },
+          {
+            "group": "styleLayout",
+            "groupLabel": "Style & Layout",
+            "duration": 727.8520000000003
+          },
+          {
+            "group": "scriptEvaluation",
+            "groupLabel": "Script Evaluation",
+            "duration": 280.8280000000004
+          },
+          {
+            "group": "paintCompositeRender",
+            "groupLabel": "Rendering",
+            "duration": 197.75599999999045
+          },
+          {
+            "group": "scriptParseCompile",
+            "groupLabel": "Script Parsing & Compilation",
+            "duration": 40.79599999999999
+          },
+          {
+            "group": "parseHTML",
+            "groupLabel": "Parse HTML & CSS",
+            "duration": 26.327999999999996
+          }
+        ],
+        "sortedBy": [
+          "duration"
+        ]
+      },
+      "bootup-time": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "url",
+            "valueType": "url",
+            "label": "URL"
+          },
+          {
+            "key": "total",
+            "granularity": 1,
+            "valueType": "ms",
+            "label": "Total CPU Time"
+          },
+          {
+            "key": "scripting",
+            "granularity": 1,
+            "valueType": "ms",
+            "label": "Script Evaluation"
+          },
+          {
+            "key": "scriptParseCompile",
+            "granularity": 1,
+            "valueType": "ms",
+            "label": "Script Parse"
+          }
+        ],
+        "items": [
+          {
+            "url": "http://127.0.0.1:8054/js/constellation.js",
+            "total": 1906.5199999999993,
+            "scripting": 180.62000000000052,
+            "scriptParseCompile": 1.168
+          },
+          {
+            "url": "http://127.0.0.1:8054/index.html",
+            "total": 762.204,
+            "scripting": 10.988,
+            "scriptParseCompile": 1.716
+          },
+          {
+            "url": "Unattributable",
+            "total": 409.60800000000074,
+            "scripting": 10.424,
+            "scriptParseCompile": 0
+          },
+          {
+            "url": "http://127.0.0.1:8054/js/hero-motion.js",
+            "total": 74.77199999999999,
+            "scripting": 31.763999999999996,
+            "scriptParseCompile": 1.432
+          },
+          {
+            "url": "http://127.0.0.1:8054/js/main.js?v=0.17.4",
+            "total": 73.64399999999999,
+            "scripting": 33.41999999999999,
+            "scriptParseCompile": 34.032000000000004
+          }
+        ],
+        "summary": {
+          "wastedMs": 305.56400000000053
+        },
+        "sortedBy": [
+          "total"
+        ]
+      },
+      "layout-shifts": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "node",
+            "valueType": "node",
+            "subItemsHeading": {
+              "key": "extra"
+            },
+            "label": "Element"
+          },
+          {
+            "key": "score",
+            "valueType": "numeric",
+            "subItemsHeading": {
+              "key": "cause",
+              "valueType": "text"
+            },
+            "granularity": 0.001,
+            "label": "Layout shift score"
+          }
+        ],
+        "items": []
+      },
+      "long-tasks": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "url",
+            "valueType": "url",
+            "label": "URL"
+          },
+          {
+            "key": "startTime",
+            "valueType": "ms",
+            "granularity": 1,
+            "label": "Start Time"
+          },
+          {
+            "key": "duration",
+            "valueType": "ms",
+            "granularity": 1,
+            "label": "Duration"
+          }
+        ],
+        "items": [
+          {
+            "url": "http://127.0.0.1:8054/index.html",
+            "duration": 202,
+            "startTime": 815.77195
+          },
+          {
+            "url": "http://127.0.0.1:8054/js/constellation.js",
+            "duration": 161,
+            "startTime": 1786.31585
+          },
+          {
+            "url": "http://127.0.0.1:8054/js/constellation.js",
+            "duration": 103,
+            "startTime": 1947.31585
+          },
+          {
+            "url": "http://127.0.0.1:8054/js/constellation.js",
+            "duration": 72,
+            "startTime": 1714.31585
+          },
+          {
+            "url": "http://127.0.0.1:8054/js/constellation.js",
+            "duration": 69,
+            "startTime": 2140.31585
+          },
+          {
+            "url": "Unattributable",
+            "duration": 60,
+            "startTime": 754.77195
+          },
+          {
+            "url": "http://127.0.0.1:8054/js/main.js?v=0.17.4",
+            "duration": 56,
+            "startTime": 1658.31585
+          },
+          {
+            "url": "http://127.0.0.1:8054/js/constellation.js",
+            "duration": 53,
+            "startTime": 2087.31585
+          },
+          {
+            "url": "Unattributable",
+            "duration": 51,
+            "startTime": 1044.7719499999998
+          }
+        ],
+        "sortedBy": [
+          "duration"
+        ],
+        "skipSumming": [
+          "startTime"
+        ],
+        "debugData": {
+          "type": "debugdata",
+          "urls": [
+            "http://127.0.0.1:8054/index.html",
+            "http://127.0.0.1:8054/js/constellation.js",
+            "Unattributable",
+            "http://127.0.0.1:8054/js/main.js?v=0.17.4"
+          ],
+          "tasks": [
+            {
+              "urlIndex": 0,
+              "startTime": 815.8,
+              "duration": 202,
+              "other": 202,
+              "paintCompositeRender": 0,
+              "scriptEvaluation": 0,
+              "styleLayout": 0
+            },
+            {
+              "urlIndex": 1,
+              "startTime": 1786.3,
+              "duration": 161,
+              "other": 161,
+              "paintCompositeRender": 0,
+              "scriptEvaluation": 0
+            },
+            {
+              "urlIndex": 1,
+              "startTime": 1947.3,
+              "duration": 103,
+              "other": 103,
+              "paintCompositeRender": 0,
+              "scriptEvaluation": 0,
+              "styleLayout": 0
+            },
+            {
+              "urlIndex": 1,
+              "startTime": 1714.3,
+              "duration": 72,
+              "other": 72,
+              "parseHTML": 0,
+              "scriptEvaluation": 0
+            },
+            {
+              "urlIndex": 1,
+              "startTime": 2140.3,
+              "duration": 69,
+              "other": 69,
+              "paintCompositeRender": 0,
+              "scriptEvaluation": 0,
+              "styleLayout": 0
+            },
+            {
+              "urlIndex": 2,
+              "startTime": 754.8,
+              "duration": 60,
+              "other": 60,
+              "scriptEvaluation": 0
+            },
+            {
+              "urlIndex": 3,
+              "startTime": 1658.3,
+              "duration": 56,
+              "other": 56,
+              "scriptEvaluation": 0
+            },
+            {
+              "urlIndex": 1,
+              "startTime": 2087.3,
+              "duration": 53,
+              "other": 53,
+              "paintCompositeRender": 0,
+              "scriptEvaluation": 0,
+              "styleLayout": 0
+            },
+            {
+              "urlIndex": 2,
+              "startTime": 1044.8,
+              "duration": 51,
+              "other": 51,
+              "scriptEvaluation": 0
+            }
+          ]
+        }
+      },
+      "cls-culprits-insight": {
+        "type": "list",
+        "items": []
+      },
+      "lcp-breakdown-insight": {
+        "type": "list",
+        "items": [
+          {
+            "type": "table",
+            "headings": [
+              {
+                "key": "label",
+                "valueType": "text",
+                "label": "Subpart"
+              },
+              {
+                "key": "duration",
+                "valueType": "ms",
+                "label": "Duration"
+              }
+            ],
+            "items": [
+              {
+                "subpart": "timeToFirstByte",
+                "label": "Time to first byte",
+                "duration": 9.337000003814698
+              },
+              {
+                "subpart": "elementRenderDelay",
+                "label": "Element render delay",
+                "duration": 368.6559999961853
+              }
+            ]
+          },
+          {
+            "type": "node",
+            "lhId": "page-0-SPAN",
+            "path": "1,HTML,1,BODY,2,HEADER,0,NAV,0,A,1,SPAN",
+            "selector": "header#navbar > nav.navbar__inner > a.navbar__brand > span.brand-name",
+            "boundingRect": {
+              "top": 18,
+              "bottom": 53,
+              "left": 50,
+              "right": 88,
+              "width": 38,
+              "height": 35
+            },
+            "snippet": "<span class=\"brand-name\">",
+            "nodeLabel": "GG."
+          }
+        ]
+      },
+      "lcp-discovery-insight": null,
+      "render-blocking-insight": {
+        "type": "table",
+        "headings": [
+          {
+            "key": "url",
+            "valueType": "url",
+            "label": "URL"
+          },
+          {
+            "key": "totalBytes",
+            "valueType": "bytes",
+            "label": "Transfer Size"
+          },
+          {
+            "key": "wastedMs",
+            "valueType": "timespanMs",
+            "label": "Duration"
+          }
+        ],
+        "items": [
+          {
+            "url": "http://127.0.0.1:8054/css/home-bundle.css?v=0.17.7",
+            "totalBytes": 48599,
+            "wastedMs": 453
+          }
+        ]
+      }
+    },
+    "warnings": [],
+    "runtimeError": null,
+    "failed_audits": [
+      {
+        "id": "first-contentful-paint",
+        "title": "First Contentful Paint",
+        "score": 0.99
+      },
+      {
+        "id": "total-blocking-time",
+        "title": "Total Blocking Time",
+        "score": 0.98
+      },
+      {
+        "id": "max-potential-fid",
+        "title": "Max Potential First Input Delay",
+        "score": 0.8
+      },
+      {
+        "id": "interactive",
+        "title": "Time to Interactive",
+        "score": 0.99
+      },
+      {
+        "id": "mainthread-work-breakdown",
+        "title": "Minimize main-thread work",
+        "score": 0
+      },
+      {
+        "id": "unsized-images",
+        "title": "Image elements do not have explicit `width` and `height`",
+        "score": 0.5
+      },
+      {
+        "id": "unminified-css",
+        "title": "Minify CSS",
+        "score": 0.5
+      },
+      {
+        "id": "unminified-javascript",
+        "title": "Minify JavaScript",
+        "score": 0.5
+      },
+      {
+        "id": "unused-css-rules",
+        "title": "Reduce unused CSS",
+        "score": 0.5
+      },
+      {
+        "id": "cache-insight",
+        "title": "Use efficient cache lifetimes",
+        "score": 0.5
+      },
+      {
+        "id": "document-latency-insight",
+        "title": "Document request latency",
+        "score": 0.5
+      },
+      {
+        "id": "forced-reflow-insight",
+        "title": "Forced reflow",
+        "score": 0
+      },
+      {
+        "id": "image-delivery-insight",
+        "title": "Improve image delivery",
+        "score": 0.5
+      },
+      {
+        "id": "network-dependency-tree-insight",
+        "title": "Network dependency tree",
+        "score": 0
+      },
+      {
+        "id": "render-blocking-insight",
+        "title": "Render-blocking requests",
+        "score": 0
+      }
+    ]
+  }
+]

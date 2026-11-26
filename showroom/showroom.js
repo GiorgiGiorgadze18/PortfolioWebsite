@@ -1194,8 +1194,9 @@ async function initialize(){try{const c=document.createElement('canvas');if(!(c.
  }catch(error){console.error('[showroom] 3D initialization failed',error);showFallback(error.message)}}
 function setProjectView(useGrid){
  gridView=useGrid;
+ document.documentElement.dataset.projectLayout=useGrid?'grid':'3d';
  document.querySelector('.museum-section').hidden=useGrid;
- document.querySelectorAll('[data-project-view]').forEach(button=>{
+ document.querySelectorAll('button[data-project-view]').forEach(button=>{
   button.setAttribute('aria-pressed',String((button.dataset.projectView==='grid')===useGrid));
  });
  const url=new URL(location.href);
@@ -1210,7 +1211,7 @@ function openLinkedProject(){
  else if(modal?.open)modal.close();
 }
 setMenu();buildArchive();installKeys();
-document.querySelectorAll('[data-project-view]').forEach(button=>button.addEventListener('click',()=>setProjectView(button.dataset.projectView==='grid')));
+document.querySelectorAll('button[data-project-view]').forEach(button=>button.addEventListener('click',()=>setProjectView(button.dataset.projectView==='grid')));
 window.addEventListener('hashchange',openLinkedProject);
 window.addEventListener('popstate',openLinkedProject);
 setProjectView(gridView);

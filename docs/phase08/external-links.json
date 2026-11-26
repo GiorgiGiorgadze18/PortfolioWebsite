@@ -1,0 +1,17 @@
+[
+  {
+    "url": "https://github.com/GiorgiGiorgadze18",
+    "http": 200,
+    "result": "reachable; profile contents not verified"
+  },
+  {
+    "url": "https://www.linkedin.com/in/giorgigiorgadzee16",
+    "http": 999,
+    "result": "BLOCKED or restricted by service; not proof of broken link"
+  },
+  {
+    "url": "https://www.behance.net/giorgigiorgadze19",
+    "http": 403,
+    "result": "BLOCKED or restricted by service; not proof of broken link"
+  }
+]

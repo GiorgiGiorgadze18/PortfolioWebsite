@@ -6,19 +6,18 @@
   <meta name="description" content="Digital design, responsive interfaces and interactive web experiences by Giorgi Giorgadze, based in Tbilisi, Georgia.">
   <meta name="author" content="Giorgi Giorgadze">
   <title>Giorgi Giorgadze | Digital Designer &amp; Creative Developer</title>
+  <link rel="stylesheet" href="css/home-bundle.css?v=0.17.7">
 
-  <!-- Google Fonts: Inter + Space Grotesk (per spec) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/tokens.css?v=0.17.3">
-  <link rel="stylesheet" href="css/index.css?v=0.17.3">
-  <link rel="stylesheet" href="css/constellation.css">
-  <link rel="stylesheet" href="css/experience-scroll.css">
+  <!-- Locally hosted Inter + Space Grotesk. -->
+
+
+
+
+
   <script defer src="js/constellation.js"></script>
-  <link rel="stylesheet" href="css/hero-motion.css">
+
   <script defer src="js/hero-motion.js"></script>
-  <link rel="stylesheet" href="css/hologram.css?v=0.17.2">
+
   <script defer src="js/hologram.js?v=0.17.6"></script>
   <noscript><style>#disciplines [data-animate] { opacity: 1; transform: none; }</style></noscript>
 
@@ -47,7 +46,7 @@
   ═══════════════════════════════════════════════════════════ -->
   <header class="navbar" id="navbar">
     <nav class="navbar__inner container">
-      <a href="index.html" class="navbar__brand" aria-label="Giorgi Giorgadze Home">
+      <a href="index.html" class="navbar__brand" aria-label="GG - Giorgi Giorgadze home">
         <img src="assets/icon-code.svg" alt="" class="brand-icon" aria-hidden="true">
         <span class="brand-name">GG<span class="brand-dot">.</span></span>
       </a>
@@ -95,7 +94,7 @@
         <!-- Profile Photo -->
         <div class="hero__photo-wrap" data-animate>
           <div class="hero__photo-glow" aria-hidden="true"></div>
-          <img src="assets/profile.png"
+          <img src="assets/profile.png" fetchpriority="high" width="362" height="437"
                alt="Giorgi Giorgadze, Digital Designer and Creative Developer"
                class="hero__photo">
           <div class="availability-badge">

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.17.7 — Phase 08 draft, 2026-11-26
+
+[PR #24](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/24)
+
+- Prevent the Grid view's initial showroom layout shift; locally host existing licensed fonts, bundle Home styles in source order, and prioritize the correctly sized portrait.
+- Correct certificate preview backgrounds and source-backed certificate labels/dates; align brand accessible names with visible text.
+- Record 110 Chromium/WebKit geometry checks, intercepted form states, local app demo flows and repeated Lighthouse measurements. Home performance varies 76/97/99; open limits remain in docs/OPEN_VERIFICATION.md. No production deployment.
+
 ## 0.17.6 — Phase 07 draft, 2026-11-26
 
 [PR #24](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/24)

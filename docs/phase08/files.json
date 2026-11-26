@@ -1,0 +1,234 @@
+[
+  {
+    "status": "M",
+    "path": "CHANGELOG.md"
+  },
+  {
+    "status": "M",
+    "path": "about.html"
+  },
+  {
+    "status": "M",
+    "path": "contact.html"
+  },
+  {
+    "status": "M",
+    "path": "css/phase02.css"
+  },
+  {
+    "status": "M",
+    "path": "docs/OPEN_VERIFICATION.md"
+  },
+  {
+    "status": "M",
+    "path": "index.html"
+  },
+  {
+    "status": "M",
+    "path": "lab.html"
+  },
+  {
+    "status": "M",
+    "path": "projects.html"
+  },
+  {
+    "status": "M",
+    "path": "showroom/showroom.js"
+  },
+  {
+    "status": "M",
+    "path": "tests/artifacts/source-sha256.json"
+  },
+  {
+    "status": "M",
+    "path": "tests/tsero_showroom.py"
+  },
+  {
+    "status": "??",
+    "path": "assets/fonts/inter-300.woff2"
+  },
+  {
+    "status": "??",
+    "path": "assets/fonts/inter-400.woff2"
+  },
+  {
+    "status": "??",
+    "path": "assets/fonts/inter-500.woff2"
+  },
+  {
+    "status": "??",
+    "path": "assets/fonts/inter-600.woff2"
+  },
+  {
+    "status": "??",
+    "path": "assets/fonts/inter-700.woff2"
+  },
+  {
+    "status": "??",
+    "path": "assets/fonts/inter-800.woff2"
+  },
+  {
+    "status": "??",
+    "path": "assets/fonts/inter-OFL.txt"
+  },
+  {
+    "status": "??",
+    "path": "assets/fonts/space-grotesk-400.woff2"
+  },
+  {
+    "status": "??",
+    "path": "assets/fonts/space-grotesk-500.woff2"
+  },
+  {
+    "status": "??",
+    "path": "assets/fonts/space-grotesk-600.woff2"
+  },
+  {
+    "status": "??",
+    "path": "assets/fonts/space-grotesk-700.woff2"
+  },
+  {
+    "status": "??",
+    "path": "assets/fonts/spacegrotesk-OFL.txt"
+  },
+  {
+    "status": "??",
+    "path": "css/fonts.css"
+  },
+  {
+    "status": "??",
+    "path": "css/home-bundle.css"
+  },
+  {
+    "status": "??",
+    "path": "docs/FINAL_AUDIT.md"
+  },
+  {
+    "status": "??",
+    "path": "docs/phase08/README.md"
+  },
+  {
+    "status": "??",
+    "path": "docs/phase08/about-1440.png"
+  },
+  {
+    "status": "??",
+    "path": "docs/phase08/about-chromium-390.png"
+  },
+  {
+    "status": "??",
+    "path": "docs/phase08/about-webkit-390.png"
+  },
+  {
+    "status": "??",
+    "path": "docs/phase08/contact-1440.png"
+  },
+  {
+    "status": "??",
+    "path": "docs/phase08/contact-chromium-390.png"
+  },
+  {
+    "status": "??",
+    "path": "docs/phase08/contact-webkit-390.png"
+  },
+  {
+    "status": "??",
+    "path": "docs/phase08/contact.json"
+  },
+  {
+    "status": "??",
+    "path": "docs/phase08/external-links.json"
+  },
+  {
+    "status": "??",
+    "path": "docs/phase08/files.json"
+  },
+  {
+    "status": "??",
+    "path": "docs/phase08/index-1440.png"
+  },
+  {
+    "status": "??",
+    "path": "docs/phase08/index-chromium-390.png"
+  },
+  {
+    "status": "??",
+    "path": "docs/phase08/index-webkit-390.png"
+  },
+  {
+    "status": "??",
+    "path": "docs/phase08/lab-1440.png"
+  },
+  {
+    "status": "??",
+    "path": "docs/phase08/lab-chromium-390.png"
+  },
+  {
+    "status": "??",
+    "path": "docs/phase08/lab-webkit-390.png"
+  },
+  {
+    "status": "??",
+    "path": "docs/phase08/lighthouse-before.json"
+  },
+  {
+    "status": "??",
+    "path": "docs/phase08/lighthouse-home-extra.json"
+  },
+  {
+    "status": "??",
+    "path": "docs/phase08/lighthouse-layout-fix.json"
+  },
+  {
+    "status": "??",
+    "path": "docs/phase08/lighthouse.json"
+  },
+  {
+    "status": "??",
+    "path": "docs/phase08/meetab/demo-confirmation-chromium-local.png"
+  },
+  {
+    "status": "??",
+    "path": "docs/phase08/meetab/demo-touch-chromium-local.json"
+  },
+  {
+    "status": "??",
+    "path": "docs/phase08/projects-1440.png"
+  },
+  {
+    "status": "??",
+    "path": "docs/phase08/projects-chromium-390.png"
+  },
+  {
+    "status": "??",
+    "path": "docs/phase08/projects-webkit-390.png"
+  },
+  {
+    "status": "??",
+    "path": "docs/phase08/security-checks.json"
+  },
+  {
+    "status": "??",
+    "path": "docs/phase08/tests.json"
+  },
+  {
+    "status": "??",
+    "path": "docs/phase08/tsero-desktop/tsero-chromium-desktop.json"
+  },
+  {
+    "status": "??",
+    "path": "docs/phase08/tsero-phone/tsero-chromium-phone.json"
+  },
+  {
+    "status": "??",
+    "path": "tests/final_qa.py"
+  },
+  {
+    "status": "??",
+    "path": "tests/run_lighthouse.py"
+  },
+  {
+    "status": "??",
+    "path": "tools/build_styles.py"
+  }
+]

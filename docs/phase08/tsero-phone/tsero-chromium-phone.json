@@ -1,0 +1,8 @@
+{
+  "base_url": "http://127.0.0.1:8054/",
+  "engine": "chromium",
+  "physical_device_testing": false,
+  "passed": {
+    "phone": "static desktop screenshot, original poster, HUD and 55% notice, portrait and landscape, zero live demo requests"
+  }
+}
