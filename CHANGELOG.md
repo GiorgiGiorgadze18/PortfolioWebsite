@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.17.0 — Phase 01 draft, 2026-11-26
+
+- Update professional identity and About copy, prioritize featured work, and consolidate disciplines into four holographic cards. Add a source-backed technology summary and contact CTA.
+- CV alignment remains pending factual review. Browser verification and limits are recorded in docs/phase01/README.md.
+
 ## 0.16.10 — 2026-11-23
 
 [PR #23](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/23)
