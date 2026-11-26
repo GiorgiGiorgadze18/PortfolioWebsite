@@ -1,0 +1,170 @@
+[
+  {
+    "status": "M",
+    "path": "CHANGELOG.md"
+  },
+  {
+    "status": "M",
+    "path": "about.html"
+  },
+  {
+    "status": "M",
+    "path": "contact.html"
+  },
+  {
+    "status": "A",
+    "path": "css/controls.css"
+  },
+  {
+    "status": "M",
+    "path": "css/home-bundle.css"
+  },
+  {
+    "status": "M",
+    "path": "css/lab.css"
+  },
+  {
+    "status": "M",
+    "path": "css/phase02.css"
+  },
+  {
+    "status": "M",
+    "path": "css/tokens.css"
+  },
+  {
+    "status": "A",
+    "path": "docs/refinement/README.md"
+  },
+  {
+    "status": "A",
+    "path": "docs/refinement/after-chromium-lab-1440.webp"
+  },
+  {
+    "status": "A",
+    "path": "docs/refinement/after-chromium-lighting-430.webp"
+  },
+  {
+    "status": "A",
+    "path": "docs/refinement/after-chromium-projects-390.webp"
+  },
+  {
+    "status": "A",
+    "path": "docs/refinement/after-chromium-shader-430.webp"
+  },
+  {
+    "status": "A",
+    "path": "docs/refinement/before-lab-1440.webp"
+  },
+  {
+    "status": "A",
+    "path": "docs/refinement/before-projects-390.webp"
+  },
+  {
+    "status": "A",
+    "path": "docs/refinement/files.json"
+  },
+  {
+    "status": "A",
+    "path": "docs/refinement/lab-chromium.jsonl"
+  },
+  {
+    "status": "A",
+    "path": "docs/refinement/lab-webkit.jsonl"
+  },
+  {
+    "status": "A",
+    "path": "docs/refinement/measurements.json"
+  },
+  {
+    "status": "A",
+    "path": "docs/refinement/projects.jsonl"
+  },
+  {
+    "status": "A",
+    "path": "docs/refinement/tsero.json"
+  },
+  {
+    "status": "M",
+    "path": "index.html"
+  },
+  {
+    "status": "A",
+    "path": "js/lab/gallery.js"
+  },
+  {
+    "status": "A",
+    "path": "js/lab/lighting.js"
+  },
+  {
+    "status": "A",
+    "path": "js/lab/particles.js"
+  },
+  {
+    "status": "A",
+    "path": "js/lab/physics.js"
+  },
+  {
+    "status": "A",
+    "path": "js/lab/registry.js"
+  },
+  {
+    "status": "A",
+    "path": "js/lab/runtime.js"
+  },
+  {
+    "status": "A",
+    "path": "js/lab/shader.js"
+  },
+  {
+    "status": "A",
+    "path": "js/lab/spatial.js"
+  },
+  {
+    "status": "M",
+    "path": "lab.html"
+  },
+  {
+    "status": "M",
+    "path": "projects.html"
+  },
+  {
+    "status": "M",
+    "path": "showroom/showroom.js"
+  },
+  {
+    "status": "M",
+    "path": "tests/artifacts/source-sha256.json"
+  },
+  {
+    "status": "M",
+    "path": "tests/fallback_browser.py"
+  },
+  {
+    "status": "M",
+    "path": "tests/lab_browser.py"
+  },
+  {
+    "status": "A",
+    "path": "tests/refinement_browser.py"
+  },
+  {
+    "status": "M",
+    "path": "tests/showroom-browser.py"
+  },
+  {
+    "status": "M",
+    "path": "tests/tablet_mobile.py"
+  },
+  {
+    "status": "M",
+    "path": "tests/tsero_showroom.py"
+  },
+  {
+    "status": "M",
+    "path": "tests/two_sided_showroom.py"
+  },
+  {
+    "status": "M",
+    "path": "tools/sync-projects.mjs"
+  }
+]

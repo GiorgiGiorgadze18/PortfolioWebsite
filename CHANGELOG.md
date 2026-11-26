@@ -2,6 +2,8 @@
 
 ## 0.18.0 — Portfolio refinement draft, 2026-11-26
 
+[PR #25](https://github.com/GiorgiGiorgadze18/PortfolioWebsite/pull/25)
+
 - Open the 3D showroom by default on supported browsers, remember explicit presentation choices, and provide a static Grid archive with native project details when graphics or scripts fail.
 - Refine the Projects switcher, control spacing and focus states across the site.
 - Expand Creative Lab with five on-demand studies in GLSL, Three.js lighting, spring motion, Canvas particles and CSS 3D. Preserve the original holographic interface.

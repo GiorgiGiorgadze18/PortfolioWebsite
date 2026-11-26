@@ -1,0 +1,8 @@
+["webkit", "reduced motion, WebGL failure, no automatic preference, module failure details", "PASS"]
+["webkit", "Shader", "render, control changes visual, reset, resize, re-open, disposal, reduced motion", "PASS", 1637]
+["webkit", "Lighting", "render, control changes visual, reset, resize, re-open, disposal, reduced motion", "PASS", 2046]
+["webkit", "Motion", "render, control changes visual, reset, resize, re-open, disposal, reduced motion", "PASS", 782]
+["webkit", "Particle", "render, control changes visual, reset, resize, re-open, disposal, reduced motion", "PASS", 715]
+["webkit", "Spatial", "render, control changes visual, reset, resize, re-open, disposal, reduced motion", "PASS", 1070]
+["webkit", "closed stages stop frames, unavailable WebGL presents preview", "PASS"]
+["webkit", "five pages \u00d7 ten viewport widths, no horizontal page overflow", "PASS"]

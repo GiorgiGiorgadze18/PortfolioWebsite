@@ -1,0 +1,9 @@
+{
+  "base_url": "http://127.0.0.1:8069/",
+  "engine": "chromium",
+  "physical_device_testing": false,
+  "passed": {
+    "phone": "static desktop screenshot, original poster, HUD and 55% notice, portrait and landscape, zero live demo requests",
+    "desktop": "375\u00d7811 live home, mouse ordering flow and checkout drag, cart retention, demo payment, bundled map, MeeTab session isolation"
+  }
+}

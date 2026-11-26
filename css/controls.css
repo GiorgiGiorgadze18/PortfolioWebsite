@@ -12,3 +12,14 @@
   outline-offset: 3px;
 }
 button:disabled { cursor: default; opacity: .6; }
+/* The existing card reveal is also available by keyboard and on touch screens. */
+.project-card:focus-within .card-actions {
+  opacity: 1;
+  transform: none;
+}
+@media (hover: none), (pointer: coarse) {
+  .project-card .card-actions {
+    opacity: 1;
+    transform: none;
+  }
+}
