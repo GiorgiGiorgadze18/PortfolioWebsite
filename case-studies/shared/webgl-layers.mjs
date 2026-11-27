@@ -34,7 +34,7 @@ export async function loadWebGLLayers({THREE,device,camera,layer,baseURL}){
   const now=performance.now();entryStarted??=now;
   const elapsed=reducedMotion.matches?1:Math.min(1,(now-entryStarted)/650);
   const blend=elapsed*elapsed*(3-2*elapsed);entrySettled=elapsed===1;
-  const state=timeline.stateAt(Math.max(.18,p)),width=innerWidth,height=innerHeight;
+  const state=timeline.stateAt(p),width=innerWidth,height=innerHeight;
   camera.setViewOffset(width,height,THREE.MathUtils.lerp(entryView.x*width,width/2-(rect.x+rect.width/2),blend),THREE.MathUtils.lerp(entryView.y*height,height/2-(rect.y+rect.height/2),blend),width,height);camera.updateProjectionMatrix();
   if(!entryAligned){
    entryPosition.set(entryScreen.x/width*2-1,1-entryScreen.y/height*2,projectedEntry.z).unproject(camera);
@@ -42,7 +42,7 @@ export async function loadWebGLLayers({THREE,device,camera,layer,baseURL}){
    entryAligned=true;
   }
   frameKit.update(state.spread);const unit=w/350;
-  const tilt=new THREE.Quaternion().setFromAxisAngle(axis,state.tilt*Math.PI/180);targetRotation.copy(camera.quaternion).multiply(tilt);
+  const tilt=new THREE.Quaternion().setFromAxisAngle(axis,state.tilt*Math.PI/180);targetRotation.copy(entryRotation).slerp(camera.quaternion,Math.min(1,p/.18)).multiply(tilt);
   const center=new THREE.Vector3(0,0,device.project.camera.focusZ),depth=-camera.worldToLocal(center.clone()).z;
   const unitsPerPixel=2*Math.tan(camera.fov*Math.PI/360)*depth/(height*camera.zoom);
   const scale=Math.min(rect.width*.6*unitsPerPixel/device.bodyDimensions.w,rect.height*.65*unitsPerPixel/device.bodyDimensions.h,1.5);

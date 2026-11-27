@@ -65,7 +65,7 @@ function describe(p){
  $('#previous').disabled=selectedChapter===0;$('#next').disabled=selectedChapter===chapters.length-1;
  if(animate)for(const node of [$('#counter'),$('#chapter-title'),$('#chapter-copy'),$('.source')])textAnimations.push(node.animate([{opacity:0,transform:'translateY(8px)'},{opacity:1,transform:'translateY(0)'}],{duration:280,easing:'cubic-bezier(.2,.8,.2,1)'}));
 }
-function goTo(index){selectedChapter=Math.max(0,Math.min(chapters.length-1,index));const chapter=chapters[selectedChapter];describe(chapter.progress);observer?.seek(sceneMode&&selectedChapter===0 ? .18 : chapter.progress);}
+function goTo(index){selectedChapter=Math.max(0,Math.min(chapters.length-1,index));const chapter=chapters[selectedChapter];describe(chapter.progress);observer?.seek(chapter.progress);}
 function setStatic(value){value=value||motion.matches||shortViewport.matches;$('#mode').disabled=motion.matches||shortViewport.matches;if(sceneMode)parent.postMessage({type:'case-study:pause',paused:value},location.origin);textAnimations.forEach(a=>a.cancel());textAnimations=[];section.hidden=value;observer?.dispose();observer=undefined;root.classList.toggle('is-static',value);$('#mode').textContent=$('#mode').disabled?'Static reading mode':value?'Interactive presentation':'Static chapters';if(!value){observer=createButtonProgress(p=>{progress=p;engine.seek(p);});goTo(selectedChapter);}}
 const aside=$('aside'),content=document.createElement('div');content.className='chapter-content';
 for(const node of [...aside.children])if(node!==$('#chapters'))content.append(node);aside.append(content);$('.pin').append($('#chapters'));

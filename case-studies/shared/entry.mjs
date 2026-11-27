@@ -23,7 +23,7 @@ import {showroomBridge} from './showroom-bridge.mjs';
   }
   if(!dialog){dialog=document.createElement('dialog');dialog.className='case-study-dialog';dialog.setAttribute('aria-label','Project composition study');dialog.style.cssText='width:100vw;max-width:100vw;height:100svh;max-height:100svh;padding:0;border:0';document.body.append(dialog);dialog.addEventListener('cancel',e=>{e.preventDefault();close();});}
   dialog.style.background=scene?'transparent':'#080d18';dialog.style.width=scene?'100vw':'min(1200px,96vw)';dialog.style.height=scene?'100svh':'94svh';dialog.style.borderRadius=scene?'0':'18px';
-  frame=document.createElement('iframe');frame.title=project.shortTitle+' composition study';frame.src='case-studies/'+project.preview+'?embedded=1&case='+encodeURIComponent(slug)+(scene?'&surface=showroom':'')+'&v=20261127-controls';frame.style.cssText='width:100%;height:100%;border:0;background:transparent;opacity:0;pointer-events:none';dialog.append(frame);
+  frame=document.createElement('iframe');frame.title=project.shortTitle+' composition study';frame.src='case-studies/'+project.preview+'?embedded=1&case='+encodeURIComponent(slug)+(scene?'&surface=showroom':'')+'&v=20261127-next-tilt';frame.style.cssText='width:100%;height:100%;border:0;background:transparent;opacity:0;pointer-events:none';dialog.append(frame);
   document.documentElement.dataset.caseStudyActive='true';if(scene)document.documentElement.dataset.caseStudyScene='true';opening=false;dialog.showModal();
  }
  document.addEventListener('click',event=>{

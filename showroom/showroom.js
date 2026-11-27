@@ -1,4 +1,4 @@
-import {loadWebGLLayers} from '../case-studies/shared/webgl-layers.mjs?v=20261127-about-controls';
+import {loadWebGLLayers} from '../case-studies/shared/webgl-layers.mjs?v=20261127-next-tilt';
 import {registerShowroomBridge} from '../case-studies/shared/showroom-bridge.mjs';
 import {createSurfaceTransition} from '../case-studies/shared/surface-transition.mjs';
 

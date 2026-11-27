@@ -51,3 +51,5 @@ Before/After — evidence/reference/about-jbl.png და refined-jbl.png ერ�
 ბოლო24responsive case ყველა44px სამიზნესა და overflow-ს ამოწმებს, ყველა PASS. დამატებითი320/768 geometry artifact-ებიც PASS. Desktop refresh Next-ის გვერდით ერთ რიგში რჩება. About/View Artwork-ის მოკლე11px ეტიკეტები ერთ რიგშია; ეს შერჩეულია მცირე ეკრანზე წაკითხვისა და მოთავსებისთვის. კადრები evidence/reference/refined-*.png-შია.
 
 ახალი dependency არ დამატებულა. Original artwork/source asset-ები არ შეცვლილა. Source delivery checksums განახლებულია. ამ refinement-ის SHA იძებნება git log --grep='refine About entry and case-study controls'. Rollback — revert ამ commit-ზე ან შეამოწმეთ backup/before-case-study-controls, რომელიცd5178a9-ს ინახავს.
+
+2026-11-27 მფლობელის ახალი შესწორება — About-ზე პლანშეტი ინარჩუნებს ჩვეულებრივ დახრას. ავტომატური.18 ფაზა გაუქმდა. პირველი Next იწყებს დაწოლას timeline-ით, საწყისი quaternion-იდან რბილი გადასვლით. ვრცელდება სამივე ნამუშევარზე. ეს ცვლის წინა ავტომატური დახრის წესს.

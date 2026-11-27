@@ -1,5 +1,10 @@
 # Changelog
 
+## Next-driven tablet tilt — 2026-11-27
+
+- Keep the selected tablet upright when About opens on all3graphic projects. Begin the smooth tilt only after Next, following the existing timeline. Keep the paired controls, Quit and refresh.
+
+
 ## Case-study control and entry refinement — 2026-11-27
 
 - Pair About beside View Artwork with matching shape and project-colored outlined overlay styling. Keep the trigger label stable and reveal the completed HUD directly.

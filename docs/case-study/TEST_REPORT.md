@@ -110,3 +110,5 @@ Visible-shadow verification:6Node suites PASS;12Chromium/WebKit desktop/phone em
 
 ## About კონტროლების საბოლოო refinement —2026-11-27
 24Chromium/WebKit case ×320/390/768/1440,3works PASS. ყველა action/chapter44px და no horizontal overflow.320/768 geometry PASS. About/View Artwork ერთ რიგში მინიმუმ44px სიმაღლით. Node6suites და inline/module syntax PASS.3phone softwareGL cycles, touch-adapted1440 cycle და default desktop1440 cycle PASS. ყველაactual cycle ამოწმებს automatic entry pose-ს Next-მდე, layer rank/order-ს, exact exit restore/focus/scroll-ს და resource equality-ს. Evidence/reference/refined-*.json/png. Early syntax/visibility/timing failures გამოქვეყნებამდე გასწორდა და ABOUT_REPORT.md-შია აღწერილი. Physical hardwareGPU/FPS/AT/full10cycle trend NOT RUN. ახალი dependencies და original asset edits არ არის.
+
+Next-driven tilt correction — Node6suites PASS, Chromium phone softwareGL cycle PASS. About rotation matches the original pose after opening; Next layer ordering and complete restoration/resources/no-JS PASS. Evidence/reference/next-driven-tilt.json/png. Shared behavior applies to all3projects.

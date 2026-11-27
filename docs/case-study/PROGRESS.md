@@ -29,3 +29,5 @@ Visible-shadow verification:6Node suites PASS;12Chromium/WebKit desktop/phone em
 2026-11-27 owner authorized public graphic About integration and publication. Current config enabled/published true for3graphic projects. Read ABOUT_REPORT.md and current about-grid/about-* artifacts. Public About replaces preview-only trigger, selected pose is held until Next; Grid launches directly in blurred-backdrop dialog. Apps remain outside this graphic integration.
 
 2026-11-27 refinement supersedes previous hold-until-Next behavior: About is beside View Artwork; entry blends from the selected pose into the assembled case-study pose, then Next raises layers. Quit replaces text Replay; refresh icon sits beside Next. Shared DOM controls and WebGL entry support all3graphic works.
+
+2026-11-27 მფლობელის ახალი შესწორება — About-ზე პლანშეტი ინარჩუნებს ჩვეულებრივ დახრას. ავტომატური.18 ფაზა გაუქმდა. პირველი Next იწყებს დაწოლას timeline-ით, საწყისი quaternion-იდან რბილი გადასვლით. ვრცელდება სამივე ნამუშევარზე. ეს ცვლის წინა ავტომატური დახრის წესს.
