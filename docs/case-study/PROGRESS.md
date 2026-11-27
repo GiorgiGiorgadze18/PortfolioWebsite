@@ -8,3 +8,6 @@ DOM frame canvas paints only on resize, masks grid over opaque artwork; WebGL us
 Evidence: holographic/{before,after,comparison,colors,quality,webgl-lab}.json and index.html.36 matched screenshots, exact pose equality; navigation24cases and extra6quality/6frame cases passed. Actual scene phone JBL/Tom/Earth passed. Desktop Tom focus-return intermittent FAIL remains (historically observed too); no entry/navigation fixes applied due explicit scope. development-failures.json records it. No physical/hardware GPU/AT/full context-loss/10cycle trend claimed.
 
 No PR/merge/deploy. All published/enabled flags remain false. New standalone previews rebuilt using package_preview.py. Rollback base0a6c888. Complete updated source export generated outside repository for owner review.
+
+## Neutral correction2026-11-27
+Owner replaced per-project frame colors with shared ice white#DCEEF2. Current glow.28; desktop bloom.08. Lowest sheet receives a soft contact shadow, not a physically simulated floor-shadow claim. Assets/poses/navigation unchanged. Previous color tables/screenshots are historical. Current frame/quality/software-GL checks in holographic-specific.json, quality.json and webgl-lab.json. No publication.

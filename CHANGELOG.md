@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased — Neutral ice-white sheets, 2026-11-27
+
+- Use#DCEEF2 on every project frame, reduce inner glow from.52 to.28 and desktop outer bloom from.25 to.08. Add a restrained bottom-sheet contact shadow; preserve assets, grid density, choreography, annotations and navigation.
+
 ## Unreleased — Project-colored holographic sheets, 2026-11-27
 
 - Refine only decorative layer frames: square procedural grid, alpha-aware attenuation, inner edge glow and crisp borders. Use manifest frame colors (JBL blue, Tom Ford gold, Earth purple per owner correction) with saturated-hue fallback for future projects.

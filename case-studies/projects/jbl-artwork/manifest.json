@@ -220,8 +220,8 @@
     "haloStatus": "NOT RUN"
   },
   "frame": {
-    "color": "#0078d8",
+    "color": "#DCEEF2",
     "gridCells": 28,
-    "glow": 0.52
+    "glow": 0.28
   }
 }

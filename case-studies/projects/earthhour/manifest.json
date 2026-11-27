@@ -86,8 +86,8 @@
     "scope": "Owner-approved new ZIP; full-canvas registration is approximate, no exact-original recomposition claim. Generated fingertip only; supplied character pixels below top margin retained unchanged. Original source image remains at endpoints."
   },
   "frame": {
-    "color": "#AD94D9",
+    "color": "#DCEEF2",
     "gridCells": 28,
-    "glow": 0.52
+    "glow": 0.28
   }
 }

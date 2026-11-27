@@ -88,3 +88,6 @@ Earth: eight browser/size cases,2touch,2Grid,2standalone,1actual software-GL sce
 
 ## Holographic frames2026-11-27
 Current artifacts in evidence/holographic.36 screenshots, pose equality,24navigation cases,6frame checks,6alpha/fallback/resize/reduced-motion checks PASS; grid opaque/transparent ratio≈.2976. Isolated software-GL all3projects before/after console errors0 and resources0 after disposal. Actual phone scene checks PASS. Actual desktop Tom exit focus assertion FAIL; source entry untouched, previously observed intermittent issue. Full device/AT/hardware/context-loss/10cycle tests NOT RUN.
+
+## Neutral correction2026-11-27
+Owner replaced per-project frame colors with shared ice white#DCEEF2. Current glow.28; desktop bloom.08. Lowest sheet receives a soft contact shadow, not a physically simulated floor-shadow claim. Assets/poses/navigation unchanged. Previous color tables/screenshots are historical. Current frame/quality/software-GL checks in holographic-specific.json, quality.json and webgl-lab.json. No publication.

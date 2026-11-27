@@ -6,8 +6,8 @@
       "project": "jbl-artwork",
       "phase": "before",
       "status": "PASS",
-      "medianMs": 0.8000000007450581,
-      "p95Ms": 2.900000000372529,
+      "medianMs": 1,
+      "p95Ms": 1.900000000372529,
       "active": {
         "geometries": 2,
         "textures": 6
@@ -24,7 +24,7 @@
       "phase": "after",
       "status": "PASS",
       "medianMs": 0.5,
-      "p95Ms": 1.400000000372529,
+      "p95Ms": 0.900000000372529,
       "active": {
         "geometries": 2,
         "textures": 6
@@ -40,8 +40,8 @@
       "project": "tomford",
       "phase": "before",
       "status": "PASS",
-      "medianMs": 0.5,
-      "p95Ms": 1.8999999994412065,
+      "medianMs": 0.39999999944120646,
+      "p95Ms": 0.7999999998137355,
       "active": {
         "geometries": 2,
         "textures": 6
@@ -57,8 +57,8 @@
       "project": "tomford",
       "phase": "after",
       "status": "PASS",
-      "medianMs": 0.5,
-      "p95Ms": 1,
+      "medianMs": 0.2999999998137355,
+      "p95Ms": 0.7000000001862645,
       "active": {
         "geometries": 2,
         "textures": 6
@@ -74,8 +74,8 @@
       "project": "earthhour",
       "phase": "before",
       "status": "PASS",
-      "medianMs": 0.2999999998137355,
-      "p95Ms": 1,
+      "medianMs": 0.20000000018626451,
+      "p95Ms": 0.5,
       "active": {
         "geometries": 2,
         "textures": 5
@@ -91,8 +91,8 @@
       "project": "earthhour",
       "phase": "after",
       "status": "PASS",
-      "medianMs": 0.2999999998137355,
-      "p95Ms": 0.5,
+      "medianMs": 0.40000000037252903,
+      "p95Ms": 1.2000000001862645,
       "active": {
         "geometries": 2,
         "textures": 5

@@ -834,20 +834,20 @@
   },
   "frameConfig": {
     "jbl-artwork": {
-      "color": "#0078d8",
+      "color": "#DCEEF2",
       "gridCells": 28,
-      "glow": 0.52
+      "glow": 0.28
     },
     "tomford": {
-      "color": "#b98a46",
+      "color": "#DCEEF2",
       "gridCells": 28,
-      "glow": 0.52
+      "glow": 0.28
     },
     "earthhour": {
-      "color": "#AD94D9",
+      "color": "#DCEEF2",
       "gridCells": 28,
-      "glow": 0.52
+      "glow": 0.28
     }
   },
-  "frameConfigNote": "Decorations only; existing image assets untouched. Earth purple is the owner correction."
+  "frameConfigNote": "Current owner preference: shared neutral ice white, softer glow, bottom-sheet contact shadow. Previous per-project frame palettes are historical."
 }

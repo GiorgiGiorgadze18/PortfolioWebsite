@@ -8,3 +8,6 @@ frame-style.mjs owns palette fallback and DOM Canvas2D sheet drawing on ResizeOb
 Before/after harness pins base0a6c888 via Git routes; production JS has no test seek hook. Benchmark captures DOM update CPU separately from isolated320×400 SwiftShader render+finish. Neither is real-device FPS. See exact artifacts/conditions; do not infer speedups from one batch.
 
 Known desktop Tom focus return FAIL persists; phone Tom and other scenes pass. Existing navigation file is intentionally unchanged. Physical devices/AT/hardware WebGL/full context-loss/10cycle trend remain open. Previous Earth ZIP/generation/source preservation details remain in FRAMES_REPORT.md.
+
+## Neutral correction2026-11-27
+Owner replaced per-project frame colors with shared ice white#DCEEF2. Current glow.28; desktop bloom.08. Lowest sheet receives a soft contact shadow, not a physically simulated floor-shadow claim. Assets/poses/navigation unchanged. Previous color tables/screenshots are historical. Current frame/quality/software-GL checks in holographic-specific.json, quality.json and webgl-lab.json. No publication.
