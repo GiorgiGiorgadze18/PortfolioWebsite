@@ -8,3 +8,10 @@ for(let i=0;i<10;i++){entry=rig.enter();now+=600;rig.tick(now);assert.equal(awai
 entry=rig.enter();rig.dispose();assert.equal(await entry,false);assert.deepEqual(pose,original);
 const reduced=createSurfaceTransition({capture:()=>pose,apply:p=>pose=p,reduced:()=>true});await reduced.enter();await reduced.exit();assert.deepEqual(pose,original);
 console.log('PASS exact pose restore, 10 cycles, interrupted enter, dispose and reduced motion');
+const held=createSurfaceTransition({capture:()=>structuredClone(pose),apply:p=>pose=p,clock:()=>now});
+assert.equal(await held.enter({holdPose:true}),true);
+assert.deepEqual(pose,original);
+assert.equal(held.status,'active');
+held.dispose();
+assert.deepEqual(pose,original);
+console.log('PASS About holds the selected pose until chapter navigation');

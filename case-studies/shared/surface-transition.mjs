@@ -14,7 +14,7 @@ export function createSurfaceTransition({capture,apply,reduced=()=>false,clock=(
  return {
   get status(){return status;},get busy(){return Boolean(animation);},
   inspect:()=>({status,pose:capture()}),tick,
-  enter(){if(status!=='idle')return Promise.resolve(false);original=structuredClone(capture());const pose=structuredClone(original);pose.position[1]+=.16;pose.position[2]+=.25;pose.camera[2]-=.2;pose.rotation[0]-=.10;return animate(pose,'active');},
+  enter({holdPose=false}={}){if(status!=='idle')return Promise.resolve(false);original=structuredClone(capture());if(holdPose){status='active';return Promise.resolve(true);}const pose=structuredClone(original);pose.position[1]+=.16;pose.position[2]+=.25;pose.camera[2]-=.2;pose.rotation[0]-=.10;return animate(pose,'active');},
   exit(){if(!original)return Promise.resolve(false);return animate(structuredClone(original),'idle');},
   dispose(){if(animation)animation.resolve(false);animation=null;if(original)apply(original);original=null;status='idle';},
  };

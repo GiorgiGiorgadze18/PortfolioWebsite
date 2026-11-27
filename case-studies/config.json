@@ -1,10 +1,10 @@
 {
   "caseStudies": {
-    "enabled": false
+    "enabled": true
   },
   "projects": {
     "jbl-artwork": {
-      "published": false,
+      "published": true,
       "type": "GraphicExplodedCaseStudy",
       "manifest": "projects/jbl-artwork/manifest.json",
       "title": "JBL Premium Audio Campaign",
@@ -12,7 +12,7 @@
       "preview": "jbl-preview.html"
     },
     "tomford": {
-      "published": false,
+      "published": true,
       "type": "GraphicExplodedCaseStudy",
       "manifest": "projects/tomford/manifest.json",
       "title": "Tom Ford Tobacco Vanille",
@@ -20,7 +20,7 @@
       "preview": "tomford-preview.html"
     },
     "earthhour": {
-      "published": false,
+      "published": true,
       "type": "GraphicExplodedCaseStudy",
       "manifest": "projects/earthhour/manifest.json",
       "title": "Earth Hour Campaign Poster",

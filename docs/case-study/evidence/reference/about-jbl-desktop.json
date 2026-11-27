@@ -1,0 +1,26 @@
+{
+  "status": "PASS",
+  "cycles": 1,
+  "scope": "Chromium software GL actual graphic selection, iframe open/exit, exact real camera/board pose, focus and scroll restoration; no-JS static chapters",
+  "errors": [],
+  "layerState": {
+    "planes": 4,
+    "supportsHidden": true,
+    "progress": 0.49966238234044064,
+    "depths": [
+      0.126,
+      0.4396852744746701,
+      0.7533705489493402,
+      0.1263
+    ]
+  },
+  "beforeResources": {
+    "textures": 24,
+    "geometries": 110
+  },
+  "afterResources": {
+    "textures": 24,
+    "geometries": 110
+  },
+  "harnessCleanup": "All recorded assertions passed and report was written; Chromium browser.close stalled, then the harness was interrupted. Product layer resource counts were already restored."
+}

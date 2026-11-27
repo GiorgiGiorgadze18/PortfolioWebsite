@@ -8,3 +8,5 @@ Branch feat/case-study-phase4-earth; safe rollback before this correction d9784c
 2026-11-27 constant shade correction: passed sheets now take final brightness.20 immediately when the next rise begins; no progressive dim ramp. Same shared implementation for all3projects and DOM/WebGL. Subsequent chapters retain exactly.20; reassembly restoration unchanged. Regression assertions cover onset and later chapters. No merge/deploy.
 
 2026-11-27 visible-shadow correction: undimmed future sheets still overlapped/repainted the dimmed base. All inactive sheets (past AND not-yet-raised) now receive.20 brightness from first rise; only current active rank stays1. Shared DOM/WebGL implementation on all3projects. Earlier numeric-only fix did not address this overlap. Reassembly/spacing/assets unchanged.
+
+2026-11-27 owner authorized public graphic About integration and publication. Current config enabled/published true for3graphic projects. Read ABOUT_REPORT.md and current about-grid/about-* artifacts. Public About replaces preview-only trigger, selected pose is held until Next; Grid launches directly in blurred-backdrop dialog. Apps remain outside this graphic integration.

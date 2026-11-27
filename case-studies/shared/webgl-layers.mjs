@@ -8,7 +8,7 @@ export async function loadWebGLLayers({THREE,device,camera,layer,baseURL}){
  const [manifest,config]=await Promise.all(['manifest.json','presentation.json'].map(name=>fetch(new URL(name,baseURL)).then(r=>{if(!r.ok)throw Error('Case data unavailable');return r.json();})));
  if(!manifest.validated)throw Error('Unvalidated case assets');
  const aspect=manifest.canvas[0]/manifest.canvas[1],h=Math.min(device.screenDimensions.h,device.screenDimensions.w/aspect),w=h*aspect;
- const root=new THREE.Group();root.layers.set(layer);const geometry=new THREE.PlaneGeometry(w,h),planes=[],textures=[];let originalPlane=null;
+ const root=new THREE.Group();root.visible=false;root.layers.set(layer);const geometry=new THREE.PlaneGeometry(w,h),planes=[],textures=[];let originalPlane=null;
  let frameKit,frameGeometry;const overlays=[];
  const loader=new THREE.TextureLoader();
  try{
@@ -22,7 +22,7 @@ export async function loadWebGLLayers({THREE,device,camera,layer,baseURL}){
  device.group.add(root);const timeline=createTimeline(config.keyframes),axis=new THREE.Vector3(-config.rotationAxis[0],config.rotationAxis[1],-config.rotationAxis[2]).normalize();
  const stackMobile=matchMedia('(max-width:700px)');const originalScreenVisible=device.screen.visible;let current=null,dirty=true;
  function draw(p,rect){
-  current={p,rect};dirty=true;const state=timeline.stateAt(p),width=innerWidth,height=innerHeight;
+  current={p,rect};dirty=true;root.visible=p>0;device.screen.visible=p===0?originalScreenVisible:false;if(p===0)return;const state=timeline.stateAt(p),width=innerWidth,height=innerHeight;
   camera.setViewOffset(width,height,width/2-(rect.x+rect.width/2),height/2-(rect.y+rect.height/2),width,height);camera.updateProjectionMatrix();
   frameKit.update(state.spread);const unit=w/350;
   const tilt=new THREE.Quaternion().setFromAxisAngle(axis,state.tilt*Math.PI/180);device.group.quaternion.copy(camera.quaternion).multiply(tilt);

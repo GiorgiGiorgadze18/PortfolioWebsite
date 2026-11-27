@@ -1,5 +1,12 @@
 # Changelog
 
+## Graphic About integration — 2026-11-27
+
+- Enable JBL, Tom Ford and Earth Hour composition studies through public About actions. Place About above View Original Artwork in the selected showroom inspector. Hold the selected device pose until Next starts the shared tilt/layer animation.
+- Open Grid About directly in a responsive modal with a dark blurred backdrop, shared chapter dots and Previous/Next controls. Restore keyboard focus after closing and keep Escape available.
+- Preserve the shared final shadow tone for inactive sheets. Validate public Grid paths across Chromium/WebKit and real software-WebGL selected-device entry/exit. See docs/case-study/ABOUT_REPORT.md for evidence and limitations. Owner authorized publication in the integration request.
+
+
 ## Unreleased — Consistent visible shadow from first Next, 2026-11-27
 
 - Dim every inactive sheet, including future sheets still overlapping the base, to the final20% brightness. Previously their undimmed artwork/grid repainted the dark base, making early stages appear lighter. Only the current rising sheet stays bright; all3projects share DOM/WebGL logic. Preserve reassembly, spacing and original assets. No publication.
