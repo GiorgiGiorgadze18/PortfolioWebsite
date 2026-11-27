@@ -58,28 +58,24 @@
       "representation": "plane"
     },
     {
-      "id": "smoke-back",
-      "label": "Atmosphere behind the bottle",
-      "src": "assets/web/smoke-back.webp",
-      "bbox": [
-        0,
-        417,
-        1524,
-        2477
-      ],
-      "alpha": [
-        0,
-        226
-      ],
+      "id": "smoke",
+      "src": "assets/web/stack-smoke.webp",
       "canvas": [
         1524,
         2784
       ],
-      "order": 2,
-      "sourceLayer": "Grey Smoke",
-      "opacity": 255,
-      "reconstructionStatus": "original",
-      "representation": "plane"
+      "bbox": [
+        0,
+        422,
+        1524,
+        2478
+      ],
+      "sourceLayers": [
+        "smoke-back",
+        "smoke-front"
+      ],
+      "representation": "plane",
+      "order": 2
     },
     {
       "id": "bottle",
@@ -102,30 +98,6 @@
       "order": 3,
       "sourceLayer": "Tom Ford Fragrance",
       "opacity": 255,
-      "reconstructionStatus": "original",
-      "representation": "plane"
-    },
-    {
-      "id": "smoke-front",
-      "label": "Foreground aroma",
-      "src": "assets/web/smoke-front.webp",
-      "bbox": [
-        4,
-        438,
-        1433,
-        2453
-      ],
-      "alpha": [
-        0,
-        101
-      ],
-      "canvas": [
-        1524,
-        2784
-      ],
-      "order": 4,
-      "sourceLayer": "Grey Smoke 2",
-      "opacity": 115,
       "reconstructionStatus": "original",
       "representation": "plane"
     }

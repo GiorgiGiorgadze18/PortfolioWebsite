@@ -849,5 +849,23 @@
       "glow": 0.28
     }
   },
-  "frameConfigNote": "Current owner preference: shared neutral ice white, softer glow, bottom-sheet contact shadow. Previous per-project frame palettes are historical."
+  "frameConfigNote": "Current owner preference: shared neutral ice white, softer glow, bottom-sheet contact shadow. Previous per-project frame palettes are historical.",
+  "semanticStacks": {
+    "jbl-artwork": [
+      "stand",
+      "headphones",
+      "identity"
+    ],
+    "tomford": [
+      "leaf",
+      "smoke",
+      "bottle"
+    ],
+    "earthhour": [
+      "panel",
+      "shadow",
+      "character"
+    ]
+  },
+  "stackSources": "Per-project stack-source-manifest.json; original referenced files remain unchanged."
 }

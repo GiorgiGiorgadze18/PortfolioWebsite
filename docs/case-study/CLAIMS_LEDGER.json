@@ -150,6 +150,19 @@
           "path": "docs/case-study/evidence/earth/finger-mask-validation.json"
         }
       ]
+    },
+    {
+      "id": "ordered-semantic-stacks",
+      "claim": "Graphic presentations raise stand/headphones/cloud-title, leaf/smoke/bottle and panel/shadow/character respectively; earlier sheets dim cumulatively.",
+      "status": "verified-dev",
+      "evidence": [
+        {
+          "path": "docs/case-study/evidence/stack/browser-tests.json"
+        },
+        {
+          "path": "tests/case-study/stack-motion.test.mjs"
+        }
+      ]
     }
   ],
   "excludedUnverified": [

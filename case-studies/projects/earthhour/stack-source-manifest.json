@@ -1,0 +1,93 @@
+{
+  "slug": "earthhour",
+  "published": false,
+  "validated": true,
+  "canvas": [
+    832,
+    1177
+  ],
+  "original": "assets/web/original.webp",
+  "accent": "#AD94D9",
+  "layers": [
+    {
+      "id": "background",
+      "label": "background",
+      "src": "assets/web/background.webp",
+      "bbox": [
+        0,
+        0,
+        832,
+        1177
+      ],
+      "canvas": [
+        832,
+        1177
+      ],
+      "order": 0,
+      "representation": "plane",
+      "reconstructionStatus": "owner-supplied"
+    },
+    {
+      "id": "panel",
+      "label": "panel",
+      "src": "assets/web/panel.webp",
+      "bbox": [
+        56,
+        32,
+        812,
+        1133
+      ],
+      "canvas": [
+        832,
+        1177
+      ],
+      "order": 1,
+      "representation": "plane",
+      "reconstructionStatus": "owner-supplied"
+    },
+    {
+      "id": "shadow",
+      "label": "shadow",
+      "src": "assets/web/shadow.webp",
+      "bbox": [
+        267,
+        725,
+        693,
+        785
+      ],
+      "canvas": [
+        832,
+        1177
+      ],
+      "order": 2,
+      "representation": "plane",
+      "reconstructionStatus": "owner-supplied"
+    },
+    {
+      "id": "character",
+      "label": "character",
+      "src": "assets/web/character.webp",
+      "bbox": [
+        130,
+        148,
+        758,
+        763
+      ],
+      "canvas": [
+        832,
+        1177
+      ],
+      "order": 3,
+      "representation": "plane",
+      "reconstructionStatus": "reconstructed"
+    }
+  ],
+  "validation": {
+    "scope": "Owner-approved new ZIP; full-canvas registration is approximate, no exact-original recomposition claim. Generated fingertip only; supplied character pixels below top margin retained unchanged. Original source image remains at endpoints."
+  },
+  "frame": {
+    "color": "#DCEEF2",
+    "gridCells": 20,
+    "glow": 0.28
+  }
+}

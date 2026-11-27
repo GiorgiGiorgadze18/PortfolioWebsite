@@ -1,0 +1,686 @@
+[
+  {
+    "browser": "chromium",
+    "project": "jbl-artwork",
+    "viewport": [
+      1440,
+      900
+    ],
+    "status": "PASS",
+    "steps": [
+      {
+        "step": 1,
+        "depths": [
+          0,
+          69.5388,
+          0,
+          0
+        ],
+        "brightness": [
+          0.52,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "step": 2,
+        "depths": [
+          0,
+          69.5388,
+          139.078,
+          0
+        ],
+        "brightness": [
+          0.52,
+          0.52,
+          1,
+          1
+        ]
+      },
+      {
+        "step": 3,
+        "depths": [
+          0,
+          69.5388,
+          139.078,
+          208.616
+        ],
+        "brightness": [
+          0.52,
+          0.52,
+          0.52,
+          1
+        ]
+      }
+    ],
+    "errors": []
+  },
+  {
+    "browser": "chromium",
+    "project": "jbl-artwork",
+    "viewport": [
+      390,
+      844
+    ],
+    "status": "PASS",
+    "steps": [
+      {
+        "step": 1,
+        "depths": [
+          0,
+          29.7547,
+          0,
+          0
+        ],
+        "brightness": [
+          0.52,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "step": 2,
+        "depths": [
+          0,
+          29.7547,
+          59.5093,
+          0
+        ],
+        "brightness": [
+          0.52,
+          0.52,
+          1,
+          1
+        ]
+      },
+      {
+        "step": 3,
+        "depths": [
+          0,
+          29.7547,
+          59.5093,
+          89.264
+        ],
+        "brightness": [
+          0.52,
+          0.52,
+          0.52,
+          1
+        ]
+      }
+    ],
+    "errors": []
+  },
+  {
+    "browser": "chromium",
+    "project": "tomford",
+    "viewport": [
+      1440,
+      900
+    ],
+    "status": "PASS",
+    "steps": [
+      {
+        "step": 1,
+        "depths": [
+          0,
+          69.5388,
+          0,
+          0
+        ],
+        "brightness": [
+          0.52,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "step": 2,
+        "depths": [
+          0,
+          69.5388,
+          139.078,
+          0
+        ],
+        "brightness": [
+          0.52,
+          0.52,
+          1,
+          1
+        ]
+      },
+      {
+        "step": 3,
+        "depths": [
+          0,
+          69.5388,
+          139.078,
+          208.616
+        ],
+        "brightness": [
+          0.52,
+          0.52,
+          0.52,
+          1
+        ]
+      }
+    ],
+    "errors": []
+  },
+  {
+    "browser": "chromium",
+    "project": "tomford",
+    "viewport": [
+      390,
+      844
+    ],
+    "status": "PASS",
+    "steps": [
+      {
+        "step": 1,
+        "depths": [
+          0,
+          29.7547,
+          0,
+          0
+        ],
+        "brightness": [
+          0.52,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "step": 2,
+        "depths": [
+          0,
+          29.7547,
+          59.5093,
+          0
+        ],
+        "brightness": [
+          0.52,
+          0.52,
+          1,
+          1
+        ]
+      },
+      {
+        "step": 3,
+        "depths": [
+          0,
+          29.7547,
+          59.5093,
+          89.264
+        ],
+        "brightness": [
+          0.52,
+          0.52,
+          0.52,
+          1
+        ]
+      }
+    ],
+    "errors": []
+  },
+  {
+    "browser": "chromium",
+    "project": "earthhour",
+    "viewport": [
+      1440,
+      900
+    ],
+    "status": "PASS",
+    "steps": [
+      {
+        "step": 1,
+        "depths": [
+          0,
+          69.5388,
+          0,
+          0
+        ],
+        "brightness": [
+          0.52,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "step": 2,
+        "depths": [
+          0,
+          69.5388,
+          139.078,
+          0
+        ],
+        "brightness": [
+          0.52,
+          0.52,
+          1,
+          1
+        ]
+      },
+      {
+        "step": 3,
+        "depths": [
+          0,
+          69.5388,
+          139.078,
+          208.616
+        ],
+        "brightness": [
+          0.52,
+          0.52,
+          0.52,
+          1
+        ]
+      }
+    ],
+    "errors": []
+  },
+  {
+    "browser": "chromium",
+    "project": "earthhour",
+    "viewport": [
+      390,
+      844
+    ],
+    "status": "PASS",
+    "steps": [
+      {
+        "step": 1,
+        "depths": [
+          0,
+          29.7547,
+          0,
+          0
+        ],
+        "brightness": [
+          0.52,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "step": 2,
+        "depths": [
+          0,
+          29.7547,
+          59.5093,
+          0
+        ],
+        "brightness": [
+          0.52,
+          0.52,
+          1,
+          1
+        ]
+      },
+      {
+        "step": 3,
+        "depths": [
+          0,
+          29.7547,
+          59.5093,
+          89.264
+        ],
+        "brightness": [
+          0.52,
+          0.52,
+          0.52,
+          1
+        ]
+      }
+    ],
+    "errors": []
+  },
+  {
+    "browser": "webkit",
+    "project": "jbl-artwork",
+    "viewport": [
+      1440,
+      900
+    ],
+    "status": "PASS",
+    "steps": [
+      {
+        "step": 1,
+        "depths": [
+          0,
+          69.538789,
+          0,
+          0
+        ],
+        "brightness": [
+          0.52,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "step": 2,
+        "depths": [
+          0,
+          69.538789,
+          139.077579,
+          0
+        ],
+        "brightness": [
+          0.52,
+          0.52,
+          1,
+          1
+        ]
+      },
+      {
+        "step": 3,
+        "depths": [
+          0,
+          69.538789,
+          139.077579,
+          208.616368
+        ],
+        "brightness": [
+          0.52,
+          0.52,
+          0.52,
+          1
+        ]
+      }
+    ],
+    "errors": []
+  },
+  {
+    "browser": "webkit",
+    "project": "jbl-artwork",
+    "viewport": [
+      390,
+      844
+    ],
+    "status": "PASS",
+    "steps": [
+      {
+        "step": 1,
+        "depths": [
+          0,
+          29.754653,
+          0,
+          0
+        ],
+        "brightness": [
+          0.52,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "step": 2,
+        "depths": [
+          0,
+          29.754653,
+          59.509306,
+          0
+        ],
+        "brightness": [
+          0.52,
+          0.52,
+          1,
+          1
+        ]
+      },
+      {
+        "step": 3,
+        "depths": [
+          0,
+          29.754653,
+          59.509306,
+          89.263962
+        ],
+        "brightness": [
+          0.52,
+          0.52,
+          0.52,
+          1
+        ]
+      }
+    ],
+    "errors": []
+  },
+  {
+    "browser": "webkit",
+    "project": "tomford",
+    "viewport": [
+      1440,
+      900
+    ],
+    "status": "PASS",
+    "steps": [
+      {
+        "step": 1,
+        "depths": [
+          0,
+          69.538789,
+          0,
+          0
+        ],
+        "brightness": [
+          0.52,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "step": 2,
+        "depths": [
+          0,
+          69.538789,
+          139.077579,
+          0
+        ],
+        "brightness": [
+          0.52,
+          0.52,
+          1,
+          1
+        ]
+      },
+      {
+        "step": 3,
+        "depths": [
+          0,
+          69.538789,
+          139.077579,
+          208.616368
+        ],
+        "brightness": [
+          0.52,
+          0.52,
+          0.52,
+          1
+        ]
+      }
+    ],
+    "errors": []
+  },
+  {
+    "browser": "webkit",
+    "project": "tomford",
+    "viewport": [
+      390,
+      844
+    ],
+    "status": "PASS",
+    "steps": [
+      {
+        "step": 1,
+        "depths": [
+          0,
+          29.754653,
+          0,
+          0
+        ],
+        "brightness": [
+          0.52,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "step": 2,
+        "depths": [
+          0,
+          29.754653,
+          59.509306,
+          0
+        ],
+        "brightness": [
+          0.52,
+          0.52,
+          1,
+          1
+        ]
+      },
+      {
+        "step": 3,
+        "depths": [
+          0,
+          29.754653,
+          59.509306,
+          89.263962
+        ],
+        "brightness": [
+          0.52,
+          0.52,
+          0.52,
+          1
+        ]
+      }
+    ],
+    "errors": []
+  },
+  {
+    "browser": "webkit",
+    "project": "earthhour",
+    "viewport": [
+      1440,
+      900
+    ],
+    "status": "PASS",
+    "steps": [
+      {
+        "step": 1,
+        "depths": [
+          0,
+          69.538789,
+          0,
+          0
+        ],
+        "brightness": [
+          0.52,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "step": 2,
+        "depths": [
+          0,
+          69.538789,
+          139.077579,
+          0
+        ],
+        "brightness": [
+          0.52,
+          0.52,
+          1,
+          1
+        ]
+      },
+      {
+        "step": 3,
+        "depths": [
+          0,
+          69.538789,
+          139.077579,
+          208.616368
+        ],
+        "brightness": [
+          0.52,
+          0.52,
+          0.52,
+          1
+        ]
+      }
+    ],
+    "errors": []
+  },
+  {
+    "browser": "webkit",
+    "project": "earthhour",
+    "viewport": [
+      390,
+      844
+    ],
+    "status": "PASS",
+    "steps": [
+      {
+        "step": 1,
+        "depths": [
+          0,
+          29.754653,
+          0,
+          0
+        ],
+        "brightness": [
+          0.52,
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "step": 2,
+        "depths": [
+          0,
+          29.754653,
+          59.509306,
+          0
+        ],
+        "brightness": [
+          0.52,
+          0.52,
+          1,
+          1
+        ]
+      },
+      {
+        "step": 3,
+        "depths": [
+          0,
+          29.754653,
+          59.509306,
+          89.263962
+        ],
+        "brightness": [
+          0.52,
+          0.52,
+          0.52,
+          1
+        ]
+      }
+    ],
+    "errors": []
+  }
+]

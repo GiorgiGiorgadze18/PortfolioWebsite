@@ -93,3 +93,6 @@ Current artifacts in evidence/holographic.36 screenshots, pose equality,24naviga
 Owner replaced per-project frame colors with shared ice white#DCEEF2. Current glow.28; desktop bloom.08. Lowest sheet receives a soft contact shadow, not a physically simulated floor-shadow claim. Assets/poses/navigation unchanged. Previous color tables/screenshots are historical. Current frame/quality/software-GL checks in holographic-specific.json, quality.json and webgl-lab.json. No publication.
 
 Grid correction2026-11-27: current gridCells20 (~14mobile); line width.65DOM/.7shader, minor alpha.075/major.16, darker bottom contact shadow.48. Border/glow/ice-white color and choreography unchanged. Frame quality checks remain in quality.json/webgl-lab.json; not hardware validation.
+
+## Stack ordering2026-11-27
+Current math-order/equal-gap/cumulative-dim tests PASS; Chromium/WebKit three-stage screenshots and assertions PASS; real Earth phone software-GL selection/restore/resources PASS. Initial obsolete absolute-depth and unsettled-transform checks failed and were updated to new sequencing semantics; not hidden product passes. Current responsive matrix in stack-navigation.json. Physical device/hardware/AT/full context-loss/10cycle checks remain NOT RUN.

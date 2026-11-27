@@ -26,3 +26,6 @@ Earth adds only registry/data/assets/preview and scoped leader colors. Existing 
 
 ## Holographic frames2026-11-27
 Manifest frame config feeds shared resolveFrame. DOM uses one decorative Canvas2D sheet per existing plane, alpha-mask composition and resize-only rasterization. WebGL uses one shared ShaderMaterial and padded quad geometry per presentation; onBeforeRender swaps the existing layer alpha map, no new grid textures. Derivative-based grid/border, short-side edge normalization, phone density/bloom settings. Existing timeline spread drives opacity; all poses remain unchanged.
+
+## Stack ordering2026-11-27
+Shared stack-motion resolves rank/rise/gap/brightness from progress. DOM filter dims complete plane including canvas; WebGL dims MeshBasicMaterial and shared frame shader via per-draw uDim. Gap is normalized to display width;150desktop/96mobile source units, same across projects. Source image planes grouped only where one semantic object was split. Stage group scale/vertical fit adjusts to taller stack without changing camera FOV or app integration.

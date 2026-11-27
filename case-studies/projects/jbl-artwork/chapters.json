@@ -8,30 +8,30 @@
   },
   {
     "id": "environment",
-    "title": "A skyward direction",
-    "copy": "A blue gradient establishes the sky-inspired palette. The curtain-like rhythm on the left adds a sense of enclosure.",
-    "progress": 0.2,
-    "source": "designerIntent"
+    "title": "The stand rises first",
+    "copy": "The stand lifts first, establishing the base of the composition.",
+    "progress": 0.35,
+    "source": "implementation"
   },
   {
     "id": "product",
-    "title": "The product comes forward",
-    "copy": "The headphones are the central subject. This limited-angle study retains the original silhouette; it is not a complete 3D model.",
-    "progress": 0.4,
+    "title": "The headphones follow",
+    "copy": "The headphone assembly rises above its stand. Earlier sheets recede into shadow.",
+    "progress": 0.5,
     "source": "implementation"
   },
   {
     "id": "interface",
-    "title": "Glass, light and sound",
-    "copy": "The glass display combines the audio interface with reflections and shadows created in Photoshop.",
-    "progress": 0.6,
-    "source": "designerIntent"
+    "title": "Clouds and identity",
+    "copy": "Clouds and the JBL lettering rise last, completing the vertical hierarchy.",
+    "progress": 0.65,
+    "source": "implementation"
   },
   {
     "id": "identity",
-    "title": "Weight and handwriting",
+    "title": "The complete composition",
     "copy": "The owner identifies The Bolt Font for the bold JBL lettering and Amsterdam Handwriting for the handwritten Premium contrast.",
-    "progress": 0.8,
+    "progress": 0.78,
     "source": "designerIntent"
   },
   {

@@ -27,3 +27,6 @@ Resolved: Earth notes received/read, generated AI inspected. Owner authorized fa
 
 ## Holographic frames2026-11-27
 No additional style decision required. Defaults gridCells28/glow.52; owner can adjust these exact manifest keys. Earth frame must remain purple per latest explicit request.
+
+## Stack ordering2026-11-27
+No additional answer needed. Owner directly specified all3component orders, larger equal gaps and cumulative dimming. Source parts grouped only to express those requested components.

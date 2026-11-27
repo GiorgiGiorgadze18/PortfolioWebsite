@@ -86,3 +86,6 @@ html[data-case="earthhour"] .leader path{stroke:#ad94d9;filter:drop-shadow(0 0 4
 @media(hover:hover) and (min-width:701px){.holo-sheet{filter:drop-shadow(0 0 8px color-mix(in srgb,var(--frame-color) 8%,transparent))}}
 
 .plane[data-bottom-sheet=true]{filter:drop-shadow(0 16px 18px rgb(0 0 0 / .48))}
+
+.plane{filter:brightness(var(--sheet-brightness,1)) drop-shadow(0 9px 11px rgb(0 0 0 / var(--layer-shadow,0)))}
+.plane[data-bottom-sheet=true]{filter:brightness(var(--sheet-brightness,1)) drop-shadow(0 16px 18px rgb(0 0 0 / .48))}

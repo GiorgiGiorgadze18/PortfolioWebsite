@@ -1,15 +1,8 @@
-# Current state — Holographic frame refinement
-2026-11-27 Asia/Tbilisi. Same branch feat/case-study-phase4-earth; base0a6c888. Latest report HOLOGRAPHIC_REPORT.md; implementation SHA: git log -1 --format=%H -- docs/case-study/HOLOGRAPHIC_REPORT.md.
+# Current state — Bottom-to-top stack
+2026-11-27, branch feat/case-study-phase4-earth, safe base e885ca3. Current SHA: git log -1 --format=%H -- docs/case-study/STACK_REPORT.md.
 
-Scope strictly frames. No assets/choreography/camera/annotations/copy/navigation edits. Each project manifest gains only frame:{color,gridCells,glow}; optional color2 supported. JBL#0078d8, Tom Ford#b98a46, Earth#AD94D9 (owner explicitly corrected initial green). Missing config derives saturated hue from background+hero with neutral fallback and contrast adjustment.
+Owner explicitly authorized choreography refinement. First3Next actions: JBL stand→headphones(with rear/glass/hero grouped)→cloud/title; Tom Ford leaf→combined smoke→bottle; Earth green panel→shadow→character. All now use background+3semantic planes. Original files are untouched; original manifests saved as stack-source-manifest.json, new lossless composites added. group_stack.py rebuilds from those source manifests.
 
-DOM frame canvas paints only on resize, masks grid over opaque artwork; WebGL uses shared procedural ShaderMaterial and padded overlay geometry. Opacity .18+.82*spread, phone density70%, no phone bloom; no idle breathing or new rAF. Reduced-motion/static fallback preserved. Source assets and project presentation/chapters JSON unchanged.
+Shared stack-motion.mjs: rank1/2/3 stages.35/.5/.65; equal normalized gaps150desktop/96mobile; old sheets brightness.52, latest1. Pure progress, reversible/reassembly restores originals. Frame and artwork dim together. Per-plane output objects reused; no new animation loop. Larger stack fitted with extra headroom and original surface restoration retained.
 
-Evidence: holographic/{before,after,comparison,colors,quality,webgl-lab}.json and index.html.36 matched screenshots, exact pose equality; navigation24cases and extra6quality/6frame cases passed. Actual scene phone JBL/Tom/Earth passed. Desktop Tom focus-return intermittent FAIL remains (historically observed too); no entry/navigation fixes applied due explicit scope. development-failures.json records it. No physical/hardware GPU/AT/full context-loss/10cycle trend claimed.
-
-No PR/merge/deploy. All published/enabled flags remain false. New standalone previews rebuilt using package_preview.py. Rollback base0a6c888. Complete updated source export generated outside repository for owner review.
-
-## Neutral correction2026-11-27
-Owner replaced per-project frame colors with shared ice white#DCEEF2. Current glow.28; desktop bloom.08. Lowest sheet receives a soft contact shadow, not a physically simulated floor-shadow claim. Assets/poses/navigation unchanged. Previous color tables/screenshots are historical. Current frame/quality/software-GL checks in holographic-specific.json, quality.json and webgl-lab.json. No publication.
-
-Grid correction2026-11-27: current gridCells20 (~14mobile); line width.65DOM/.7shader, minor alpha.075/major.16, darker bottom contact shadow.48. Border/glow/ice-white color and choreography unchanged. Frame quality checks remain in quality.json/webgl-lab.json; not hardware validation.
+Read STACK_REPORT.md and evidence/stack/browser-tests.json. Source math tests and real Earth software-GL restore passed; physical hardware/AT/full context loss/10cycle GPU trend remain open. Published/enabled false, no merge/deploy. Previews rebuilt at existing paths.

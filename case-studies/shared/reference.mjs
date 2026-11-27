@@ -1,3 +1,4 @@
+import {stackLayer} from './stack-motion.mjs';
 import {resolveFrame,createDOMSheet} from './frame-style.mjs';
 import {PROJECTS} from '../../data/projects.mjs';
 import {layerProgress} from './layer-progress.mjs';
@@ -13,8 +14,8 @@ const $=s=>document.querySelector(s),root=document.documentElement,section=$('#p
 const shortViewport=matchMedia('(max-height:500px)');
 let observer,images=[],manifest,selectedChapter=0,frameResize;const decoded=[],sheets=[];
 if(new URLSearchParams(location.search).get('embedded')==='1')document.documentElement.classList.add('embedded-mode');
-const {offsets,keyframes,annotationLayers,rotationAxis,perspective,leftLeanPixels,reclineDegrees,layerWindows}=await fetch(new URL('presentation.json',projectBase)).then(r=>r.json());
-const timeline=createTimeline(keyframes);
+const {offsets,keyframes,annotationLayers,rotationAxis,perspective,leftLeanPixels,reclineDegrees,layerWindows,stackOrder}=await fetch(new URL('presentation.json',projectBase)).then(r=>r.json());
+const timeline=createTimeline(keyframes);const stackConfig={stackOrder},stackMobile=matchMedia('(max-width:700px)');
 let progress=0,sceneMode=new URLSearchParams(location.search).get('surface')==='showroom'&&parent!==window,sceneAnchors=[];
 if(sceneMode)root.classList.add('scene-mode');
 addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==parent)return;if(e.data?.type==='case-study:anchors'&&Array.isArray(e.data.anchors)&&e.data.anchors.length===manifest?.layers.length&&e.data.anchors.every(point=>Number.isFinite(point?.x)&&Number.isFinite(point?.y))){sceneAnchors=e.data.anchors;drawLeaders(timeline.stateAt(progress));}if(e.data?.type==='case-study:fallback'){sceneMode=false;root.classList.remove('scene-mode');}});
@@ -43,9 +44,9 @@ function render(state){
  const board=$('.board'),depthScale=board.clientWidth/350;
  const lean=state.tilt/reclineDegrees;
  board.style.perspective=`${perspective}px`;
- const pose=`translate3d(${-leftLeanPixels*lean*depthScale}px,${state.lower*depthScale}px,0) rotate3d(${rotationAxis.join(',')},${state.tilt}deg)`;
+ const pose=`translate3d(${-leftLeanPixels*lean*depthScale}px,${(stackOrder&&stackMobile.matches?state.lower/6:state.lower)*depthScale}px,0) rotate3d(${rotationAxis.join(',')},${state.tilt}deg)`;
  board.style.transform='none';
- images.forEach((im,i)=>{im.style.setProperty('--layer-shadow',String(state.spread*.24));im.style.setProperty('--frame-opacity',String(.18+.82*state.spread));const [x,y,z]=offsets[i],spread=layerProgress(layerWindows,state,progress,i);im.style.transform=`${pose} translate3d(${x*spread*depthScale}px,${y*spread*depthScale}px,${z*spread*depthScale}px)`;});
+ images.forEach((im,i)=>{im.style.setProperty('--layer-shadow',String(state.spread*.24));im.style.setProperty('--frame-opacity',String(.18+.82*state.spread));const [x,y,z]=offsets[i],spread=layerProgress(layerWindows,state,progress,i);const motion=stackLayer(stackConfig,state,progress,i,stackMobile.matches,im._stackMotion);im.style.setProperty('--sheet-brightness',String(motion?.brightness??1));im.style.transform=`${pose} translate3d(${x*spread*depthScale}px,${y*spread*depthScale}px,${(motion?motion.z:z*spread)*depthScale}px)`;});
  $('.original').style.transform=`${pose} translateZ(3px)`;
  $('.original').style.opacity=state.original;
  drawLeaders(state);
@@ -76,7 +77,7 @@ $('#chapters').addEventListener('keydown',e=>{const index=[...$('#chapters').chi
 try{
  manifest=await fetch(new URL('manifest.json',projectBase)).then(r=>{if(!r.ok)throw Error('Manifest unavailable');return r.json();});
  if(!manifest.validated)throw Error('Layer validation incomplete');$('.board').style.aspectRatio=manifest.canvas[0]+'/'+manifest.canvas[1];if(manifest.accent)root.style.setProperty('--accent',manifest.accent);root.style.setProperty('--control-accent',PROJECTS.find(project=>project.id===slug)?.accent||manifest.accent||'#00f0ff');if(manifest.original)$('.original').src=new URL(manifest.original,projectBase).href;
- for(const l of manifest.layers){const im=new Image();im.src=new URL(l.src,projectBase);im.alt='';await im.decode();decoded.push(im);const plane=document.createElement('div');plane.className='plane';const marker=document.createElement('i');marker.className='anchor';const [x,y,w,h]=[l.bbox[0],l.bbox[1],l.bbox[2]-l.bbox[0],l.bbox[3]-l.bbox[1]];marker.style.left=`${(x+w/2)/manifest.canvas[0]*100}%`;marker.style.top=`${(y+h/2)/manifest.canvas[1]*100}%`;plane.style.backgroundImage=`url("${im.src}")`;plane.append(marker);$('.board').append(plane);images.push(plane);}
+ for(const l of manifest.layers){const im=new Image();im.src=new URL(l.src,projectBase);im.alt='';await im.decode();decoded.push(im);const plane=document.createElement('div');plane.className='plane';plane._stackMotion={};const marker=document.createElement('i');marker.className='anchor';const [x,y,w,h]=[l.bbox[0],l.bbox[1],l.bbox[2]-l.bbox[0],l.bbox[3]-l.bbox[1]];marker.style.left=`${(x+w/2)/manifest.canvas[0]*100}%`;marker.style.top=`${(y+h/2)/manifest.canvas[1]*100}%`;plane.style.backgroundImage=`url("${im.src}")`;plane.append(marker);$('.board').append(plane);images.push(plane);}
  const frameStyle=resolveFrame(manifest,[decoded[0],decoded.at(-1)]);images.forEach((plane,i)=>{plane.dataset.bottomSheet=String(i===0);sheets.push(createDOMSheet(plane,decoded[i],frameStyle));});frameResize=new ResizeObserver(()=>{const board=$('.board');sheets.forEach(sheet=>sheet.resize(board.clientWidth,board.clientHeight));});frameResize.observe($('.board'));
  await engine.open(slug);root.classList.add('motion-ready');$('#mode').hidden=false;$('#loading').textContent='Use Previous and Next to explore the layers';setStatic(motion.matches);describe(0);
  $('#mode').onclick=()=>setStatic(!root.classList.contains('is-static')||motion.matches);

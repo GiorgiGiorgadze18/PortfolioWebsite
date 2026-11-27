@@ -8,30 +8,30 @@
   },
   {
     "id": "character",
-    "title": "The character comes first",
-    "copy": "The supplied Earth character rises first. Only its clipped fingertip is repaired; the rest of this supplied layer is preserved.",
+    "title": "The panel rises first",
+    "copy": "The green message panel rises first.",
     "progress": 0.35,
     "source": "implementation"
   },
   {
     "id": "shadow",
-    "title": "A grounding gesture",
-    "copy": "The oval shadow sits below the character, giving the illustrated pose a sense of weight. Its hidden section is reconstructed for this presentation.",
+    "title": "The shadow follows",
+    "copy": "The oval shadow lifts above the message panel.",
     "progress": 0.5,
     "source": "implementation"
   },
   {
     "id": "panel",
-    "title": "A frame for the message",
-    "copy": "The green gradient panel stays beneath the character and its shadow. It groups the original event text, date and device-switch-off message.",
+    "title": "The character comes last",
+    "copy": "The Earth character rises last, above the panel and its shadow.",
     "progress": 0.65,
-    "source": "designerIntent"
+    "source": "implementation"
   },
   {
     "id": "palette",
     "title": "Colour with a playful purpose",
     "copy": "The owner identifies #AD94D9, #A26FBA and #7BBA5B. Purple sets the atmosphere; the green gradient helps the bold text stand out. The owner names The Bold Font.",
-    "progress": 0.8,
+    "progress": 0.78,
     "source": "designerIntent"
   },
   {

@@ -1,0 +1,145 @@
+{
+  "slug": "tomford",
+  "published": false,
+  "validated": true,
+  "canvas": [
+    1524,
+    2784
+  ],
+  "original": "assets/web/original.webp",
+  "accent": "#a88046",
+  "layers": [
+    {
+      "id": "sand",
+      "label": "Sand environment",
+      "src": "assets/web/sand.webp",
+      "bbox": [
+        0,
+        0,
+        1524,
+        2784
+      ],
+      "alpha": [
+        255,
+        255
+      ],
+      "canvas": [
+        1524,
+        2784
+      ],
+      "order": 0,
+      "sourceLayer": "Sand",
+      "opacity": 255,
+      "reconstructionStatus": "original",
+      "representation": "plane"
+    },
+    {
+      "id": "leaf",
+      "label": "Tobacco leaf",
+      "src": "assets/web/leaf.webp",
+      "bbox": [
+        225,
+        398,
+        1368,
+        2410
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "canvas": [
+        1524,
+        2784
+      ],
+      "order": 1,
+      "sourceLayer": "Leaf",
+      "opacity": 255,
+      "reconstructionStatus": "original",
+      "representation": "plane"
+    },
+    {
+      "id": "smoke-back",
+      "label": "Atmosphere behind the bottle",
+      "src": "assets/web/smoke-back.webp",
+      "bbox": [
+        0,
+        417,
+        1524,
+        2477
+      ],
+      "alpha": [
+        0,
+        226
+      ],
+      "canvas": [
+        1524,
+        2784
+      ],
+      "order": 2,
+      "sourceLayer": "Grey Smoke",
+      "opacity": 255,
+      "reconstructionStatus": "original",
+      "representation": "plane"
+    },
+    {
+      "id": "bottle",
+      "label": "Tobacco Vanille bottle",
+      "src": "assets/web/bottle.webp",
+      "bbox": [
+        549,
+        802,
+        1089,
+        1900
+      ],
+      "alpha": [
+        0,
+        255
+      ],
+      "canvas": [
+        1524,
+        2784
+      ],
+      "order": 3,
+      "sourceLayer": "Tom Ford Fragrance",
+      "opacity": 255,
+      "reconstructionStatus": "original",
+      "representation": "plane"
+    },
+    {
+      "id": "smoke-front",
+      "label": "Foreground aroma",
+      "src": "assets/web/smoke-front.webp",
+      "bbox": [
+        4,
+        438,
+        1433,
+        2453
+      ],
+      "alpha": [
+        0,
+        101
+      ],
+      "canvas": [
+        1524,
+        2784
+      ],
+      "order": 4,
+      "sourceLayer": "Grey Smoke 2",
+      "opacity": 115,
+      "reconstructionStatus": "original",
+      "representation": "plane"
+    }
+  ],
+  "validation": {
+    "meanAbsoluteDifference255": 0.1503806277088927,
+    "maxAbsoluteDifference255": 17.0,
+    "SSIM": 0.9992640880432605,
+    "status": "PASS",
+    "target": "Owner PSD saved composite, not legacy website thumbnail"
+  },
+  "frame": {
+    "color": "#DCEEF2",
+    "gridCells": 20,
+    "glow": 0.28
+  }
+}
