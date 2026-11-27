@@ -1,4 +1,4 @@
-import {loadWebGLLayers} from '../case-studies/shared/webgl-layers.mjs';
+import {loadWebGLLayers} from '../case-studies/shared/webgl-layers.mjs?v=20261127-about-controls';
 import {registerShowroomBridge} from '../case-studies/shared/showroom-bridge.mjs';
 import {createSurfaceTransition} from '../case-studies/shared/surface-transition.mjs';
 
@@ -1067,7 +1067,7 @@ function render(time){
  if(resizePending){resizePending=false;staticFramePainted=false;resizeScene();}
  // Hold the tablet still behind the phone notice. The CSS sweep runs independently.
  if(staticPreview()&&staticFramePainted&&!caseSurface?.busy){lastFrame=time;return;}
- if(document.hidden||(!stageVisible&&!movingTween&&!shelfTurn&&!caseSurface?.busy)){lastFrame=time;return;}
+ if(document.hidden||(!stageVisible&&!movingTween&&!shelfTurn&&!caseSurface?.busy&&!caseLayers)){lastFrame=time;return;}
  const lightweight=mobilePreviewMedia.matches;
  if(lightweight&&time-lastRendered<1000/60-1)return;lastRendered=time;
  const delta=Math.min(.055,(time-lastFrame)/1000||.016);

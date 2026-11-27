@@ -1,5 +1,12 @@
 # Changelog
 
+## Case-study control and entry refinement — 2026-11-27
+
+- Pair About beside View Artwork with matching shape and project-colored outlined overlay styling. Keep the trigger label stable and reveal the completed HUD directly.
+- Smoothly interpolate the selected tablet into its case-study size, position and tilt on entry over650ms using the existing showroom render loop. Respect reduced motion and preserve layer progression.
+- Replace the text Replay action with Quit and add an accessible44px refresh-icon action beside Next. Refine mobile type, spacing and chapter targets.
+
+
 ## Graphic About integration — 2026-11-27
 
 - Enable JBL, Tom Ford and Earth Hour composition studies through public About actions. Place About above View Original Artwork in the selected showroom inspector. Hold the selected device pose until Next starts the shared tilt/layer animation.

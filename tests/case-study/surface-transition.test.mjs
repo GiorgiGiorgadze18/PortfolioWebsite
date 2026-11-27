@@ -14,4 +14,4 @@ assert.deepEqual(pose,original);
 assert.equal(held.status,'active');
 held.dispose();
 assert.deepEqual(pose,original);
-console.log('PASS About holds the selected pose until chapter navigation');
+console.log('PASS surface ownership captures the pose without an initial jump');

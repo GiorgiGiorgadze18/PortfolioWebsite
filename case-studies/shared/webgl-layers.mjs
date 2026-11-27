@@ -20,19 +20,37 @@ export async function loadWebGLLayers({THREE,device,camera,layer,baseURL}){
  planes.forEach((plane,i)=>{const sheet=new THREE.Mesh(frameGeometry,frameKit.material);sheet.layers.set(layer);sheet.position.z=.0002;sheet.renderOrder=plane.renderOrder+.5;sheet.onBeforeRender=()=>{frameKit.material.uniforms.uDim.value=plane.userData.sheetDim??1;frameKit.material.uniforms.uBottom.value=i===0?1:0;frameKit.material.uniforms.uLayerAlphaMap.value=textures[i];frameKit.material.uniformsNeedUpdate=true;};plane.add(sheet);overlays.push(sheet);});
  const supports=[];device.group.traverse(o=>{if(o.userData.caseStudySupport){supports.push([o,o.visible]);o.visible=false;}});
  device.group.add(root);const timeline=createTimeline(config.keyframes),axis=new THREE.Vector3(-config.rotationAxis[0],config.rotationAxis[1],-config.rotationAxis[2]).normalize();
- const stackMobile=matchMedia('(max-width:700px)');const originalScreenVisible=device.screen.visible;let current=null,dirty=true;
+ const stackMobile=matchMedia('(max-width:700px)');const originalScreenVisible=device.screen.visible;
+ const entryPosition=device.group.position.clone(),entryRotation=device.group.quaternion.clone(),entryScale=device.group.scale.clone(),targetRotation=new THREE.Quaternion();
+ const stageBounds=document.querySelector('#focus-canvas').getBoundingClientRect();
+ const projectedEntry=entryPosition.clone().project(camera);
+ const entryScreen={x:stageBounds.left+(projectedEntry.x*.5+.5)*stageBounds.width,y:stageBounds.top+(-projectedEntry.y*.5+.5)*stageBounds.height};
+ let entryAligned=false;
+ const entryView={x:camera.view?.enabled?camera.view.offsetX/camera.view.fullWidth:0,y:camera.view?.enabled?camera.view.offsetY/camera.view.fullHeight:0};
+ const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
+ let entryStarted=null,entrySettled=false,current=null,dirty=true;
  function draw(p,rect){
-  current={p,rect};dirty=true;root.visible=p>0;device.screen.visible=p===0?originalScreenVisible:false;if(p===0)return;const state=timeline.stateAt(p),width=innerWidth,height=innerHeight;
-  camera.setViewOffset(width,height,width/2-(rect.x+rect.width/2),height/2-(rect.y+rect.height/2),width,height);camera.updateProjectionMatrix();
+  current={p,rect};dirty=true;root.visible=true;
+  const now=performance.now();entryStarted??=now;
+  const elapsed=reducedMotion.matches?1:Math.min(1,(now-entryStarted)/650);
+  const blend=elapsed*elapsed*(3-2*elapsed);entrySettled=elapsed===1;
+  const state=timeline.stateAt(Math.max(.18,p)),width=innerWidth,height=innerHeight;
+  camera.setViewOffset(width,height,THREE.MathUtils.lerp(entryView.x*width,width/2-(rect.x+rect.width/2),blend),THREE.MathUtils.lerp(entryView.y*height,height/2-(rect.y+rect.height/2),blend),width,height);camera.updateProjectionMatrix();
+  if(!entryAligned){
+   entryPosition.set(entryScreen.x/width*2-1,1-entryScreen.y/height*2,projectedEntry.z).unproject(camera);
+   entryScale.multiplyScalar(stageBounds.height/height);
+   entryAligned=true;
+  }
   frameKit.update(state.spread);const unit=w/350;
-  const tilt=new THREE.Quaternion().setFromAxisAngle(axis,state.tilt*Math.PI/180);device.group.quaternion.copy(camera.quaternion).multiply(tilt);
+  const tilt=new THREE.Quaternion().setFromAxisAngle(axis,state.tilt*Math.PI/180);targetRotation.copy(camera.quaternion).multiply(tilt);
   const center=new THREE.Vector3(0,0,device.project.camera.focusZ),depth=-camera.worldToLocal(center.clone()).z;
   const unitsPerPixel=2*Math.tan(camera.fov*Math.PI/360)*depth/(height*camera.zoom);
   const scale=Math.min(rect.width*.6*unitsPerPixel/device.bodyDimensions.w,rect.height*.65*unitsPerPixel/device.bodyDimensions.h,1.5);
   device.group.scale.setScalar(scale*(config.stackOrder?.78:1));
   const z=center.project(camera).z;device.group.position.set((rect.x+rect.width/2)/width*2-1,1-(rect.y+rect.height/2)/height*2,z).unproject(camera);if(config.stackOrder)device.group.position.y-=rect.height*.06*unitsPerPixel;
+  device.group.position.lerpVectors(entryPosition,device.group.position,blend);device.group.quaternion.slerpQuaternions(entryRotation,targetRotation,blend);device.group.scale.lerpVectors(entryScale,device.group.scale,blend);
   planes.forEach((mesh,i)=>{const [x,y,z]=config.offsets[i],spread=layerProgress(config.layerWindows,state,p,i);const motion=stackLayer(config,state,p,i,stackMobile.matches,mesh.userData.stackMotion);mesh.userData.sheetDim=motion?.brightness??1;mesh.material.color.setScalar(Math.pow(mesh.userData.sheetDim,2.2));mesh.position.set(x*unit*spread,-y*unit*spread,.126+(motion?motion.z:z*spread)*unit+i*.0001);mesh.material.opacity=1-state.original;if(motion){mesh.renderOrder=20+mesh.position.z*1000+i*.001;overlays[i].renderOrder=mesh.renderOrder+.0001;}});
   device.screen.visible=originalPlane?false:state.original>.001;if(originalPlane)originalPlane.material.opacity=state.original;
  }
- return {draw,get dirty(){return dirty;},refresh(){if(current)draw(current.p,current.rect);dirty=false;},anchors(){return planes.map((mesh,i)=>{const b=manifest.layers[i].bbox;const point=new THREE.Vector3(((b[0]+b[2])/2/manifest.canvas[0]-.5)*w,(.5-(b[1]+b[3])/2/manifest.canvas[1])*h,0);mesh.localToWorld(point);point.project(camera);return {x:(point.x*.5+.5)*innerWidth,y:(-.5*point.y+.5)*innerHeight};});},inspect(){return {planes:planes.length,supportsHidden:supports.every(([object])=>!object.visible),progress:current?.p,depths:planes.map(m=>m.position.z)};},dispose(){root.removeFromParent();textures.forEach(t=>t.dispose());planes.forEach(p=>p.material.dispose());originalPlane?.material.dispose();geometry.dispose();frameGeometry?.dispose();frameKit?.material.dispose();device.screen.visible=originalScreenVisible;supports.forEach(([object,visible])=>object.visible=visible);}};
+ return {draw,get dirty(){return dirty;},refresh(){if(current)draw(current.p,current.rect);dirty=!entrySettled;},anchors(){return planes.map((mesh,i)=>{const b=manifest.layers[i].bbox;const point=new THREE.Vector3(((b[0]+b[2])/2/manifest.canvas[0]-.5)*w,(.5-(b[1]+b[3])/2/manifest.canvas[1])*h,0);mesh.localToWorld(point);point.project(camera);return {x:(point.x*.5+.5)*innerWidth,y:(-.5*point.y+.5)*innerHeight};});},inspect(){return {planes:planes.length,supportsHidden:supports.every(([object])=>!object.visible),progress:current?.p,depths:planes.map(m=>m.position.z)};},dispose(){root.removeFromParent();textures.forEach(t=>t.dispose());planes.forEach(p=>p.material.dispose());originalPlane?.material.dispose();geometry.dispose();frameGeometry?.dispose();frameKit?.material.dispose();device.screen.visible=originalScreenVisible;supports.forEach(([object,visible])=>object.visible=visible);}};
 }

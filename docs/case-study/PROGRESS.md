@@ -1,3 +1,14 @@
+# მიმდინარე მდგომარეობა — About და case-study კონტროლები
+2026-11-27 · branch feat/case-study-phase4-earth. მიმდინარე refinement-ის ცვლილებები ქვემოთ და ABOUT_REPORT.md-შია. საწყისი production commit d5178a9 ინახება backup/before-case-study-controls-ზე.
+
+About დგას View Artwork-ის გვერდით, ერთნაირი ფორმით,11px ეტიკეტითა და ნამუშევრის ფერის გამჭვირვალე ფენით. HUD მზადყოფნის შემდეგ პირდაპირ ჩნდება. Case-study შესვლა ავტომატურად მიდის.18 ფაზამდე, პლანშეტის საწყისი ეკრანული პოზიციიდან ზომა/დახრა650ms ინტერპოლაციით იცვლება. Next უკვე ფენებს შლის. ქვედა ფენების.20 სიკაშკაშე და მათი რიგი შენარჩუნებულია.
+
+Quit ცალკე მეორადი action-ია, refresh SVG კი Next-ის მარჯვნივ. ყველა მობილური action/chapter სამიზნე44px-ია. აღწერა14px, metadata10px. Grid-ის responsive overlay და blur მოქმედებს. არსებული back link შენარჩუნებულია და44px touch სამიზნე აქვს.
+
+ბოლო matrix24case PASS (Chromium/WebKit ×320/390/768/1440 ×3works), geometry320px PASS, Node6suites PASS, inline JS syntax PASS. სამივე მობილური actual softwareGL cycle PASS — entry pose იცვლება Next-მდე, layers/order, restore/focus/resources, no-JS. Desktop1440 touch-adapted softwareGL PASS. სტანდარტული desktop softwareGL1440×900 ასევე PASS, მისი არტიფაქტია refined-jbl-desktop-high.json. ფიზიკური hardwareGPU/AT/FPS შეფასება NOT RUN.
+
+## წინა ჩანაწერები
+
 # Current state — Audio-first correction
 2026-11-27 · branch feat/case-study-phase4-earth · rollback before this correction: d9784cc.
 
@@ -16,3 +27,5 @@ Final evidence:12staged Chromium/WebKit cases PASS,6Node suites PASS,source grou
 Visible-shadow verification:6Node suites PASS;12Chromium/WebKit desktop/phone emulation cases PASS,36stage screenshots, page errors0. First-stage screenshots manually reviewed on all3projects. Future as well as passed sheets are.20, current sheet1. Actual live-WebGL exit was not rerun in this small shared-state correction; previous desktop focus-return FAIL remains open. Rollback before this correction:7974957. New standalone names: JBL-shadow-fix-preview.html,TomFord-shadow-fix-preview.html,Earth-shadow-fix-preview.html. No publication.
 
 2026-11-27 owner authorized public graphic About integration and publication. Current config enabled/published true for3graphic projects. Read ABOUT_REPORT.md and current about-grid/about-* artifacts. Public About replaces preview-only trigger, selected pose is held until Next; Grid launches directly in blurred-backdrop dialog. Apps remain outside this graphic integration.
+
+2026-11-27 refinement supersedes previous hold-until-Next behavior: About is beside View Artwork; entry blends from the selected pose into the assembled case-study pose, then Next raises layers. Quit replaces text Replay; refresh icon sits beside Next. Shared DOM controls and WebGL entry support all3graphic works.

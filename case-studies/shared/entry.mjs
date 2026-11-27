@@ -3,27 +3,27 @@ import {showroomBridge} from './showroom-bridge.mjs';
  const registry=await fetch(new URL('../config.json',import.meta.url)).then(r=>r.json());
  const findSlug=name=>Object.keys(registry.projects).find(slug=>registry.projects[slug].title===name);
  const inspector=document.querySelector('#project-inspector'),title=document.querySelector('#inspector-title');
- const trigger=document.createElement('button');trigger.type='button';trigger.className='text-control';trigger.textContent='About';trigger.hidden=true;trigger.dataset.caseScene='';inspector.querySelector('.inspector-buttons').prepend(trigger);
+ const trigger=document.createElement('button');trigger.type='button';trigger.className='case-about';trigger.textContent='About';trigger.hidden=true;trigger.dataset.caseScene='';inspector.querySelector('.inspector-buttons').prepend(trigger);
  let dialog,frame,returnTrigger=trigger,oldOverflow,opening=false,closing=false,generation=0,scene=false,returnLabel='';
- const style=document.createElement('style');style.textContent=`html[data-case-study-scene] #museum-frame{position:fixed!important;inset:0!important;width:100vw!important;height:100svh!important;margin:0!important;z-index:90;background:#060A14!important}html[data-case-study-scene] #museum-frame>:not(#showroom-canvas):not(#focus-canvas),html[data-case-study-scene] #museum-frame>:not(#showroom-canvas):not(#focus-canvas) *{visibility:hidden!important}.case-study-dialog::backdrop{background:rgb(3 7 14 / .78);backdrop-filter:blur(10px)}html[data-case-study-scene] .case-study-dialog::backdrop{background:transparent;backdrop-filter:none}.inspector-buttons.has-case-study{display:flex;flex-wrap:wrap;gap:8px}.inspector-buttons [data-case-scene]{width:100%;min-height:44px}`;document.head.append(style);
+ const style=document.createElement('style');style.textContent=`html[data-case-study-scene] #museum-frame{position:fixed!important;inset:0!important;width:100vw!important;height:100svh!important;margin:0!important;z-index:90;background:#060A14!important}html[data-case-study-scene] #museum-frame>:not(#showroom-canvas):not(#focus-canvas),html[data-case-study-scene] #museum-frame>:not(#showroom-canvas):not(#focus-canvas) *{visibility:hidden!important}.case-study-dialog::backdrop{background:rgb(3 7 14 / .78);backdrop-filter:blur(10px)}html[data-case-study-scene] .case-study-dialog::backdrop{background:transparent;backdrop-filter:none}.inspector-buttons.has-case-study{display:flex;flex-wrap:wrap;gap:8px}.inspector-buttons.has-case-study>*{flex:1;min-width:0;min-height:44px}.inspector-buttons .case-about{display:flex;justify-content:center;align-items:center;padding:13px 17px;border:1px solid color-mix(in srgb,var(--active-light) 55%,transparent);border-radius:4px;background:color-mix(in srgb,var(--active-light) 10%,transparent);color:var(--active-light);font:800 11px var(--font-body);letter-spacing:.06em;text-transform:uppercase}.case-about:hover{background:color-mix(in srgb,var(--active-light) 18%,transparent)}.inspector-buttons.has-case-study a{font-size:11px;letter-spacing:.06em;justify-content:center;text-align:center;gap:8px}`;document.head.append(style);
  async function close(){
   if(closing||(!opening&&!dialog?.open))return;closing=true;++generation;opening=false;
   if(dialog?.open){dialog.close();frame?.remove();}
   document.documentElement.removeAttribute('data-case-study-active');document.documentElement.removeAttribute('data-case-study-scene');document.documentElement.removeAttribute('data-case-study-paused');
   if(scene)await showroomBridge?.exit();scene=false;
-  document.documentElement.style.overflow=oldOverflow;returnTrigger.disabled=false;returnTrigger.textContent=returnLabel;closing=false;requestAnimationFrame(()=>requestAnimationFrame(()=>(returnTrigger===trigger&&inspector.inert?document.querySelector('[data-project-view=grid]'):returnTrigger).focus({preventScroll:true})));
+  document.documentElement.style.overflow=oldOverflow;returnTrigger.disabled=false;returnTrigger.removeAttribute('aria-busy');returnTrigger.textContent=returnLabel;closing=false;requestAnimationFrame(()=>requestAnimationFrame(()=>(returnTrigger===trigger&&inspector.inert?document.querySelector('[data-project-view=grid]'):returnTrigger).focus({preventScroll:true})));
  }
  async function open(useScene,button,slug){
   if(!slug)return;const project=registry.projects[slug];
   if(opening||closing||dialog?.open)return;
-  const token=++generation;opening=true;scene=useScene;returnTrigger=button;returnLabel=button.textContent;button.textContent='Loading case study…';button.disabled=true;oldOverflow=document.documentElement.style.overflow;document.documentElement.style.overflow='hidden';
+  const token=++generation;opening=true;scene=useScene;returnTrigger=button;returnLabel=button.textContent;button.disabled=true;button.setAttribute('aria-busy','true');oldOverflow=document.documentElement.style.overflow;document.documentElement.style.overflow='hidden';
   if(scene){const entered=await showroomBridge?.enter(slug);if(token!==generation)return;if(!entered){opening=false;button.disabled=false;button.textContent=returnLabel;document.documentElement.style.overflow=oldOverflow;return;}
    try{await showroomBridge.loadLayers();}catch{await showroomBridge.exit();scene=false;}
    if(token!==generation){await showroomBridge?.exit();return;}
   }
   if(!dialog){dialog=document.createElement('dialog');dialog.className='case-study-dialog';dialog.setAttribute('aria-label','Project composition study');dialog.style.cssText='width:100vw;max-width:100vw;height:100svh;max-height:100svh;padding:0;border:0';document.body.append(dialog);dialog.addEventListener('cancel',e=>{e.preventDefault();close();});}
   dialog.style.background=scene?'transparent':'#080d18';dialog.style.width=scene?'100vw':'min(1200px,96vw)';dialog.style.height=scene?'100svh':'94svh';dialog.style.borderRadius=scene?'0':'18px';
-  frame=document.createElement('iframe');frame.title=project.shortTitle+' composition study';frame.src='case-studies/'+project.preview+'?embedded=1&case='+encodeURIComponent(slug)+(scene?'&surface=showroom':'');frame.style.cssText='width:100%;height:100%;border:0;background:transparent';dialog.append(frame);
+  frame=document.createElement('iframe');frame.title=project.shortTitle+' composition study';frame.src='case-studies/'+project.preview+'?embedded=1&case='+encodeURIComponent(slug)+(scene?'&surface=showroom':'')+'&v=20261127-controls';frame.style.cssText='width:100%;height:100%;border:0;background:transparent;opacity:0;pointer-events:none';dialog.append(frame);
   document.documentElement.dataset.caseStudyActive='true';if(scene)document.documentElement.dataset.caseStudyScene='true';opening=false;dialog.showModal();
  }
  document.addEventListener('click',event=>{
@@ -36,6 +36,8 @@ import {showroomBridge} from './showroom-bridge.mjs';
  trigger.onclick=()=>open(true,trigger,findSlug(title.textContent));
  const update=()=>{
   trigger.hidden=!findSlug(title.textContent);inspector.querySelector('.inspector-buttons').classList.toggle('has-case-study',!trigger.hidden);
+  const artworkLink=inspector.querySelector('#inspector-open');
+  if(!trigger.hidden&&artworkLink.textContent!=='VIEW ARTWORK ↗')artworkLink.textContent='VIEW ARTWORK ↗';
   const modal=document.querySelector('.mobile-project-dialog[open]');
   if(findSlug(modal?.querySelector('h2')?.textContent)&&!modal.querySelector('[data-case-grid]')){
    const b=document.createElement('button');b.type='button';b.dataset.caseGrid='';b.className='mobile-dialog-link';b.textContent='About';b.onclick=()=>open(false,b,findSlug(modal.querySelector('h2').textContent));modal.querySelector('.mobile-project-inner').append(b);
@@ -44,6 +46,7 @@ import {showroomBridge} from './showroom-bridge.mjs';
  addEventListener('keydown',e=>{if(e.key==='Escape'&&opening){e.preventDefault();close();}},{capture:true});
  addEventListener('message',e=>{
   if(e.origin!==location.origin||e.source!==frame?.contentWindow)return;
+  if(e.data?.type==='case-study:ready'){frame.style.opacity='1';frame.style.pointerEvents='auto';frame.focus({preventScroll:true});frame.contentWindow.postMessage({type:'case-study:visible'},location.origin);return;}
   if(e.data?.type==='case-study:close'){close();return;}
   if(e.data?.type==='case-study:pause'&&scene&&typeof e.data.paused==='boolean'){if(e.data.paused)document.documentElement.dataset.caseStudyPaused='true';else document.documentElement.removeAttribute('data-case-study-paused');}
   if(e.data?.type==='case-study:progress'&&scene){const {progress,rect}=e.data;

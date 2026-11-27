@@ -1,0 +1,79 @@
+{
+  "status": "PASS",
+  "viewport": [
+    320,
+    740
+  ],
+  "controls": [
+    {
+      "id": "previous",
+      "x": 18,
+      "width": 105.5,
+      "height": 44,
+      "right": 123.5
+    },
+    {
+      "id": "next",
+      "x": 131.5,
+      "width": 105.5,
+      "height": 44,
+      "right": 237
+    },
+    {
+      "id": "replay",
+      "x": 245,
+      "width": 44,
+      "height": 44,
+      "right": 289
+    },
+    {
+      "id": "quit",
+      "x": 18,
+      "width": 271,
+      "height": 44,
+      "right": 289
+    },
+    {
+      "id": "dot",
+      "x": 0,
+      "width": 44,
+      "height": 44,
+      "right": 44
+    },
+    {
+      "id": "dot",
+      "x": 0,
+      "width": 44,
+      "height": 44,
+      "right": 44
+    },
+    {
+      "id": "dot",
+      "x": 0,
+      "width": 44,
+      "height": 44,
+      "right": 44
+    },
+    {
+      "id": "dot",
+      "x": 0,
+      "width": 44,
+      "height": 44,
+      "right": 44
+    },
+    {
+      "id": "dot",
+      "x": 0,
+      "width": 44,
+      "height": 44,
+      "right": 44
+    },
+    {
+      "id": "dot",
+      "x": 0,
+      "width": 44,
+      "height": 44,
+      "right": 44
+    }
+  ]
+}

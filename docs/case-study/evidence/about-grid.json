@@ -19,6 +19,24 @@
   },
   {
     "browser": "chromium",
+    "width": 768,
+    "project": "jbl-artwork",
+    "status": "PASS"
+  },
+  {
+    "browser": "chromium",
+    "width": 768,
+    "project": "tomford",
+    "status": "PASS"
+  },
+  {
+    "browser": "chromium",
+    "width": 768,
+    "project": "earthhour",
+    "status": "PASS"
+  },
+  {
+    "browser": "chromium",
     "width": 390,
     "project": "jbl-artwork",
     "status": "PASS"
@@ -32,6 +50,24 @@
   {
     "browser": "chromium",
     "width": 390,
+    "project": "earthhour",
+    "status": "PASS"
+  },
+  {
+    "browser": "chromium",
+    "width": 320,
+    "project": "jbl-artwork",
+    "status": "PASS"
+  },
+  {
+    "browser": "chromium",
+    "width": 320,
+    "project": "tomford",
+    "status": "PASS"
+  },
+  {
+    "browser": "chromium",
+    "width": 320,
     "project": "earthhour",
     "status": "PASS"
   },
@@ -55,6 +91,24 @@
   },
   {
     "browser": "webkit",
+    "width": 768,
+    "project": "jbl-artwork",
+    "status": "PASS"
+  },
+  {
+    "browser": "webkit",
+    "width": 768,
+    "project": "tomford",
+    "status": "PASS"
+  },
+  {
+    "browser": "webkit",
+    "width": 768,
+    "project": "earthhour",
+    "status": "PASS"
+  },
+  {
+    "browser": "webkit",
     "width": 390,
     "project": "jbl-artwork",
     "status": "PASS"
@@ -68,6 +122,24 @@
   {
     "browser": "webkit",
     "width": 390,
+    "project": "earthhour",
+    "status": "PASS"
+  },
+  {
+    "browser": "webkit",
+    "width": 320,
+    "project": "jbl-artwork",
+    "status": "PASS"
+  },
+  {
+    "browser": "webkit",
+    "width": 320,
+    "project": "tomford",
+    "status": "PASS"
+  },
+  {
+    "browser": "webkit",
+    "width": 320,
     "project": "earthhour",
     "status": "PASS"
   }
