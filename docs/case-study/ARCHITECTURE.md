@@ -20,3 +20,6 @@ Registry defines project title/shortTitle/preview; entry routes selected project
 
 ## Button-driven graphic progress2026-11-27
 reference.mjs now imports createButtonProgress rather than observeProgress. seek updates a target; the existing exact spring advances pure timeline progress on one owned on-demand rAF, retaining velocity during interrupted/reverse transitions. It stops at rest, pauses hidden, refreshes on resize and disposes listeners/frames. Selected chapter and aria-current update directly from buttons rather than intermediate animation frames. Native page reading scroll remains available outside the embedded interactive stage and for static fallback, but never selects chapters. A reusable case-action component exposes artwork accent through --action-accent. This owner request supersedes the earlier graphic pinned-scroll proposal; app architecture is not changed.
+
+## Earth2026-11-27
+Earth adds only registry/data/assets/preview and scoped leader colors. Existing engine/adapter handles4planes without changes. Character-first windows differ from Tom Ford; panel45, shadow135, character250 source-pixel depth offsets.

@@ -21,3 +21,6 @@ Resolved: owner provided Tom Ford PSD1524×2784, four PNGs and notes-TomFord.md 
 
 ## Latest owner update2026-11-27
 Earth layered AI unavailable; owner will upload notes-Earth.md and announce when ready. No further question required for current navigation work. Existing flattened art is available for later extraction assessment; do not promise exact recovery of hidden pixels. Site-wide use of the new button visual style is a recorded future preference.
+
+## Earth2026-11-27
+Resolved: Earth notes received/read, generated AI inspected. Owner authorized fallback extraction and specified character→shadow→panel ordering. No further question needed for this implementation; hidden regions are explicitly labelled reconstructed.

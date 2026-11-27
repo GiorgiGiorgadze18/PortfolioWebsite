@@ -1,0 +1,20 @@
+{
+  "metrics": {
+    "untouchedMeanAbsoluteDifference255": 0.0,
+    "untouchedPixels": 1763800,
+    "status": "PASS",
+    "reconstruction": "Upper panel dome/gradient and occluded oval shadow; original image is used at both endpoints",
+    "meanAbsoluteDifference255": 1.1874979294248755,
+    "maxAbsoluteDifference255": 233,
+    "sourceSHA256": "8a0ccf80fb26dabb55293dec39ff3cd83d38d0097b9e8a178393bc1eaa6cbf66",
+    "fullSSIM": 0.9867950479710391,
+    "untouchedSSIM": 0.9999696939508078,
+    "note": "Full-image metrics include reconstructed areas and are not an exact-match pass. Untouched metrics exclude the documented processing mask, including character separation. Endpoint uses the actual original."
+  },
+  "sourceAI": {
+    "bytes": 117497,
+    "sha256": "2f276d42d6137cfc743d7d0dcd4d666e68dc8ffd6c2dafa5f4f35a5f6ef727fe",
+    "decision": "Rejected as fidelity source: different character, hand gesture and typography layout; manual comparison saved in rejected-ai-preview.png"
+  },
+  "paidGeneration": false
+}

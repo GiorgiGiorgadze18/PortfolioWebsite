@@ -18,6 +18,14 @@
       "title": "Tom Ford Tobacco Vanille",
       "shortTitle": "Tom Ford",
       "preview": "tomford-preview.html"
+    },
+    "earthhour": {
+      "published": false,
+      "type": "GraphicExplodedCaseStudy",
+      "manifest": "projects/earthhour/manifest.json",
+      "title": "Earth Hour Campaign Poster",
+      "shortTitle": "Earth Hour",
+      "preview": "earthhour-preview.html"
     }
   }
 }

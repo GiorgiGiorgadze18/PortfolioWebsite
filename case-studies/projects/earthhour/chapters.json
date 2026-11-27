@@ -1,0 +1,44 @@
+[
+  {
+    "id": "original",
+    "title": "A playful vector world",
+    "copy": "A 2025 independent poster study created in Adobe Illustrator, with a cheerful character and a party-inspired palette.",
+    "progress": 0,
+    "source": "designerIntent"
+  },
+  {
+    "id": "character",
+    "title": "The character comes first",
+    "copy": "The Earth character leads the composition. Its original silhouette, expression and colours stay intact as it rises above the poster.",
+    "progress": 0.35,
+    "source": "designerIntent"
+  },
+  {
+    "id": "shadow",
+    "title": "A grounding gesture",
+    "copy": "The oval shadow sits below the character, giving the illustrated pose a sense of weight. Its hidden section is reconstructed for this presentation.",
+    "progress": 0.5,
+    "source": "implementation"
+  },
+  {
+    "id": "panel",
+    "title": "A frame for the message",
+    "copy": "The green gradient panel stays beneath the character and its shadow. It groups the original event text, date and device-switch-off message.",
+    "progress": 0.65,
+    "source": "designerIntent"
+  },
+  {
+    "id": "palette",
+    "title": "Colour with a playful purpose",
+    "copy": "The owner identifies #AD94D9, #A26FBA and #7BBA5B. Purple sets the atmosphere; the green gradient helps the bold text stand out. The owner names The Bold Font.",
+    "progress": 0.8,
+    "source": "designerIntent"
+  },
+  {
+    "id": "recompose",
+    "title": "Back to the original",
+    "copy": "The layers return to the untouched original image. This is a limited-angle 2.5D study; hidden panel and shadow regions are reconstructed, not recovered vector source.",
+    "progress": 1,
+    "source": "implementation"
+  }
+]

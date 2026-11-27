@@ -1,0 +1,16 @@
+[
+  {
+    "browser": "chromium",
+    "project": "earthhour",
+    "status": "PASS",
+    "scope": "mobile touch emulation, Next/Previous and direct-dot tap",
+    "errors": []
+  },
+  {
+    "browser": "webkit",
+    "project": "earthhour",
+    "status": "PASS",
+    "scope": "mobile touch emulation, Next/Previous and direct-dot tap",
+    "errors": []
+  }
+]

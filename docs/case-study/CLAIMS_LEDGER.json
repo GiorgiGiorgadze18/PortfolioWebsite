@@ -126,6 +126,17 @@
           "path": "docs/case-study/evidence/reference/button-navigation-scene.json"
         }
       ]
+    },
+    {
+      "id": "earth-owner-intent",
+      "claim": "2025 Illustrator vector poster study with a cheerful party-inspired mood, purple/green palette and owner-attributed The Bold Font. No real event outcome or organizational affiliation claimed.",
+      "status": "concept",
+      "source": "designerIntent",
+      "evidence": [
+        {
+          "path": "docs/case-study/evidence/earth/notes-Earth.md"
+        }
+      ]
     }
   ],
   "excludedUnverified": [

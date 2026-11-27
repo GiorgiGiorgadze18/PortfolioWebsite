@@ -18,3 +18,6 @@ Read `docs/case-study/MASTER.md` before case-study work. Resume from `PROGRESS.m
 
 ## Current graphic case-study navigation
 Owner request2026-11-27 replaces scroll progression with Previous/Next and vertical project-colored dots for JBL/Tom Ford. This explicitly supersedes MASTER.md native-scroll wording for these graphic presentations. Keep the pure timeline and smooth reversible interpolation. Reusable button styling is prepared; a site-wide rollout and Earth Hour extraction are not part of this navigation task. Earth owner notes are pending.
+
+## Earth authorization2026-11-27
+Owner supplied Earth notes and a generated AI, and explicitly authorized original-image extraction if the AI differs. Earth work is now authorized within Phase4; keep app phases and production publication gated. Current report: docs/case-study/EARTH_REPORT.md.

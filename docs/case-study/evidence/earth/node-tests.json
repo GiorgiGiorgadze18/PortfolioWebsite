@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "command": "node --test tests/case-study/*.test.mjs",
+  "passedTestFiles": 4,
+  "scope": "pure math, mock lifecycle/transition and progress-source pause/disposal; not GPU10cycle certification"
+}

@@ -79,3 +79,6 @@ See NAVIGATION_REPORT.md.16 browser-size cases,4 touch cases,4 JBL reference cas
 Dot refinement2026-11-27: active dot1.65×, project color and soft glow; no outer button frame or dot border. Keyboard-only focus stays on the dot. Browser evidence: evidence/navigation/dot-refinement.json. Artwork and timeline unchanged.
 
 Mobile balance2026-11-27: artwork width budget60vw/34svh/80% stage-height instead of40vw/22svh/50%; compact one-row actions retain44px targets, dot targets32px, long description scrolls within12svh. Desktop unaffected. Final browser matrix: evidence/navigation/tests.json; physical devices remain untested.
+
+## Earth2026-11-27
+Earth: eight browser/size cases,2touch,2Grid,2standalone,1actual software-GL scene and4Node test files PASS in recorded evidence. An early Grid assertion failed because it expected the whole class string motion-ready; corrected to a class-token regex, then passed. Full-image fidelity target NOT achieved; masked untouched target PASS; original endpoints retained. Physical hardware/AT/full context-loss/10cycle GPU trend remain NOT RUN.

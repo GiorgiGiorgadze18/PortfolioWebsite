@@ -1,0 +1,113 @@
+{
+  "slug": "earthhour",
+  "published": false,
+  "validated": true,
+  "canvas": [
+    1797,
+    2542
+  ],
+  "original": "assets/web/original.webp",
+  "accent": "#AD94D9",
+  "layers": [
+    {
+      "id": "background",
+      "label": "Original sky, lettering and clouds",
+      "src": "assets/web/background.webp",
+      "bbox": [
+        0,
+        0,
+        1797,
+        2542
+      ],
+      "canvas": [
+        1797,
+        2542
+      ],
+      "order": 0,
+      "alpha": [
+        255,
+        255
+      ],
+      "representation": "plane",
+      "reconstructionStatus": "original"
+    },
+    {
+      "id": "panel",
+      "label": "Green text panel",
+      "src": "assets/web/panel.webp",
+      "bbox": [
+        122,
+        1066,
+        1749,
+        2440
+      ],
+      "canvas": [
+        1797,
+        2542
+      ],
+      "order": 1,
+      "alpha": [
+        0,
+        255
+      ],
+      "representation": "plane",
+      "reconstructionStatus": "reconstructed"
+    },
+    {
+      "id": "shadow",
+      "label": "Character shadow",
+      "src": "assets/web/shadow.webp",
+      "bbox": [
+        578,
+        1563,
+        1498,
+        1695
+      ],
+      "canvas": [
+        1797,
+        2542
+      ],
+      "order": 2,
+      "alpha": [
+        0,
+        255
+      ],
+      "representation": "plane",
+      "reconstructionStatus": "reconstructed"
+    },
+    {
+      "id": "character",
+      "label": "Earth character",
+      "src": "assets/web/character.webp",
+      "bbox": [
+        281,
+        414,
+        1636,
+        1656
+      ],
+      "canvas": [
+        1797,
+        2542
+      ],
+      "order": 3,
+      "alpha": [
+        0,
+        255
+      ],
+      "representation": "plane",
+      "reconstructionStatus": "original"
+    }
+  ],
+  "validation": {
+    "untouchedMeanAbsoluteDifference255": 0.0,
+    "untouchedPixels": 1763800,
+    "status": "PASS",
+    "reconstruction": "Upper panel dome/gradient and occluded oval shadow; original image is used at both endpoints",
+    "meanAbsoluteDifference255": 1.1874979294248755,
+    "maxAbsoluteDifference255": 233,
+    "sourceSHA256": "8a0ccf80fb26dabb55293dec39ff3cd83d38d0097b9e8a178393bc1eaa6cbf66",
+    "fullSSIM": 0.9867950479710391,
+    "untouchedSSIM": 0.9999696939508078,
+    "note": "Full-image metrics include reconstructed areas and are not an exact-match pass. Untouched metrics exclude the documented processing mask, including character separation. Endpoint uses the actual original."
+  }
+}

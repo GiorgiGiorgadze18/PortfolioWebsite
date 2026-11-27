@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased — Earth composition study, 2026-11-27
+
+- Reject the supplied generated AI as a fidelity source; separate the unchanged original into background, character, oval shadow and green text panel, explicitly documenting reconstructed upper-panel/shadow areas. Preserve original image endpoints.
+- Add owner-backed chapters and character-first choreography: character above shadow, shadow above the text panel, with existing Previous/Next, project-colored dots and compact mobile layout.
+- Register Earth in Grid and actual showroom review paths; retain all public flags disabled. Browser, touch, software-GL restore/resource and fidelity evidence is recorded in docs/case-study/EARTH_REPORT.md.
+
 ## Unreleased — Mobile artwork balance, 2026-11-27
 
 - Give graphic artwork more mobile stage space, compact Previous/Next/Replay into one44px-high action row, and reduce chapter-dot hit rows to32px. Keep longer descriptions independently scrollable so actions remain visible. Desktop layout unchanged.

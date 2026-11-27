@@ -24,7 +24,7 @@ with sync_playwright() as p:
   if i==0:
    page.screenshot(path=str(out/os.environ.get('CASE_SCREENSHOT','actual-webgl-desktop.png')))
    rgb=np.asarray(Image.open(out/os.environ.get('CASE_SCREENSHOT','actual-webgl-desktop.png')).convert('RGB'))[80:500,:int(page.viewport_size['width']*.6),:].astype(float)
-   mask=((rgb[:,:,2]>80)&(rgb[:,:,1]>rgb[:,:,0]*1.2)&(rgb[:,:,2]>rgb[:,:,0]*1.4)) if slug=='jbl-artwork' else ((rgb[:,:,0]>70)&(rgb[:,:,0]>rgb[:,:,1]*1.05)&(rgb[:,:,0]>rgb[:,:,2]*1.2));artPixels=int(mask.sum());assert artPixels>1500,artPixels
+   mask=((rgb[:,:,2]>80)&(rgb[:,:,1]>rgb[:,:,0]*1.2)&(rgb[:,:,2]>rgb[:,:,0]*1.4)) if slug=='jbl-artwork' else ((rgb[:,:,0]>70)&(rgb[:,:,0]>rgb[:,:,1]*1.05)&(rgb[:,:,0]>rgb[:,:,2]*1.2));mask=((rgb[:,:,2]>80)&(rgb[:,:,2]>rgb[:,:,1]*1.1)) if slug=='earthhour' else mask;artPixels=int(mask.sum());assert artPixels>1500,artPixels
   f.locator('#exit').click();
   try: expect(trigger).to_be_focused(timeout=30000)
   except Exception:

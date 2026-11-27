@@ -820,5 +820,13 @@
         "sha256": "8061d9f8c3cfa53dbaef81d29a61905af223457442b889fcfc96a59b70898c67"
       }
     ]
+  },
+  "earthhour": {
+    "manifest": "case-studies/projects/earthhour/manifest.json",
+    "validation": "evidence/earth/validation.json",
+    "original": "assets/project-earthhour.png",
+    "sourceAI": "rejected; retained outside Git, hash in validation.json",
+    "notes": "evidence/earth/notes-Earth.md",
+    "processingMask": "case-studies/projects/earthhour/assets/masks/processing.png"
   }
 }

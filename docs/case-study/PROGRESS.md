@@ -1,16 +1,10 @@
-# Current state — Button-driven graphic case studies
-Updated2026-11-27 (Asia/Tbilisi). Current branch feat/case-study-button-navigation, base cba02ea984395509ac5598ecb420a585e36680a7. Implementation SHA: `git log -1 --format=%H -- docs/case-study/NAVIGATION_REPORT.md`.
+# Current state — Earth graphic case study
+2026-11-27 Asia/Tbilisi. Branch feat/case-study-phase4-earth, from f56fb53 (latest mobile balance). Current SHA: git log -1 --format=%H -- docs/case-study/EARTH_REPORT.md.
 
-Owner explicitly replaced scroll progression with Previous/Next and vertical dots. Shared button-progress.mjs drives the same pure timelines and smooth transitions; scrolling has no chapter effect. Active dots/Next use project accent; Previous uses navy with project-color overlay. Applies to both JBL and Tom Ford, independent Grid and actual showroom. No production merge/deployment; review flags remain off by default.
+Earth notes read; generated AI rejected for changed shape/gesture/layout. Original PNG unchanged. Four planes: background, reconstructed upper green panel, reconstructed occluded oval shadow, original-pixel character. User ordering: character first/highest, shadow middle, panel lowest. Existing button navigation/dots/mobile balance retained. No apps/production changes.
 
-Read NAVIGATION_REPORT.md and evidence/navigation/tests.json, node-tests.json, plus evidence/reference/button-navigation-scene.json. Earlier TOMFORD_REPORT.md and JBL reports remain historical evidence for art extraction. Artwork, project choreography JSON and app demos unchanged.
+EARTH_REPORT.md records actual tests/limits. Eight Chromium/WebKit viewport cases, touch, Grid, real Chromium SwiftShader scene1cycle, node and standalone checks passed. Outside documented processing mask: mean difference0/255. Whole-image mean1.1875/255 and SSIM.986795 are NOT exact/full-target fidelity passes; endpoints use actual original. Finger tip previously hidden behind lettering is not recovered.
 
-New standalone files: /workspace/portfolio-work/{JBL,TomFord}-case-study-button-preview.html. Earlier scroll preview files and cba02ea remote branch retained for rollback. Review repository URLs unchanged: projects.html?view=3d&caseStudyPreview=1 or ?view=grid&caseStudyPreview=1.
+Preview: projects.html?view=3d&caseStudyPreview=1 or ?view=grid&caseStudyPreview=1 → Earth Hour → Explore case study. Independent case-studies/earthhour-preview.html. Self-contained /workspace/portfolio-work/Earth-case-study-preview.html.
 
-Earth: owner says layered AI unavailable and will supply notes-Earth.md in the existing Drive folder later. Do not claim it has arrived or start extraction now. Existing flattened original can be evaluated after notes arrive. Site-wide rollout of the button style is a future preference, not performed now.
-
-Open QA remains: physical devices, hardware GPU/FPS, AT, hardware Safari WebGL, full context-loss and ten-cycle actual GPU-memory trend. Keep docs/OPEN_VERIFICATION.md limits open.
-
-Dot refinement2026-11-27: active dot1.65×, project color and soft glow; no outer button frame or dot border. Keyboard-only focus stays on the dot. Browser evidence: evidence/navigation/dot-refinement.json. Artwork and timeline unchanged.
-
-Mobile balance2026-11-27: artwork width budget60vw/34svh/80% stage-height instead of40vw/22svh/50%; compact one-row actions retain44px targets, dot targets32px, long description scrolls within12svh. Desktop unaffected. Final browser matrix: evidence/navigation/tests.json; physical devices remain untested.
+No PR/merge/deployment. All cases remain published:false/global enabled:false. Owner visual review remains appropriate; no more source question needed. Gate3 app cases and Gate4 release QA are not complete. Hardware/physical phones/AT/full context loss/10cycle real GPU trend remain NOT RUN.

@@ -46,3 +46,6 @@ Owner supplied isometric reference; target orientation equivalent pitch60/yaw22/
 - Earlier scroll screenshots and parent commit retained; no paid generation, dependencies or publication. Earth notes not yet supplied; no extraction performed.
 
 Control accents are read from canonical data/projects.mjs, not duplicated: JBL #0E89E6, Tom Ford #A88554. Existing artwork/leader palette is preserved separately.
+
+## Earth2026-11-27
+Reject generated AI after actual rendering: different body/gesture/layout. Use original source pixels and deterministic color/ink-edge separation. Reconstruct upper dome/gradient and hidden oval shadow explicitly; preserve original full-image endpoints. Full-image MAD1.1875 and SSIM.986795 are not exact fidelity passes; masked untouched target passes. First low-MAD candidate had visible panel remnants and was rejected after manual inspection, showing why numbers alone are insufficient.

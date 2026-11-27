@@ -72,3 +72,5 @@ html[data-case="tomford"] .leader path{stroke:#e0a725;filter:drop-shadow(0 0 4px
  .case-action{min-height:44px;padding:8px 10px;font-size:12px}
  .chapter-content #replay{width:60px;min-height:44px;padding:8px 6px;margin-top:8px;font-size:12px}
 }
+
+html[data-case="earthhour"] .leader path{stroke:#ad94d9;filter:drop-shadow(0 0 4px #ad94d980)}html[data-case="earthhour"] .anchor-dot{fill:#d9c8f4}html[data-case="earthhour"] .anchor-ring{stroke:#ad94d9}
