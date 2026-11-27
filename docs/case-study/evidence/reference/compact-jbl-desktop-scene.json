@@ -1,0 +1,16 @@
+{
+  "status": "FAIL",
+  "scope": "Chromium softwareGL 1440x900 actual JBL surface, one cycle",
+  "passedBeforeFailure": [
+    "initialization on retry",
+    "four WebGL layer planes",
+    "headphone-stage depth ordering",
+    "visible artwork screenshot",
+    "exit returns bridge to idle"
+  ],
+  "failedAssertion": "Explore case study trigger keyboard focus was not restored; active element was BODY",
+  "pageErrors": [],
+  "screenshot": "compact-jbl-desktop-scene.png",
+  "initialAttempt": "Timed out at scroll_into_view_if_needed before case-study entry",
+  "limits": "The existing intermittent desktop focus-return issue remains unresolved. Final pose, resource equality and no-JS assertions after the failing focus check were not executed in this desktop run; phone run passed these checks."
+}

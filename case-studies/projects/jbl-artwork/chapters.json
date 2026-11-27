@@ -8,15 +8,15 @@
   },
   {
     "id": "environment",
-    "title": "The stand rises first",
-    "copy": "The stand lifts first, establishing the base of the composition.",
+    "title": "The Audio panel rises first",
+    "copy": "The panel marked Audio rises first. Its shadow and reflection stay on the base.",
     "progress": 0.35,
     "source": "implementation"
   },
   {
     "id": "product",
     "title": "The headphones follow",
-    "copy": "The headphone assembly rises above its stand. Earlier sheets recede into shadow.",
+    "copy": "Both headphone parts rise together above the Audio panel. Earlier sheets recede into shadow.",
     "progress": 0.5,
     "source": "implementation"
   },

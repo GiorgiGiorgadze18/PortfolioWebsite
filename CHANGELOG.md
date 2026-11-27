@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased — Audio-first JBL and compact deep shadows, 2026-11-27
+
+- Correct JBL grouping: lift the original Audio panel first, then only the two headphone parts as one lossless composite, then clouds/title. Keep the floor shadow/reflection on the background; preserve all original source assets.
+- Halve shared stack gaps to75desktop/48mobile normalized units and matching framing offsets. Darken all passed sheets, artwork and grid together, to20% brightness; keep the active sheet unchanged and restore on reverse/recompose.
+- Add exact source-group pixel checks, rerun staged Chromium/WebKit emulation and actual JBL software-WebGL restore/resource checks. See docs/case-study/STACK_REPORT.md; no merge/deployment.
+
 ## Unreleased — Bottom-to-top chapter stacks, 2026-11-27
 
 - Make the first three Next actions raise semantic components bottom-to-top: JBL stand→headphones→cloud/title; Tom Ford leaf→smoke→bottle; Earth panel→shadow→character. Preserve original layer files and add lossless presentation composites for split headphones/smoke.

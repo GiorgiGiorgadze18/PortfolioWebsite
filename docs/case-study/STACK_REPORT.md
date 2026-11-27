@@ -153,3 +153,26 @@ No source asset deletions; no moved files.
 
 ## Transparent draw-order refinement
 WebGL transparent artwork and its frame now sort by their current local height, with original index only breaking ties. Future unraised sheets cannot paint over a raised foreground sheet simply because their source index is later. Reuses existing overlay/materials, no additional draw calls. Actual scene rerun is recorded in stack-earth-scene.json.
+
+## Current refinement — Audio-first / half spacing / deep dimming (2026-11-27)
+
+This section supersedes the earlier grouping, gap and brightness values above. Before-change commit: d9784cc. JBL rank1 is the original glass/Audio source, rank2 combines only rear+hero, rank3 uses the unchanged identity/cloud source. Contact/shadow/reflection is composited with the environment and stays on the base. Exact visible RGBA/alpha composition checks PASS; original referenced layer files have no diff.
+
+All projects use75desktop/48mobile normalized gaps (half150/96). Lower offset180→90 and live vertical compensation.12→.06 keep the smaller stack centered. Passed sheets now use.20brightness instead of.52, including artwork and grid/glow; active sheet remains1. Reverse/recompose restore full brightness. No new RAF or renderer, palette/grid/glow settings unchanged. No FPS improvement claimed or measured in this refinement.
+
+| Test | Expected | Actual | Status |
+|---|---|---|---|
+| Source grouping |Audio first, rear+hero only, stationary contact, unchanged clouds |jbl-group-validation.json exact pixel checks | PASS |
+| Shared Node suites |timeline/order/gap/dim/reverse/lifecycle |6test files executed | PASS |
+| Staged browser matrix |3projects×2browsers×2sizes,3steps each |12cases,36screenshots, zero page errors | PASS |
+| Reduced/static |all matrix entries expose static chapters |12cases | PASS |
+| Actual JBL phone surface |4planes, restoration, resources |compact-jbl-scene.json,1Chromium softwareGL cycle | PASS |
+| Physical devices / hardwareGPU / AT |physical verification |not executed | NOT RUN |
+
+Initial fixed1800ms browser wait inspected unfinished WebKit interpolation and failed. The test now waits for the required state and8identical animation-frame samples, without changing product timing. The final matrix passes with recorded wall-times; these are automation settling times, not FPS or physical-device performance. Manual screenshots reviewed for Audio-first, headphones, final darkening and compact mobile spacing. The desktop scene's first attempt timed out before entry at scroll_into_view_if_needed while another browser matrix was running; no causal claim or product pass is inferred from that timeout.
+
+Changed source/config files: group_stack.py; jbl_groups.py; stack_browser.py; stack-motion.test.mjs; stack-motion.mjs; webgl-layers.mjs; JBL manifest/chapters/static HTML; all3presentation.json; derived stack-environment.webp and stack-headphones.webp. Documentation/evidence and delivery source hashes updated. No originals deleted/moved. Rebuilt the three existing standalone preview files outside the repository.
+
+Rollback: git revert the refinement commit (identify via git log --grep='lift Audio panel'); alternatively inspect d9784cc on a separate branch. Preserve backup/before-case-studies and do not force-push. Current branch feat/case-study-phase4-earth; no PR/merge/publication. Full current SHA is git rev-parse HEAD after the documented commit.
+
+Desktop JBL retry: actual softwareGL entry,4planes, headphone-stage ordering and visible artwork succeeded; exit focus restoration **FAIL** (BODY active, preview trigger not focused), reproducing the previously documented desktop limitation. No page errors observed before failure. Assertions after focus (pose/resource equality/no-JS) were NOT RUN in this desktop attempt. Phone full cycle passed those checks. Evidence: reference/compact-jbl-desktop-scene.json/png. This refinement does not claim to fix focus management; no further unrelated source change made.

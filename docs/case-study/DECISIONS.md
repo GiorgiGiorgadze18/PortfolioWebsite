@@ -55,3 +55,6 @@ Preserve all scope beyond frames. JBL measured hue is blue, not assumed brand or
 
 ## Stack ordering2026-11-27
 Group rear+glass+hero for JBL headphones and both Tom Ford smoke sheets; retain original source files and saved source manifests. New composite encoding is lossless; Tom front smoke now belongs to the smoke group below bottle per owner order, so assembled source endpoints remain important. Cumulative brightness uses .52 rather than opacity to avoid revealing unrelated colors through old layers. Earlier obsolete world-Z>.7/early-progress test was replaced by ordered normalized depths at actual stage target. Navigation wheel assertion now waits for settled transforms, rather than assuming fixed wall time under software-GL load.
+
+## 2026-11-27 — Owner Audio-first correction
+JBL “stand” is the glass source with Audio text, not contact/shadow/reflection. Preserve contact on base; combine only rear+hero into headphones. Original source files are immutable; generated environment/headphone WebPs are lossless review derivatives. Halve common gaps150/96→75/48 and centering offsets; lower passed-sheet brightness.52→.20 in both art and frames. Active sheet remains unchanged. No global palette/camera/input redesign; no publication authorization.

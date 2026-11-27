@@ -1,6 +1,6 @@
-# Resume — bottom-to-top stacks
-Read MASTER.md, PROGRESS.md and STACK_REPORT.md. Latest owner supersedes old hero-first choreography. All3works share background+3semantic stages and normalized spacing. Do not revert to bottle-first/character-first or duplicate headphone part planes. Source manifests backed up inside each project, original assets retained; group_stack.py composites losslessly.
+# Resume — Audio-first, compact deep-shadow stacks
+Read MASTER.md, PROGRESS.md and the latest refinement in STACK_REPORT.md. Owner correction: JBL stand means the original glass/Audio panel, not contact/reflection. Rank1=glass; rank2=rear+hero merged headphones; rank3=unchanged identity cloud/title. The environment+contact composite remains the base. group_stack.py reads immutable stack-source-manifest.json sources; tests/case-study/jbl_groups.py checks exact visible RGBA/alpha compositions. Never add Audio back into the headphone composite.
 
-stack-motion.mjs computes rising ranks and cumulative brightness, reusing per-plane output objects in DOM/WebGL. Black dimming affects image and holographic shader, not opacity. Frame color stays neutral#DCEEF2/grid20/glow.28. Chapters/static fallback match stage order. No new input/scroll driver.
+Shared gaps75desktop/48mobile, previous-sheet brightness.20, active1. Lower offset90, live centering.06. Frame neutral#DCEEF2/grid20/glow.28 unchanged. DOM/WebGL use the same stack-motion.mjs; artwork and grid dim together with no added render loop. Previous/recompose restore normally.
 
-Current branch feat/case-study-phase4-earth; rollback base e885ca3. No PR/merge/deploy approved. Existing physical/hardware/AT/context-loss/10cycle and intermittent desktop focus-return limits remain documented. See current evidence for checks actually run.
+Branch feat/case-study-phase4-earth; safe rollback before this correction d9784cc. No PR/merge/deploy approved. Physical/hardware/AT/context-loss/10cycle and historical intermittent desktop Tom Ford focus-return limits remain open. Current evidence distinguishes emulation and actual softwareGL from physical hardware.

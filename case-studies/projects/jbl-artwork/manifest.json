@@ -9,8 +9,7 @@
   "layers": [
     {
       "id": "environment",
-      "label": "Sky and rhythm",
-      "src": "assets/web/environment.webp",
+      "src": "assets/web/stack-environment.webp",
       "canvas": [
         2480,
         3508
@@ -21,50 +20,26 @@
         2480,
         3508
       ],
-      "alpha": [
-        255,
-        255
+      "sourceLayers": [
+        "environment",
+        "contact"
       ],
-      "order": 0,
       "representation": "plane",
-      "rotationLimits": [
-        -10,
-        10
-      ],
-      "reconstructionStatus": "original",
-      "blendAppearance": "PSD blends baked against assembled lower layers",
-      "sourceFiles": [
-        "JBL_0001_\u10d1\u10d4\u10e5\u10d2\u10e0\u10d0\u10e3\u10dc\u10d3\u10d8.png",
-        "JBL_0004s_0012_Rectangle-1.png",
-        "JBL_0004s_0011_Rectangle-1-copy.png",
-        "JBL_0004s_0010_Rectangle-1-copy-2.png",
-        "JBL_0004s_0009_Rectangle-1-copy-2.png",
-        "JBL_0004s_0008_Rectangle-1-copy-3.png",
-        "JBL_0004s_0007_Rectangle-1-copy-4.png",
-        "JBL_0004s_0006_Rectangle-1-copy-4.png",
-        "JBL_0004s_0005_Rectangle-1-copy-4.png",
-        "JBL_0004s_0004_Rectangle-1-copy-4.png",
-        "JBL_0004s_0003_Rectangle-1-copy-4.png",
-        "JBL_0004s_0002_Rectangle-1-copy-5.png",
-        "JBL_0004s_0001_Rectangle-1-copy-5.png",
-        "JBL_0004s_0000_Rectangle-1-copy-5.png",
-        "JBL_0003s_0001_\u10e5\u10d5\u10d4\u10d3\u10d0-\u10de\u10da\u10d0\u10e2\u10e4\u10dd\u10e0\u10db\u10d0.png",
-        "JBL_0003s_0000_\u10ee\u10d0\u10d6\u10d4\u10d1\u10d8-\u10d0\u10dc\u10d0\u10e0\u10d4\u10d9\u10da\u10d8-\u10db\u10d0\u10e0\u10ea\u10d4\u10ee\u10dc\u10d0.png"
-      ]
+      "order": 0
     },
     {
       "id": "stand",
-      "label": "Grounding the composition",
-      "src": "assets/web/contact.webp",
+      "label": "Glass and audio interface",
+      "src": "assets/web/glass.webp",
       "canvas": [
         2480,
         3508
       ],
       "bbox": [
-        309,
-        2858,
-        2095,
-        3448
+        459,
+        1714,
+        1835,
+        3021
       ],
       "alpha": [
         0,
@@ -79,8 +54,12 @@
       "reconstructionStatus": "original",
       "blendAppearance": "PSD blends baked against assembled lower layers",
       "sourceFiles": [
-        "JBL_0000_\u10e1\u10d0\u10d9\u10d8\u10d3\u10d8-\u10d0\u10dc\u10d0\u10e0\u10d4\u10d9\u10da\u10d8.png",
-        "JBL_0002s_0000_\u10e1\u10d0\u10d9\u10d8\u10d3\u10d8\u10e1-\u10e9\u10e0\u10d3\u10d8\u10da\u10d8-1.png"
+        "JBL_0001s_0001_\u10e1\u10d0\u10d9\u10d8\u10d3\u10d8.png",
+        "JBL_0001s_0000s_0004_Music-Player-Line-OVERLAY.png",
+        "JBL_0001s_0000s_0003_Music-Player-HUD-PNG.png",
+        "JBL_0001s_0000s_0002_Audio.png",
+        "JBL_0001s_0000s_0001_IMAGINE-DRAGONS.png",
+        "JBL_0001s_0000s_0000_believer.png"
       ]
     },
     {
@@ -91,14 +70,13 @@
         3508
       ],
       "bbox": [
-        458,
+        478,
         1462,
         1914,
-        3023
+        2973
       ],
       "sourceLayers": [
         "rear",
-        "glass",
         "hero"
       ],
       "representation": "plane",

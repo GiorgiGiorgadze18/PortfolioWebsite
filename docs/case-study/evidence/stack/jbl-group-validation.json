@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "firstMovingLayer": "original glass/Audio source",
+  "headphones": [
+    "rear",
+    "hero"
+  ],
+  "stationaryBackground": [
+    "environment",
+    "contact"
+  ],
+  "cloudSourceUnchanged": true,
+  "visibleCompositePixels": "exact lossless match to expected source compositions"
+}

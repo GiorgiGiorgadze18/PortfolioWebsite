@@ -30,7 +30,7 @@ export async function loadWebGLLayers({THREE,device,camera,layer,baseURL}){
   const unitsPerPixel=2*Math.tan(camera.fov*Math.PI/360)*depth/(height*camera.zoom);
   const scale=Math.min(rect.width*.6*unitsPerPixel/device.bodyDimensions.w,rect.height*.65*unitsPerPixel/device.bodyDimensions.h,1.5);
   device.group.scale.setScalar(scale*(config.stackOrder?.78:1));
-  const z=center.project(camera).z;device.group.position.set((rect.x+rect.width/2)/width*2-1,1-(rect.y+rect.height/2)/height*2,z).unproject(camera);if(config.stackOrder)device.group.position.y-=rect.height*.12*unitsPerPixel;
+  const z=center.project(camera).z;device.group.position.set((rect.x+rect.width/2)/width*2-1,1-(rect.y+rect.height/2)/height*2,z).unproject(camera);if(config.stackOrder)device.group.position.y-=rect.height*.06*unitsPerPixel;
   planes.forEach((mesh,i)=>{const [x,y,z]=config.offsets[i],spread=layerProgress(config.layerWindows,state,p,i);const motion=stackLayer(config,state,p,i,stackMobile.matches,mesh.userData.stackMotion);mesh.userData.sheetDim=motion?.brightness??1;mesh.material.color.setScalar(Math.pow(mesh.userData.sheetDim,2.2));mesh.position.set(x*unit*spread,-y*unit*spread,.126+(motion?motion.z:z*spread)*unit+i*.0001);mesh.material.opacity=1-state.original;if(motion){mesh.renderOrder=20+mesh.position.z*1000+i*.001;overlays[i].renderOrder=mesh.renderOrder+.0001;}});
   device.screen.visible=originalPlane?false:state.original>.001;if(originalPlane)originalPlane.material.opacity=state.original;
  }

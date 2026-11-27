@@ -1,8 +1,10 @@
-# Current state — Bottom-to-top stack
-2026-11-27, branch feat/case-study-phase4-earth, safe base e885ca3. Current SHA: git log -1 --format=%H -- docs/case-study/STACK_REPORT.md.
+# Current state — Audio-first correction
+2026-11-27 · branch feat/case-study-phase4-earth · rollback before this correction: d9784cc.
 
-Owner explicitly authorized choreography refinement. First3Next actions: JBL stand→headphones(with rear/glass/hero grouped)→cloud/title; Tom Ford leaf→combined smoke→bottle; Earth green panel→shadow→character. All now use background+3semantic planes. Original files are untouched; original manifests saved as stack-source-manifest.json, new lossless composites added. group_stack.py rebuilds from those source manifests.
+JBL now lifts the original glass/Audio source first, then rear+hero headphone parts merged losslessly, then the unchanged cloud/title. Environment+contact are a lossless stationary base; shadow/reflection no longer raises as the stand. Current grouping supersedes the earlier rear/glass/hero grouping described historically in STACK_REPORT.md.
 
-Shared stack-motion.mjs: rank1/2/3 stages.35/.5/.65; equal normalized gaps150desktop/96mobile; old sheets brightness.52, latest1. Pure progress, reversible/reassembly restores originals. Frame and artwork dim together. Per-plane output objects reused; no new animation loop. Larger stack fitted with extra headroom and original surface restoration retained.
+All three projects: normalized desktop/mobile gaps75/48 (exactly half150/96), passed-sheet brightness.20 instead of.52, active1. Full art and frame dim together; pure reversible timeline, original endpoints retained. Lower offset90 (was180) and live vertical adjustment.06 (was.12) keep compact framing centered. Neutral frame palette/grid/glow and unrelated site code unchanged.
 
-Read STACK_REPORT.md and evidence/stack/browser-tests.json. Source math tests and real Earth software-GL restore passed; physical hardware/AT/full context loss/10cycle GPU trend remain open. Published/enabled false, no merge/deploy. Previews rebuilt at existing paths.
+Read STACK_REPORT.md latest refinement, HANDOFF.md and evidence/stack. Original assets and backup refs preserved. No PR/merge/deploy; public enabled/published flags remain false. Physical devices/hardwareGPU/AT/full context loss/10cycle trend remain NOT RUN; historical intermittent desktop Tom Ford exit focus issue is not claimed fixed.
+
+Final evidence:12staged Chromium/WebKit cases PASS,6Node suites PASS,source group identity PASS,actual phone JBL full cycle PASS. Actual desktop JBL opened/rendered correctly but exit focus FAIL (existing limitation); see compact-jbl-desktop-scene.json. Preview and source updates are review-only.
