@@ -9,3 +9,9 @@ for(const mobile of [false,true])for(const rank of [0,1,2]){
  for(const p of [start+.0001,start+.025,start+.075,.65,.78])assert(Math.abs(stackLayer(config,state,p,rank,mobile).brightness-.2)<1e-9);
 }
 console.log('PASS immediate final shade remains constant through subsequent chapters');
+
+for(const p of [.35,.5,.65]){
+ const active=Math.round((p-.35)/.15)+1;
+ for(let i=0;i<4;i++)assert(Math.abs(stackLayer(config,state,p,i).brightness-(i===active?1:.2))<1e-9);
+}
+console.log('PASS future overlapping sheets cannot repaint the dimmed base brightly');

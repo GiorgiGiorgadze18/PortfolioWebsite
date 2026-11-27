@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased — Consistent visible shadow from first Next, 2026-11-27
+
+- Dim every inactive sheet, including future sheets still overlapping the base, to the final20% brightness. Previously their undimmed artwork/grid repainted the dark base, making early stages appear lighter. Only the current rising sheet stays bright; all3projects share DOM/WebGL logic. Preserve reassembly, spacing and original assets. No publication.
+
+
 ## Unreleased — Constant passed-layer shade, 2026-11-27
 
 - Apply the final20% brightness as soon as the next layer starts rising, rather than interpolating darkening during that rise. All JBL/Tom Ford/Earth artwork and grids share the same shade; later Next actions do not deepen it. Reassembly still restores brightness. Shared Node checks cover onset and later chapters. No publication.

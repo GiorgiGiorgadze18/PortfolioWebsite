@@ -6,3 +6,5 @@ Shared gaps75desktop/48mobile, previous-sheet brightness.20, active1. Lower offs
 Branch feat/case-study-phase4-earth; safe rollback before this correction d9784cc. No PR/merge/deploy approved. Physical/hardware/AT/context-loss/10cycle and historical intermittent desktop Tom Ford focus-return limits remain open. Current evidence distinguishes emulation and actual softwareGL from physical hardware.
 
 2026-11-27 constant shade correction: passed sheets now take final brightness.20 immediately when the next rise begins; no progressive dim ramp. Same shared implementation for all3projects and DOM/WebGL. Subsequent chapters retain exactly.20; reassembly restoration unchanged. Regression assertions cover onset and later chapters. No merge/deploy.
+
+2026-11-27 visible-shadow correction: undimmed future sheets still overlapped/repainted the dimmed base. All inactive sheets (past AND not-yet-raised) now receive.20 brightness from first rise; only current active rank stays1. Shared DOM/WebGL implementation on all3projects. Earlier numeric-only fix did not address this overlap. Reassembly/spacing/assets unchanged.
