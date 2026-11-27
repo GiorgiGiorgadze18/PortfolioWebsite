@@ -10,3 +10,5 @@ Earth AI source unavailable per owner; notes-Earth.md pending in existing Drive 
 Tom Ford original source folder and JBL sources remain unchanged outside Git; lossless masters and provenance in repository. Tests/evidence and rollback are documented in NAVIGATION_REPORT.md. Physical-device/hardware/AT/full-context-loss limits remain open.
 
 Dot refinement2026-11-27: active dot1.65×, project color and soft glow; no outer button frame or dot border. Keyboard-only focus stays on the dot. Browser evidence: evidence/navigation/dot-refinement.json. Artwork and timeline unchanged.
+
+Mobile balance2026-11-27: artwork width budget60vw/34svh/80% stage-height instead of40vw/22svh/50%; compact one-row actions retain44px targets, dot targets32px, long description scrolls within12svh. Desktop unaffected. Final browser matrix: evidence/navigation/tests.json; physical devices remain untested.

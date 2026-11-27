@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased — Mobile artwork balance, 2026-11-27
+
+- Give graphic artwork more mobile stage space, compact Previous/Next/Replay into one44px-high action row, and reduce chapter-dot hit rows to32px. Keep longer descriptions independently scrollable so actions remain visible. Desktop layout unchanged.
+
 ## Unreleased — Chapter dot refinement, 2026-11-27
 
 - Enlarge the active dot to1.65× with its project color and soft glow. Remove dot borders and surrounding button focus frames; keyboard-only focus is drawn around the dot itself.

@@ -57,3 +57,18 @@ html[data-case="tomford"] .leader path{stroke:#e0a725;filter:drop-shadow(0 0 4px
 /* Focus belongs to the dot, never a surrounding button frame. */
 #chapters button:focus{outline:none}
 #chapters button:focus-visible::after{outline:2px solid #eef2fa;outline-offset:4px}
+/* Mobile balance: reserve the stage for artwork and keep actions in one row. */
+@media(max-width:700px){
+ .embedded-mode .board{width:min(60vw,34svh,80cqh)}
+ .pin aside{grid-template-columns:28px minmax(0,1fr);gap:8px}
+ #chapters button{width:28px;min-width:28px;height:32px;min-height:32px}
+ .chapter-content{display:flex;flex-wrap:wrap;align-items:center;column-gap:8px}
+ .chapter-content>*{width:100%}
+ .chapter-content #counter{display:none}
+ .chapter-content h2{font-size:20px;line-height:1.2;margin:4px 0}
+ .chapter-content #chapter-copy{font-size:13px;line-height:1.5;margin:6px 0;max-height:12svh;overflow:auto;overscroll-behavior:contain}
+ .chapter-content .source{font-size:9px;margin:4px 0}
+ .chapter-actions{width:auto;flex:1;flex-wrap:nowrap;gap:6px;margin:8px 0 0}
+ .case-action{min-height:44px;padding:8px 10px;font-size:12px}
+ .chapter-content #replay{width:60px;min-height:44px;padding:8px 6px;margin-top:8px;font-size:12px}
+}
