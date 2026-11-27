@@ -218,5 +218,10 @@
     "meanTargetStatus": "PASS",
     "endpoint": "Crossfade to untouched original at p=0 and p=1; not exact layered recomposition",
     "haloStatus": "NOT RUN"
+  },
+  "frame": {
+    "color": "#0078d8",
+    "gridCells": 28,
+    "glow": 0.52
   }
 }

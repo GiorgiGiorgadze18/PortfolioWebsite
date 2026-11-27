@@ -136,5 +136,10 @@
     "SSIM": 0.9992640880432605,
     "status": "PASS",
     "target": "Owner PSD saved composite, not legacy website thumbnail"
+  },
+  "frame": {
+    "color": "#b98a46",
+    "gridCells": 28,
+    "glow": 0.52
   }
 }

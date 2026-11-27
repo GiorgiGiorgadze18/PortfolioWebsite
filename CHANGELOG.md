@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased — Project-colored holographic sheets, 2026-11-27
+
+- Refine only decorative layer frames: square procedural grid, alpha-aware attenuation, inner edge glow and crisp borders. Use manifest frame colors (JBL blue, Tom Ford gold, Earth purple per owner correction) with saturated-hue fallback for future projects.
+- Share a WebGL shader/geometry per presentation; use resize-only Canvas2D decorations for DOM planes. Reduce phone grid density30%, disable phone outer bloom, preserve DPR caps and all choreography/assets/copy/navigation.
+- Capture36 before/after screenshots at progress0/.5/.75, identical pose checks, comparable DOM CPU measurements and isolated software-GL timing/resource checks. Known intermittent desktop Tom Ford focus-return failure remains outside this frame-only scope. See docs/case-study/HOLOGRAPHIC_REPORT.md. No merge/publication.
+
 ## Unreleased — Layer frames and supplied Earth assets, 2026-11-27
 
 - Add thin purple per-layer borders in CSS3D and real WebGL, fading away during assembly. Move the shared vertical chapter rail left of the artwork for every project.

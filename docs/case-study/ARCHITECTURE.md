@@ -23,3 +23,6 @@ reference.mjs now imports createButtonProgress rather than observeProgress. seek
 
 ## Earth2026-11-27
 Earth adds only registry/data/assets/preview and scoped leader colors. Existing engine/adapter handles4planes without changes. Character-first windows differ from Tom Ford; panel45, shadow135, character250 source-pixel depth offsets.
+
+## Holographic frames2026-11-27
+Manifest frame config feeds shared resolveFrame. DOM uses one decorative Canvas2D sheet per existing plane, alpha-mask composition and resize-only rasterization. WebGL uses one shared ShaderMaterial and padded quad geometry per presentation; onBeforeRender swaps the existing layer alpha map, no new grid textures. Derivative-based grid/border, short-side edge normalization, phone density/bloom settings. Existing timeline spread drives opacity; all poses remain unchanged.

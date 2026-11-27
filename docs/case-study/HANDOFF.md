@@ -1,13 +1,10 @@
 # Resume
-Read MASTER.md, PROGRESS.md and EARTH_REPORT.md. Latest owner explicitly authorized Earth extraction if generated AI is inaccurate. That AI was inspected and rejected; owner notes are in evidence/earth/notes-Earth.md. No source request needed.
+Read MASTER.md, PROGRESS.md and HOLOGRAPHIC_REPORT.md. Latest scope: visual layer frames only, no choreography/camera/copy/navigation changes. Same branch feat/case-study-phase4-earth, preserved base0a6c888. No publication approved.
 
-Branch feat/case-study-phase4-earth. Safe previous branch feat/case-study-button-navigation at f56fb53. No merge/deploy/PR. Keep current Previous/Next, enlarged frameless dots and mobile balance. Apps not modified or newly authorized here.
+Current manifest colors: blue JBL, warm gold Tom Ford, PURPLE Earth per owner's last correction. Never restore green on Earth just because automatic extraction selects green. frame block is authoritative; fallback only if absent. Keys: color, color2(optional), gridCells(8..64,default28), glow(0..1,default.52).
 
-Earth export source assets/project-earthhour.png, original hash preserved. Original generated AI remains /workspace/portfolio-work/case-study-sources/Earth/Earth_Hour_Layered.ai. tools/case-study/export_earth.py is deterministic Python/Pillow/NumPy/SciPy tooling. No new runtime dependency or generated-image spending.
+frame-style.mjs owns palette fallback and DOM Canvas2D sheet drawing on ResizeObserver; frame-shader.mjs owns shared WebGL material. webgl-layers.mjs reuses original geometry/renderer/loop and disposes padded frame geometry/material. No timeouts, idle animation or added renderer. Optional color2 affects top glow in DOM and restrained vertical shader mix.
 
-Three separated foreground components plus background; clean upper dome/gradient and occluded shadow are reconstructed. All original lower lettering and character pixels are retained. Whole-image fidelity target is not achieved; untouched masked-region target is. Preserve original start/end crossfade and honest labels. Never describe this as original recovered AI layers.
+Before/after harness pins base0a6c888 via Git routes; production JS has no test seek hook. Benchmark captures DOM update CPU separately from isolated320×400 SwiftShader render+finish. Neither is real-device FPS. See exact artifacts/conditions; do not infer speedups from one batch.
 
-Chapters/presentation JSON register through the shared engine; actual scene and independent Grid use the same offsets and layer windows. Current report/tests distinguish emulation/software GL from hardware. Physical/AT/context-loss/10-cycle GPU trend limits remain open. Full upcoming app phases/release require their own approved scope.
-
-## Latest2026-11-27 — Supplied ZIP / frames
-See FRAMES_REPORT.md. Owner supplied earth-hour.zip; current Earth layers now use it, not the earlier extraction. Old masked-fidelity metrics describe the historical pipeline only. New importer tools/case-study/import_earth_zip.py; supplied source and generated tip stored in evidence/earth. Only78×40px tip region changes, outside exact RGBA identity passes. Shared rail is left of artwork; CSS3D/WebGL frames added to every plane. Source original and previous commit957d734 retained; no merge/deployment.
+Known desktop Tom focus return FAIL persists; phone Tom and other scenes pass. Existing navigation file is intentionally unchanged. Physical devices/AT/hardware WebGL/full context-loss/10cycle trend remain open. Previous Earth ZIP/generation/source preservation details remain in FRAMES_REPORT.md.

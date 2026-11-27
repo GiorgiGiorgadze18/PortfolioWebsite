@@ -49,3 +49,6 @@ Control accents are read from canonical data/projects.mjs, not duplicated: JBL #
 
 ## Earth2026-11-27
 Reject generated AI after actual rendering: different body/gesture/layout. Use original source pixels and deterministic color/ink-edge separation. Reconstruct upper dome/gradient and hidden oval shadow explicitly; preserve original full-image endpoints. Full-image MAD1.1875 and SSIM.986795 are not exact fidelity passes; masked untouched target passes. First low-MAD candidate had visible panel remnants and was rejected after manual inspection, showing why numbers alone are insufficient.
+
+## Holographic frames2026-11-27
+Preserve all scope beyond frames. JBL measured hue is blue, not assumed brand orange. Tom gold chosen from actual warm palette with readable lightness. Owner overrode Earth green to#AD94D9; explicit config wins. Canvas2D rather than CSS mask-composite gives consistent per-pixel grid attenuation across browsers. No breathing added because it would keep an idle loop alive. No explicit layer-focus phase/tags/crosshairs exist in base, so none invented. Isolated GL and DOM timing reported separately; early concurrent measurements were discarded as incomparable. Desktop Tom focus-return failure documented rather than changing unrelated navigation.

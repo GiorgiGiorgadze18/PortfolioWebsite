@@ -1,0 +1,38 @@
+[
+  {
+    "browser": "chromium",
+    "file": "JBL-case-study-button-preview.html",
+    "status": "PASS",
+    "errors": []
+  },
+  {
+    "browser": "chromium",
+    "file": "TomFord-case-study-button-preview.html",
+    "status": "PASS",
+    "errors": []
+  },
+  {
+    "browser": "chromium",
+    "file": "Earth-case-study-preview.html",
+    "status": "PASS",
+    "errors": []
+  },
+  {
+    "browser": "webkit",
+    "file": "JBL-case-study-button-preview.html",
+    "status": "PASS",
+    "errors": []
+  },
+  {
+    "browser": "webkit",
+    "file": "TomFord-case-study-button-preview.html",
+    "status": "PASS",
+    "errors": []
+  },
+  {
+    "browser": "webkit",
+    "file": "Earth-case-study-preview.html",
+    "status": "PASS",
+    "errors": []
+  }
+]

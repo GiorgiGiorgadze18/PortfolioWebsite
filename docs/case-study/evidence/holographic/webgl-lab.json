@@ -1,0 +1,108 @@
+{
+  "conditions": "Chromium headless SwiftShader, 320x400, DPR1, AA off,24 render+gl.finish samples; isolated plane harness, not full showroom or hardware FPS",
+  "errors": [],
+  "results": [
+    {
+      "project": "jbl-artwork",
+      "phase": "before",
+      "status": "PASS",
+      "medianMs": 0.8000000007450581,
+      "p95Ms": 2.900000000372529,
+      "active": {
+        "geometries": 2,
+        "textures": 6
+      },
+      "after": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "calls": 18,
+      "samples": 24
+    },
+    {
+      "project": "jbl-artwork",
+      "phase": "after",
+      "status": "PASS",
+      "medianMs": 0.5,
+      "p95Ms": 1.400000000372529,
+      "active": {
+        "geometries": 2,
+        "textures": 6
+      },
+      "after": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "calls": 18,
+      "samples": 24
+    },
+    {
+      "project": "tomford",
+      "phase": "before",
+      "status": "PASS",
+      "medianMs": 0.5,
+      "p95Ms": 1.8999999994412065,
+      "active": {
+        "geometries": 2,
+        "textures": 6
+      },
+      "after": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "calls": 16,
+      "samples": 24
+    },
+    {
+      "project": "tomford",
+      "phase": "after",
+      "status": "PASS",
+      "medianMs": 0.5,
+      "p95Ms": 1,
+      "active": {
+        "geometries": 2,
+        "textures": 6
+      },
+      "after": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "calls": 16,
+      "samples": 24
+    },
+    {
+      "project": "earthhour",
+      "phase": "before",
+      "status": "PASS",
+      "medianMs": 0.2999999998137355,
+      "p95Ms": 1,
+      "active": {
+        "geometries": 2,
+        "textures": 5
+      },
+      "after": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "calls": 13,
+      "samples": 24
+    },
+    {
+      "project": "earthhour",
+      "phase": "after",
+      "status": "PASS",
+      "medianMs": 0.2999999998137355,
+      "p95Ms": 0.5,
+      "active": {
+        "geometries": 2,
+        "textures": 5
+      },
+      "after": {
+        "geometries": 0,
+        "textures": 0
+      },
+      "calls": 13,
+      "samples": 24
+    }
+  ]
+}

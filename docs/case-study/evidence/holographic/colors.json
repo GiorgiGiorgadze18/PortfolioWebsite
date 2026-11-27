@@ -1,0 +1,23 @@
+[
+  {
+    "project": "jbl-artwork",
+    "color": "#0078d8",
+    "gridCells": 28,
+    "glow": 0.52,
+    "contrast": 4.405048887142645
+  },
+  {
+    "project": "tomford",
+    "color": "#b98a46",
+    "gridCells": 28,
+    "glow": 0.52,
+    "contrast": 6.390478723857827
+  },
+  {
+    "project": "earthhour",
+    "color": "#AD94D9",
+    "gridCells": 28,
+    "glow": 0.52,
+    "contrast": 7.546854962383332
+  }
+]

@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "command": "node --test tests/case-study/*.test.mjs",
+  "output": "PASS interrupt/reverse, settled-loop stop, hidden pause/resume, reduced motion and listener disposal\n\u2714 tests/case-study/button-progress.test.mjs (72.762575ms)\nPASS: lifecycle restore, 10 cycles, invalid assets, interrupted load cleanup, idempotent disposal\n\u2714 tests/case-study/engine.test.mjs (68.068946ms)\nPASS configured project colors, contrast, density bounds and zero glow\n\u2714 tests/case-study/frame-style.test.mjs (48.632468ms)\nPASS exact pose restore, 10 cycles, interrupted enter, dispose and reduced motion\n\u2714 tests/case-study/surface-transition.test.mjs (70.745551ms)\nPASS: pure reverse/direct seek, snapshot isolation, validation, refresh-independent spring\n\u2714 tests/case-study/timeline.test.mjs (135.502332ms)\n\u2139 tests 5\n\u2139 suites 0\n\u2139 pass 5\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 411.992078\n",
+  "scope": "5 unit test files; mock lifecycle, no actual GPU10cycle claim"
+}

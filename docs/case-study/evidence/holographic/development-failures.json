@@ -1,0 +1,6 @@
+{
+  "status": "FAIL",
+  "scope": "Actual desktop Tom Ford exit focus assertion",
+  "details": "First parallel attempt timed out waiting for museum frame stability. Sequential attempt rendered the gold frame, then timed out asserting trigger focus after exit; bridge was idle, inspector not inert, active element BODY, pageerrors empty. This intermittent focus issue was documented before frame refinement; entry.mjs unchanged. Phone Tom retry passed.",
+  "otherInitialCheck": "Navigation wheel check failed while spring was still settling under concurrent software-GL load; final isolated24case matrix passed without changing choreography."
+}

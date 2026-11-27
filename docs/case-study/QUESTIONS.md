@@ -24,3 +24,6 @@ Earth layered AI unavailable; owner will upload notes-Earth.md and announce when
 
 ## Earth2026-11-27
 Resolved: Earth notes received/read, generated AI inspected. Owner authorized fallback extraction and specified character→shadow→panel ordering. No further question needed for this implementation; hidden regions are explicitly labelled reconstructed.
+
+## Holographic frames2026-11-27
+No additional style decision required. Defaults gridCells28/glow.52; owner can adjust these exact manifest keys. Earth frame must remain purple per latest explicit request.

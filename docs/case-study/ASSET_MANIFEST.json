@@ -831,5 +831,23 @@
     "currentSource": "evidence/earth/owner-layers.zip",
     "currentValidation": "evidence/earth/finger-mask-validation.json",
     "note": "Earlier validation.json is historical extraction evidence; current supplied ZIP does not claim exact old-original recomposition."
-  }
+  },
+  "frameConfig": {
+    "jbl-artwork": {
+      "color": "#0078d8",
+      "gridCells": 28,
+      "glow": 0.52
+    },
+    "tomford": {
+      "color": "#b98a46",
+      "gridCells": 28,
+      "glow": 0.52
+    },
+    "earthhour": {
+      "color": "#AD94D9",
+      "gridCells": 28,
+      "glow": 0.52
+    }
+  },
+  "frameConfigNote": "Decorations only; existing image assets untouched. Earth purple is the owner correction."
 }

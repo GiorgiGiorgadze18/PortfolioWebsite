@@ -85,3 +85,6 @@ Earth: eight browser/size cases,2touch,2Grid,2standalone,1actual software-GL sce
 
 ## Frames / new ZIP2026-11-27
 24 Chromium/WebKit viewport cases PASS (navigation/frames-tests.json), actual Earth WebGL scene restore/resource counts PASS (reference/earth-frames-scene.json),4Node test files PASS. Fingertip outside-mask exact RGBA identity PASS (earth/finger-mask-validation.json); initial transparent RGB mismatch corrected using direct paste. Full old-original fidelity not claimed for new supplied reconstruction. Hardware/physical/AT/full context-loss/10cycle GPU trend remain NOT RUN.
+
+## Holographic frames2026-11-27
+Current artifacts in evidence/holographic.36 screenshots, pose equality,24navigation cases,6frame checks,6alpha/fallback/resize/reduced-motion checks PASS; grid opaque/transparent ratio≈.2976. Isolated software-GL all3projects before/after console errors0 and resources0 after disposal. Actual phone scene checks PASS. Actual desktop Tom exit focus assertion FAIL; source entry untouched, previously observed intermittent issue. Full device/AT/hardware/context-loss/10cycle tests NOT RUN.

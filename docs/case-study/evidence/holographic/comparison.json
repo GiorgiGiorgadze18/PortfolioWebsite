@@ -1,0 +1,80 @@
+[
+  {
+    "project": "jbl-artwork",
+    "viewport": [
+      1440,
+      900
+    ],
+    "beforeMedianMs": 0.5,
+    "afterMedianMs": 0.9,
+    "differenceMs": 0.4,
+    "beforeP95Ms": 0.9,
+    "afterP95Ms": 1.8,
+    "posesIdentical": true
+  },
+  {
+    "project": "jbl-artwork",
+    "viewport": [
+      390,
+      844
+    ],
+    "beforeMedianMs": 0.3,
+    "afterMedianMs": 0.2,
+    "differenceMs": -0.1,
+    "beforeP95Ms": 1.2,
+    "afterP95Ms": 0.7,
+    "posesIdentical": true
+  },
+  {
+    "project": "tomford",
+    "viewport": [
+      1440,
+      900
+    ],
+    "beforeMedianMs": 0.5,
+    "afterMedianMs": 0.4,
+    "differenceMs": -0.1,
+    "beforeP95Ms": 1.1,
+    "afterP95Ms": 1,
+    "posesIdentical": true
+  },
+  {
+    "project": "tomford",
+    "viewport": [
+      390,
+      844
+    ],
+    "beforeMedianMs": 0.2,
+    "afterMedianMs": 0.2,
+    "differenceMs": 0.0,
+    "beforeP95Ms": 0.7,
+    "afterP95Ms": 0.7,
+    "posesIdentical": true
+  },
+  {
+    "project": "earthhour",
+    "viewport": [
+      1440,
+      900
+    ],
+    "beforeMedianMs": 0.5,
+    "afterMedianMs": 0.4,
+    "differenceMs": -0.1,
+    "beforeP95Ms": 1.1,
+    "afterP95Ms": 0.9,
+    "posesIdentical": true
+  },
+  {
+    "project": "earthhour",
+    "viewport": [
+      390,
+      844
+    ],
+    "beforeMedianMs": 0.2,
+    "afterMedianMs": 0.3,
+    "differenceMs": 0.1,
+    "beforeP95Ms": 0.8,
+    "afterP95Ms": 0.7,
+    "posesIdentical": true
+  }
+]
