@@ -8,3 +8,5 @@ All three projects: normalized desktop/mobile gaps75/48 (exactly half150/96), pa
 Read STACK_REPORT.md latest refinement, HANDOFF.md and evidence/stack. Original assets and backup refs preserved. No PR/merge/deploy; public enabled/published flags remain false. Physical devices/hardwareGPU/AT/full context loss/10cycle trend remain NOT RUN; historical intermittent desktop Tom Ford exit focus issue is not claimed fixed.
 
 Final evidence:12staged Chromium/WebKit cases PASS,6Node suites PASS,source group identity PASS,actual phone JBL full cycle PASS. Actual desktop JBL opened/rendered correctly but exit focus FAIL (existing limitation); see compact-jbl-desktop-scene.json. Preview and source updates are review-only.
+
+2026-11-27 constant shade correction: passed sheets now take final brightness.20 immediately when the next rise begins; no progressive dim ramp. Same shared implementation for all3projects and DOM/WebGL. Subsequent chapters retain exactly.20; reassembly restoration unchanged. Regression assertions cover onset and later chapters. No merge/deploy.

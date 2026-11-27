@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased — Constant passed-layer shade, 2026-11-27
+
+- Apply the final20% brightness as soon as the next layer starts rising, rather than interpolating darkening during that rise. All JBL/Tom Ford/Earth artwork and grids share the same shade; later Next actions do not deepen it. Reassembly still restores brightness. Shared Node checks cover onset and later chapters. No publication.
+
+
 ## Unreleased — Audio-first JBL and compact deep shadows, 2026-11-27
 
 - Correct JBL grouping: lift the original Audio panel first, then only the two headphone parts as one lossless composite, then clouds/title. Keep the floor shadow/reflection on the background; preserve all original source assets.

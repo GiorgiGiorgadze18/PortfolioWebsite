@@ -4,3 +4,5 @@ Read MASTER.md, PROGRESS.md and the latest refinement in STACK_REPORT.md. Owner 
 Shared gaps75desktop/48mobile, previous-sheet brightness.20, active1. Lower offset90, live centering.06. Frame neutral#DCEEF2/grid20/glow.28 unchanged. DOM/WebGL use the same stack-motion.mjs; artwork and grid dim together with no added render loop. Previous/recompose restore normally.
 
 Branch feat/case-study-phase4-earth; safe rollback before this correction d9784cc. No PR/merge/deploy approved. Physical/hardware/AT/context-loss/10cycle and historical intermittent desktop Tom Ford focus-return limits remain open. Current evidence distinguishes emulation and actual softwareGL from physical hardware.
+
+2026-11-27 constant shade correction: passed sheets now take final brightness.20 immediately when the next rise begins; no progressive dim ramp. Same shared implementation for all3projects and DOM/WebGL. Subsequent chapters retain exactly.20; reassembly restoration unchanged. Regression assertions cover onset and later chapters. No merge/deploy.
