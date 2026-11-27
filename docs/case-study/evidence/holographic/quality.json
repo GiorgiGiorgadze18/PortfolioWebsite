@@ -7,7 +7,7 @@
     "color": "#DCEEF2",
     "auto": "#0078d9",
     "autoContrast": 4.414820292179407,
-    "opaqueGridRatio": 0.2976307962914476
+    "opaqueGridRatio": 0.2962621984901491
   },
   {
     "browser": "chromium",
@@ -17,7 +17,7 @@
     "color": "#DCEEF2",
     "auto": "#846230",
     "autoContrast": 3.550715398517847,
-    "opaqueGridRatio": 0.2976307962914476
+    "opaqueGridRatio": 0.2962621984901491
   },
   {
     "browser": "chromium",
@@ -27,7 +27,7 @@
     "color": "#DCEEF2",
     "auto": "#6da254",
     "autoContrast": 6.540859550760458,
-    "opaqueGridRatio": 0.2976307962914476
+    "opaqueGridRatio": 0.2962621984901491
   },
   {
     "browser": "webkit",
@@ -37,7 +37,7 @@
     "color": "#DCEEF2",
     "auto": "#007bdc",
     "autoContrast": 4.5825282125394216,
-    "opaqueGridRatio": 0.2976278914875631
+    "opaqueGridRatio": 0.29633940262094743
   },
   {
     "browser": "webkit",
@@ -47,7 +47,7 @@
     "color": "#DCEEF2",
     "auto": "#856331",
     "autoContrast": 3.6030088196712553,
-    "opaqueGridRatio": 0.2976278914875631
+    "opaqueGridRatio": 0.29633940262094743
   },
   {
     "browser": "webkit",
@@ -57,6 +57,6 @@
     "color": "#DCEEF2",
     "auto": "#75b15a",
     "autoContrast": 7.7145713954445485,
-    "opaqueGridRatio": 0.2976278914875631
+    "opaqueGridRatio": 0.29633940262094743
   }
 ]

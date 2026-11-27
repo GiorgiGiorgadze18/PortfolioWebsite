@@ -91,3 +91,5 @@ Current artifacts in evidence/holographic.36 screenshots, pose equality,24naviga
 
 ## Neutral correction2026-11-27
 Owner replaced per-project frame colors with shared ice white#DCEEF2. Current glow.28; desktop bloom.08. Lowest sheet receives a soft contact shadow, not a physically simulated floor-shadow claim. Assets/poses/navigation unchanged. Previous color tables/screenshots are historical. Current frame/quality/software-GL checks in holographic-specific.json, quality.json and webgl-lab.json. No publication.
+
+Grid correction2026-11-27: current gridCells20 (~14mobile); line width.65DOM/.7shader, minor alpha.075/major.16, darker bottom contact shadow.48. Border/glow/ice-white color and choreography unchanged. Frame quality checks remain in quality.json/webgl-lab.json; not hardware validation.

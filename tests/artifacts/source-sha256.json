@@ -162,9 +162,9 @@
   "case-studies/shared/entry.mjs": "4f8ad2cc2ce0951a01d897c110fd1ab8538b19a943b5e87e73562f4f9d27ad75",
   "case-studies/shared/timeline.mjs": "e9cf70651ecdd5672845a1829b6a89a8469362c599a66469d367fced4256fcfc",
   "case-studies/shared/progress.mjs": "d3a42f0c3b230bbc242b62a7216ca0d705786a89116e3ad8827bc111e5b7a3eb",
-  "case-studies/shared/reference.css": "dea218a382bfb392d82a86ed5df2586f2bea9b7bd7149ef10a1f41f50c6937c9",
+  "case-studies/shared/reference.css": "50464b9d51d1152f1574f75cbf8d6869e8a91a67c3a652bc720074e901f1d9bd",
   "case-studies/projects/jbl-artwork/chapters.json": "02f4db38afbe5a32a44ae641b9a1af023f6e9c03e442f7462bd1a335d7d84f0d",
-  "case-studies/projects/jbl-artwork/manifest.json": "e51ac8c7a9024c27d0eaf8ff9bf760d2580395d5d1080bf086b566be0fef6d4c",
+  "case-studies/projects/jbl-artwork/manifest.json": "01e69c2dab57952a2b94c565eb9249145a6308c5b13fca494df3910278b2eecd",
   "case-studies/projects/jbl-artwork/assets/web/rear.webp": "389b8ec6fd009d12e3ce79ce173fb1e7d75f0882ca8ad6c11cfd5b55ff6f2236",
   "case-studies/projects/jbl-artwork/assets/web/interface.webp": "21554d3c231377b43defe26238ddd118520c5777b91d50876ee1db3ef4089f01",
   "case-studies/projects/jbl-artwork/assets/web/contact.webp": "5a5ea8585f12d26978c89d570970a1cb5b345f14727296719596ccc7c4fecaca",
@@ -187,7 +187,7 @@
   "case-studies/tomford-preview.html": "680c8a252126c4e7979da3096e447f10771e1e77159013e5b3ca3a976246098e",
   "case-studies/shared/layer-progress.mjs": "eb2a3a45da4a0b808e52aa9410a98107aee38a7060a7dabf6aec7d6b7c680db6",
   "case-studies/projects/tomford/chapters.json": "098247e52d4ac766e12cd6c501cb760870c6d761384dec5c4f76dac395f00ba9",
-  "case-studies/projects/tomford/manifest.json": "ce685f44e20e4e61a3ddcdd8c1eae3cdca49751ddd4c01cfcafcbd43522eb38c",
+  "case-studies/projects/tomford/manifest.json": "e4e73e4d0d4bb48e2a65bdf5a907d2f131b973b1514ee1bb83cd58c37d7fff34",
   "case-studies/projects/tomford/README.md": "3b4910644105b0e2db5edd193d657c37d0148c7ebf6dc5158fda9891bebfb708",
   "case-studies/projects/tomford/presentation.json": "40b7a7654aae4b999c1b6ea9cb50c3766402e91d2a5ee600824ace64b728c61e",
   "case-studies/projects/tomford/assets/web/sand.webp": "160b6617e9b5b17813ed9b4496b8dc733ac63f7fd5316c01b59ec5d14603911f",
@@ -205,7 +205,7 @@
   "case-studies/shared/button-progress.mjs": "a52c3a8189ee800649a3dc2a850bb238667fe36d47508846e61a3bc839f4b651",
   "case-studies/earthhour-preview.html": "7f8474a889c4a1c75acd090349b2062105acc088f96b25a58f241aa76b260c32",
   "case-studies/projects/earthhour/chapters.json": "6506a78f346682f7e2909885685bdc16d961f546e2379221a89d49ba7da3eaed",
-  "case-studies/projects/earthhour/manifest.json": "837828c2f4d5019a3cd041c2758fbd736662d17d6af3a24081931a1f0fcff35b",
+  "case-studies/projects/earthhour/manifest.json": "bbd187cf9c8d5a2e7d03a45281433af98ffeadc0e90a72b1d1b4131df3a9f130",
   "case-studies/projects/earthhour/README.md": "1ece3e97b36caf842b72a173fa5760a692f54c3ea91ed3ae12ec9b7b053785dd",
   "case-studies/projects/earthhour/presentation.json": "e9f389f59c98707e8b9a3fc76207000a4d406e03b5b65d00dcd054d686f305d7",
   "case-studies/projects/earthhour/assets/web/original.webp": "463381bb80bd6a52126088d053e40b597d92215a0d774697f2d3d9f6c0e7e34c",
@@ -221,6 +221,6 @@
   "case-studies/projects/earthhour/assets/masks/character.png": "a68238eb3678ab60a0e21bd7f4cb7411da60ca0515942ec94227e3568a10b6ff",
   "case-studies/projects/earthhour/assets/masks/processing.png": "b05af94f4b5e9a8f7015e85e7eda98c2a324ba28d346bf11765640baf6bf0a40",
   "case-studies/projects/earthhour/assets/masters/character-repaired-source.png": "993dc704627ba6665c54c9ed106d356b30f78256b7612f63f0f7268322927f42",
-  "case-studies/shared/frame-shader.mjs": "740e7c291025e1e1963d644d0c3a4c2480e3684f7d6b9ff6300c3a1ba9f0971b",
-  "case-studies/shared/frame-style.mjs": "d3278a52790fcb7d03215b9755f2f79f48518b87b53d4cb29561c48f567d77e6"
+  "case-studies/shared/frame-shader.mjs": "197d168a55ba6b4fed0f76413cbfcc117d34f7c147a94bde522c9aa62055cf30",
+  "case-studies/shared/frame-style.mjs": "d60b4c6de0b9823bf50dea08e0eacc42183773e4f4a1fc2c6b28116a6a7e2d94"
 }

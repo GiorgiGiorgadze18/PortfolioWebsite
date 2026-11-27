@@ -835,17 +835,17 @@
   "frameConfig": {
     "jbl-artwork": {
       "color": "#DCEEF2",
-      "gridCells": 28,
+      "gridCells": 20,
       "glow": 0.28
     },
     "tomford": {
       "color": "#DCEEF2",
-      "gridCells": 28,
+      "gridCells": 20,
       "glow": 0.28
     },
     "earthhour": {
       "color": "#DCEEF2",
-      "gridCells": 28,
+      "gridCells": 20,
       "glow": 0.28
     }
   },

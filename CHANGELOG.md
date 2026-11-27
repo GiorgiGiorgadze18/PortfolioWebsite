@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased — Quieter grid and deeper base shadow, 2026-11-27
+
+- Reduce frame grid density28→20 (phones≈14), thin lines1→.65/.7px and soften minor/major alpha. Keep the ice-white border/glow. Darken only the lowest-sheet contact shadow.
+
 ## Unreleased — Neutral ice-white sheets, 2026-11-27
 
 - Use#DCEEF2 on every project frame, reduce inner glow from.52 to.28 and desktop outer bloom from.25 to.08. Add a restrained bottom-sheet contact shadow; preserve assets, grid density, choreography, annotations and navigation.
