@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased — Chapter dot refinement, 2026-11-27
+
+- Enlarge the active dot to1.65× with its project color and soft glow. Remove dot borders and surrounding button focus frames; keyboard-only focus is drawn around the dot itself.
+
 ## Unreleased — Case-study chapter buttons, 2026-11-27
 
 - Replace scroll-controlled graphic case studies with Previous/Next and a vertical dot navigator; retain smooth reversible layer/camera/annotation motion. Wheel input no longer changes chapters.

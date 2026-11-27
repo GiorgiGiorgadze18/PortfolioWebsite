@@ -10,3 +10,5 @@ New standalone files: /workspace/portfolio-work/{JBL,TomFord}-case-study-button-
 Earth: owner says layered AI unavailable and will supply notes-Earth.md in the existing Drive folder later. Do not claim it has arrived or start extraction now. Existing flattened original can be evaluated after notes arrive. Site-wide rollout of the button style is a future preference, not performed now.
 
 Open QA remains: physical devices, hardware GPU/FPS, AT, hardware Safari WebGL, full context-loss and ten-cycle actual GPU-memory trend. Keep docs/OPEN_VERIFICATION.md limits open.
+
+Dot refinement2026-11-27: active dot1.65×, project color and soft glow; no outer button frame or dot border. Keyboard-only focus stays on the dot. Browser evidence: evidence/navigation/dot-refinement.json. Artwork and timeline unchanged.

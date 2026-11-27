@@ -75,3 +75,5 @@ Current authoritative report: TOMFORD_REPORT.md. PSD effect-aware master fidelit
 
 ## Button navigation2026-11-27
 See NAVIGATION_REPORT.md.16 browser-size cases,4 touch cases,4 JBL reference cases,4 Node test files and one real software-GL Tom Ford cycle passed. New source is button-progress.mjs; scrolling no longer selects chapters. Screenshots/JSON retain conditions. Physical hardware/AT/full context-loss/10-cycle GPU trends remain NOT RUN.
+
+Dot refinement2026-11-27: active dot1.65×, project color and soft glow; no outer button frame or dot border. Keyboard-only focus stays on the dot. Browser evidence: evidence/navigation/dot-refinement.json. Artwork and timeline unchanged.
