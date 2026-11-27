@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "outsideMaskMaxDifference": 0,
+  "untouchedPixels": 383100,
+  "mask": [
+    530,
+    0,
+    78,
+    40
+  ],
+  "method": "Generated fingertip only, feathered in final10rows; all RGBA bytes outside mask identical to supplied ZIP source."
+}

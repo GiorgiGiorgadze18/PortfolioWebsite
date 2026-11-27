@@ -74,3 +74,10 @@ html[data-case="tomford"] .leader path{stroke:#e0a725;filter:drop-shadow(0 0 4px
 }
 
 html[data-case="earthhour"] .leader path{stroke:#ad94d9;filter:drop-shadow(0 0 4px #ad94d980)}html[data-case="earthhour"] .anchor-dot{fill:#d9c8f4}html[data-case="earthhour"] .anchor-ring{stroke:#ad94d9}
+
+/* Chapter rail sits left of the artwork, across every project. */
+.pin aside{display:block}
+.pin>#chapters{position:absolute;left:clamp(8px,2vw,28px);top:50%;translate:0 -50%;z-index:4}
+@media(max-width:700px){.pin>#chapters{top:30%;left:4px}.embedded-mode .visual{padding-left:22px}}
+
+.plane::after{content:"";position:absolute;inset:0;border:1px dotted #b455cf;background:#b455cf05;opacity:calc(var(--layer-shadow,0) / .24);pointer-events:none}

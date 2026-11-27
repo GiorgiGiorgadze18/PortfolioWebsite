@@ -66,7 +66,7 @@ function describe(p){
 function goTo(index){selectedChapter=Math.max(0,Math.min(chapters.length-1,index));const chapter=chapters[selectedChapter];describe(chapter.progress);observer?.seek(chapter.progress);}
 function setStatic(value){value=value||motion.matches||shortViewport.matches;$('#mode').disabled=motion.matches||shortViewport.matches;if(sceneMode)parent.postMessage({type:'case-study:pause',paused:value},location.origin);textAnimations.forEach(a=>a.cancel());textAnimations=[];section.hidden=value;observer?.dispose();observer=undefined;root.classList.toggle('is-static',value);$('#mode').textContent=$('#mode').disabled?'Static reading mode':value?'Interactive presentation':'Static chapters';if(!value){observer=createButtonProgress(p=>{progress=p;engine.seek(p);});goTo(selectedChapter);}}
 const aside=$('aside'),content=document.createElement('div');content.className='chapter-content';
-for(const node of [...aside.children])if(node!==$('#chapters'))content.append(node);aside.append(content);
+for(const node of [...aside.children])if(node!==$('#chapters'))content.append(node);aside.append(content);$('.pin').append($('#chapters'));
 const actions=document.createElement('div');actions.className='chapter-actions';
 for(const [id,label] of [['previous','Previous'],['next','Next']]){const b=document.createElement('button');b.type='button';b.id=id;b.className='case-action case-action--'+id;b.textContent=label;b.onclick=()=>goTo(selectedChapter+(id==='next'?1:-1));actions.append(b);}
 content.insertBefore(actions,$('#replay'));$('#chapter-title').setAttribute('aria-live','polite');$('#chapter-title').setAttribute('aria-atomic','true');

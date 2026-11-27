@@ -137,6 +137,19 @@
           "path": "docs/case-study/evidence/earth/notes-Earth.md"
         }
       ]
+    },
+    {
+      "id": "earth-zip-tip",
+      "claim": "Current Earth layer reconstruction supplied by owner; generated edit restricted to fingertip mask, all other source RGBA unchanged.",
+      "status": "verified-dev",
+      "evidence": [
+        {
+          "path": "docs/case-study/evidence/earth/owner-layers.zip"
+        },
+        {
+          "path": "docs/case-study/evidence/earth/finger-mask-validation.json"
+        }
+      ]
     }
   ],
   "excludedUnverified": [

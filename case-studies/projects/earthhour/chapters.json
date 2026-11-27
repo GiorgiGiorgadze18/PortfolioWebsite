@@ -9,9 +9,9 @@
   {
     "id": "character",
     "title": "The character comes first",
-    "copy": "The Earth character leads the composition. Its original silhouette, expression and colours stay intact as it rises above the poster.",
+    "copy": "The supplied Earth character rises first. Only its clipped fingertip is repaired; the rest of this supplied layer is preserved.",
     "progress": 0.35,
-    "source": "designerIntent"
+    "source": "implementation"
   },
   {
     "id": "shadow",
@@ -37,7 +37,7 @@
   {
     "id": "recompose",
     "title": "Back to the original",
-    "copy": "The layers return to the untouched original image. This is a limited-angle 2.5D study; hidden panel and shadow regions are reconstructed, not recovered vector source.",
+    "copy": "The supplied layers return to the original poster. This is a limited-angle reconstruction, with a generated fingertip repair rather than recovered Illustrator source.",
     "progress": 1,
     "source": "implementation"
   }

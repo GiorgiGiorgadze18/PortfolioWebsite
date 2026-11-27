@@ -827,6 +827,9 @@
     "original": "assets/project-earthhour.png",
     "sourceAI": "rejected; retained outside Git, hash in validation.json",
     "notes": "evidence/earth/notes-Earth.md",
-    "processingMask": "case-studies/projects/earthhour/assets/masks/processing.png"
+    "processingMask": "case-studies/projects/earthhour/assets/masks/processing.png",
+    "currentSource": "evidence/earth/owner-layers.zip",
+    "currentValidation": "evidence/earth/finger-mask-validation.json",
+    "note": "Earlier validation.json is historical extraction evidence; current supplied ZIP does not claim exact old-original recomposition."
   }
 }

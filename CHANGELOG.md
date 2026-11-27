@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased — Layer frames and supplied Earth assets, 2026-11-27
+
+- Add thin purple per-layer borders in CSS3D and real WebGL, fading away during assembly. Move the shared vertical chapter rail left of the artwork for every project.
+- Replace Earth extraction with the owner-supplied ZIP planes; retain that panel/gradient. Use one generated fingertip repair only inside a78×40px mask, with exact RGBA preservation elsewhere. Preserve source ZIP, generation and original endpoints.
+- Validate24 browser/viewport cases, real software-GL resource restoration and masked edit identity. See docs/case-study/FRAMES_REPORT.md; no publication.
+
 ## Unreleased — Earth composition study, 2026-11-27
 
 - Reject the supplied generated AI as a fidelity source; separate the unchanged original into background, character, oval shadow and green text panel, explicitly documenting reconstructed upper-panel/shadow areas. Preserve original image endpoints.

@@ -82,3 +82,6 @@ Mobile balance2026-11-27: artwork width budget60vw/34svh/80% stage-height instea
 
 ## Earth2026-11-27
 Earth: eight browser/size cases,2touch,2Grid,2standalone,1actual software-GL scene and4Node test files PASS in recorded evidence. An early Grid assertion failed because it expected the whole class string motion-ready; corrected to a class-token regex, then passed. Full-image fidelity target NOT achieved; masked untouched target PASS; original endpoints retained. Physical hardware/AT/full context-loss/10cycle GPU trend remain NOT RUN.
+
+## Frames / new ZIP2026-11-27
+24 Chromium/WebKit viewport cases PASS (navigation/frames-tests.json), actual Earth WebGL scene restore/resource counts PASS (reference/earth-frames-scene.json),4Node test files PASS. Fingertip outside-mask exact RGBA identity PASS (earth/finger-mask-validation.json); initial transparent RGB mismatch corrected using direct paste. Full old-original fidelity not claimed for new supplied reconstruction. Hardware/physical/AT/full context-loss/10cycle GPU trend remain NOT RUN.

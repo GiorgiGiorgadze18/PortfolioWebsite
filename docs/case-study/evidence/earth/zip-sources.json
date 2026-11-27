@@ -1,0 +1,22 @@
+[
+  {
+    "file": "02-layer 1.png",
+    "sha256": "f688a49b92f80397b0f0b6637b3cbb1a3411cfb49cfb673ce9542fb69eff0df9"
+  },
+  {
+    "file": "03-layer 2.png",
+    "sha256": "d41e291bf50632d4c452c348a2ce999e9de58ff160ccd3a3c729ecc587c776cb"
+  },
+  {
+    "file": "01-background.png",
+    "sha256": "39f1eb82c91f37dff8badd10d8d14c56a953ae6566825e239e3b46e880a2c616"
+  },
+  {
+    "file": "earth-hour.zip",
+    "sha256": "19cbc8eaf7247190684332c65f5b40067be2b77d349ce3c9321ae8d7336e5870"
+  },
+  {
+    "file": "04-layer 3.png",
+    "sha256": "5ccdd2cfc9a7535a069055626ea6deb9fa36ed5a5a7647db99f698640ecdcc8f"
+  }
+]
