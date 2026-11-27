@@ -150,3 +150,6 @@ CASE_SLUGS=jbl-artwork,tomford,earthhour CASE_NAV_REPORT=stack-navigation.json p
 - tools/case-study/group_stack.py
 
 No source asset deletions; no moved files.
+
+## Transparent draw-order refinement
+WebGL transparent artwork and its frame now sort by their current local height, with original index only breaking ties. Future unraised sheets cannot paint over a raised foreground sheet simply because their source index is later. Reuses existing overlay/materials, no additional draw calls. Actual scene rerun is recorded in stack-earth-scene.json.

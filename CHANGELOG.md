@@ -3,6 +3,7 @@
 ## Unreleased — Bottom-to-top chapter stacks, 2026-11-27
 
 - Make the first three Next actions raise semantic components bottom-to-top: JBL stand→headphones→cloud/title; Tom Ford leaf→smoke→bottle; Earth panel→shadow→character. Preserve original layer files and add lossless presentation composites for split headphones/smoke.
+- Sort transparent artwork/frame pairs by their current depth so not-yet-raised layers stay behind raised ones.
 - Use shared equal normalized depth gaps150desktop/96mobile and larger desktop spacing. Dim every passed sheet, artwork and grid together, to52% brightness; reverse/recompose restores brightness.
 - Reframe the taller live stack, synchronize chapter/static descriptions, preserve ice-white styling and source endpoints. Browser/order/restore evidence: docs/case-study/STACK_REPORT.md. No publication.
 
