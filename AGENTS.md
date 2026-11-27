@@ -15,3 +15,6 @@ Apply this pattern to every app added to the Projects showroom. On touch-first d
 ## Case Study System
 
 Read `docs/case-study/MASTER.md` before case-study work. Resume from `PROGRESS.md` and `HANDOFF.md`; use PLAN, ARCHITECTURE, DECISIONS, TEST_REPORT, ASSET_MANIFEST, CLAIMS_LEDGER and QUESTIONS in that directory. Respect review gates. Gate 0 was approved on 2026-11-26; the owner subsequently authorized JBL scene integration and, on 2026-11-27, completion of Tom Ford like JBL without intermediate stops. Tom Ford is the current Phase 4 scope; Earth Hour and application case studies remain outside that authorization. No merge or production deployment without explicit approval.
+
+## Current graphic case-study navigation
+Owner request2026-11-27 replaces scroll progression with Previous/Next and vertical project-colored dots for JBL/Tom Ford. This explicitly supersedes MASTER.md native-scroll wording for these graphic presentations. Keep the pure timeline and smooth reversible interpolation. Reusable button styling is prepared; a site-wide rollout and Earth Hour extraction are not part of this navigation task. Earth owner notes are pending.

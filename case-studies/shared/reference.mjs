@@ -1,6 +1,7 @@
+import {PROJECTS} from '../../data/projects.mjs';
 import {layerProgress} from './layer-progress.mjs';
 import {createTimeline} from './timeline.mjs';
-import {observeProgress} from './progress.mjs';
+import {createButtonProgress} from './button-progress.mjs';
 import {CaseStudyEngine,DisplaySurface} from './engine.mjs';
 const registry=await fetch(new URL('../config.json',import.meta.url)).then(r=>r.json());
 const slug=new URLSearchParams(location.search).get('case')||document.documentElement.dataset.case||'jbl-artwork';
@@ -9,7 +10,8 @@ const projectBase=new URL(`../projects/${slug}/`,import.meta.url);
 const chapters=await fetch(new URL('chapters.json',projectBase)).then(r=>r.json());
 const $=s=>document.querySelector(s),root=document.documentElement,section=$('#presentation'),motion=matchMedia('(prefers-reduced-motion: reduce)');
 const shortViewport=matchMedia('(max-height:500px)');
-let observer,images=[],manifest;
+let observer,images=[],manifest,selectedChapter=0;
+if(new URLSearchParams(location.search).get('embedded')==='1')document.documentElement.classList.add('embedded-mode');
 const {offsets,keyframes,annotationLayers,rotationAxis,perspective,leftLeanPixels,reclineDegrees,layerWindows}=await fetch(new URL('presentation.json',projectBase)).then(r=>r.json());
 const timeline=createTimeline(keyframes);
 let progress=0,sceneMode=new URLSearchParams(location.search).get('surface')==='showroom'&&parent!==window,sceneAnchors=[];
@@ -22,7 +24,7 @@ const leaders=annotationLayers.map(()=>{
 });$('.pin').append(svg);
 const smooth=t=>{t=Math.max(0,Math.min(1,t));return t*t*(3-2*t);};
 function drawLeaders(state){
- const b=$('aside').getBoundingClientRect(),r=$('.pin').getBoundingClientRect();
+ const b=$('.chapter-content').getBoundingClientRect(),r=$('.pin').getBoundingClientRect();
  annotationLayers.forEach((active,i)=>{
   const index=manifest.layers.findIndex(layer=>layer.id===active.layer),marker=images[index]?.querySelector('.anchor'),line=leaders[i];
   if(!marker)return;
@@ -58,17 +60,25 @@ function describe(p){
  $('#counter').textContent=`0${chapters.indexOf(c)+1} / ${String(chapters.length).padStart(2,'0')}`;$('#chapter-title').textContent=c.title;$('#chapter-copy').textContent=c.copy;
  $('.source').textContent=c.source==='implementation'?'IMPLEMENTATION NOTE':'DESIGNER INTENT · OWNER NOTES';
  for(const b of $('#chapters').children)b.setAttribute('aria-current',String(b.dataset.id===c.id));
+ $('#previous').disabled=selectedChapter===0;$('#next').disabled=selectedChapter===chapters.length-1;
  if(animate)for(const node of [$('#counter'),$('#chapter-title'),$('#chapter-copy'),$('.source')])textAnimations.push(node.animate([{opacity:0,transform:'translateY(8px)'},{opacity:1,transform:'translateY(0)'}],{duration:280,easing:'cubic-bezier(.2,.8,.2,1)'}));
 }
-function setStatic(value){value=value||motion.matches||shortViewport.matches;$('#mode').disabled=motion.matches||shortViewport.matches;if(sceneMode)parent.postMessage({type:'case-study:pause',paused:value},location.origin);textAnimations.forEach(a=>a.cancel());textAnimations=[];section.hidden=value;observer?.dispose();observer=undefined;root.classList.toggle('is-static',value);$('#mode').textContent=$('#mode').disabled?'Static reading mode':value?'Scroll presentation':'Static chapters';if(!value)observer=observeProgress(section,p=>{progress=p;describe(p);engine.seek(p);});}
-for(const c of chapters){const b=document.createElement('button');b.textContent=String(chapters.indexOf(c)+1);b.dataset.id=c.id;b.setAttribute('aria-label',c.title);b.onclick=()=>observer?.seek(c.progress);$('#chapters').append(b);}
+function goTo(index){selectedChapter=Math.max(0,Math.min(chapters.length-1,index));const chapter=chapters[selectedChapter];describe(chapter.progress);observer?.seek(chapter.progress);}
+function setStatic(value){value=value||motion.matches||shortViewport.matches;$('#mode').disabled=motion.matches||shortViewport.matches;if(sceneMode)parent.postMessage({type:'case-study:pause',paused:value},location.origin);textAnimations.forEach(a=>a.cancel());textAnimations=[];section.hidden=value;observer?.dispose();observer=undefined;root.classList.toggle('is-static',value);$('#mode').textContent=$('#mode').disabled?'Static reading mode':value?'Interactive presentation':'Static chapters';if(!value){observer=createButtonProgress(p=>{progress=p;engine.seek(p);});goTo(selectedChapter);}}
+const aside=$('aside'),content=document.createElement('div');content.className='chapter-content';
+for(const node of [...aside.children])if(node!==$('#chapters'))content.append(node);aside.append(content);
+const actions=document.createElement('div');actions.className='chapter-actions';
+for(const [id,label] of [['previous','Previous'],['next','Next']]){const b=document.createElement('button');b.type='button';b.id=id;b.className='case-action case-action--'+id;b.textContent=label;b.onclick=()=>goTo(selectedChapter+(id==='next'?1:-1));actions.append(b);}
+content.insertBefore(actions,$('#replay'));$('#chapter-title').setAttribute('aria-live','polite');$('#chapter-title').setAttribute('aria-atomic','true');
+for(const c of chapters){const b=document.createElement('button');b.type='button';b.dataset.id=c.id;b.setAttribute('aria-label',c.title);b.onclick=()=>goTo(chapters.indexOf(c));$('#chapters').append(b);}
+$('#chapters').addEventListener('keydown',e=>{const index=[...$('#chapters').children].indexOf(e.target);if(index<0)return;let next=index;if(e.key==='ArrowDown')next++;else if(e.key==='ArrowUp')next--;else if(e.key==='Home')next=0;else if(e.key==='End')next=chapters.length-1;else return;e.preventDefault();goTo(next);$('#chapters').children[selectedChapter].focus();});
 try{
  manifest=await fetch(new URL('manifest.json',projectBase)).then(r=>{if(!r.ok)throw Error('Manifest unavailable');return r.json();});
- if(!manifest.validated)throw Error('Layer validation incomplete');$('.board').style.aspectRatio=manifest.canvas[0]+'/'+manifest.canvas[1];if(manifest.accent)root.style.setProperty('--accent',manifest.accent);if(manifest.original)$('.original').src=new URL(manifest.original,projectBase).href;
+ if(!manifest.validated)throw Error('Layer validation incomplete');$('.board').style.aspectRatio=manifest.canvas[0]+'/'+manifest.canvas[1];if(manifest.accent)root.style.setProperty('--accent',manifest.accent);root.style.setProperty('--control-accent',PROJECTS.find(project=>project.id===slug)?.accent||manifest.accent||'#00f0ff');if(manifest.original)$('.original').src=new URL(manifest.original,projectBase).href;
  for(const l of manifest.layers){const im=new Image();im.src=new URL(l.src,projectBase);im.alt='';await im.decode();const plane=document.createElement('div');plane.className='plane';const marker=document.createElement('i');marker.className='anchor';const [x,y,w,h]=[l.bbox[0],l.bbox[1],l.bbox[2]-l.bbox[0],l.bbox[3]-l.bbox[1]];marker.style.left=`${(x+w/2)/manifest.canvas[0]*100}%`;marker.style.top=`${(y+h/2)/manifest.canvas[1]*100}%`;plane.style.backgroundImage=`url("${im.src}")`;plane.append(marker);$('.board').append(plane);images.push(plane);}
- await engine.open(slug);root.classList.add('motion-ready');$('#mode').hidden=false;$('#loading').textContent='Scroll to separate the original layers';setStatic(motion.matches);describe(0);
+ await engine.open(slug);root.classList.add('motion-ready');$('#mode').hidden=false;$('#loading').textContent='Use Previous and Next to explore the layers';setStatic(motion.matches);describe(0);
  $('#mode').onclick=()=>setStatic(!root.classList.contains('is-static')||motion.matches);
- $('#replay').onclick=()=>observer?.seek(0);
+ $('#replay').onclick=()=>goTo(0);
  motion.addEventListener('change',()=>setStatic(motion.matches||shortViewport.matches));shortViewport.addEventListener('change',()=>setStatic(motion.matches||shortViewport.matches));
  addEventListener('keydown',e=>{if(e.key==='Escape')$('#exit').click();});
  addEventListener('pagehide',()=>engine.close(),{once:true});

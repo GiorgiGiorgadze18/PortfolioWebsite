@@ -1,0 +1,30 @@
+[
+  {
+    "browser": "chromium",
+    "project": "JBL",
+    "status": "PASS",
+    "scope": "self-contained HTML over local HTTP; new driver, Next, Previous state and dot selection",
+    "errors": []
+  },
+  {
+    "browser": "chromium",
+    "project": "TomFord",
+    "status": "PASS",
+    "scope": "self-contained HTML over local HTTP; new driver, Next, Previous state and dot selection",
+    "errors": []
+  },
+  {
+    "browser": "webkit",
+    "project": "JBL",
+    "status": "PASS",
+    "scope": "self-contained HTML over local HTTP; new driver, Next, Previous state and dot selection",
+    "errors": []
+  },
+  {
+    "browser": "webkit",
+    "project": "TomFord",
+    "status": "PASS",
+    "scope": "self-contained HTML over local HTTP; new driver, Next, Previous state and dot selection",
+    "errors": []
+  }
+]

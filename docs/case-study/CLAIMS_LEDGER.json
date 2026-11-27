@@ -113,6 +113,19 @@
           "path": "docs/case-study/evidence/tomford/validation.json"
         }
       ]
+    },
+    {
+      "id": "graphic-button-navigation",
+      "claim": "JBL and Tom Ford case studies support button-driven chapters and vertical dot navigation; pointer scrolling does not select chapters.",
+      "status": "verified-dev",
+      "evidence": [
+        {
+          "path": "docs/case-study/evidence/navigation/tests.json"
+        },
+        {
+          "path": "docs/case-study/evidence/reference/button-navigation-scene.json"
+        }
+      ]
     }
   ],
   "excludedUnverified": [

@@ -19,7 +19,7 @@ with sync_playwright() as p:
  resources=page.evaluate("async()=>{const m=await import('./case-studies/shared/showroom-bridge.mjs');return m.showroomBridge.resources()}")
  cycles=int(os.environ.get('CASE_CYCLES','3'))
  for i in range(cycles):
-  before=page.evaluate(snapshot);y=page.evaluate('scrollY');trigger.click(force=True);f=page.frame_locator('iframe[title="'+short+' composition study"]');expect(f.locator('html')).to_have_class(re.compile(r'\bmotion-ready\b'),timeout=30000);f.locator('#chapters button').nth(2).click(force=True);page.wait_for_function("()=>window.caseTestBridge.layers?.inspect().progress>.39",timeout=90000)
+  before=page.evaluate(snapshot);y=page.evaluate('scrollY');trigger.click(force=True);f=page.frame_locator('iframe[title="'+short+' composition study"]');expect(f.locator('html')).to_have_class(re.compile(r'\bmotion-ready\b'),timeout=30000);f.locator('#next').click(force=True);f.locator('#next').click(force=True);page.wait_for_function("()=>window.caseTestBridge.layers?.inspect().progress>.39",timeout=90000)
   layerState=page.evaluate("async()=>{const m=await import('./case-studies/shared/showroom-bridge.mjs');return m.showroomBridge.layers.inspect()}");assert layerState['planes']==planeCount and layerState['supportsHidden'] and max(layerState['depths'])>.7,layerState
   if i==0:
    page.screenshot(path=str(out/os.environ.get('CASE_SCREENSHOT','actual-webgl-desktop.png')))

@@ -157,12 +157,12 @@
   "sitemap.xml": "e519093ef3bee63e6f95815ad21f2396c478561f90fa77792df10523ccb0588e",
   "tools/build_styles.py": "bb89d1dc92c8504fca56d312eb322ca867db365785f1feebf72295e17ef04fba",
   "case-studies/jbl-preview.html": "3de751b93336df93477395dbcd7e1c1ed83a2ad9f3dbf9c56442866b676e00d5",
-  "case-studies/shared/reference.mjs": "12cbd924dda9865992fe923cb9780074d4939ba4a339d99e66f63984b5df6a20",
+  "case-studies/shared/reference.mjs": "8861634b8f98c8dbfccdbfb55ba0ce0d85fd886aa74d99e90d09e3b6ffaa2513",
   "case-studies/shared/engine.mjs": "8930d90c2fa98f929f09f6644b3043e2296589cb61d077304120b2ff40d1bb1f",
   "case-studies/shared/entry.mjs": "4f8ad2cc2ce0951a01d897c110fd1ab8538b19a943b5e87e73562f4f9d27ad75",
   "case-studies/shared/timeline.mjs": "e9cf70651ecdd5672845a1829b6a89a8469362c599a66469d367fced4256fcfc",
   "case-studies/shared/progress.mjs": "d3a42f0c3b230bbc242b62a7216ca0d705786a89116e3ad8827bc111e5b7a3eb",
-  "case-studies/shared/reference.css": "7d07ba6520f94e0c5aa61b3826dadc76db1108f06aed6a9ea183bcccc4ba0137",
+  "case-studies/shared/reference.css": "043483466fc25e62ed1cb3f8de5076108d104aac8b6f1741c5fe5816deca80c5",
   "case-studies/projects/jbl-artwork/chapters.json": "02f4db38afbe5a32a44ae641b9a1af023f6e9c03e442f7462bd1a335d7d84f0d",
   "case-studies/projects/jbl-artwork/manifest.json": "92bedbb2206db60f9daf6713248621a243ba2ae50731b9e4984b84d74e94347b",
   "case-studies/projects/jbl-artwork/assets/web/rear.webp": "389b8ec6fd009d12e3ce79ce173fb1e7d75f0882ca8ad6c11cfd5b55ff6f2236",
@@ -201,5 +201,6 @@
   "case-studies/projects/tomford/assets/masters/smoke-front.png": "a3278286d4df616840ebc9ac13d1a590ee6aaaef05dbad827f413c278f20009f",
   "case-studies/projects/tomford/assets/masters/smoke-back.png": "85a2460c1e42130df437e613c1cf4019964f10b2a33096f6a1faadde1913791d",
   "case-studies/projects/tomford/assets/masters/leaf.png": "4bef930e4e19f98928d122adcd53bc4ff7c574343859732e795f8317e4c37b7f",
-  "case-studies/projects/tomford/assets/masters/original.png": "18dcf079b80ea89662c5abe2dfdab52674c683459db3409cd8d769bbff5f8074"
+  "case-studies/projects/tomford/assets/masters/original.png": "18dcf079b80ea89662c5abe2dfdab52674c683459db3409cd8d769bbff5f8074",
+  "case-studies/shared/button-progress.mjs": "a52c3a8189ee800649a3dc2a850bb238667fe36d47508846e61a3bc839f4b651"
 }

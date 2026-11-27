@@ -18,3 +18,6 @@ PSD received and inspected via Drive. Previous request for Layers screenshots/PS
 
 ## Tom Ford sources and authorization — 2026-11-27
 Resolved: owner provided Tom Ford PSD1524×2784, four PNGs and notes-TomFord.md in Drive; all read/downloaded, hashes preserved. No more Tom Ford source information needed. Owner requests finishing it like JBL now, without intermediate questions. Earth Hour will be supplied later. No paid image work needed or performed. Production publication remains a separate decision.
+
+## Latest owner update2026-11-27
+Earth layered AI unavailable; owner will upload notes-Earth.md and announce when ready. No further question required for current navigation work. Existing flattened art is available for later extraction assessment; do not promise exact recovery of hidden pixels. Site-wide use of the new button visual style is a recorded future preference.

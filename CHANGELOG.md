@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased — Case-study chapter buttons, 2026-11-27
+
+- Replace scroll-controlled graphic case studies with Previous/Next and a vertical dot navigator; retain smooth reversible layer/camera/annotation motion. Wheel input no longer changes chapters.
+- Use each artwork’s accent for Next and the active dot; use the navy site surface with a restrained artwork-color overlay for Previous. Keep the component reusable for a later site-wide pass.
+- Remove long pinned scroll space, fit mobile artwork above accessible controls, keep a compact mobile header, and preserve reduced-motion/no-JS/static reading.
+- Validate both artworks in Chromium/WebKit, real Tom Ford showroom navigation in software GL, and progress-source lifecycle tests. See docs/case-study/NAVIGATION_REPORT.md for evidence and limits. No merge/deployment.
+
 ## Unreleased — Tom Ford composition study, 2026-11-27
 
 - Add five true-alpha planes exported from the owner’s 1524×2784 PSD, preserving layer opacity and the bottle shadow. Keep source artwork and existing public previews unchanged.

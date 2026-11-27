@@ -16,12 +16,11 @@ with sync_playwright() as p:
    assert page.locator('.plane').first.evaluate('el=>new DOMMatrixReadOnly(getComputedStyle(el).transform).m22<.75')
    assert page.locator('.plane').nth(4).evaluate('el=>Math.abs(new DOMMatrixReadOnly(getComputedStyle(el).transform).m43)<1')
    page.screenshot(path=str(out/f'{name}-{width}-reclined.png'))
-   page.locator('#chapters button').nth(2).click(force=True);page.wait_for_timeout(1800);expect(page.locator('#chapter-title')).to_have_text('The product comes forward');page.screenshot(path=str(out/f'{name}-{width}-exploded.png'))
+   weights=page.evaluate('''()=>new Promise(resolve=>{const until=performance.now()+2500;window.crossSamples=[];document.querySelectorAll('#chapters button')[2].click();function sample(){const w=[...document.querySelectorAll(".leader g")].map(el=>Number(el.style.opacity));window.crossSamples.push(w);if((w[0]>.001&&w[0]<.999&&w[1]>.001&&w[1]<.999)||performance.now()>until)resolve(w);else requestAnimationFrame(sample);}sample();})''');page.wait_for_timeout(1800);expect(page.locator('#chapter-title')).to_have_text('The product comes forward');page.screenshot(path=str(out/f'{name}-{width}-exploded.png'))
    planes=page.locator('.plane').evaluate_all('els=>els.map(el=>({top:el.getBoundingClientRect().top,z:new DOMMatrixReadOnly(getComputedStyle(el).transform).m43}))');assert planes[4]['top']<planes[0]['top']-20,planes
-   assert page.locator('#chapters button[aria-current=true]').evaluate('el=>getComputedStyle(el).backgroundColor')=='rgb(0, 240, 255)'
+   assert page.locator('#chapters button[aria-current=true]').evaluate("el=>getComputedStyle(el,'::after').backgroundColor")=='rgb(14, 137, 230)'
    assert page.locator('.anchor-dot').count()==4
-   page.evaluate('()=>{const r=document.querySelector("#presentation").getBoundingClientRect();scrollTo(0,scrollY+r.top+(r.height-innerHeight)*.3)}');page.wait_for_timeout(1800)
-   weights=page.locator('.leader g').evaluate_all('els=>els.map(el=>Number(el.style.opacity))');assert .2<weights[0]<.8 and .2<weights[1]<.8,weights
+   assert .001<weights[0]<.999 and .001<weights[1]<.999,(weights,page.evaluate("window.crossSamples.slice(0,12)"))
    assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
    page.locator('#chapters button').last.click(force=True);page.wait_for_timeout(1800);expect(page.locator('#chapter-title')).to_have_text('One composition again')
    page.locator('#replay').click();page.wait_for_timeout(1800);expect(page.locator('#chapter-title')).to_have_text('The finished artwork')

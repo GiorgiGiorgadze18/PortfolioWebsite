@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "command": "node --test tests/case-study/*.test.mjs",
+  "scope": "4 unit-test files; mocked lifecycle and rAF, not physical GPU",
+  "output": "PASS interrupt/reverse, settled-loop stop, hidden pause/resume, reduced motion and listener disposal\n\u2714 tests/case-study/button-progress.test.mjs (144.667593ms)\nPASS: lifecycle restore, 10 cycles, invalid assets, interrupted load cleanup, idempotent disposal\n\u2714 tests/case-study/engine.test.mjs (125.375211ms)\nPASS exact pose restore, 10 cycles, interrupted enter, dispose and reduced motion\n\u2714 tests/case-study/surface-transition.test.mjs (92.140762ms)\nPASS: pure reverse/direct seek, snapshot isolation, validation, refresh-independent spring\n\u2714 tests/case-study/timeline.test.mjs (70.245298ms)\n\u2139 tests 4\n\u2139 suites 0\n\u2139 pass 4\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 455.016084\n"
+}

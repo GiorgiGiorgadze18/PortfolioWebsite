@@ -1,12 +1,12 @@
-# Current state — Tom Ford completed for review
-Updated 2026-11-27 (Asia/Tbilisi). Owner explicitly authorized finishing Tom Ford like JBL without intermediate pauses. Phase 4 Tom Ford implementation complete; Earth Hour deferred by owner, so the whole multi-artwork phase is not claimed complete.
+# Current state — Button-driven graphic case studies
+Updated2026-11-27 (Asia/Tbilisi). Current branch feat/case-study-button-navigation, base cba02ea984395509ac5598ecb420a585e36680a7. Implementation SHA: `git log -1 --format=%H -- docs/case-study/NAVIGATION_REPORT.md`.
 
-Branch: feat/case-study-phase4-tomford, based on 8619c4809345cc6a96da27ae6d998f80fd35c527. Current implementation SHA: `git log -1 --format=%H -- docs/case-study/TOMFORD_REPORT.md`.
+Owner explicitly replaced scroll progression with Previous/Next and vertical dots. Shared button-progress.mjs drives the same pure timelines and smooth transitions; scrolling has no chapter effect. Active dots/Next use project accent; Previous uses navy with project-color overlay. Applies to both JBL and Tom Ford, independent Grid and actual showroom. No production merge/deployment; review flags remain off by default.
 
-Read TOMFORD_REPORT.md and its evidence JSON. Five original PSD planes, bottle-first choreography, approved isometric pose, six chapters, warm anchored leaders, real showroom display extraction and independent Grid CSS3D. Original endpoints use the owner PSD saved composite. No app business logic, source artwork or JBL project choreography changed.
+Read NAVIGATION_REPORT.md and evidence/navigation/tests.json, node-tests.json, plus evidence/reference/button-navigation-scene.json. Earlier TOMFORD_REPORT.md and JBL reports remain historical evidence for art extraction. Artwork, project choreography JSON and app demos unchanged.
 
-Review: `projects.html?view=3d&caseStudyPreview=1` → Graphic Design → Tom Ford → Explore case study. Grid uses `?view=grid&caseStudyPreview=1`. Standalone: case-studies/tomford-preview.html. Downloadable self-contained file: /workspace/portfolio-work/TomFord-case-study-preview.html.
+New standalone files: /workspace/portfolio-work/{JBL,TomFord}-case-study-button-preview.html. Earlier scroll preview files and cba02ea remote branch retained for rollback. Review repository URLs unchanged: projects.html?view=3d&caseStudyPreview=1 or ?view=grid&caseStudyPreview=1.
 
-No production merge/deploy, no PR. Registry enabled:false and projects published:false remain intentional review gates. No further source needed for Tom Ford. Original downloaded sources remain outside Git; provenance hashes and derived lossless masters are versioned.
+Earth: owner says layered AI unavailable and will supply notes-Earth.md in the existing Drive folder later. Do not claim it has arrived or start extraction now. Existing flattened original can be evaluated after notes arrive. Site-wide rollout of the button style is a future preference, not performed now.
 
-Open QA: physical devices, hardware GPU/FPS, WebGL Safari, assistive technology, full context-loss and 10-cycle real GPU-memory trend. Existing docs/OPEN_VERIFICATION.md remains applicable. Software-GL one-cycle restoration is not hardware leak certification.
+Open QA remains: physical devices, hardware GPU/FPS, AT, hardware Safari WebGL, full context-loss and ten-cycle actual GPU-memory trend. Keep docs/OPEN_VERIFICATION.md limits open.

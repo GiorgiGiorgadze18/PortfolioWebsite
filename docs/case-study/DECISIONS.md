@@ -37,3 +37,12 @@ Owner supplied isometric reference; target orientation equivalent pitch60/yaw22/
 - Keep JBL presentation bytes unchanged. A combined refactor was stopped by automatic review for JBL-regression risk; the accepted implementation writes Tom-only JSON and adds optional shared behavior. No blocked mutation was executed.
 - Keep real showroom models; artwork fits original aspect within device screen. Dedicated gold accents are scoped to Tom Ford. Source PSD remains outside public Git delivery; lossless PNG masters and provenance hashes are versioned.
 - User requested no intermediate stops. Complete tests/docs/commit on isolated branch; no production publication or unrelated phases inferred.
+
+## Chapter buttons2026-11-27
+- Owner explicitly replaces scroll chapter progression; preserve stateAt(p), source data and existing trajectories. Keep progress.mjs for rollback/future uses, no longer imported by graphic reference.
+- Small visual dots retain32×40/44px hit targets, accessible chapter names, aria-current and vertical arrow/Home/End keyboard navigation. Buttons update selected text immediately while scene motion interpolates; rapid reversal retains spring velocity.
+- Navy Previous receives restrained artwork tint; Next/active dot use artwork accent. Encapsulated case-action classes prepare a future wider button pass without changing unrelated pages now.
+- Embedded stage has no long scroll space. Short landscape/reduced motion retains full static text and images. Fix static-mode selector specificity so its content actually displays. Compact mobile header and size-container fitting reserve control space.
+- Earlier scroll screenshots and parent commit retained; no paid generation, dependencies or publication. Earth notes not yet supplied; no extraction performed.
+
+Control accents are read from canonical data/projects.mjs, not duplicated: JBL #0E89E6, Tom Ford #A88554. Existing artwork/leader palette is preserved separately.

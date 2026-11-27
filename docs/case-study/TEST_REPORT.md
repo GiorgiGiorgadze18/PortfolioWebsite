@@ -72,3 +72,6 @@ Final live-scene visual checks: entry-visual-tests.json1280×720 and entry-phone
 
 ## Tom Ford — 2026-11-27
 Current authoritative report: TOMFORD_REPORT.md. PSD effect-aware master fidelity PASS (MAD .1503806277/255, SSIM .9992640880). CSS3D both browsers/desktop+phone, Grid entry, software-GL showroom entry/restoration, JBL regression and shared Node checks passed in recorded artifacts. Early raw-export fidelity failed and was corrected. One early desktop focus assertion failed; repeat passed, render-gating safeguard added, final two-cycle desktop rerun PASS in tomford-desktop.json. Standalone local HTTP passed both browsers; file:// blocked by managed-browser policy. Physical devices/AT/hardware FPS/full context-loss/10-cycle actual GPU trend/full app matrix remain NOT RUN. Earlier baseline failures and NOT RUN statuses above are historical, not erased.
+
+## Button navigation2026-11-27
+See NAVIGATION_REPORT.md.16 browser-size cases,4 touch cases,4 JBL reference cases,4 Node test files and one real software-GL Tom Ford cycle passed. New source is button-progress.mjs; scrolling no longer selects chapters. Screenshots/JSON retain conditions. Physical hardware/AT/full context-loss/10-cycle GPU trends remain NOT RUN.

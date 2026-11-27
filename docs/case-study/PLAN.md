@@ -30,3 +30,6 @@ See evidence/capabilities.json, inventory.json and browser probe artifacts. Pyth
 
 ## Current scope — 2026-11-27
 Owner approved completion of Tom Ford like JBL without intermediate stops. Tom Ford Phase 4 implementation is complete for review; Earth Hour deferred. Earlier missing-source and Gate1 blockers above are historical. New PSD canvas1524×2784 supersedes the old627×1115 thumbnail as case-study fidelity target. No production publication authorized.
+
+## Navigation revision2026-11-27
+Current owner request authorizes replacing native-scroll graphic progression with button-driven smooth progress for both ready artworks. Do this refinement before Earth notes arrive. Keep previous cba02ea as rollback, preserve data/choreography and do not begin future app phases or global button rollout.
