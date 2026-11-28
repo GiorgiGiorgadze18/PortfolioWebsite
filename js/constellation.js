@@ -15,17 +15,20 @@
   const TAU = Math.PI * 2;
   const drift = 18;
   const attraction = 38;
-  const lineBands = Array.from({length: 8}, () => new Path2D());
+  const lineBands = Array.from({length: 6}, () => new Path2D());
+  const pointerBands = Array.from({length: 4}, () => new Path2D());
   let points = [];
   let neighbors = [];
   let width = 0, height = 0, pixelRatio = 0, spacing = 0;
-  let showStage = false, stageCoversViewport = false, staticFrame = false, pointer = null;
+  let stageCoversViewport = false, staticFrame = false, pointer = null;
   let frameId = 0, lastFrame = 0, elapsed = 0, resizeTimer;
-  let updateStageClip;
+  let updateStageCoverage;
+  const root = document.documentElement;
+  const shouldPause = () => document.hidden || reduced.matches || stageCoversViewport || root.hasAttribute('data-case-study-active');
 
   function build() {
     const {clientWidth, clientHeight} = document.documentElement;
-    const ratio = Math.min(devicePixelRatio || 1, 2);
+    const ratio = Math.min(devicePixelRatio || 1, 1, Math.sqrt(1000000 / (clientWidth * clientHeight)));
     if (!clientWidth || !clientHeight) return;
     if (clientWidth === width && clientHeight === height && ratio === pixelRatio) return;
 
@@ -79,8 +82,9 @@
       if (activePointer) {
         const dx = activePointer.x - point.homeX;
         const dy = activePointer.y - point.homeY;
-        const distance = Math.hypot(dx, dy);
-        if (distance > 0 && distance < 170) {
+        const squared = dx * dx + dy * dy;
+        if (squared > 0 && squared < 170 ** 2) {
+          const distance = Math.sqrt(squared);
           const pull = attraction * (1 - distance / 170) ** 2 / distance;
           targetX = dx * pull;
           targetY = dy * pull;
@@ -114,14 +118,19 @@
     if (activePointer) {
       ctx.strokeStyle = purple;
       ctx.lineWidth = 1.1;
+      for (let i = 0; i < pointerBands.length; i++) pointerBands[i] = new Path2D();
       for (const point of points) {
-        const distance = Math.hypot(point.x - activePointer.x, point.y - activePointer.y);
-        if (distance >= 200) continue;
-        ctx.globalAlpha = .83 * (1 - distance / 200);
-        ctx.beginPath();
-        ctx.moveTo(point.x, point.y);
-        ctx.lineTo(activePointer.x, activePointer.y);
-        ctx.stroke();
+        const dx = point.x - activePointer.x, dy = point.y - activePointer.y;
+        const squared = dx * dx + dy * dy;
+        if (squared >= 200 ** 2) continue;
+        const fade = 1 - Math.sqrt(squared) / 200;
+        const path = pointerBands[Math.min(pointerBands.length - 1, Math.floor(fade * pointerBands.length))];
+        path.moveTo(point.x, point.y);
+        path.lineTo(activePointer.x, activePointer.y);
+      }
+      for (let i = 0; i < pointerBands.length; i++) {
+        ctx.globalAlpha = .83 * (i + .5) / pointerBands.length;
+        ctx.stroke(pointerBands[i]);
       }
     }
 
@@ -136,13 +145,13 @@
   }
 
   function animate(time) {
-    if (document.hidden || reduced.matches || stageCoversViewport) {
+    if (shouldPause()) {
       syncMotion();
       return;
     }
     frameId = requestAnimationFrame(animate);
     const interval = time - lastFrame;
-    if (interval < 1000 / (showStage ? 15 : 30) - 1) return;
+    if (interval < 1000 / (finePointer.matches ? 60 : 30) - 1) return;
     const delta = Math.min(interval / 1000, .075);
     lastFrame = time;
     elapsed += delta;
@@ -153,7 +162,7 @@
     cancelAnimationFrame(frameId);
     frameId = 0;
     if (document.hidden) return;
-    if (reduced.matches || stageCoversViewport) {
+    if (shouldPause()) {
       if (!staticFrame) draw(false);
       staticFrame = true;
     } else {
@@ -175,45 +184,36 @@
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
       build();
-      updateStageClip?.();
+      updateStageCoverage?.();
       syncMotion();
     }, 130);
   }, {passive: true});
   document.addEventListener('visibilitychange', syncMotion);
   reduced.addEventListener('change', syncMotion);
 
-  // Animate the exposed background and exclude the showroom from compositing.
+  // The stage is opaque enough to cover the network without a compositing clip.
   const stage = document.querySelector('#museum-frame');
   if (stage) {
-    let clipFrame = 0;
-    function clipAroundStage() {
-      clipFrame = 0;
+    let pending = 0;
+    function updateCoverage() {
+      pending = 0;
       const bounds = stage.getBoundingClientRect();
-      const top = Math.max(0, bounds.top);
-      const bottom = Math.min(height, bounds.bottom);
-      const covered = top <= (document.querySelector('#navbar')?.offsetHeight ?? 0) && bottom >= height - 1;
+      const covered = bounds.height > 0 &&
+        bounds.top <= (document.querySelector('#navbar')?.offsetHeight ?? 0) &&
+        bounds.bottom >= height - 1;
       if (stageCoversViewport !== covered) {
         stageCoversViewport = covered;
         syncMotion();
       }
-      canvas.style.clipPath = showStage && bottom > top
-        ? `polygon(evenodd, 0 0, 100% 0, 100% 100%, 0 100%, 0 0, 0 ${top}px, 0 ${bottom}px, 100% ${bottom}px, 100% ${top}px, 0 ${top}px)`
-        : '';
     }
-
-    function queueClip() {
-      if (showStage && !clipFrame) clipFrame = requestAnimationFrame(clipAroundStage);
-    }
-
-    updateStageClip = queueClip;
-    new IntersectionObserver(([entry]) => {
-      showStage = entry.isIntersecting;
-      clipAroundStage();
-      syncMotion();
-    }).observe(stage);
-    window.addEventListener('scroll', queueClip, {passive: true});
-    new ResizeObserver(queueClip).observe(stage);
+    updateStageCoverage = () => {
+      if (!pending) pending = requestAnimationFrame(updateCoverage);
+    };
+    new IntersectionObserver(updateStageCoverage).observe(stage);
+    new ResizeObserver(updateStageCoverage).observe(stage);
+    window.addEventListener('scroll', updateStageCoverage, {passive: true});
   }
+  new MutationObserver(syncMotion).observe(root, {attributes:true, attributeFilter:['data-case-study-active']});
 
   build();
   syncMotion();

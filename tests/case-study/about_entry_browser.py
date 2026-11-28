@@ -20,17 +20,20 @@ with sync_playwright() as p:
  resources=page.evaluate("async()=>{const m=await import('./case-studies/shared/showroom-bridge.mjs');return m.showroomBridge.resources()}")
  cycles=int(os.environ.get('CASE_CYCLES','3'))
  for i in range(cycles):
-  before=page.evaluate(snapshot);y=page.evaluate('scrollY');trigger.click(force=True);f=page.frame_locator('iframe[title="'+short+' composition study"]');expect(f.locator('html')).to_have_class(re.compile(r'\bmotion-ready\b'),timeout=30000);page.wait_for_timeout(1000);readyPose=page.evaluate(snapshot)['pose'];assert all(abs(x-y)<.001 for x,y in zip(readyPose['rotation'],before['pose']['rotation'])),(before,readyPose);f.locator('#next').click(force=True);f.locator('#next').click(force=True);page.wait_for_function("()=>window.caseTestBridge.layers?.inspect().progress>.499",timeout=90000)
+  before=page.evaluate(snapshot);y=page.evaluate('scrollY');trigger.click(force=True);expect(page.locator('.case-study-dialog')).to_be_visible();expect(page.locator('.case-study-dialog.is-scene.is-ready')).to_be_visible(timeout=90000);f=page.frame_locator('iframe[title="'+short+' composition study"]');expect(f.locator('html')).to_have_class(re.compile(r'\bmotion-ready\b'),timeout=30000);page.wait_for_timeout(1000);readyPose=page.evaluate(snapshot)['pose'];assert all(abs(x-y)<.001 for x,y in zip(readyPose['rotation'],before['pose']['rotation'])),(before,readyPose);f.locator('#next').click();f.locator('#next').click();page.wait_for_function("()=>window.caseTestBridge.layers?.inspect().progress>.499",timeout=90000,polling=100)
   layerState=page.evaluate("async()=>{const m=await import('./case-studies/shared/showroom-bridge.mjs');return m.showroomBridge.layers.inspect()}");assert layerState['planes']==planeCount and layerState['supportsHidden'] and layerState['depths'][2]>layerState['depths'][1]>.126,layerState
   if i==0:
    page.screenshot(path=str(out/os.environ.get('CASE_SCREENSHOT','actual-webgl-desktop.png')))
    rgb=np.asarray(Image.open(out/os.environ.get('CASE_SCREENSHOT','actual-webgl-desktop.png')).convert('RGB'))[80:500,:int(page.viewport_size['width']*.6),:].astype(float)
    mask=((rgb[:,:,2]>80)&(rgb[:,:,1]>rgb[:,:,0]*1.2)&(rgb[:,:,2]>rgb[:,:,0]*1.4)) if slug=='jbl-artwork' else ((rgb[:,:,0]>70)&(rgb[:,:,0]>rgb[:,:,1]*1.05)&(rgb[:,:,0]>rgb[:,:,2]*1.2));mask=((rgb[:,:,2]>80)&(rgb[:,:,2]>rgb[:,:,1]*1.1)) if slug=='earthhour' else mask;artPixels=int(mask.sum());assert rgb.std()>10, "Blank composition screenshot"
-  f.locator('#exit').click();
+  if os.environ.get('CASE_OUTSIDE')=='1':page.mouse.click(2,100)
+  else:f.locator('#quit').click()
+
+  page.wait_for_function("()=>window.caseTestBridge.status==='idle'",timeout=30000,polling=100)
   try: expect(trigger).to_be_focused(timeout=30000)
   except Exception:
    print('EXIT DEBUG',page.evaluate('({active:{tag:document.activeElement.tagName,id:document.activeElement.id,className:document.activeElement.className},root:document.documentElement.dataset,inspectorInert:document.querySelector("#project-inspector").inert,bridge:window.caseTestBridge.inspect(),errors:[]})'),errors);raise
-  after=page.evaluate(snapshot);assert after['pose']==before['pose'],(before,after);assert abs(page.evaluate('scrollY')-y)<2;expect(page.locator('#inspector-title')).to_have_text(title)
+  after=page.evaluate(snapshot);assert after['pose']==before['pose'],(before,after);assert abs(page.evaluate('scrollY')-y)<2,(page.evaluate('scrollY'),y);expect(page.locator('#inspector-title')).to_have_text(title)
  afterResources=page.evaluate("async()=>{const m=await import('./case-studies/shared/showroom-bridge.mjs');return m.showroomBridge.resources()}");assert afterResources==resources,(resources,afterResources)
  assert not errors,errors
  ctx=b.new_context(java_script_enabled=False);s=ctx.new_page();s.goto(base+'case-studies/'+project['preview']);assert s.locator('#static section').count()==6;expect(s.locator('#static')).to_be_visible()

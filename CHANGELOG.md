@@ -1,5 +1,13 @@
 # Changelog
 
+## Showroom and Case Study polish — 2026-11-28
+
+- Stage texture uploads before revealing the 3D Case Study and give visitors a cancellable preparation animation while artwork is loading. Render the virtual room once while the case study moves. Resize the renderer and camera together on return.
+- Slow chapter movement, keep Previous, Next, Reset and Quit in a fixed row, and close Case Study from its backdrop in Grid or outside its tablet and controls in 3D. Scroll long chapter text without visible scrollbars.
+- Reduce the constellation canvas pixel budget, batch pointer lines, and refresh the exposed background more often in both views. Show the project archive only in Grid View.
+- Pair About and View Artwork in the MeeTab and Tsero inspectors and share the same space above the contact action on Home and About. See docs/case-study/MOTION_POLISH.md for verification.
+
+
 ## Next-driven tablet tilt — 2026-11-27
 
 - Keep the selected tablet upright when About opens on all3graphic projects. Begin the smooth tilt only after Next, following the existing timeline. Keep the paired controls, Quit and refresh.

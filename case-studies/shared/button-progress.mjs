@@ -4,7 +4,7 @@ export function createButtonProgress(update,{motion=matchMedia('(prefers-reduced
  const abort=new AbortController();let raf=0,last=0,p=0,v=0,target=0;
  function schedule(){if(!raf&&!document.hidden)raf=requestAnimationFrame(frame);}
  function frame(now){raf=0;if(document.hidden)return;const dt=last?Math.min(.1,(now-last)/1000):1/60;last=now;
-  if(motion.matches){p=target;v=0;}else {const next=advanceSpring(p,v,target,dt);p=next.position;v=next.velocity;}
+  if(motion.matches){p=target;v=0;}else {const next=advanceSpring(p,v,target,dt,7.5);p=next.position;v=next.velocity;}
   if(Math.abs(p-target)<.0001&&Math.abs(v)<.0001){p=target;v=0;last=0;}else schedule();
   update(clamp01(p));
  }

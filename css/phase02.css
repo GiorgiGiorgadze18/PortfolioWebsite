@@ -9,6 +9,7 @@
 .filter span { opacity: 1; }
 .mobile-dialog-close { min-width: 44px; min-height: 44px; }
 
+html[data-project-layout="3d"] #collection,
 html:not([data-project-layout="3d"]) .museum-section,
 .filter-group[hidden] { display: none; }
 .project-view-controls { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-sm); padding-block: var(--sp-md); }

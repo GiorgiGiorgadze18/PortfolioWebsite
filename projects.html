@@ -25,8 +25,9 @@
 
 
   <link rel="stylesheet" href="css/constellation.css">
-  <script defer src="js/constellation.js?v=0.16.4"></script>
-<link rel="stylesheet" href="css/phase02.css?v=0.18.0">
+  <script defer src="js/constellation.js?v=20261128-motion"></script>
+<link rel="stylesheet" href="css/phase02.css?v=20261128-motion">
+<link rel="stylesheet" href="css/case-study-entry.css?v=20261128-motion">
 
   <link rel="canonical" href="https://giorgigiorgadze18.github.io/PortfolioWebsite/projects.html">
   <link rel="icon" href="https://giorgigiorgadze18.github.io/PortfolioWebsite/assets/icon-code.svg" type="image/svg+xml">
@@ -50,7 +51,7 @@
   <script defer src="js/navigation.js?v=0.18.1"></script>
 </head>
 <body>
-  <a class="skip-link" href="#collection">Skip 3D showroom and explore projects</a>
+  <a class="skip-link" href="#project-view-switcher">Skip to project views</a>
   <div id="site-root">
       <header class="navbar" id="navbar">
     <nav class="navbar__inner container">
@@ -93,7 +94,7 @@
           <p class="hero-description">A selection of digital products, visual identities and interactive experiences — designed with purpose, built with precision.</p>
         </div>
       </section>
-      <div class="container project-view-controls" role="group" aria-label="Project view">
+      <div class="container project-view-controls" id="project-view-switcher" tabindex="-1" role="group" aria-label="Project view">
 <div class="project-segments">
 <button type="button" data-project-view="3d" aria-pressed="false" disabled><span aria-hidden="true">⬡</span>3D View</button>
 <button type="button" data-project-view="grid" aria-pressed="true" disabled><span aria-hidden="true">▦</span>Grid View</button>
@@ -248,7 +249,7 @@
 
 
 <script type="module">
-  import('./showroom/showroom.js?v=20261127-next-tilt').catch(() => {
+  import('./showroom/showroom.js?v=20261128-motion').catch(() => {
     document.documentElement.dataset.projectLayout = 'grid';
     document.querySelector('.project-segments').hidden = true;
     document.querySelector('.filter-group').hidden = true;
@@ -258,6 +259,6 @@
     target?.scrollIntoView();
   });
 </script>
-<script type="module" src="case-studies/shared/entry.mjs?v=20261127-next-tilt"></script>
+<script type="module" src="case-studies/shared/entry.mjs?v=20261128-motion"></script>
 </body>
 </html>

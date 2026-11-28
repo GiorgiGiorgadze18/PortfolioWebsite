@@ -23,3 +23,5 @@ button:disabled { cursor: default; opacity: .6; }
     transform: none;
   }
 }
+
+.contact-cta-action { margin-block-start: var(--sp-md, 24px); }

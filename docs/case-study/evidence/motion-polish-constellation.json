@@ -1,0 +1,37 @@
+{
+  "scope": "Foreground Chromium software canvas, isolated fixture using the actual production script, CSS viewport 1100x820, device DPR2, 2.2s synthetic pointer motion. 3D fixture exposes the backdrop beside a stage rectangle. Results are canvas draw cadence, not on-device FPS.",
+  "cases": [
+    {
+      "duration_ms": 2258,
+      "draws": 42,
+      "pixels": 3608000,
+      "view": "grid",
+      "revision": "before",
+      "draw_hz": 18.6
+    },
+    {
+      "duration_ms": 2209,
+      "draws": 92,
+      "pixels": 902000,
+      "view": "grid",
+      "revision": "after",
+      "draw_hz": 41.6
+    },
+    {
+      "duration_ms": 2232,
+      "draws": 30,
+      "pixels": 3608000,
+      "view": "3d",
+      "revision": "before",
+      "draw_hz": 13.4
+    },
+    {
+      "duration_ms": 2209,
+      "draws": 122,
+      "pixels": 902000,
+      "view": "3d",
+      "revision": "after",
+      "draw_hz": 55.2
+    }
+  ]
+}

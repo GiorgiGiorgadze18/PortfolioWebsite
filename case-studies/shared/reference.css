@@ -114,3 +114,43 @@ html[data-case="earthhour"] .leader path{stroke:#ad94d9;filter:drop-shadow(0 0 4
 .chapter-actions .case-action{min-width:0}
 @media(min-width:701px){.chapter-actions .case-action:not(#replay){padding-inline:14px}}
 .pin #chapters button{width:44px;min-width:44px;height:44px;min-height:44px}
+
+/* Keep chapter actions anchored as the description changes length. */
+.embedded-mode, .embedded-mode body { scrollbar-width: none; }
+.embedded-mode::-webkit-scrollbar, .embedded-mode body::-webkit-scrollbar,
+.chapter-narrative::-webkit-scrollbar { display: none; }
+.chapter-content { display: block; }
+.chapter-narrative {
+  height: clamp(160px, 28svh, 260px);
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+  padding-block: 4px;
+}
+.chapter-narrative:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.chapter-content .chapter-narrative h2 { margin-block: 6px 12px; }
+.chapter-actions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 44px minmax(44px, .65fr);
+  gap: 6px;
+  margin: 12px 0 0;
+}
+.chapter-actions .case-action, .chapter-content .chapter-actions #quit {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding-inline: 3px;
+  font-size: clamp(12px, 1.4vw, 14px);
+}
+.chapter-actions .case-action--quit { color: #d9e2ef; }
+.chapter-narrative #chapter-copy {
+  font-size: clamp(.875rem, 1.34vw, 1rem);
+  line-height: 1.55;
+  max-height: none;
+  overflow: visible;
+}
+.chapter-narrative .source { font-size: 11px; }
+@media(max-width:700px) {
+  .chapter-narrative { height: clamp(140px, 23svh, 185px); }
+  .scene-mode aside { padding: 12px; }
+}

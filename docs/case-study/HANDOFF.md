@@ -21,3 +21,5 @@ Branch feat/case-study-phase4-earth; safe rollback before this correction d9784c
 2026-11-27 refinement supersedes previous hold-until-Next behavior: About is beside View Artwork; entry blends from the selected pose into the assembled case-study pose, then Next raises layers. Quit replaces text Replay; refresh icon sits beside Next. Shared DOM controls and WebGL entry support all3graphic works.
 
 2026-11-27 მფლობელის ახალი შესწორება — About-ზე პლანშეტი ინარჩუნებს ჩვეულებრივ დახრას. ავტომატური.18 ფაზა გაუქმდა. პირველი Next იწყებს დაწოლას timeline-ით, საწყისი quaternion-იდან რბილი გადასვლით. ვრცელდება სამივე ნამუშევარზე. ეს ცვლის წინა ავტომატური დახრის წესს.
+
+2026-11-28 — ახალი Case Study-ის გახსნა/დახურვა, კონტროლები და ფონის გაზომვები აღწერილია [MOTION_POLISH.md](MOTION_POLISH.md)-ში. სამივე ნამუშევარი იყენებს საერთო წესებს.

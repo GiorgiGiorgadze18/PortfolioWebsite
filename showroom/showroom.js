@@ -1,4 +1,4 @@
-import {loadWebGLLayers} from '../case-studies/shared/webgl-layers.mjs?v=20261127-next-tilt';
+import {loadWebGLLayers} from '../case-studies/shared/webgl-layers.mjs?v=20261128-motion';
 import {registerShowroomBridge} from '../case-studies/shared/showroom-bridge.mjs';
 import {createSurfaceTransition} from '../case-studies/shared/surface-transition.mjs';
 
@@ -86,12 +86,19 @@ function buildArchive(){
  }
 }
 let modal;
+document.addEventListener('portfolio:show-project-details',event=>{
+ const project=ARCHIVE_PROJECTS.find(item=>item.id===event.detail);
+ if(!project)return;
+ const control=document.activeElement;
+ openAccessibleDetail(project);
+ modal.addEventListener('close',()=>control?.focus({preventScroll:true}),{once:true});
+});
 function openAccessibleDetail(p){if(!modal){modal=document.createElement('dialog');modal.className='mobile-project-dialog';modal.innerHTML='<div class="mobile-project-inner"><button class="mobile-dialog-close" type="button" aria-label="Close">×</button><p class="mobile-dialog-kicker"></p><h2></h2><div class="mobile-dialog-art"><img alt=""></div><p class="mobile-dialog-description"></p><a class="mobile-dialog-link" target="_blank" rel="noopener noreferrer">VIEW ORIGINAL ARTWORK ↗</a></div>';document.body.append(modal);modal.querySelector('button').addEventListener('click',()=>modal.close());modal.addEventListener('click',e=>{if(e.target===modal)modal.close()});const s=document.createElement('style');s.textContent='.mobile-project-dialog{border:1px solid rgba(208,188,255,.32);border-radius:13px;box-shadow:0 30px 100px rgba(0,0,0,.8);background:#0A0E1A;color:white;max-width:min(660px,calc(100vw - 32px));max-height:90vh;padding:0}.mobile-project-dialog::backdrop{background:rgba(3,5,12,.86);backdrop-filter:blur(10px)}.mobile-project-inner{padding:25px;position:relative}.mobile-dialog-close{position:absolute;right:13px;top:11px;font-size:26px;border:0;background:transparent;color:white}.mobile-dialog-kicker{font-size:10px;color:var(--active-tint);letter-spacing:.18em}.mobile-project-inner h2{font:800 26px Inter,sans-serif;margin:8px 0 20px;line-height:1.2}.mobile-dialog-art{display:flex;justify-content:center;background:#050711;max-height:42vh}.mobile-dialog-art img{max-height:42vh;max-width:100%;object-fit:contain}.mobile-dialog-description{color:rgba(255,255,255,.7);font:400 13px/1.7 Inter,sans-serif}.mobile-dialog-link{display:inline-block;margin-top:9px;padding:11px 16px;border:1px solid var(--active-light);color:var(--active-tint);border-radius:30px;font:700 10px Space Grotesk,sans-serif}';document.head.append(s)}modal.style.setProperty('--active-light',p.accent);modal.querySelector('.mobile-dialog-kicker').textContent=p.categoryLabel.toUpperCase()+' · '+p.year;modal.querySelector('h2').textContent=p.name;const img=modal.querySelector('img');img.src=assetUrl(p.cover);img.alt=p.name+' artwork';modal.querySelector('.mobile-dialog-description').textContent=p.description;modal.querySelector('.mobile-dialog-link').href=p.id==='portfolio'?'index.html':assetUrl(p.cover);modal.querySelector('.mobile-dialog-link').textContent=p.id==='portfolio'?'OPEN PORTFOLIO ↗':'VIEW ORIGINAL ARTWORK ↗';let demoButton=modal.querySelector('[data-open-demo]');
 if(!demoButton){demoButton=document.createElement('button');demoButton.type='button';demoButton.className='mobile-dialog-link';demoButton.dataset.openDemo='';modal.querySelector('.mobile-project-inner').append(demoButton)}
 demoButton.hidden=!p.demo || graphicsUnavailable;
 demoButton.textContent='OPEN IN 3D SHOWROOM';
 demoButton.onclick=async()=>{modal.close();setProjectView(false);await initialization;if(!gridView)chooseProject(p.id)};
-if(!modal.open)modal.showModal();}
+if(!modal.open)modal.showModal();document.dispatchEvent(new Event('portfolio:project-details-opened'));}
 
 function roundedShape(w,h,r){const s=new THREE.Shape();const l=-w/2,b=-h/2; r=Math.min(r,w/2,h/2);s.moveTo(l+r,b);s.lineTo(l+w-r,b);s.quadraticCurveTo(l+w,b,l+w,b+r);s.lineTo(l+w,b+h-r);s.quadraticCurveTo(l+w,b+h,l+w-r,b+h);s.lineTo(l+r,b+h);s.quadraticCurveTo(l,b+h,l,b+h-r);s.lineTo(l,b+r);s.quadraticCurveTo(l,b,l+r,b);return s;}
 function clamp(v,min,max){return Math.min(max,Math.max(min,v))}
@@ -662,7 +669,7 @@ function setForeground(id,enabled){
  d.group.traverse(obj=>{if(obj.isMesh)obj.layers.set(enabled?ACTIVE_LAYER:0)});
  activeLayerOn=enabled;focusHost.classList.toggle('is-active',enabled);
 }
-function setPanel(p){$('#inspector-index').textContent=`EXHIBIT ${String(PROJECTS.indexOf(p)+1).padStart(2,'0')} / 05`;$('#inspector-kicker').textContent=p.categoryLabel.toUpperCase();$('#inspector-title').textContent=p.name;$('#inspector-year').textContent=p.year;$('#inspector-description').textContent=p.description;$('#inspector-open').href=p.id==='jbl'?'https://github.com/GiorgiGiorgadze18/MeeTab1.1':assetUrl(p.cover);$('#inspector-open').textContent=p.id==='jbl'?'MEETAB PROJECT ↗':'VIEW ORIGINAL ARTWORK ↗';}
+function setPanel(p){$('#inspector-index').textContent=`EXHIBIT ${String(PROJECTS.indexOf(p)+1).padStart(2,'0')} / 05`;$('#inspector-kicker').textContent=p.categoryLabel.toUpperCase();$('#inspector-title').textContent=p.name;$('#inspector-year').textContent=p.year;$('#inspector-description').textContent=p.description;$('#inspector-open').href=assetUrl(p.cover);$('#inspector-open').textContent='VIEW ARTWORK ↗';}
 function revealShowroom(){
  const rect=frame.getBoundingClientRect();
  const navHeight=$('#navbar')?.offsetHeight||0;
@@ -1049,13 +1056,14 @@ function setupInteraction(){
 
 function installCaseStudySurface(){
  let caseProjectId='jbl-artwork';const target=()=>displayItems.get(selected?.id||caseProjectId).group;
+ let layerRequest=0;
  const capture=()=>({position:target().position.toArray(),rotation:[target().rotation.x,target().rotation.y,target().rotation.z],scale:target().scale.toArray(),camera:camera.position.toArray(),cameraRotation:[camera.rotation.x,camera.rotation.y,camera.rotation.z],zoom:camera.zoom,aspect:camera.aspect,fov:camera.fov,cameraOffsets:camera.view?.enabled?[camera.view.offsetX/camera.view.fullWidth,camera.view.offsetY/camera.view.fullHeight]:[0,0]});
- caseSurface=createSurfaceTransition({capture,reduced:motionReduced,apply(pose){const g=target();g.position.fromArray(pose.position);g.rotation.set(...pose.rotation);g.scale.fromArray(pose.scale);camera.position.fromArray(pose.camera);camera.rotation.set(...pose.cameraRotation);camera.zoom=pose.zoom;if(pose.cameraOffsets.some(v=>v!==0))camera.setViewOffset(innerWidth,innerHeight,pose.cameraOffsets[0]*innerWidth,pose.cameraOffsets[1]*innerHeight,innerWidth,innerHeight);else camera.clearViewOffset();camera.aspect=pose.aspect;camera.fov=pose.fov;camera.updateProjectionMatrix();camera.updateMatrixWorld(true);backdropSettlesAt=performance.now()+100;}});
- registerShowroomBridge({get status(){return caseSurface.status;},inspect:caseSurface.inspect,enter(slug='jbl-artwork'){if(selected?.id!==slug||selected.category!=='graphics'||state!=='focus'||movingTween)return Promise.resolve(false);caseProjectId=slug;return caseSurface.enter({holdPose:true});},async loadLayers(){const stage=await loadWebGLLayers({THREE,device:displayItems.get(caseProjectId),camera,layer:ACTIVE_LAYER,baseURL:new URL('../case-studies/projects/'+caseProjectId+'/',import.meta.url)});if(graphicsUnavailable){stage.dispose();throw Error('Showroom unavailable');}caseLayers=stage;},
- setProgress(p,rect){caseLayers?.draw(p,rect);backdropZoom=NaN;},
+ caseSurface=createSurfaceTransition({capture,reduced:motionReduced,apply(pose){const g=target();g.position.fromArray(pose.position);g.rotation.set(...pose.rotation);g.scale.fromArray(pose.scale);camera.position.fromArray(pose.camera);camera.rotation.set(...pose.cameraRotation);camera.zoom=pose.zoom;if(pose.cameraOffsets.some(v=>v!==0))camera.setViewOffset(sceneHost.clientWidth,sceneHost.clientHeight,pose.cameraOffsets[0]*sceneHost.clientWidth,pose.cameraOffsets[1]*sceneHost.clientHeight,sceneHost.clientWidth,sceneHost.clientHeight);else camera.clearViewOffset();camera.aspect=sceneHost.clientWidth/Math.max(1,sceneHost.clientHeight);camera.fov=pose.fov;camera.updateProjectionMatrix();camera.updateMatrixWorld(true);backdropSettlesAt=performance.now()+100;}});
+ registerShowroomBridge({get status(){return caseSurface.status;},inspect:caseSurface.inspect,enter(slug='jbl-artwork'){if(selected?.id!==slug||selected.category!=='graphics'||state!=='focus'||movingTween)return Promise.resolve(false);caseProjectId=slug;return caseSurface.enter({holdPose:true});},async loadLayers(signal){const request=++layerRequest;const stage=await loadWebGLLayers({THREE,device:displayItems.get(caseProjectId),camera,layer:ACTIVE_LAYER,signal,warmTexture:texture=>focusRenderer.initTexture(texture),baseURL:new URL('../case-studies/projects/'+caseProjectId+'/',import.meta.url)});if(graphicsUnavailable||signal?.aborted||request!==layerRequest){stage.dispose();throw Error('Showroom unavailable');}caseLayers=stage;},
+ setProgress(p,rect){caseLayers?.seek(p,rect);},
  get layers(){return caseLayers;},
  resources(){return {textures:renderer.info.memory.textures+focusRenderer.info.memory.textures,geometries:renderer.info.memory.geometries+focusRenderer.info.memory.geometries};},
- exit(){caseLayers?.dispose();caseLayers=null;return caseSurface.exit().then(result=>{queueSceneResize();return result;});}});
+ exit(){++layerRequest;caseLayers?.dispose();caseLayers=null;queueSceneResize();return caseSurface.exit().then(result=>{queueSceneResize();return result;});}});
  addEventListener('pagehide',()=>caseSurface.dispose(),{once:true});
 }
 
@@ -1185,13 +1193,13 @@ function render(time){
   if(device.cast.mesh.visible)updateCastShadow(device,exhibitSpots.get(id),device.group.parent===scene);
  }
  scene.updateMatrixWorld(true);
- if(caseLayers)window.dispatchEvent(new CustomEvent('case-study:anchors',{detail:caseLayers.anchors()}));
+ if(caseLayers)window.dispatchEvent(new CustomEvent('case-study:anchors',{detail:{anchors:caseLayers.anchors(),surface:caseLayers.surfaceBounds()}}));
  renderLabels(time);
  positionScreenPortal();
  if(glowSprite)glowSprite.material.opacity=0;
  camera.layers.set(0);
  // The phone's room can stay painted while the foreground exhibit rotates.
- if(!lightweight||state!=='focus'||time<backdropSettlesAt||dragOrbit||Math.abs(focusTilt.x-focusTiltTarget.x)+Math.abs(focusTilt.y-focusTiltTarget.y)>.001||!(Math.abs(backdropZoom-camera.zoom)<.001)){
+ if(caseLayers?!Number.isFinite(backdropZoom):(!lightweight||state!=='focus'||time<backdropSettlesAt||dragOrbit||Math.abs(focusTilt.x-focusTiltTarget.x)+Math.abs(focusTilt.y-focusTiltTarget.y)>.001||!(Math.abs(backdropZoom-camera.zoom)<.001))){
   renderer.render(scene,camera);
   backdropZoom=camera.zoom;
  }
@@ -1200,10 +1208,10 @@ function render(time){
 }
 
 
-function installKeys(){document.addEventListener('keydown',e=>{if(e.key==='Escape'&&state!=='gallery'){e.preventDefault();closeProject()}else if((e.key==='ArrowLeft'||e.key==='ArrowRight')&&state==='focus'&&!modal?.open){const projects=PROJECTS.filter(p=>projectSide(p)===gallerySide),n=projects.length,i=projects.findIndex(p=>p.id===selected.id),j=(i+(e.key==='ArrowRight'?1:-1)+n)%n;queuedSelection=projects[j].id;closeProject()}});closeButton.addEventListener('click',closeProject);
+function installKeys(){document.addEventListener('keydown',e=>{if(modal?.open||document.documentElement.dataset.caseStudyActive)return;if(e.key==='Escape'&&state!=='gallery'){e.preventDefault();closeProject()}else if((e.key==='ArrowLeft'||e.key==='ArrowRight')&&state==='focus'&&!modal?.open){const projects=PROJECTS.filter(p=>projectSide(p)===gallerySide),n=projects.length,i=projects.findIndex(p=>p.id===selected.id),j=(i+(e.key==='ArrowRight'?1:-1)+n)%n;queuedSelection=projects[j].id;closeProject()}});closeButton.addEventListener('click',closeProject);
  // Dismiss even when the user clicks outside the showroom frame (page header/archive).
  document.addEventListener('pointerdown',event=>{
-  if(state!=='focus'||event.button!==0||!inspector.classList.contains('is-open'))return;
+  if(modal?.open||document.documentElement.dataset.caseStudyActive||state!=='focus'||event.button!==0||!inspector.classList.contains('is-open'))return;
   if(inspector.contains(event.target)||event.target.closest('#screen-portal')||focusHost.contains(event.target)||event.target.closest('.stage-actions,#try-preview,#shelf-switch'))return;
   closeProject();
  });
